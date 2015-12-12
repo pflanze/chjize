@@ -1,0 +1,35 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+# remember, *still* need to quote variables!
+
+usage () {
+    echo "$0 basedir"
+    echo " mods .bash and .bash_profile files in place unless they"
+    echo " seem to already be modded"
+    exit 1
+}
+
+if [ $# -ne 1 ]; then
+    usage
+fi
+
+basedir="$1"
+
+doitfor () {
+    local filename="$1"
+    
+    local path="$basedir/$filename"
+    local from=/opt/fperl-demo-install/dot"$filename"
+
+    if grep -q -F "$from" "$path"; then
+	true
+    else
+	echo "source $from" >> "$path"
+    fi
+}
+
+
+doitfor .bash
+doitfor .bash_profile
