@@ -43,3 +43,7 @@ perl Makefile.PL
 make install
 )
 
+
+mod-user-bash /root
+mod-user-bash /home/ubuntu
+mod-user-bash /etc/skel
