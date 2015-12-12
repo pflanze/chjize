@@ -43,7 +43,14 @@ perl Makefile.PL
 make install
 )
 
+set +e
 
 mod-user-bash /root
 mod-user-bash /home/ubuntu
 mod-user-bash /etc/skel
+
+# emacs:
+ln -s /opt/chj/emacs/.emacs /root
+ln -s /opt/chj/emacs/.emacs /home/ubuntu
+ln -s /opt/chj/emacs/.emacs /etc/skel
+
