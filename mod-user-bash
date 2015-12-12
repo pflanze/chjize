@@ -33,3 +33,12 @@ doitfor () {
 
 doitfor .bashrc
 doitfor .bash_profile
+
+# emacs:
+ln -s /opt/chj/emacs/.emacs "$basedir" || true
+
+
+/opt/chj/bin/mvnumber "$basedir"/.lesskey || true
+echo 'LESS = -i -M' >> "$basedir"/.lesskey
+# XX how to run 'lesskey' though?
+

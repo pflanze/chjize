@@ -48,8 +48,3 @@ set +e
 /opt/fperl-demo-install/mod-user-bash /home/ubuntu
 /opt/fperl-demo-install/mod-user-bash /etc/skel
 
-# emacs:
-ln -s /opt/chj/emacs/.emacs /root
-ln -s /opt/chj/emacs/.emacs /home/ubuntu
-ln -s /opt/chj/emacs/.emacs /etc/skel
-
