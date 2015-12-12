@@ -31,5 +31,5 @@ doitfor () {
 }
 
 
-doitfor .bash
+doitfor .bashrc
 doitfor .bash_profile
