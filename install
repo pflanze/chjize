@@ -6,8 +6,7 @@ IFS=
 
 set -x
 
-test `pwd` = /root
-# otherwise run: sudo su - 
+test `pwd` = /opt/fperl-demo-install
 
 apt-get update
 
