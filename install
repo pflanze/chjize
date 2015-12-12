@@ -44,7 +44,7 @@ make install
 
 set +e
 
-/opt/fperl-demo-install/mod-user-bash /root
-/opt/fperl-demo-install/mod-user-bash /home/ubuntu
-/opt/fperl-demo-install/mod-user-bash /etc/skel
+/opt/fperl-demo-install/mod-user /root
+/opt/fperl-demo-install/mod-user /home/ubuntu
+/opt/fperl-demo-install/mod-user /etc/skel
 
