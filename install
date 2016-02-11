@@ -48,3 +48,5 @@ set +e
 /opt/fperl-demo-install/mod-user /home/ubuntu
 /opt/fperl-demo-install/mod-user /etc/skel
 
+set +x
+echo "OK, installation done."
