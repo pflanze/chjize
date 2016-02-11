@@ -18,3 +18,4 @@ workshop.)
     cd fperl-demo-install/
     ./install
 
+(The install step requires you to enter `yes` a couple times.)
