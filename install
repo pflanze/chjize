@@ -48,5 +48,8 @@ set +e
 /opt/fperl-demo-install/mod-user /home/ubuntu
 /opt/fperl-demo-install/mod-user /etc/skel
 
+mkdir -p /usr/local/lib/site_perl
+ln -s /opt/chj/perllib/Chj /usr/local/lib/site_perl/
+
 set +x
 echo "OK, installation done."
