@@ -27,8 +27,9 @@ git clone https://github.com/pflanze/chj-perllib.git perllib
 git clone https://github.com/pflanze/chj-emacs.git emacs
 )
 
-mkdir -p /usr/local/lib/site_perl
+mkdir -p /usr/local/lib/site_perl/Class
 ln -s /opt/chj/perllib/Chj /usr/local/lib/site_perl/
+ln -s /opt/chj/perllib/Class/Array.pm /usr/local/lib/site_perl/Class
 
 set +e
 
