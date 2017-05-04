@@ -3,8 +3,9 @@
 set -euo pipefail
 IFS=
 
+PATH=/opt/chjize:"$PATH"
 set -x
-test `pwd` = /opt/chjize
+test "$0" = /opt/chjize/install-main
 
 apt-get update
 
@@ -34,14 +35,14 @@ ln -s /opt/chj/perllib/Class/Array.pm /usr/local/lib/site_perl/Class
 
 set +e
 
-/opt/chjize/mod-user /root
+mod-user /root
 if [ -d /home/ubuntu ]; then
-    /opt/chjize/mod-user /home/ubuntu
+    mod-user /home/ubuntu
 fi
 if [ -d /home/chris ]; then
-    /opt/chjize/mod-user /home/chris
+    mod-user /home/chris
 fi
-/opt/chjize/mod-user /etc/skel
+mod-user /etc/skel
 
 
 set +x
