@@ -26,12 +26,32 @@ set -x
 cd chj
 git clone https://github.com/pflanze/git-sign.git
 
+(
+set -euo pipefail
+set -x
+cd git-sign
+git checkout -b _v3 v3
+test "`git ls-files -z | xargs -0 --no-run-if-empty -s 129023 -n 129023 sha256sum | sha256sum`" = "860e46d626a7fa3c58dc3fa681e70d6e957af58e084960d7b9d39569bb28c30b  -"
+)
+
+PATH=/opt/chj/git-sign/bin:"$PATH"
+
+gpg --import /opt/chjize/cj-key.asc
+
 git clone https://github.com/pflanze/chj-bin.git bin
+( set -euo pipefail ; set -x ; cd bin ; checkout-latest-release -v )
+
 git clone https://github.com/pflanze/chj-perllib.git perllib
+( set -euo pipefail ; set -x ; cd perllib ; checkout-latest-release -v )
+
 git clone https://github.com/pflanze/chj-emacs.git emacs
+( set -euo pipefail ; set -x ; cd emacs ; checkout-latest-release -v )
 
 git clone https://github.com/pflanze/fastrandom.git
+( set -euo pipefail ; set -x ; cd fastrandom ; checkout-latest-release -v )
+
 git clone https://github.com/pflanze/cj-git-patchtool.git
+( set -euo pipefail ; set -x ; cd cj-git-patchtool ; checkout-latest-release -v )
 
 )
 

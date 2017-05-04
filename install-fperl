@@ -11,9 +11,7 @@ test "$0" = /opt/chjize/install-fperl
 apt-get install -y libtest-requires-perl libtext-csv-perl liburi-perl libclone-perl liblwp-protocol-https-perl libb-hooks-op-check-entersubforcv-perl libparent-perl libfile-spec-perl libproc-processtable-perl libmoo-perl libstrictures-perl libdevel-globaldestruction-perl libmodule-runtime-perl librole-tiny-perl libbareword-filehandles-perl libindirect-perl libmultidimensional-perl
 
 cpan install Function::Parameters Sub::Call::Tail Eval::WithLexicals
-
-#- root@ip-172-30-0-133:/opt/functional-perl# PATH=/opt/functional-perl/bin:"$PATH"
-# and.
+# ^ XX missing signature checking, of course...
 
 cd /opt
 git clone https://github.com/pflanze/functional-perl.git
@@ -22,6 +20,9 @@ git clone https://github.com/pflanze/functional-perl.git
 set -euo pipefail
 set -x
 cd functional-perl
+
+checkout-latest-release -v  # assumes gpg key is already imported (by install-main)
+
 perl Makefile.PL
 make install
 )
