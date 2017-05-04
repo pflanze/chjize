@@ -21,7 +21,7 @@ doitfor () {
     local filename="$1"
     
     local path="$basedir/$filename"
-    local from=/opt/fperl-demo-install/dot"$filename"
+    local from=/opt/chjize/dot"$filename"
 
     if grep -q -F "$from" "$path"; then
 	true

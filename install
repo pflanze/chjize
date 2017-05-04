@@ -6,7 +6,7 @@ IFS=
 
 set -x
 
-test `pwd` = /opt/fperl-demo-install
+test `pwd` = /opt/chjize
 
 apt-get update
 
@@ -44,9 +44,9 @@ make install
 
 set +e
 
-/opt/fperl-demo-install/mod-user /root
-/opt/fperl-demo-install/mod-user /home/ubuntu
-/opt/fperl-demo-install/mod-user /etc/skel
+/opt/chjize/mod-user /root
+/opt/chjize/mod-user /home/ubuntu
+/opt/chjize/mod-user /etc/skel
 
 mkdir -p /usr/local/lib/site_perl
 ln -s /opt/chj/perllib/Chj /usr/local/lib/site_perl/
