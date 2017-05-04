@@ -1,0 +1,47 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+set -x
+test `pwd` = /opt/chjize
+
+apt-get update
+
+apt-get install -y git make gcc chase
+
+apt-get install -y emacs rxvt-unicode-lite
+# XXX big one now
+
+apt-get install -y libterm-readline-gnu-perl libpadwalker-perl libmethod-signatures-perl libbsd-resource-perl libtext-markdown-perl
+
+
+cd /opt
+
+mkdir chj
+(
+set -euo pipefail
+set -x
+cd chj
+git clone https://github.com/pflanze/chj-bin.git bin
+git clone https://github.com/pflanze/chj-perllib.git perllib
+git clone https://github.com/pflanze/chj-emacs.git emacs
+)
+
+mkdir -p /usr/local/lib/site_perl
+ln -s /opt/chj/perllib/Chj /usr/local/lib/site_perl/
+
+set +e
+
+/opt/chjize/mod-user /root
+if [ -d /home/ubuntu ]; then
+    /opt/chjize/mod-user /home/ubuntu
+fi
+if [ -d /home/chris ]; then
+    /opt/chjize/mod-user /home/chris
+fi
+/opt/chjize/mod-user /etc/skel
+
+
+set +x
+echo "OK, installation done."

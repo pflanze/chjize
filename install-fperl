@@ -1,0 +1,28 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+set -x
+test `pwd` = /opt/chjize
+
+apt-get install -y libtest-requires-perl libtext-csv-perl liburi-perl libclone-perl liblwp-protocol-https-perl libb-hooks-op-check-entersubforcv-perl libparent-perl libfile-spec-perl libproc-processtable-perl libmoo-perl libstrictures-perl libdevel-globaldestruction-perl libmodule-runtime-perl librole-tiny-perl libbareword-filehandles-perl libindirect-perl libmultidimensional-perl
+
+cpan install Function::Parameters Sub::Call::Tail Eval::WithLexicals
+
+#- root@ip-172-30-0-133:/opt/functional-perl# PATH=/opt/functional-perl/bin:"$PATH"
+# and.
+
+cd /opt
+git clone https://github.com/pflanze/functional-perl.git
+
+(
+set -euo pipefail
+set -x
+cd functional-perl
+perl Makefile.PL
+make install
+)
+
+set +x
+echo "OK, installation done."
