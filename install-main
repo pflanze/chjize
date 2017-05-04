@@ -14,6 +14,7 @@ apt-get install -y emacs rxvt-unicode
 
 apt-get install -y libterm-readline-gnu-perl libpadwalker-perl libmethod-signatures-perl libbsd-resource-perl libtext-markdown-perl
 
+apt-get install -y strace ltrace tcpdump
 
 cd /opt
 
