@@ -24,9 +24,15 @@ mkdir chj
 set -euo pipefail
 set -x
 cd chj
+git clone https://github.com/pflanze/git-sign.git
+
 git clone https://github.com/pflanze/chj-bin.git bin
 git clone https://github.com/pflanze/chj-perllib.git perllib
 git clone https://github.com/pflanze/chj-emacs.git emacs
+
+git clone https://github.com/pflanze/fastrandom.git
+git clone https://github.com/pflanze/cj-git-patchtool.git
+
 )
 
 mkdir -p /usr/local/lib/site_perl/Class
