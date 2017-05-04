@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+PATH=/opt/chjize:"$PATH"
+set -x
+test "$0" = /opt/chjize/install
+
+install-main
+install-fperl
