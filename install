@@ -9,3 +9,5 @@ test "$0" = /opt/chjize/install
 
 install-main
 install-fperl
+
+mv /opt/chjize /opt/chj/chjize
