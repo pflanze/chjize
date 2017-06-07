@@ -15,7 +15,10 @@ apt-get install -y emacs rxvt-unicode x11-utils gitk
 
 apt-get install -y libterm-readline-gnu-perl libpadwalker-perl libmethod-signatures-perl libbsd-resource-perl libtext-markdown-perl
 
-apt-get install -y strace ltrace tcpdump lsof iotop lzop rzip xz-utils zip unzip
+apt-get install -y strace tcpdump lsof iotop lzop rzip xz-utils zip unzip
+
+apt-get install -y ltrace || true
+# somehow not available on beaglebone black's Debian, huh
 
 cd /opt
 
