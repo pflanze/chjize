@@ -22,7 +22,7 @@ apt-get install -y ltrace || true
 
 cd /opt
 
-mkdir chj
+mkdir -p chj
 (
 set -euo pipefail
 set -x
