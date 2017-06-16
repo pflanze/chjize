@@ -14,7 +14,7 @@ if [ -d ~/local/bin ] ; then
     PATH=~/local/bin:"${PATH}"
 fi
 
-ulimit -S -v 300000
+ulimit -S -v 3000000
 export EDITOR=emacs
 unset LESSOPEN
 unset LESSCLOSE
