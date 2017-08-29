@@ -5,9 +5,9 @@ IFS=
 
 PATH=/opt/chjize:"$PATH"
 set -x
-test "$(readlink -f "$0")" = "$(readlink -f /opt/chjize/install)"
+test "$(readlink -f "$0")" = "$(readlink -f /opt/chjize/chjize)"
 
-install-main
-install-fperl
+chjize-main
+chjize-fperl
 
 mv /opt/chjize /opt/chj/chjize

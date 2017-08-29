@@ -5,7 +5,7 @@ IFS=
 
 PATH=/opt/chjize:"$PATH"
 set -x
-test "$(readlink -f "$0")" = "$(readlink -f /opt/chjize/install-main)"
+test "$(readlink -f "$0")" = "$(readlink -f /opt/chjize/chjize-main)"
 
 #apt-get update
 

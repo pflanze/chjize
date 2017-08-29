@@ -1,6 +1,7 @@
 # Chjize
 
-Mod a bare-bones (e.g. debootstrap) Debian install into one I like.
+Mod a bare-bones (e.g. debootstrap) Debian install into one that I
+like.
 
 ## How?
 
@@ -9,7 +10,7 @@ Mod a bare-bones (e.g. debootstrap) Debian install into one I like.
     cd /opt/
     git clone https://github.com/pflanze/chjize.git
     cd chjize/
-    ./install-main
+    ./chjize-main
 
 ## Optional: functional perl
 
@@ -21,6 +22,6 @@ utilities so that I'm feeling comfortable in the shell.
 (This was originally written to support a functional-perl live
 workshop.)
 
-    ./install-fperl
+    ./chjize-fperl
 
 (The install step requires you to enter `yes` a couple times.)
