@@ -11,6 +11,8 @@ test "$(readlink -f "$0")" = "$(readlink -f /opt/chjize/chjize-main)"
 
 apt-get install -y git make gcc chase
 
+apt-get install -y emacs25 || true
+
 apt-get install -y emacs rxvt-unicode x11-utils gitk
 
 apt-get install -y libterm-readline-gnu-perl libpadwalker-perl libmethod-signatures-perl libbsd-resource-perl libtext-markdown-perl
