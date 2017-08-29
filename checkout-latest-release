@@ -17,6 +17,8 @@ fi
 
 ver="v`git tag -l | grep ^v | sed s/^v// | LANG=C sort -rn | head -1`"
 
+git checkout master || true  # so that branch -D can work below
+git branch -D _"$ver" || true
 git checkout -b _"$ver" "$ver"
 
 if [[ $do_verify = yes ]]; then
