@@ -3,7 +3,7 @@
 set -euo pipefail
 IFS=
 
-PATH=/opt/chjize:"$PATH"
+PATH=/opt/chjize:/opt/chj/git-sign/bin:"$PATH"
 set -x
 test "$(readlink -f "$0")" = "$(readlink -f /opt/chjize/chjize-fperl)"
 
