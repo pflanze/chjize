@@ -14,7 +14,10 @@ apt-get install -y libtest-requires-perl libtext-csv-perl liburi-perl libclone-p
 # ^ XX missing signature checking, of course...
 
 cd /opt
-git clone https://github.com/pflanze/functional-perl.git
+
+if [ ! -d functional-perl ]; then
+    git clone https://github.com/pflanze/functional-perl.git
+fi
 
 (
 set -euo pipefail
