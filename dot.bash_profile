@@ -20,3 +20,5 @@ unset LESSOPEN
 unset LESSCLOSE
 
 # export LANG=de_CH.UTF8
+
+source /opt/chjize/dot.bashrc
