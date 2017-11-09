@@ -47,4 +47,5 @@ cat <<EOF >> "$path"
 LESS = -i -M -R
 EOF
 chown "$username"."$groupname" "$path"
-su - "$username" lesskey
+#su - "$username" lesskey  huh, gives "/usr/bin/lesskey: /usr/bin/lesskey: cannot execute binary file"
+su - "$username" bash -c lesskey
