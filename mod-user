@@ -4,17 +4,19 @@ set -euo pipefail
 IFS=
 
 usage () {
-    echo "$0 basedir"
+    echo "$0 basedir username groupname"
     echo " mods .bash and .bash_profile files in place unless they"
     echo " seem to already be modded"
     exit 1
 }
 
-if [ $# -ne 1 ]; then
+if [ $# -ne 3 ]; then
     usage
 fi
 
 basedir="$1"
+username="$2"
+groupname="$3"
 
 doitfor () {
     local filename="$1"
@@ -26,6 +28,7 @@ doitfor () {
 	true
     else
 	echo "source $from" >> "$path"
+	chown "$username"."$groupname" "$path"
     fi
 }
 
@@ -36,8 +39,12 @@ doitfor .bash_profile
 # emacs:
 ln -s /opt/chj/emacs/.emacs "$basedir" || true
 
-
-/opt/chj/bin/mvnumber "$basedir"/.lesskey || true
-echo 'LESS = -i -M' >> "$basedir"/.lesskey
-# XX how to run 'lesskey' though?
-
+# less:
+path="$basedir"/.lesskey
+/opt/chj/bin/mvnumber "$path" || true
+cat <<EOF >> "$path"
+#env
+LESS = -i -M -R
+EOF
+chown "$username"."$groupname" "$path"
+su - "$username" lesskey

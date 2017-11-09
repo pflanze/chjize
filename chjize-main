@@ -72,14 +72,14 @@ ln -s /opt/chj/perllib/Class/Array.pm /usr/local/lib/site_perl/Class
 
 set +e
 
-mod-user /root
+mod-user /root root root
 if [ -d /home/ubuntu ]; then
-    mod-user /home/ubuntu
+    mod-user /home/ubuntu ubuntu ubuntu
 fi
 if [ -d /home/chris ]; then
-    mod-user /home/chris
+    mod-user /home/chris chris chris
 fi
-mod-user /etc/skel
+mod-user /etc/skel root root
 
 
 set +x
