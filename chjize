@@ -10,4 +10,3 @@ test "$(readlink -f "$0")" = "$(readlink -f /opt/chjize/chjize)"
 chjize-main
 chjize-fperl
 
-mv /opt/chjize /opt/chj/chjize

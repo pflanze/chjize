@@ -8,6 +8,8 @@ like.
     sudo su -
     apt-get install -y git
     cd /opt/
+    mkdir chj
+    cd chj
     git clone https://github.com/pflanze/chjize.git
     cd chjize/
     ./chjize-main
