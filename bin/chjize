@@ -1,0 +1,26 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+rulesdir=/opt/chj/chjize/rules
+
+usage () {
+    echo "$0 command [ args ]"
+    echo "  run command from $rulesdir with proper env"
+    exit 1
+}
+
+command=$1
+shift
+
+
+PATH=/opt/chj/chjize/bin:/opt/chj/git-sign/bin:"$PATH"
+
+if [ "$(readlink -f "$0")" = "$(readlink -f /opt/chj/chjize/bin/chjize)" ]; then
+    set -x
+    "$rulesdir"/"$command" "$@"
+else
+    echo "wrong location: place this repository at /opt/chj/chjize/, then run make from there"
+    false
+fi

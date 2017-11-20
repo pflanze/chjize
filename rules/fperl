@@ -3,10 +3,6 @@
 set -euo pipefail
 IFS=
 
-PATH=/opt/chj/chjize:/opt/chj/git-sign/bin:"$PATH"
-set -x
-test "$(readlink -f "$0")" = "$(readlink -f /opt/chj/chjize/chjize-fperl)"
-
 
 apt-get install -y libtest-requires-perl libtext-csv-perl liburi-perl libclone-perl liblwp-protocol-https-perl libb-hooks-op-check-entersubforcv-perl libparent-perl libfile-spec-perl libproc-processtable-perl libmoo-perl libstrictures-perl libdevel-globaldestruction-perl libmodule-runtime-perl librole-tiny-perl libbareword-filehandles-perl libindirect-perl libmultidimensional-perl
 
