@@ -3,7 +3,10 @@ nothing:
 	echo "please specify a target"
 
 
-basics:
+perhaps_aptupdate:
+	./bin/chjize perhaps_aptupdate
+
+basics: perhaps_aptupdate
 	./bin/chjize basics
 	touch basics
 

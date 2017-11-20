@@ -1,0 +1,54 @@
+#!/usr/bin/perl -w
+
+use strict; use warnings FATAL => 'uninitialized';
+
+my $maxage= 60*60*24;  # seconds
+
+
+$0=~ /(.*?)([^\/]+)\z/s or die "?";
+my ($mydir, $myname)=($1,$2);
+sub usage {
+    print STDERR map{"$_\n"} @_ if @_;
+    print "$myname stamp_path command [ arguments ]
+
+  Checks if stamp_path exists and is newer than $maxage seconds,
+  otherwise it runs command with the given arguments, then
+  creates/updates the stamp.
+";
+exit (@_ ? 1 : 0);
+}
+
+use Getopt::Long;
+our $verbose=0;
+#our $opt_dry;
+GetOptions("verbose"=> \$verbose,
+	   "help"=> sub{usage},
+	   #"dry-run"=> \$opt_dry,
+	   ) or exit 1;
+usage unless @ARGV >= 2;
+
+my ($stamp_path, @cmd)= @ARGV;
+
+sub update {
+    my $exitcode= system(@cmd);
+    if ($exitcode == 0) {
+	open my $o, ">", $stamp_path
+	  or die "could not create stamp '$stamp_path': $!";
+	close $o
+	  or die $!;
+    } else {
+	die "$myname: command exited with code $exitcode"
+    }
+}
+
+
+if (defined (my $m= -M $stamp_path)) {
+    if (($m * 60*60*24) < $maxage) {
+	# OK
+    } else {
+	update
+    }
+} else {
+    update
+}
+

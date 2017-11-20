@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+perhaps_update .perhaps_aptupdate apt-get update
