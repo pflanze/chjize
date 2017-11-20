@@ -3,4 +3,4 @@
 set -euo pipefail
 IFS=
 
-perhaps_update .perhaps_aptupdate apt-get update
+perhaps_update perhaps_aptupdate apt-get update
