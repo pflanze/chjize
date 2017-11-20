@@ -12,7 +12,8 @@ like.
     cd chj
     git clone https://github.com/pflanze/chjize.git
     cd chjize/
-    ./chjize-main
+    make help
+    make basics # etc.
 
 ## Optional: functional perl
 
@@ -24,6 +25,6 @@ utilities so that I'm feeling comfortable in the shell.
 (This was originally written to support a functional-perl live
 workshop.)
 
-    ./chjize-fperl
+    make fperl
 
 (The install step requires you to enter `yes` a couple times.)

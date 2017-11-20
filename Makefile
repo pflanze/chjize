@@ -1,6 +1,9 @@
 
-nothing:
-	echo "please specify a target"
+TARGETS=perhaps_aptupdate basics fperl
+
+help:
+	true "targets: $(TARGETS)"
+	true "please specify a target"
 
 
 perhaps_aptupdate:
@@ -16,4 +19,4 @@ fperl: basics
 
 
 clean:
-	rm -f basics fperl
+	rm -f $(TARGETS)
