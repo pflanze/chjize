@@ -88,5 +88,3 @@ fi
 mod-user /etc/skel root root
 
 
-set +x
-echo "OK, installation done."

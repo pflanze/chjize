@@ -26,5 +26,3 @@ perl Makefile.PL
 make install
 )
 
-set +x
-echo "OK, installation done."
