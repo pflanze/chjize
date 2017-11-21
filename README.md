@@ -6,7 +6,7 @@ like.
 ## How?
 
     sudo su -
-    apt-get install -y git
+    apt-get install -y git make
     cd /opt/
     mkdir chj
     cd chj
