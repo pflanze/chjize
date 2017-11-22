@@ -3,19 +3,63 @@
 set -euo pipefail
 IFS=
 
-do_verify=no
-
-arg0="${1-}"
-if [[ $arg0 = -v ]]; then
-    do_verify=yes
-elif [[ $arg0 != "" ]]; then
-    echo "usage: $0 [-v]"
-    echo "  check out latest (well, highest-numbered) release tag,"
-    echo "  run verify-sig if -v is given."
+usage () {
+    echo "usage: $0 [-v] [-p pattern]"
+    echo "  check out latest (well, highest-numbered) release tag."
+    echo "  Options:"
+    echo "     -v           run verify-sig"
+    echo "     -p pattern   pattern to use with perl for tag selection,"
+    echo "                    must capture the version number, of which"
+    echo "                    the part before an optional dot is sorted"
+    echo "                    numerically, the part after lexically;"
+    echo "                    default: '$pattern'"
     exit 1
-fi
+}
 
-ver="v`git tag -l | grep ^v | sed s/^v// | LANG=C sort -rn | head -1`"
+do_verify=no
+pattern='^v(\d+)$'
+
+while [ "${#@}" -gt 0 ]; do
+    case "$1" in
+	-v)
+	shift
+	do_verify=yes
+	;;
+	-p)
+	shift
+	pattern="$1"
+	shift
+	;;
+	*)
+	usage
+	;;
+    esac
+done
+
+
+export pattern
+ver=$(git tag -l | perl -we '
+$pattern=$ENV{pattern};
+while(<STDIN>) {
+    chomp;
+    push @v, [$_, $1 // die "pattern /$pattern/ does not capture anything for: '\''$_'\''" ] if /$pattern/;
+}
+@v or die "no tags matching /$pattern/ found";
+sub vparse {
+    my ($v)=@_;
+    my ($pre,$post)= $v=~ /^(\d+)(?:\.(.*))?$/s
+        or die "invalid version number, does not start with digits and optionally a dot and string: '\''$v'\''";
+    [$pre, $post//""]
+}
+sub vcmp {
+    my ($a,$b)=@_;
+    $$a[0] <=> $$b[0] or $$a[1] cmp $$b[1]
+}
+print((sort { vcmp vparse($$a[1]), vparse($$b[1]) } @v)[-1][0]) or die $!
+')
+
+#echo "do_verify=$do_verify, pattern='$pattern'"
+#echo "ver='$ver'";
 
 git checkout master || true  # so that branch -D can work below
 git branch -D _"$ver" || true
