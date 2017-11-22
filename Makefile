@@ -1,5 +1,5 @@
 
-TARGETS=perhaps_aptupdate basics fperl
+TARGETS=perhaps_aptupdate basics fperl gambit
 
 help:
 	true "targets: $(TARGETS)"
@@ -14,6 +14,9 @@ basics: perhaps_aptupdate
 
 fperl: basics
 	./bin/chjize fperl
+
+gambit: basics
+	./bin/chjize gambit
 
 
 clean:
