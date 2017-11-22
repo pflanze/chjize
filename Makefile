@@ -1,5 +1,5 @@
 
-TARGETS=perhaps_aptupdate basics fperl gambit
+TARGETS=perhaps_aptupdate basics fperl gambit qemu
 
 help:
 	true "targets: $(TARGETS)"
@@ -17,6 +17,9 @@ fperl: basics
 
 gambit: basics
 	./bin/chjize gambit
+
+qemu: gambit
+	./bin/chjize qemu
 
 
 clean:

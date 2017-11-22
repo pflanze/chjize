@@ -1,0 +1,30 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+if read -e -p "Please enter a username dedicated to running your VMs (account will be created if it doesn't already exist): " username; then
+
+    echo "username: '$username'"
+
+    set -x
+
+    # see arcolatheatre-wiki/Windows-with-QEMU-KVM.xhtml
+    # XX do we actually need to rebuild the packages with the patch?
+
+    apt-get install -y qemu-kvm qemu-utils uml-utilities
+
+    cd /opt/chj
+    git clone https://github.com/pflanze/cj-qemucontrol.git
+    cd cj-qemucontrol
+    checkout-latest-release -v
+
+    if ! grep -q "^$username:" /etc/passwd; then
+	adduser --disabled-password "$username"
+	adduser "$username" netdev
+    fi
+else
+    echo "aborted."
+    false
+fi
+
