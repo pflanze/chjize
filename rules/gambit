@@ -5,41 +5,41 @@ IFS=
 
 cd /opt/chj
 
-if [ -d gambc ]; then
-    echo "/opt/chj/gambc already exists, done previously?"
-    # false
-else
-    if read -e -p "Would you like to compile Gambit in C++ mode ? (yes|y=C++, no|n=C): " ans; then
-	optcpp=
-	case "$ans" in
-	    yes|y|Y|YES|Yes)
-		optcpp=--enable-cplusplus
-		;;
-	    no|n|N|NO|No)
-		optcpp=--disable-cplusplus
-		;;
-	    *)
-		echo "Please answer y or n. Aborting."
-		false
-	esac
+if read -e -p "Would you like to compile Gambit in C++ mode ? (yes|y=C++, no|n=C): " ans; then
+    optcpp=
+    case "$ans" in
+	yes|y|Y|YES|Yes)
+	    optcpp=--enable-cplusplus
+	    ;;
+	no|n|N|NO|No)
+	    optcpp=--disable-cplusplus
+	    ;;
+	*)
+	    echo "Please answer y or n. Aborting."
+	    false
+    esac
 
-	set -x
+    set -x
 
-	git clone https://github.com/pflanze/gambc.git
-	cd gambc
-	checkout-latest-release -p '^cj(\d+)$' -v
-
-	# make sure the makefile doesn't try to rebuild the .c files
-	# (which would fail as gsc-comp is not available yet):
-	find -name "*.[ch]" -print0 | xargs -0 touch
-	touch configure
-
-	./configure "$optcpp" --enable-single-host
-	make -j2
-	make install
-
-	ln -s /usr/local/Gambit-C/bin/* /usr/local/bin/
+    if [ -d gambc ]; then
+	echo "/opt/chj/gambc already checked out, trusting it"
     else
-	echo "cancelled since no answer"
+	git clone https://github.com/pflanze/gambc.git
     fi
+
+    cd gambc
+    checkout-latest-release -p '^cj(\d+)$' -v
+
+    # make sure the makefile doesn't try to rebuild the .c files
+    # (which would fail as gsc-comp is not available yet):
+    find -name "*.[ch]" -print0 | xargs -0 touch
+    touch configure
+
+    ./configure "$optcpp" --enable-single-host
+    make -j2
+    make install
+
+    ln -s /usr/local/Gambit-C/bin/* /usr/local/bin/
+else
+    echo "cancelled since no answer"
 fi
