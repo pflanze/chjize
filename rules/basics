@@ -6,6 +6,9 @@ IFS=
 
 apt-get install -y git make gcc chase
 
+# for getting 'ifconfig' in stretch:
+apt-get install -y net-tools || true
+
 apt-get install -y emacs25 || apt-get install -y emacs
 
 apt-get install -y rxvt-unicode x11-utils gitk
