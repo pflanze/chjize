@@ -1,5 +1,5 @@
 
-TARGETS=perhaps_aptupdate basics fperl gambit qemu
+TARGETS=perhaps_aptupdate debianpackages chj moduser fperl gambit qemu
 
 help:
 	true "targets: $(TARGETS)"
@@ -9,13 +9,22 @@ help:
 perhaps_aptupdate:
 	./bin/chjize perhaps_aptupdate
 
-basics: perhaps_aptupdate
-	./bin/chjize basics
+debianpackages: perhaps_aptupdate
+	./bin/chjize debianpackages
 
-fperl: basics
+# XX does this need debianpackages?
+chj: 
+	./bin/chjize chj
+
+moduser: 
+	./bin/chjize moduser
+
+
+# XX does this need chj?
+fperl: debianpackages chj
 	./bin/chjize fperl
 
-gambit: basics
+gambit: debianpackages
 	./bin/chjize gambit
 
 qemu: gambit

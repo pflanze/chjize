@@ -1,0 +1,27 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+
+apt-get install -y git make gcc chase
+
+# for getting 'ifconfig' in stretch:
+apt-get install -y net-tools || true
+
+apt-get install -y emacs25 || apt-get install -y emacs
+
+apt-get install -y rxvt-unicode x11-utils gitk
+
+apt-get install -y libterm-readline-gnu-perl libpadwalker-perl libmethod-signatures-perl libbsd-resource-perl libtext-markdown-perl rlwrap
+
+apt-get install -y strace tcpdump lsof iotop lzop rzip xz-utils zip unzip rsync psmisc
+
+apt-get install -y ltrace || true
+# somehow not available on beaglebone black's Debian, huh
+
+# for dist upgrades to new releases:
+#apt-get install debian-keyring
+# actually this is wrong, only debian-archive-keyring seems used and
+# that one is installed anyway? It's Priority: important.
+

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+mod-user /root root root
+if [ -d /home/ubuntu ]; then
+    mod-user /home/ubuntu ubuntu ubuntu
+fi
+if [ -d /home/chris ]; then
+    mod-user /home/chris chris chris
+fi
+mod-user /etc/skel root root
+
