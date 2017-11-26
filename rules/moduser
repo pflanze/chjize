@@ -3,12 +3,38 @@
 set -euo pipefail
 IFS=
 
-mod-user /root root root
-if [ -d /home/ubuntu ]; then
-    mod-user /home/ubuntu ubuntu ubuntu
+
+mod_user=/opt/chj/chjize/bin/mod-user
+
+moduser() {
+    dir="$1"
+    user="$2"
+    
+    su - "$user" bash -c "
+set -eux
+cd $(printf '%q' "$dir")
+$mod_user
+"
+    
+}
+
+
+if [ $UID -ne 0 ]; then
+
+    echo "$0: 'make moduser' must be run as root."
+    echo "$0: If you want to mod a home dir as non-root user, run $mod_user instead."
+    exit 1
+
+else
+
+    moduser /root root
+    if [ -d /home/ubuntu ]; then
+	moduser /home/ubuntu ubuntu
+    fi
+    if [ -d /home/chris ]; then
+	moduser /home/chris chris
+    fi
+    moduser /etc/skel root
+
 fi
-if [ -d /home/chris ]; then
-    mod-user /home/chris chris chris
-fi
-mod-user /etc/skel root root
 

@@ -3,49 +3,33 @@
 set -euo pipefail
 IFS=
 
+backupbranchname=backup
+url=https://github.com/pflanze/chj-home.git
+dirname=chj-home
+
 usage () {
-    echo "$0 basedir username groupname"
-    echo " mods .bash and .bash_profile files in place unless they"
-    echo " seem to already be modded"
+    echo "$0"
+    echo "  As the current user and in the current directory (which"
+    echo "  should either be the user's home dir, or /etc/skel),"
+    echo "  check out $url, move the"
+    echo "  checkout's .git dir to ./, add the local state of the tracked files"
+    echo "  into a branch named '$backupbranchname', then reset the files to"
+    echo "  the versions from $url. Then run "
+    echo "  the home-init script from the same."
     exit 1
 }
 
-if [ $# -ne 3 ]; then
+if [ $# -ne 0 ]; then
     usage
 fi
 
-basedir="$1"
-username="$2"
-groupname="$3"
+set -x
 
-doitfor () {
-    local filename="$1"
-    
-    local path="$basedir/$filename"
-    local from=/opt/chj/chjize/dot"$filename"
-
-    if grep -q -F "$from" "$path"; then
-	true
-    else
-	echo "source $from" >> "$path"
-	chown "$username"."$groupname" "$path"
-    fi
-}
-
-
-doitfor .bashrc
-doitfor .bash_profile
-
-# emacs:
-ln -s /opt/chj/emacs/.emacs "$basedir" || true
-
-# less:
-path="$basedir"/.lesskey
-/opt/chj/bin/mvnumber "$path" || true
-cat <<EOF >> "$path"
-#env
-LESS = -i -M -R
-EOF
-chown "$username"."$groupname" "$path"
-#su - "$username" lesskey  huh, gives "/usr/bin/lesskey: /usr/bin/lesskey: cannot execute binary file"
-su - "$username" bash -c lesskey
+git clone "$url"
+mv "$dirname/.git" .
+/opt/chj/bin/trash ./"$dirname"
+/opt/chj/bin/mvnumber .gitignore .gitignore_global || true
+git checkout .gitignore .gitignore_global
+git add . && git commit -a -m "files before running chjize's $0"
+/opt/chj/chjize/bin/checkout-latest-release
+./home-init

@@ -16,7 +16,7 @@ debianpackages: perhaps_aptupdate
 chj: 
 	./bin/chjize chj
 
-moduser: 
+moduser: chj
 	./bin/chjize moduser
 
 
