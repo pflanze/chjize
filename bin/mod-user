@@ -14,8 +14,7 @@ usage () {
     echo "  check out $url, move the"
     echo "  checkout's .git dir to ./, add the local state of the tracked files"
     echo "  into a branch named '$backupbranchname', then reset the files to"
-    echo "  the versions from $url. Then run "
-    echo "  the home-init script from the same."
+    echo "  the versions from $url."
     exit 1
 }
 
@@ -32,4 +31,4 @@ mv "$dirname/.git" .
 git checkout .gitignore .gitignore_global
 git add . && git commit -a -m "files before running chjize's $0"
 /opt/chj/chjize/bin/checkout-latest-release
-./home-init
+# ./home-init  -- NO, let user do that on first login (since it needs to ask questions)
