@@ -12,8 +12,7 @@ perhaps_aptupdate:
 debianpackages: perhaps_aptupdate
 	./bin/chjize debianpackages
 
-# XX does this need debianpackages?
-chj: 
+chj: debianpackages
 	./bin/chjize chj
 
 moduser: chj
