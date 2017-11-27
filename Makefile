@@ -18,9 +18,7 @@ chj: debianpackages
 	./bin/chjize chj
 
 xfce4_load_profile: chj
-	dpkg-divert --local --rename /usr/bin/xfce4-session
-	ln -s /opt/chj/bin/wrappers/xfce4-session /usr/bin/
-	touch xfce4_load_profile
+	./bin/chjize xfce4_load_profile
 
 load_profile: xfce4_load_profile
 

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+dpkg-divert --local --rename /usr/bin/xfce4-session
+
+ln -s /opt/chj/bin/wrappers/xfce4-session /usr/bin/ \
+    || test "$(readlink -f /usr/bin/xfce4-session)" = /opt/chj/bin/wrappers/xfce4-session
+    
