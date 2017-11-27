@@ -29,7 +29,7 @@ You can verify signed git tags that you've got the pristine source (note that `c
 
 Once you trust that the source is mine:
     
-    make help # sorry for the meager view, XX improve
+    make help
     make chj # etc.
 
 
