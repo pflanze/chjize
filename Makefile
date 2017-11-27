@@ -5,6 +5,8 @@ help:
 	true "targets: $(TARGETS)"
 	true "please specify a target"
 
+.gitignore: Makefile
+	bin/make-gitignore $(TARGETS)
 
 perhaps_aptupdate:
 	./bin/chjize perhaps_aptupdate
