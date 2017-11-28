@@ -5,7 +5,10 @@ IFS=
 
 cd /opt/chj
 
-if read -e -p "Would you like to compile Gambit in C++ mode ? (yes|y=C++, no|n=C): " ans; then
+#if read -e -p "Would you like to compile Gambit in C++ mode ? (yes|y=C++, no|n=C): " ans; then
+# XX hack since the current version doesn't work in C mode
+ans=y
+if true; then
     optcpp=
     case "$ans" in
 	yes|y|Y|YES|Yes)
