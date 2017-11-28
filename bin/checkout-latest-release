@@ -66,6 +66,6 @@ git branch -D _"$ver" || true
 git checkout -b _"$ver" "$ver"
 
 if [[ $do_verify = yes ]]; then
-    verify-sig "$ver"
+    verify-sig --no-require-trust-path --require-accept-keys "$ver"
 fi
 
