@@ -1,19 +1,27 @@
 
-TARGETS=perhaps_aptupdate debianpackages chj xfce4_load_profile load_profile moduser fperl gambit qemu
+STATIC_TARGETS=.targets help .gitignore clean
 
-help:
+.targets: Makefile
+	bin/make-targets $(STATIC_TARGETS) < Makefile > .targets
+
+help: .targets
 	@echo "Usage: make <target>"
 	@echo
 	@echo "  Normal targets: "
-	@perl -we 'print map { "    $$_\n" } @ARGV' $(TARGETS)
+	@perl -we 'print map { chomp; "    $$_\n" } <STDIN>' < .targets
 	@echo
 	@echo "  Special targets: "
 	@echo "    clean        remove the time stamps for the above targets"
 	@echo "    .gitignore   rebuild .gitignore"
 
-.gitignore: Makefile
-	bin/make-gitignore $(TARGETS)
+.gitignore: .targets
+	bin/make-gitignore
 
+clean: .targets
+	xargs rm -f < .targets
+
+
+# Targets that are automatically listed in .targets
 
 key:
 	./bin/chjize key
@@ -46,6 +54,3 @@ gambit: debianpackages key
 qemu: gambit key
 	./bin/chjize qemu
 
-
-clean:
-	rm -f $(TARGETS)

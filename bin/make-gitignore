@@ -3,4 +3,5 @@
 set -euo pipefail
 IFS=
 
-perl -we 'print map { "/$_\n" } @ARGV' "$@" > .gitignore
+perl -we 'print map { chomp; "/$_\n" } <STDIN>' < .targets  > .gitignore
+echo /.targets >> .gitignore
