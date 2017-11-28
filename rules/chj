@@ -19,7 +19,6 @@ cd chj
 	    git checkout -b _v3 v3
 	    test "`git ls-files -z | xargs -0 --no-run-if-empty -s 129023 -n 129023 sha256sum | sha256sum`" = "860e46d626a7fa3c58dc3fa681e70d6e957af58e084960d7b9d39569bb28c30b  -"
 	)
-	gpg --import /opt/chj/chjize/cj-key.asc
     fi
 
     if [ ! -d bin ]; then

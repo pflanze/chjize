@@ -14,13 +14,17 @@ help:
 .gitignore: Makefile
 	bin/make-gitignore $(TARGETS)
 
+
+key:
+	./bin/chjize key
+
 perhaps_aptupdate:
 	./bin/chjize perhaps_aptupdate
 
 debianpackages: perhaps_aptupdate
 	./bin/chjize debianpackages
 
-chj: debianpackages
+chj: debianpackages key
 	./bin/chjize chj
 
 xfce4_load_profile: chj
@@ -28,18 +32,18 @@ xfce4_load_profile: chj
 
 load_profile: xfce4_load_profile
 
-moduser: chj
+moduser: chj key
 	./bin/chjize moduser
 
 
 # XX does this need chj?
-fperl: debianpackages chj
+fperl: debianpackages chj key
 	./bin/chjize fperl
 
-gambit: debianpackages
+gambit: debianpackages key
 	./bin/chjize gambit
 
-qemu: gambit
+qemu: gambit key
 	./bin/chjize qemu
 
 

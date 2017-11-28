@@ -20,7 +20,7 @@ set -euo pipefail
 set -x
 cd functional-perl
 
-checkout-latest-release -v  # assumes gpg key is already imported (by install-main)
+checkout-latest-release -v
 
 perl Makefile.PL
 make install
