@@ -16,7 +16,7 @@ like.
     
 You can verify signed git tags that you've got the pristine source (note that `cj-key.asc` is included in this repo and the `chj` rule imports it to gpg, which means that if you got a trusted checkout of this repository then this can be skipped and it will still have the key and properly check signatures of other repositories it fetches):
 
-    gpg --recv-key A54A1D7CA1F94C866AC81A1F0FA5B21104EDB072
+    gpg --import cj-key.asc
     version=v`git tag -l | grep ^v | sed s/^v// | LANG=C sort -rn | head -1`
     git checkout "$version"
     git tag -v "$version"
