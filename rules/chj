@@ -16,8 +16,8 @@ cd chj
 	    set -euo pipefail
 	    set -x
 	    cd git-sign
-	    git checkout -b _v3 v3
-	    test "`git ls-files -z | xargs -0 --no-run-if-empty -s 129023 -n 129023 sha256sum | sha256sum`" = "860e46d626a7fa3c58dc3fa681e70d6e957af58e084960d7b9d39569bb28c30b  -"
+	    git checkout -b _v6 v6
+	    test "`git ls-files -z | xargs -0 --no-run-if-empty -s 129023 -n 129023 sha256sum | sha256sum`" = "f9d3ea472a4c80e385ff28e3b2e8949ff26f9df1b6075a97935697ca24341df2  -"
 	)
     fi
 
