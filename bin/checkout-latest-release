@@ -17,7 +17,7 @@ usage () {
 }
 
 do_verify=no
-pattern='^v(\d+)$'
+pattern='^v(\d+(?:\.\d+)*)$'
 
 while [ "${#@}" -gt 0 ]; do
     case "$1" in
