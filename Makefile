@@ -1,10 +1,13 @@
 
-STATIC_TARGETS=.targets help .gitignore clean
+STATIC_TARGETS=.targets .gitignore help clean
 
 .targets: Makefile
 	bin/make-targets $(STATIC_TARGETS) < Makefile > .targets
 
-help: .targets
+.gitignore: .targets
+	bin/make-gitignore
+
+help: .targets .gitignore
 	@echo "Usage: make <target>"
 	@echo
 	@echo "  Normal targets: "
@@ -13,9 +16,6 @@ help: .targets
 	@echo "  Special targets: "
 	@echo "    clean        remove the time stamps for the above targets"
 	@echo "    .gitignore   rebuild .gitignore"
-
-.gitignore: .targets
-	bin/make-gitignore
 
 clean: .targets
 	xargs rm -f < .targets
