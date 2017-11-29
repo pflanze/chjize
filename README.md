@@ -14,7 +14,12 @@ like.
     git clone https://github.com/pflanze/chjize.git
     cd chjize/
     
-You can verify signed git tags that you've got the pristine source (note that `cj-key.asc` is included in this repo and the `chj` rule imports it to gpg, which means that if you got a trusted checkout of this repository then this can be skipped and it will still have the key and properly check signatures of other repositories it fetches):
+You can verify via signed git tags that you've got the pristine source
+(note that most rules import the key to gpg, too, and as the key is
+included in the repository, this means that if you got a trusted
+checkout of this repository then this verification step can be
+skipped; it will properly check signatures of other repositories it
+fetches in any case):
 
     gpg --import cj-key.asc
     version=v`git tag -l | grep ^v | sed s/^v// | LANG=C sort -rn | head -1`
