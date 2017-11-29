@@ -28,24 +28,24 @@ maybe_mintagname=
 
 while [ "${#@}" -gt 0 ]; do
     case "$1" in
-	-v)
-	shift
-	do_verify=yes
-	;;
-	-p)
-	shift
-	pattern="$1"
-	shift
-	;;
-	'>'|'>=')
-	maybe_ge_gt="$1"
-	shift
-	maybe_mintagname="$1"
-	shift
-	;;
-	*)
-	usage
-	;;
+        -v)
+        shift
+        do_verify=yes
+        ;;
+        -p)
+        shift
+        pattern="$1"
+        shift
+        ;;
+        '>'|'>=')
+        maybe_ge_gt="$1"
+        shift
+        maybe_mintagname="$1"
+        shift
+        ;;
+        *)
+        usage
+        ;;
     esac
 done
 
@@ -59,25 +59,25 @@ ver=$(git tag -l | perl -we 'use strict; use warnings FATAL => "uninitialized";
 
     my @v0;
     while(<STDIN>) {
-	chomp;
-	push @v0, [$_, $1 // die "pattern /$pattern/ does not capture anything for: '\''$_'\''" ] 
+        chomp;
+        push @v0, [$_, $1 // die "pattern /$pattern/ does not capture anything for: '\''$_'\''" ] 
             if /$pattern/;
     }
 
     @v0 or die "no tags matching /$pattern/ found";
 
     sub vparse {
-	my ($v)=@_;
-	my ($pre,$post)= $v=~ /^(\d+)(?:\.(.*))?$/s
-	    or die "invalid version number, does not start with digits and optionally a dot and string: '\''$v'\''";
-	[$pre, $post//""]
+        my ($v)=@_;
+        my ($pre,$post)= $v=~ /^(\d+)(?:\.(.*))?$/s
+            or die "invalid version number, does not start with digits and optionally a dot and string: '\''$v'\''";
+        [$pre, $post//""]
     }
 
     sub vcmp {
-	my ($a,$b)=@_;
+        my ($a,$b)=@_;
         my $A= vparse $a;
         my $B= vparse $b;
-	$$A[0] <=> $$B[0] or $$A[1] cmp $$B[1]
+        $$A[0] <=> $$B[0] or $$A[1] cmp $$B[1]
     }
 
     my @v= do {
@@ -89,7 +89,7 @@ ver=$(git tag -l | perl -we 'use strict; use warnings FATAL => "uninitialized";
                         : die "bug";
             grep { vcmp($$_[1], $mintagversion) >= $mincmpok } @v0
         } else {
-	    @v0
+            @v0
         }
     };
 
