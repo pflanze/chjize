@@ -49,7 +49,7 @@ cd chj
 
 if [ ! -e /usr/local/lib/site_perl/Class ]; then
     mkdir -p /usr/local/lib/site_perl/Class
-    ln -s /opt/chj/perllib/Chj /usr/local/lib/site_perl/
-    ln -s /opt/chj/perllib/Class/Array.pm /usr/local/lib/site_perl/Class
+    ln -s /opt/chj/perllib/Chj /usr/local/lib/site_perl/ || true
+    ln -s /opt/chj/perllib/Class/Array.pm /usr/local/lib/site_perl/Class || true
 fi
 
