@@ -48,7 +48,7 @@ moduser: chj key
 fperl: debianpackages chj key
 	./bin/chjize fperl
 
-gambit: debianpackages key
+gambit: debianpackages chj key
 	./bin/chjize gambit
 
 qemu: gambit key
