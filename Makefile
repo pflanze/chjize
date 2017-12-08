@@ -32,6 +32,10 @@ perhaps_aptupdate:
 debianpackages: perhaps_aptupdate
 	./bin/chjize debianpackages
 
+cplusplus: perhaps_aptupdate
+	./bin/chjize cplusplus
+
+
 chj: debianpackages key
 	./bin/chjize chj
 

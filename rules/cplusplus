@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+
+apt-get install -y g++
