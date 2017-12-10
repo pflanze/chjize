@@ -24,37 +24,37 @@ clean: .targets
 # Targets that are automatically listed in .targets
 
 key:
-	./bin/chjize key
+	bin/chjize key
 
 perhaps_aptupdate:
-	./bin/chjize perhaps_aptupdate
+	bin/chjize perhaps_aptupdate
 
 debianpackages: perhaps_aptupdate
-	./bin/chjize debianpackages
+	bin/chjize debianpackages
 
 cplusplus: perhaps_aptupdate
-	./bin/chjize cplusplus
+	bin/chjize cplusplus
 
 
 chj: debianpackages key
-	./bin/chjize chj
+	bin/chjize chj
 
 xfce4_load_profile: chj
-	./bin/chjize xfce4_load_profile
+	bin/chjize xfce4_load_profile
 
 load_profile: xfce4_load_profile
 
 moduser: chj key
-	./bin/chjize moduser
+	bin/chjize moduser
 
 
 # XX does this need chj?
 fperl: debianpackages chj key
-	./bin/chjize fperl
+	bin/chjize fperl
 
 gambit: cplusplus debianpackages chj key
-	./bin/chjize gambit
+	bin/chjize gambit
 
 qemu: gambit key
-	./bin/chjize qemu
+	bin/chjize qemu
 
