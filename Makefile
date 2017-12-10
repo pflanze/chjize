@@ -39,7 +39,7 @@ cplusplus: perhaps_aptupdate
 git-sign: key
 	bin/chjize git-sign
 
-chj: debianpackages git-sign
+chj: git-sign debianpackages
 	bin/chjize chj
 
 xfce4_load_profile: chj
@@ -52,12 +52,12 @@ moduser: chj key
 
 
 # XX does this need chj?
-fperl: debianpackages chj key
+fperl: git-sign debianpackages chj
 	bin/chjize fperl
 
-gambit: cplusplus debianpackages chj key
+gambit: git-sign cplusplus debianpackages chj
 	bin/chjize gambit
 
-qemu: gambit key
+qemu: git-sign gambit
 	bin/chjize qemu
 
