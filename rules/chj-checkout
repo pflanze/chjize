@@ -1,0 +1,32 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+tag="$1"
+url="$2"
+subdir="$3"
+
+mkdir -p /opt/chj
+
+(
+    set -euo pipefail
+    set -x
+
+    cd /opt/chj
+
+    if [ -d "$subdir" ]; then
+	cd "$subdir"
+	git commit -a "chj-checkout: commit -a" || true
+	git add . || true
+	git commit -a "chj-checkout: add ., commit -a" || true
+	git tag "before_chj_checkout_`date|sed 's/://g; s/ /_/g'`"
+    else 
+	git clone "$url" "$subdir"
+	cd "$subdir"
+    fi
+
+    checkout-latest-release -v
+)
+
+touch "$tag"

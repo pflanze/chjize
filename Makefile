@@ -39,10 +39,28 @@ cplusplus: perhaps_aptupdate
 git-sign: key
 	bin/chjize git-sign
 
-chj: git-sign debianpackages
-	bin/chjize chj
+chj-perllib-checkout:
+	bin/chjize chj-checkout chj-perllib-checkout https://github.com/pflanze/chj-perllib.git perllib
 
-xfce4_load_profile: chj
+chj-perllib: chj-perllib-checkout
+	bin/chjize chj-perllib
+
+chj-bin: chj-perllib
+	bin/chjize chj-checkout chj-bin https://github.com/pflanze/chj-bin.git bin
+
+chj-emacs:
+	bin/chjize chj-checkout chj-emacs https://github.com/pflanze/chj-emacs.git emacs
+
+chj-fastrandom:
+	bin/chjize chj-checkout chj-fastrandom https://github.com/pflanze/fastrandom.git fastrandom
+
+cj-git-patchtool:
+	bin/chjize chj-checkout cj-git-patchtool https://github.com/pflanze/cj-git-patchtool.git cj-git-patchtool
+
+chj: git-sign debianpackages chj-bin chj-emacs chj-fastrandom
+
+
+xfce4_load_profile: chj-bin
 	bin/chjize xfce4_load_profile
 
 load_profile: xfce4_load_profile
