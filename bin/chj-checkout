@@ -1,0 +1,59 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+
+usage () {
+    echo "$0 tag url subdir [release-regex]"
+    echo "  check out and verify latest release \$url into /opt/chj/\$subdir,"
+    echo "  then touch \$tag"
+    exit 1
+}
+
+if [ $# != 3 -a $# != 4 ]; then
+    usage
+fi
+
+
+tag=$1
+url=$2
+subdir=$3
+regex=${4-}
+
+if [ "$(readlink -f "$0")" != "$(readlink -f /opt/chj/chjize/bin/chj-checkout)" ]
+ then
+    echo "wrong location: place this repository at /opt/chj/chjize/"
+    exit 1
+fi
+
+source /opt/chj/chjize/bin/chj-env
+
+mkdir -p /opt/chj
+
+(
+    set -euo pipefail
+    set -x
+
+    cd /opt/chj
+
+    if [ -d "$subdir" ]; then
+	cd "$subdir"
+	git commit -a "chj-checkout: commit -a" || true
+	git add . || true
+	git commit -a "chj-checkout: add ., commit -a" || true
+	git tag "before_chj_checkout_`date|sed 's/://g; s/ /_/g'`"
+    else 
+	git clone "$url" "$subdir"
+	cd "$subdir"
+    fi
+
+    if [ -n "$regex" ]; then
+	checkout-latest-release -v -p "$regex"
+    else
+	checkout-latest-release -v
+    fi
+)
+
+# we're not guaranteed to be in /opt/chj/chjize, but..
+touch "$tag"

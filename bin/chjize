@@ -15,20 +15,17 @@ command=$1
 shift
 
 
-# first generate .gitignore if not already there
-if [ ! -e .gitignore ]; then
-    make .gitignore
+if [ "$(readlink -f "$0")" != "$(readlink -f /opt/chj/chjize/bin/chjize)" ]
+then
+    echo "wrong location: place this repository at /opt/chj/chjize/"
+    exit 1
 fi
 
+source /opt/chj/chjize/bin/chj-env
 
-PATH=/opt/chj/chjize/bin:/opt/chj/git-sign/bin:"$PATH"
-export VERIFY_SIG_ACCEPT_KEYS="A54A 1D7C A1F9 4C86 6AC8  1A1F 0FA5 B211 04ED B072"
+set -x
 
-if [ "$(readlink -f "$0")" = "$(readlink -f /opt/chj/chjize/bin/chjize)" ]; then
-    set -x
-    "$rulesdir"/"$command" "$@"
-    touch "$command"
-else
-    echo "wrong location: place this repository at /opt/chj/chjize/, then run make from there"
-    false
-fi
+"$rulesdir"/"$command" "$@"
+
+# we're not guaranteed to be in /opt/chj/chjize, but..
+touch "$command"
