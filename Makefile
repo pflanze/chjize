@@ -36,8 +36,10 @@ debianpackages: perhaps_aptupdate
 cplusplus: perhaps_aptupdate
 	bin/chjize cplusplus
 
+git-sign: key
+	bin/chjize git-sign
 
-chj: debianpackages key
+chj: debianpackages git-sign
 	bin/chjize chj
 
 xfce4_load_profile: chj
