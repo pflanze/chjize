@@ -16,6 +16,7 @@ help: .targets .gitignore
 	@echo "  Special targets: "
 	@echo "    clean        remove the time stamps for the above targets"
 	@echo "    .gitignore   rebuild .gitignore"
+	@echo "    help         this help text (includes making .gitignore)"
 
 clean: .targets
 	xargs rm -f < .targets
