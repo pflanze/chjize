@@ -73,7 +73,7 @@ moduser: chj key
 fperl: git-sign debianpackages chj
 	bin/chjize fperl
 
-gambit: git-sign cplusplus debianpackages chj
+gambit: git-sign cplusplus debianpackages chj-bin chj-emacs
 	bin/chjize gambit
 
 qemu: git-sign gambit
