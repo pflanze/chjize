@@ -42,8 +42,9 @@ mkdir -p /opt/chj
 	git remote update origin
 	git commit -a "chj-checkout: commit -a" || true
 	git add . || true
-	git commit -a "chj-checkout: add ., commit -a" || true
-	git tag "before_chj_checkout_`date|sed 's/://g; s/ /_/g'`"
+	if git commit -a "chj-checkout: add ., commit -a"; then
+	    git tag "before_chj_checkout_`date|sed 's/://g; s/ /_/g'`"
+	fi
     else 
 	git clone "$url" "$subdir"
 	cd "$subdir"
