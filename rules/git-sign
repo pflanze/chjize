@@ -14,6 +14,7 @@ if [ ! -d git-sign ]; then
 else
     cd git-sign
     git remote update
+    git branch -D _v6 || true
 fi
 
 git checkout -b _v6 v6
