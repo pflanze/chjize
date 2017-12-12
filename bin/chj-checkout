@@ -42,7 +42,7 @@ mkdir -p /opt/chj
 	git remote update origin
 	git commit -a "chj-checkout: commit -a" || true
 	git add . || true
-	if git commit -a "chj-checkout: add ., commit -a"; then
+	if git commit -a -m "chj-checkout: add ., commit -a"; then
 	    git tag "before_chj_checkout_`date|sed 's/://g; s/ /_/g'`"
 	fi
     else 
