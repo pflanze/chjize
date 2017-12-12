@@ -103,8 +103,13 @@ ver=$(git tag -l | perl -we 'use strict; use warnings FATAL => "uninitialized";
 #echo "ver='$ver'";
 
 git checkout master || true  # so that branch -D can work below
-git branch -D _"$ver" || true
-git checkout -b _"$ver" "$ver"
+
+# Could create a branch, but then how to handle existing ones?:
+#   git branch -D _"$ver" || true
+#   git checkout -b _"$ver" "$ver"
+#
+# Or, just check out without a name:
+git checkout "$ver"
 
 if [[ $do_verify = yes ]]; then
     verify-sig --no-require-trust-path --require-accept-keys "$ver"
