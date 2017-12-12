@@ -34,7 +34,9 @@ if true; then
 
     for f in /usr/local/Gambit-C/bin/*; do
 	n=`basename "$f"`
-	rm -f /usr/local/bin/"$n"
+	if [ -e /usr/local/bin/"$n" ]; then
+	    /opt/chj/bin/trash /usr/local/bin/"$n"
+	fi
 	ln -s "$f" /usr/local/bin/
     done
 else
