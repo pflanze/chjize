@@ -6,7 +6,7 @@ my %static_target= map { $_=> 1 } @ARGV;
 
 print( map { "$_\n" }
        grep { not $static_target{$_} }
-       map { m/^(\w+):/ }
+       map { m/^([\w-]+):/ }
        <STDIN> )
   or die;
 
