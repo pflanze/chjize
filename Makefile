@@ -73,7 +73,10 @@ moduser: chj key
 fperl: git-sign debianpackages chj
 	bin/chjize fperl
 
-gambit: git-sign cplusplus debianpackages chj-bin chj-emacs
+gambit-checkout: git-sign
+	bin/chj-checkout gambit-checkout https://github.com/pflanze/gambc.git gambc '^cj(\d+)$$'
+
+gambit: gambit-checkout cplusplus debianpackages chj-bin chj-emacs
 	bin/chjize gambit
 
 qemu: git-sign gambit

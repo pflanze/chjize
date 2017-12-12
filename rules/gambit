@@ -3,8 +3,6 @@
 set -euo pipefail
 IFS=
 
-cd /opt/chj
-
 #if read -e -p "Would you like to compile Gambit in C++ mode ? (yes|y=C++, no|n=C): " ans; then
 # XX hack since the current version doesn't work in C mode
 ans=y
@@ -23,15 +21,7 @@ if true; then
     esac
 
     set -x
-
-    if [ -d gambc ]; then
-	echo "/opt/chj/gambc already checked out, trusting it"
-    else
-	git clone https://github.com/pflanze/gambc.git
-    fi
-
-    cd gambc
-    checkout-latest-release -p '^cj(\d+)$' -v
+    cd /opt/chj/gambc
 
     # make sure the makefile doesn't try to rebuild the .c files
     # (which would fail as gsc-comp is not available yet):
