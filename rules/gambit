@@ -32,7 +32,11 @@ if true; then
     make -j2
     make install
 
-    ln -s /usr/local/Gambit-C/bin/* /usr/local/bin/
+    for f in /usr/local/Gambit-C/bin/*; do
+	n=`basename "$f"`
+	rm -f /usr/local/bin/"$n"
+	ln -s "$f" /usr/local/bin/
+    done
 else
     echo "cancelled since no answer"
 fi
