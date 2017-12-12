@@ -109,7 +109,11 @@ git checkout master || true  # so that branch -D can work below
 #   git checkout -b _"$ver" "$ver"
 #
 # Or, just check out without a name:
-git checkout "$ver"
+#git checkout "$ver"
+#
+# Or, generate random name:
+randomid=`(base64 < /dev/urandom || true) | head -c 20 | tr /+ XX`
+git checkout -b "${ver}_${randomid}" "$ver"
 
 if [[ $do_verify = yes ]]; then
     verify-sig --no-require-trust-path --require-accept-keys "$ver"
