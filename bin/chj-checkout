@@ -39,6 +39,7 @@ mkdir -p /opt/chj
 
     if [ -d "$subdir" ]; then
 	cd "$subdir"
+	git remote update origin
 	git commit -a "chj-checkout: commit -a" || true
 	git add . || true
 	git commit -a "chj-checkout: add ., commit -a" || true
