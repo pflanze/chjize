@@ -39,22 +39,22 @@ cplusplus: perhaps_aptupdate
 git-sign: key
 	bin/chjize git-sign
 
-chj-perllib-checkout:
+chj-perllib-checkout: git-sign
 	bin/chj-checkout chj-perllib-checkout https://github.com/pflanze/chj-perllib.git perllib
 
 chj-perllib: chj-perllib-checkout
 	bin/chjize chj-perllib
 
-chj-bin: chj-perllib
+chj-bin: git-sign chj-perllib
 	bin/chj-checkout chj-bin https://github.com/pflanze/chj-bin.git bin
 
-chj-emacs:
+chj-emacs: git-sign
 	bin/chj-checkout chj-emacs https://github.com/pflanze/chj-emacs.git emacs
 
-chj-fastrandom:
+chj-fastrandom: git-sign
 	bin/chj-checkout chj-fastrandom https://github.com/pflanze/fastrandom.git fastrandom
 
-cj-git-patchtool:
+cj-git-patchtool: git-sign
 	bin/chj-checkout cj-git-patchtool https://github.com/pflanze/cj-git-patchtool.git cj-git-patchtool
 
 chj: git-sign debianpackages chj-bin chj-emacs chj-fastrandom
