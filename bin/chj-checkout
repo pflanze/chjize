@@ -40,9 +40,17 @@ mkdir -p /opt/chj
     if [ -d "$subdir" ]; then
 	cd "$subdir"
 	git remote update origin
-	git commit -a "chj-checkout: commit -a" || true
-	git add . || true
-	if git commit -a -m "chj-checkout: add ., commit -a"; then
+
+	need_tag=0
+	if git commit -a "chj-checkout: commit -a"; then
+	    need_tag=1
+	fi
+	    
+	if git add . && git commit -a -m "chj-checkout: add ., commit -a"; then
+	    need_tag=1
+	fi
+
+	if [ "$need_tag" = 1 ]; then
 	    git tag "before_chj_checkout_`date|sed 's/://g; s/ /_/g'`"
 	fi
     else 
