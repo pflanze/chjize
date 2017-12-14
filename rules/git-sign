@@ -14,8 +14,11 @@ if [ ! -d git-sign ]; then
 else
     cd git-sign
     git remote update
-    git branch -D _v6 || true
 fi
 
-git checkout -b _v6 v6
+ver=v6
+
+randomid=`(base64 < /dev/urandom || true) | head -c 20 | tr /+ XX`
+git checkout -b "${ver}_${randomid}" "$ver"
+
 test "`git ls-files -z | xargs -0 --no-run-if-empty -s 129023 -n 129023 sha256sum | sha256sum`" = "f9d3ea472a4c80e385ff28e3b2e8949ff26f9df1b6075a97935697ca24341df2  -"
