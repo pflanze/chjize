@@ -16,9 +16,9 @@ else
     git remote update
 fi
 
-ver=v6
+ver=v7
 
 randomid=`(base64 < /dev/urandom || true) | head -c 20 | tr /+ XX`
 git checkout -b "${ver}_${randomid}" "$ver"
 
-test "`git ls-files -z | xargs -0 --no-run-if-empty -s 129023 -n 129023 sha256sum | sha256sum`" = "f9d3ea472a4c80e385ff28e3b2e8949ff26f9df1b6075a97935697ca24341df2  -"
+test "`git ls-files -z | xargs -0 --no-run-if-empty -s 129023 -n 129023 sha256sum | sha256sum`" = "5a1cd81fb75095175e67994412fc2cec2f37d2f31310b5b75a44c99508a61e84  -"
