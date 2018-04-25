@@ -56,4 +56,3 @@ mv "$dirname/.git" .
 git checkout .gitignore .gitignore_global
 git add . && git commit -a -m "files before running chjize's $0" || true
 /opt/chj/chjize/bin/checkout-latest-release
-# ./home-init  -- NO, let user do that on first login (since it needs to ask questions)
