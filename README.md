@@ -57,4 +57,4 @@ always up to date.
 * `fperl`: install the [Functional Perl](http://functional-perl.org) library and its dependencies. WARNING: not fully secured by signatures as it downloads packages from CPAN whithout verifying signatures (which most packages don't even have). Note: requires you to enter `yes` a couple times.
 * `gambit`: install a patched version of the Gambit Scheme system
 * `qemu`: install Qemu, and [cj-qemucontrol](https://github.com/pflanze/cj-qemucontrol.git).
-
+* `desktop_autoremove`: make my preferred changes to Debian's Xfce4 and default display manager setup (automatically removes superfluous packages via `apt autoremove`, to prevent that you could use the `desktop` target instead.) NOTE: xfce4 has to be started via `startx` from the console after this!

@@ -82,3 +82,9 @@ gambit: gambit-checkout cplusplus debianpackages chj-bin chj-emacs
 qemu: git-sign gambit
 	bin/chjize qemu
 
+desktop: chj xfce4_load_profile
+	bin/chjize desktop
+
+desktop_autoremove: desktop
+	apt-get autoremove
+

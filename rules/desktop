@@ -1,0 +1,23 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+# Modify Debian desktop install so that it behaves reasonably for me.
+
+# Remove stuff I don't want (not sure remove needs -y)
+apt-get remove -y pulseaudio
+apt-get remove -y light-locker lightdm
+
+# Instead of using pulseaudio, install jack
+apt-get install -y jackd qjackctl jamin
+# And use xscreensaver for locking the screen instead of lightdm
+apt-get install -y xscreensaver
+
+# Keep those packages installed even though the task (or whatever)
+# package X, which depended on them, was removed because of the above:
+apt-get install -y evince-gtk cups-client system-config-printer vlc xsane libreoffice mobile-broadband-provider-info network-manager packagekit network-manager-gnome
+apt-get install -y fonts-font-awesome fonts-lato fonts-linuxlibertine fonts-sil-gentium fonts-sil-gentium-basic
+
+# Additional packages I want
+apt-get install -y xpdf gv
