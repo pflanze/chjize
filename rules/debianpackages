@@ -24,7 +24,7 @@ apt-get install -y daemontools || true
 # Expected to succeed:
 
 apt-get install -y git make gcc chase \
-   rxvt-unicode x11-utils gitk \
-   libterm-readline-gnu-perl libpadwalker-perl libmethod-signatures-perl libbsd-resource-perl libtext-markdown-perl rlwrap \
-   strace tcpdump lsof iotop lzop rzip xz-utils zip unzip rsync psmisc links
-
+    rxvt-unicode x11-utils gitk \
+    libterm-readline-gnu-perl libpadwalker-perl libmethod-signatures-perl libbsd-resource-perl libtext-markdown-perl rlwrap \
+    strace tcpdump lsof iotop lzop rzip xz-utils zip unzip rsync psmisc links \
+    libtimedate-perl libtext-csv-perl
