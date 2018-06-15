@@ -26,10 +26,14 @@ if true; then
     # make sure the makefile doesn't try to rebuild the .c files
     # (which would fail as gsc-comp is not available yet):
     find -name "*.[ch]" -print0 | xargs -0 touch
+    sleep 1
     touch configure
+    sleep 1
 
     ./configure "$optcpp" --enable-single-host
+    sleep 1
     make -j1
+    sleep 1
     make install
 
     for f in /usr/local/Gambit-C/bin/*; do
