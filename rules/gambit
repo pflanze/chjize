@@ -28,7 +28,7 @@ if true; then
     touch configure
     find -name "*.[ch]" -print0 | xargs -0 touch
     sleep 1
-    touch gsc/_gambcgsc.c gsi/_gambcgsi.c
+    touch lib/_gambc.c gsc/_gambcgsc.c gsi/_gambcgsi.c
     sleep 1
     touch gsc/_gsc_.c gsi/_gsi_.c
     ./configure "$optcpp" --enable-single-host
