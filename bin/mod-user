@@ -55,4 +55,5 @@ mv "$dirname/.git" .
 /opt/chj/bin/mvnumber .gitignore .gitignore_global || true
 git checkout .gitignore .gitignore_global
 git add . && git commit -a -m "files before running chjize's $0" || true
-/opt/chj/chjize/bin/checkout-latest-release
+/opt/chj/chjize/bin/checkout-latest-release -v
+
