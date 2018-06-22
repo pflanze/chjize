@@ -13,7 +13,7 @@ usage () {
     echo "  higher version number is found."
     echo
     echo "  Options:"
-    echo "     -v           run verify-sig"
+    echo "     -v           run verify-sig and git-tag-hashed"
     echo "     -p pattern   pattern to use with perl for tag selection,"
     echo "                    must capture the version number, of which"
     echo "                    the part before an optional dot is sorted"
@@ -119,5 +119,6 @@ git checkout -b "${ver}_${randomid}" "$ver"
 
 if [[ $do_verify = yes ]]; then
     verify-sig --no-require-trust-path --require-accept-keys "$ver"
+    git-tag-hashed "$ver"
 fi
 
