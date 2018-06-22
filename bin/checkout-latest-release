@@ -13,7 +13,8 @@ usage () {
     echo "  higher version number is found."
     echo
     echo "  Options:"
-    echo "     -v           run verify-sig and git-tag-hashed"
+    echo "     -v           run verify-sig and git-tag-hashed (default)"
+    echo "     -V           do not run verify-sig nor git-tag-hashed"
     echo "     -p pattern   pattern to use with perl for tag selection,"
     echo "                    must capture the version number, of which"
     echo "                    the part before an optional dot is sorted"
@@ -23,7 +24,7 @@ usage () {
     exit 1
 }
 
-do_verify=no
+do_verify=yes
 pattern='^v(\d+(?:\.\d+)*)$'
 maybe_ge_gt=
 maybe_mintagname=
@@ -33,6 +34,10 @@ while [ "${#@}" -gt 0 ]; do
         -v)
         shift
         do_verify=yes
+        ;;
+        -V)
+        shift
+        do_verify=no
         ;;
         -p)
         shift
