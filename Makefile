@@ -40,13 +40,13 @@ git-sign: key
 	bin/chjize git-sign
 
 chj-perllib-checkout: git-sign
-	bin/chj-checkout chj-perllib-checkout https://github.com/pflanze/chj-perllib.git perllib
+	bin/chj-checkout chj-perllib-checkout https://github.com/pflanze/chj-perllib.git perllib '^v(\d+)$$'
 
 chj-perllib: chj-perllib-checkout
 	bin/chjize chj-perllib
 
 chj-bin: git-sign chj-perllib
-	bin/chj-checkout chj-bin https://github.com/pflanze/chj-bin.git bin
+	bin/chj-checkout chj-bin https://github.com/pflanze/chj-bin.git bin '^v(\d+)$$'
 
 chj-emacs: git-sign
 	bin/chj-checkout chj-emacs https://github.com/pflanze/chj-emacs.git emacs
