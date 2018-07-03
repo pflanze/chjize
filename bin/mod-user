@@ -28,7 +28,7 @@ cancel() {
 }
 
 if [ -d .git ]; then
-    if read -e -p "The directory `pwd`/.git exists already. I will move it to /root/.trash, continue (y/n)? " ans; then
+    if read -e -p "The directory `pwd`/.git exists already. I will move it to $HOME/.trash, continue (y/n)? " ans; then
 	if [ "$ans" = "y" -o "$ans" = "yes" ]; then
 	    /opt/chj/bin/trash ./.git
 	else
