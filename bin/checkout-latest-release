@@ -123,7 +123,7 @@ randomid=`(base64 < /dev/urandom || true) | head -c 20 | tr /+ XX`
 git checkout -b "${ver}_${randomid}" "$ver"
 
 if [[ $do_verify = yes ]]; then
-    verify-sig --no-require-trust-path --require-accept-keys "$ver"
+    verify-sig --require-accept-keys "$ver"
     git-tag-hashed "$ver"
 fi
 
