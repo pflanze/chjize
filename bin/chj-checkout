@@ -65,5 +65,6 @@ mkdir -p /opt/chj
     fi
 )
 
-# we're not guaranteed to be in /opt/chj/chjize, but..
-touch "$tag"
+if [ "$(pwd)" = "/opt/chj/chjize" ]; then
+    touch "$tag"
+fi
