@@ -27,5 +27,6 @@ set -x
 
 "$rulesdir"/"$command" "$@"
 
-# we're not guaranteed to be in /opt/chj/chjize, but..
-touch "$command"
+if [ "$(pwd)" = "/opt/chj/chjize" ]; then
+    touch "$command"
+fi
