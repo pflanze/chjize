@@ -3,6 +3,8 @@
 set -euo pipefail
 IFS=
 
+set -x
+
 # Various possibly failing ones:
 
 # for getting 'ifconfig' in stretch:
