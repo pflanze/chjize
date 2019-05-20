@@ -22,6 +22,10 @@ apt-get install -y daemontools || true
 # actually this is wrong, only debian-archive-keyring seems used and
 # that one is installed anyway? It's Priority: important.
 
+# Need *some* mail software, to at least be able to read messages from
+# cron, right? This also installs dependency exim4-base and
+# exim4-daemon-light
+apt-get install -y bsd-mailx
 
 # Expected to succeed:
 
