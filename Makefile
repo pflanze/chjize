@@ -58,7 +58,7 @@ cj-git-patchtool: debianpackages chj-bin git-sign
 	bin/chj-checkout cj-git-patchtool https://github.com/pflanze/cj-git-patchtool.git cj-git-patchtool
 
 chj: git-sign debianpackages chj-bin chj-emacs chj-fastrandom
-
+	touch chj
 
 xfce4_load_profile: chj-bin
 	bin/chjize xfce4_load_profile
