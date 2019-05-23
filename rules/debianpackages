@@ -32,5 +32,5 @@ apt-get install -y bsd-mailx
 apt-get install -y git build-essential chase tkdiff wiggle mlocate \
     rxvt-unicode x11-utils xsel gitk \
     libterm-readline-gnu-perl libpadwalker-perl libmethod-signatures-perl libbsd-resource-perl libtext-markdown-perl rlwrap \
-    strace tcpdump lsof iotop lzop rzip xz-utils zip unzip rsync psmisc links \
+    strace tcpdump netcat telnet lsof iotop lzop rzip xz-utils zip unzip rsync psmisc links \
     libtimedate-perl libtext-csv-perl libxml-libxml-perl
