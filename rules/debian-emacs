@@ -14,5 +14,7 @@ else
     apt-get install -y emacs
 fi
 
-apt-get install -y elpa-epl elpa-f elpa-flycheck s-el
-
+apt-get install -y dash-el elpa-flycheck haskell-mode libtinfo-dev elpa-company
+#  not sure about these: dependencies or forgotten in documentation in
+#  `.emacs`? I think s-el was a manual choice:
+apt-get install -y elpa-epl elpa-f s-el 
