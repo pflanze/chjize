@@ -54,6 +54,8 @@ chj-emacs: git-sign
 debian-emacs:
 	bin/chjize debian-emacs
 
+emacs: debian-emacs chj-emacs
+
 chj-fastrandom: git-sign
 	bin/chj-checkout chj-fastrandom https://github.com/pflanze/fastrandom.git fastrandom
 
