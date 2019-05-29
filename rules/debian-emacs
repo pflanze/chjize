@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+set -x
+
+if apt-get install -y emacs25; then
+    #apt-get remove -y emacs24 emacs24-lucid emacs24-el emacs24-common emacs24-bin-common
+    # Can't if I want flycheck etc. from Debian, emacs25 will use those, too!
+    # No biggie, "emacs --version" is still 25.
+    true
+else
+    apt-get install -y emacs
+fi
+
+apt-get install -y elpa-epl elpa-f elpa-flycheck s-el
+

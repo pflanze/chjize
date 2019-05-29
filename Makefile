@@ -51,6 +51,9 @@ chj-bin: git-sign chj-perllib
 chj-emacs: git-sign
 	bin/chj-checkout chj-emacs https://github.com/pflanze/chj-emacs.git emacs
 
+debian-emacs:
+	bin/chjize debian-emacs
+
 chj-fastrandom: git-sign
 	bin/chj-checkout chj-fastrandom https://github.com/pflanze/fastrandom.git fastrandom
 
