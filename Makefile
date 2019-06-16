@@ -48,8 +48,16 @@ chj-perllib: chj-perllib-checkout
 chj-bin: git-sign chj-perllib
 	bin/chj-checkout chj-bin https://github.com/pflanze/chj-bin.git bin '^v(\d+)$$'
 
-chj-emacs: git-sign
-	bin/chj-checkout chj-emacs https://github.com/pflanze/chj-emacs.git emacs
+chj-emacs-checkout: git-sign
+	bin/chj-checkout chj-emacs-checkout https://github.com/pflanze/chj-emacs.git emacs
+
+chj-emacs: chj-emacs-checkout
+	bin/chjize chj-emacs
+
+debian-emacs:
+	bin/chjize debian-emacs
+
+emacs: debian-emacs chj-emacs
 
 chj-fastrandom: git-sign
 	bin/chj-checkout chj-fastrandom https://github.com/pflanze/fastrandom.git fastrandom

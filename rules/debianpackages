@@ -10,8 +10,6 @@ set -x
 # for getting 'ifconfig' in stretch:
 apt-get install -y net-tools || true
 
-apt-get install -y emacs25 || apt-get install -y emacs
-
 apt-get install -y ltrace || true
 # somehow not available on beaglebone black's Debian, huh
 
