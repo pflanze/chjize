@@ -1,0 +1,26 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+
+# dbndns not in current Debian anymore, it's in packages.debian.org's
+# sid listing (but can't be retrieved via apt?, aha in debports? ?)
+# and security questionable, give up on it?
+
+apt-get install -y unbound
+
+# Fix stupid issue at least on my stretch box (it didn't start because
+# of that missing):
+
+if ! grep '^remote-control:' /etc/unbound/unbound.conf; then
+    cat <<EOF >> /etc/unbound/unbound.conf
+
+remote-control:
+
+    control-enable: no
+EOF
+else
+    echo already fonfigured
+fi
+
