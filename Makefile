@@ -96,3 +96,5 @@ desktop: chj xfce4_load_profile
 desktop_autoremove: desktop
 	apt-get autoremove
 
+dnsresolver:
+	bin/chjize dnsresolver
