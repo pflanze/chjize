@@ -23,7 +23,7 @@ cp /usr/lib/urxvt/urxvt.pm.distrib /usr/lib/urxvt/urxvt.pm
 
 cd /usr/lib/urxvt/
 
-patch -p0 <<'EOF' || { perl -wne 's/(qw\(.* )searchable-scrollback\b/$1/; print' < urxvt.pm > urxvt.pm.tmp; mv urxvt.pm.tmp urxvt.pm; }
+patch -p0 <<'EOF' || { perl -wne 's/(qw\(.* )searchable-scrollback\b/$1/; s/(qw\(.* )selection-popup\b/$1/; print' < urxvt.pm > urxvt.pm.tmp; mv urxvt.pm.tmp urxvt.pm; }
 --- urxvt.pm~	2016-06-10 20:52:43.000000000 +0100
 +++ urxvt.pm	2019-09-10 11:08:14.013682817 +0100
 @@ -716,7 +716,7 @@
