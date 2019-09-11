@@ -1,0 +1,38 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+set -x
+
+apt-get install -y rxvt-unicode
+
+onpath=/usr/lib/urxvt/perl
+offpath=/usr/lib/urxvt/perl.off
+
+mkdir "$offpath"
+
+for f in tabbed selection-popup selection-autotransform \
+         searchable-scrollback eval background; do
+   dpkg-divert --local --rename --divert "$offpath/$f" "$onpath/$f"
+done
+
+dpkg-divert --local --rename /usr/lib/urxvt/urxvt.pm
+
+cp /usr/lib/urxvt/urxvt.pm.distrib /usr/lib/urxvt/urxvt.pm
+
+cd /usr/lib/urxvt/
+
+patch -p0 <<'EOF'
+--- urxvt.pm~	2016-06-10 20:52:43.000000000 +0100
++++ urxvt.pm	2019-09-10 11:08:14.013682817 +0100
+@@ -716,7 +716,7 @@
+          if ($_ eq "default") {
+ 
+             $ext_arg{$_} = []
+-               for qw(selection option-popup selection-popup readline searchable-scrollback);
++               for qw(selection option-popup selection-popup readline);
+ 
+             for ($TERM->_keysym_resources) {
+                next if /^(?:string|command|builtin|builtin-string|perl)/;
+EOF

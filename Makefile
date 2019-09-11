@@ -90,6 +90,9 @@ gambit: gambit-checkout cplusplus debianpackages chj-bin chj-emacs
 qemu: git-sign gambit
 	bin/chjize qemu
 
+urxvt:
+	bin/chjize urxvt
+
 desktop: chj xfce4_load_profile
 	bin/chjize desktop
 
