@@ -18,7 +18,9 @@ onpath=${items[0]}
 basedir=$(dirname "$onpath")
 offpath="$onpath".off
 
-mkdir "$offpath"
+if [ ! -d "$offpath" ]; then
+    mkdir "$offpath"
+fi
 
 for f in tabbed selection-popup selection-autotransform \
          searchable-scrollback eval background; do
