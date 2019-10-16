@@ -1,5 +1,16 @@
 #!/bin/bash
 
+# This is a *COPY* from chj-emacs.
+
+# Also, this does a subset of the functionality of chj-checkout, but,
+# it's detangled for that reason. D'oh. :
+
+# 1. *Just* clones the repo and sets it to a specific commit
+# 2. *Just* assumes that the name git_clone_commit is still free (well
+#    it is given that 1 already assumed that it is being cloned freshly.
+
+# No tag verification, trusting sha1.
+
 set -euo pipefail
 IFS=
 
