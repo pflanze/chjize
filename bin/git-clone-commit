@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# This is a *COPY* from chj-emacs.
+# This is a slightly modified *COPY* from chj-emacs.
 
 # Also, this does a subset of the functionality of chj-checkout, but,
 # it's detangled for that reason. D'oh. :
@@ -20,7 +20,6 @@ commitid="$3"
 
 set -x
 
-cd .emacs.d/
 git clone "$url" "$dir"
 cd "$dir"
 git checkout -b git_clone_commit "$commitid"
