@@ -80,9 +80,7 @@ load_profile: xfce4_load_profile
 moduser: chj key
 	bin/chjize moduser
 
-
-# XX does this need chj?
-fperl: git-sign debianpackages chj
+fperl: git-sign debianpackages chj-bin
 	bin/chjize fperl
 
 gambit-checkout: git-sign
