@@ -41,7 +41,7 @@ patch -p0 <<'EOF' || { perl -wne 's/(qw\(.* )searchable-scrollback\b/$1/; s/(qw\
  
              $ext_arg{$_} = []
 -               for qw(selection option-popup selection-popup readline searchable-scrollback);
-+               for qw(selection option-popup selection-popup readline);
++               for qw(selection option-popup readline);
  
              for ($TERM->_keysym_resources) {
                 next if /^(?:string|command|builtin|builtin-string|perl)/;
