@@ -22,7 +22,7 @@ apt-get install -y hg-fast-export || {
 
     installpath=/usr/local/bin/
     mkdir -p "$installpath"
-    if [ -e "$installpath"/hg-fast-export ]; then
+    if [ -h "$installpath"/hg-fast-export -o -e "$installpath"/hg-fast-export ]; then
         mv -f "$installpath"/hg-fast-export "$installpath"/hg-fast-export.old-"$$"
     fi
     ln -s "$(pwd)/src/fast-export/hg-fast-export.sh" "$installpath"/hg-fast-export || true
