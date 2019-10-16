@@ -2,7 +2,7 @@
 
 set -euo pipefail
 IFS=
-set -x
+
 source /opt/chj/chjize/bin/chj-env
 
 usage () {
@@ -120,7 +120,6 @@ git checkout master || true  # so that branch -D can work below
 #
 # Or, generate random name:
 randomid=`(base64 < /dev/urandom || true) | head -c 20 | tr /+ XX`
-set -x
 git checkout -b "${ver}_${randomid}" "$ver"
 
 if [[ $do_verify = yes ]]; then
