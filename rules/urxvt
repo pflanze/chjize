@@ -7,8 +7,16 @@ set -x
 
 apt-get install -y rxvt-unicode
 
-onpath=/usr/lib/urxvt/perl
-offpath=/usr/lib/urxvt/perl.off
+pattern='/perl$'
+mapfile -t items < <(dpkg -L rxvt-unicode|egrep "$pattern")
+if ((${#items[@]} != 1)); then
+    echo "$0: need exactly 1 match for pattern '$pattern', got ${#items[@]}" >&2
+    exit 1
+fi
+
+onpath=${items[0]}
+basedir=$(dirname "$onpath")
+offpath="$onpath".off
 
 mkdir "$offpath"
 
@@ -17,11 +25,11 @@ for f in tabbed selection-popup selection-autotransform \
    dpkg-divert --local --rename --divert "$offpath/$f" "$onpath/$f"
 done
 
-dpkg-divert --local --rename /usr/lib/urxvt/urxvt.pm
+dpkg-divert --local --rename "$basedir"/urxvt.pm
 
-cp /usr/lib/urxvt/urxvt.pm.distrib /usr/lib/urxvt/urxvt.pm
+cp "$basedir"/urxvt.pm.distrib "$basedir"/urxvt.pm
 
-cd /usr/lib/urxvt/
+cd "$basedir"/
 
 patch -p0 <<'EOF' || { perl -wne 's/(qw\(.* )searchable-scrollback\b/$1/; s/(qw\(.* )selection-popup\b/$1/; print' < urxvt.pm > urxvt.pm.tmp; mv urxvt.pm.tmp urxvt.pm; }
 --- urxvt.pm~	2016-06-10 20:52:43.000000000 +0100
