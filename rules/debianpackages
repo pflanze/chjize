@@ -28,7 +28,7 @@ apt-get install -y bsd-mailx
 # Expected to succeed:
 
 apt-get install -y git build-essential chase tkdiff wiggle mlocate \
-    rxvt-unicode x11-utils xkbset xsel gitk \
+    x11-utils xkbset xsel gitk \
     libterm-readline-gnu-perl libpadwalker-perl libmethod-signatures-perl libbsd-resource-perl libtext-markdown-perl rlwrap \
     strace tcpdump netcat telnet lsof iotop lzop rzip xz-utils zip unzip rsync psmisc links \
     libtimedate-perl libtext-csv-perl libxml-libxml-perl
