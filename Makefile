@@ -62,10 +62,14 @@ emacs: debian-emacs chj-emacs
 chj-fastrandom: git-sign
 	bin/chj-checkout chj-fastrandom https://github.com/pflanze/fastrandom.git fastrandom
 
+fastrandom: /usr/local/bin/fastrandom
+/usr/local/bin/fastrandom: chj-fastrandom
+	make -C /opt/chj/fastrandom install
+
 cj-git-patchtool: debianpackages chj-bin git-sign
 	bin/chj-checkout cj-git-patchtool https://github.com/pflanze/cj-git-patchtool.git cj-git-patchtool
 
-chj: git-sign debianpackages chj-bin chj-emacs chj-fastrandom
+chj: git-sign debianpackages chj-bin chj-emacs fastrandom
 	touch chj
 
 xfce4_load_profile: chj-bin
