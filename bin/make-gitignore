@@ -6,3 +6,4 @@ IFS=
 perl -we 'print map { chomp; "/$_\n" } <STDIN>' < .targets  > .gitignore
 echo /.targets >> .gitignore
 echo /.gitignore >> .gitignore
+echo /src/*/ >> .gitignore

@@ -103,3 +103,6 @@ desktop_autoremove: desktop
 
 dnsresolver:
 	bin/chjize dnsresolver
+
+mercurial: chj-bin
+	bin/chjize mercurial

@@ -1,0 +1,29 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+
+apt-get install -y mercurial
+
+apt-get install -y hg-fast-export || {
+    set -euo pipefail
+
+    # hg-fast-export is not in current Debian anymore, thus retrieve it
+    # from source:
+
+    if [ ! -f /usr/bin/python2.7 ]; then
+        apt-get install -y python2.7-minimal
+    fi
+
+    if [ ! -d src/fast-export ]; then
+        bin/git-clone-commit https://github.com/frej/fast-export src/fast-export 0096085b6fdff03903cd8584b4e2f50ce255e3a7
+    fi
+
+    installpath=/usr/local/bin/
+    mkdir -p "$installpath"
+    if [ -e "$installpath"/hg-fast-export ]; then
+        mv -f "$installpath"/hg-fast-export "$installpath"/hg-fast-export.old-"$$"
+    fi
+    ln -s "$(pwd)/src/fast-export/hg-fast-export.sh" "$installpath"/hg-fast-export || true
+}
