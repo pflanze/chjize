@@ -27,6 +27,10 @@ apt-get install -y bsd-mailx
 
 # Expected to succeed:
 
+# Stuff that's missing in debootstrap images:
+
+apt-get install -y locales man
+
 apt-get install -y git build-essential chase tkdiff wiggle mlocate \
     x11-utils xkbset xsel gitk \
     libterm-readline-gnu-perl libpadwalker-perl libmethod-signatures-perl libbsd-resource-perl libtext-markdown-perl rlwrap \
