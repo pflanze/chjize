@@ -7,7 +7,7 @@ like.
 ## How?
 
     sudo su -
-    apt-get install -y git make gpg
+    apt-get install -y git make gnupg
     cd /opt/
     mkdir chj
     cd chj
