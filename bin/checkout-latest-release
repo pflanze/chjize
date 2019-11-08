@@ -25,7 +25,7 @@ usage () {
 }
 
 do_verify=yes
-pattern='^v(\d+(?:\.\d+)*)$'
+pattern='^[rv](\d+(?:\.\d+)*)$'
 maybe_ge_gt=
 maybe_mintagname=
 

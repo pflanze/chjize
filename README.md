@@ -22,7 +22,7 @@ skipped; it will properly check signatures of other repositories it
 fetches in any case):
 
     gpg --import cj-key.asc
-    version=v`git tag -l | grep ^v | sed s/^v// | LANG=C sort -rn | head -1`
+    version=r`git tag -l | grep ^r | sed s/^r// | LANG=C sort -rn | head -1`
     git checkout "$version"
     git tag -v "$version"
     # Check that the above command says "Good signature", and shows
