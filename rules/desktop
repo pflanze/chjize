@@ -16,7 +16,7 @@ apt-get install -y xscreensaver
 
 # Keep those packages installed even though the task (or whatever)
 # package X, which depended on them, was removed because of the above:
-apt-get install -y evince-gtk cups-client system-config-printer vlc xsane libreoffice mobile-broadband-provider-info network-manager packagekit network-manager-gnome
+apt-get install -y cups-client system-config-printer vlc xsane libreoffice mobile-broadband-provider-info network-manager packagekit network-manager-gnome
 apt-get install -y fonts-font-awesome fonts-lato fonts-linuxlibertine fonts-sil-gentium fonts-sil-gentium-basic fonts-inconsolata
 
 # Additional packages I want
