@@ -3,6 +3,8 @@
 set -euo pipefail
 IFS=
 
+systemtype=$(/opt/chj/chjize/bin/system-type)
+
 #if read -e -p "Would you like to compile Gambit in C++ mode ? (yes|y=C++, no|n=C): " ans; then
 # XX hack since the current version doesn't work in C mode
 ans=y
@@ -31,8 +33,13 @@ if true; then
     touch lib/_gambc.c gsc/_gambcgsc.c gsi/_gambcgsi.c
     sleep 1
     touch gsc/_gsc_.c gsi/_gsi_.c
-    ./configure "$optcpp" --enable-single-host
-    make -j2
+    if [ "$systemtype" = RPI ]; then
+        ./configure "$optcpp"
+        make -j1
+    else
+        ./configure "$optcpp" --enable-single-host
+        make -j2
+    fi
     make install
 
     for f in /usr/local/Gambit-C/bin/*; do
