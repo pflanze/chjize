@@ -72,7 +72,7 @@ fastrandom: /usr/local/bin/fastrandom
 cj-git-patchtool: debianpackages chj-bin git-sign
 	bin/chj-checkout cj-git-patchtool https://github.com/pflanze/cj-git-patchtool.git cj-git-patchtool
 
-chj: git-sign debianpackages chj-bin chj-emacs fastrandom
+chj: git-sign debianpackages chj-bin chj-emacs fastrandom cj-git-patchtool
 	touch chj
 
 xfce4_load_profile: chj-bin
