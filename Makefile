@@ -43,13 +43,13 @@ git-sign: key
 	bin/chjize git-sign
 
 chj-perllib-checkout: git-sign
-	bin/chj-checkout chj-perllib-checkout https://github.com/pflanze/chj-perllib.git perllib '^r(\d+)$$'
+	bin/chj-checkout chj-perllib-checkout https://github.com/pflanze/chj-perllib.git perllib '^r(\\d+)$$'
 
 chj-perllib: chj-perllib-checkout
 	bin/chjize chj-perllib
 
 chj-bin: git-sign chj-perllib
-	bin/chj-checkout chj-bin https://github.com/pflanze/chj-bin.git bin '^r(\d+)$$'
+	bin/chj-checkout chj-bin https://github.com/pflanze/chj-bin.git bin '^r(\\d+)$$'
 
 chj-emacs-checkout: git-sign
 	bin/chj-checkout chj-emacs-checkout https://github.com/pflanze/chj-emacs.git emacs
@@ -87,7 +87,7 @@ fperl: git-sign debianpackages chj-bin
 	bin/chjize fperl
 
 gambit-checkout: git-sign
-	bin/chj-checkout gambit-checkout https://github.com/pflanze/gambc.git gambc '^cj(\d+)$$'
+	bin/chj-checkout gambit-checkout https://github.com/pflanze/gambc.git gambc '^cj(\\d+)$$'
 
 gambit: gambit-checkout cplusplus debianpackages chj-bin chj-emacs
 	bin/chjize gambit
