@@ -1,7 +1,8 @@
 # Chjize
 
 Mod a bare-bones (e.g. debootstrap) Debian install into one that I
-like.
+like. Also partially works on Cygwin (at least the chj-perllib target
+does).
 
 
 ## How?
