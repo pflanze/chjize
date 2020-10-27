@@ -3,9 +3,21 @@
 set -euo pipefail
 IFS=
 
+base=/usr/local/lib/site_perl/
+
+OS=$(uname -o)
+
+if [ "$OS" = Cygwin ]; then
+    # oh well that's just for Cygwin Perl, not strawberry Perl, right?
+    # But, that's all we need for making scripts in chj-bin
+    # (esp. `upsync`) work?
+    shortperlversion=$(perl -we '$^V=~ /^v(\d+\.\d+)/ or die; print $1')
+    base=/usr/local/share/perl5/site_perl/$shortperlversion
+fi
+
 set -x
 
-mkdir -p /usr/local/lib/site_perl/Class
-ln -s /opt/chj/perllib/Chj /usr/local/lib/site_perl/ || true
-ln -s /opt/chj/perllib/Class/Array.pm /usr/local/lib/site_perl/Class || true
+mkdir -p "$base"/Class
+ln -s /opt/chj/perllib/Chj "$base"/ || true
+ln -s /opt/chj/perllib/Class/Array.pm "$base"/Class || true
 
