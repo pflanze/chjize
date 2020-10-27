@@ -15,13 +15,9 @@ command=$1
 shift
 
 
-if [ "$(readlink -f "$0")" != "$(readlink -f /opt/chj/chjize/bin/chjize)" ]
-then
-    echo "wrong location: place this repository at /opt/chj/chjize/"
-    exit 1
-fi
-
 source /opt/chj/chjize/bin/chj-env
+
+xcheck_location /opt/chj/chjize/bin/chjize
 
 set -x
 
