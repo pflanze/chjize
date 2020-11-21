@@ -39,6 +39,8 @@ if [ -d .git ]; then
     fi
 fi
 
+gpg --import /opt/chj/chjize/cj-key.asc || true
+
 export GIT_AUTHOR_NAME="chjize's mod-user"
 export GIT_AUTHOR_EMAIL=${EMAIL-you@example.com}
 export GIT_COMMITTER_NAME="chjize's mod-user"
