@@ -27,9 +27,26 @@ MemTotalKb () {
     fi
 }
 
+memTotalKb=$(MemTotalKb)
+
 haveEnoughRAMForSingleHost() {
-    local mem=$(MemTotalKb)
-    [ "$mem" -ge 1700000 ]
+    [ "$memTotalKb" -ge 1700000 ]
+}
+
+numJobs() {
+    # if using single-host, each job needs up to 1700000; give it a
+    # bit more.
+    haveEnoughRAMForSingleHost
+    local nmem=$(( "$memTotalKb" / 2000000 ))
+    if [ "$nmem" -lt 1 ]; then
+        nmem=1
+    fi
+    local ncpu=$(egrep '^processor\b.*:' /proc/cpuinfo | wc -l)
+    if [ "$ncpu" -lt "$nmem" ]; then
+        echo "$ncpu"
+    else
+        echo "$nmem"
+    fi
 }
 
 
@@ -63,10 +80,10 @@ if true; then
     touch gsc/_gsc_.c gsi/_gsi_.c
     if haveEnoughRAMForSingleHost; then
         ./configure "$optcpp" --enable-single-host
-        make -j2
+        make -j"$(numJobs)"
     else
         ./configure "$optcpp"
-        make -j1
+        make
     fi
     make install
 
