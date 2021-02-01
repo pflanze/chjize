@@ -21,13 +21,11 @@ url=$2
 subdir=$3
 regex=${4-}
 
-if [ "$(readlink -f "$0")" != "$(readlink -f /opt/chj/chjize/bin/chj-checkout)" ]
- then
-    echo "wrong location: place this repository at /opt/chj/chjize/"
-    exit 1
-fi
 
 source /opt/chj/chjize/bin/chj-env
+
+xcheck_location /opt/chj/chjize/bin/chj-checkout
+
 
 mkdir -p /opt/chj
 
