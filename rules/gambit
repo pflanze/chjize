@@ -3,7 +3,35 @@
 set -euo pipefail
 IFS=
 
-systemtype=$(/opt/chj/chjize/bin/system-type)
+error () {
+    echo "$@" >&2
+    false
+}
+
+MemTotalKb () {
+    local lines=$(egrep -i ^MemTotal: /proc/meminfo)
+    local wc=$(echo "$lines" | wc -l)
+    if [ "$wc" -eq 1 ]; then
+        if echo "$lines" | egrep -q '.*[Kk]B$'; then
+            local n=$(echo "$lines" | awk '{ print $2 }')
+            if echo "$n" | egrep -q '^[0-9]+$'; then
+                echo "$n"
+            else
+                error "can't parse /proc/meminfo (number is '$n'): $lines"
+            fi
+        else
+            error "can't parse /proc/meminfo, not ending in KB: $lines"
+        fi
+    else
+        error "can't parse /proc/meminfo: $lines"
+    fi
+}
+
+haveEnoughRAMForSingleHost() {
+    local mem=$(MemTotalKb)
+    [ "$mem" -ge 1700000 ]
+}
+
 
 #if read -e -p "Would you like to compile Gambit in C++ mode ? (yes|y=C++, no|n=C): " ans; then
 # XX hack since the current version doesn't work in C mode
@@ -33,12 +61,12 @@ if true; then
     touch lib/_gambc.c gsc/_gambcgsc.c gsi/_gambcgsi.c
     sleep 1
     touch gsc/_gsc_.c gsi/_gsi_.c
-    if [ "$systemtype" = RPI ]; then
-        ./configure "$optcpp"
-        make -j1
-    else
+    if haveEnoughRAMForSingleHost; then
         ./configure "$optcpp" --enable-single-host
         make -j2
+    else
+        ./configure "$optcpp"
+        make -j1
     fi
     make install
 
