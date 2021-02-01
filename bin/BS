@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+# Backspace is being processed differently on Cygwin compared to
+# Linux, this is trying to abstract it away:
+OS=$(uname -o)
+if [ "$OS" = Cygwin ]; then
+    printf '\\\\'
+else
+    printf '\\'
+fi

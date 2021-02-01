@@ -1,4 +1,8 @@
 
+# Backspace is being processed differently on Cygwin compared to
+# Linux, this is trying to abstract it away:
+BS:= $(shell bin/BS)
+
 STATIC_TARGETS=.targets .gitignore help clean
 
 .targets: Makefile
@@ -43,13 +47,13 @@ git-sign: key
 	bin/chjize git-sign
 
 chj-perllib-checkout: git-sign
-	bin/chj-checkout chj-perllib-checkout https://github.com/pflanze/chj-perllib.git perllib '^r(\\d+)$$'
+	bin/chj-checkout chj-perllib-checkout https://github.com/pflanze/chj-perllib.git perllib '^r($(BS)d+)$$'
 
 chj-perllib: chj-perllib-checkout
 	bin/chjize chj-perllib
 
 chj-bin: git-sign chj-perllib
-	bin/chj-checkout chj-bin https://github.com/pflanze/chj-bin.git bin '^r(\\d+)$$'
+	bin/chj-checkout chj-bin https://github.com/pflanze/chj-bin.git bin '^r($(BS)d+)$$'
 
 chj-emacs-checkout: git-sign
 	bin/chj-checkout chj-emacs-checkout https://github.com/pflanze/chj-emacs.git emacs
@@ -87,7 +91,7 @@ fperl: git-sign debianpackages chj-bin
 	bin/chjize fperl
 
 gambit-checkout: git-sign
-	bin/chj-checkout gambit-checkout https://github.com/pflanze/gambc.git gambc '^cj(\\d+)$$'
+	bin/chj-checkout gambit-checkout https://github.com/pflanze/gambc.git gambc '^cj($(BS)d+)$$'
 
 gambit: gambit-checkout cplusplus debianpackages chj-bin chj-emacs
 	bin/chjize gambit
