@@ -8,6 +8,7 @@ does).
 ## How?
 
     sudo su -
+    apt-get update
     apt-get install -y git make gnupg
     cd /opt/
     mkdir chj
