@@ -34,6 +34,9 @@ key:
 perhaps_aptupdate:
 	bin/chjize perhaps_aptupdate
 
+debian_upgrade: perhaps_aptupdate
+	bin/chjize debian_upgrade
+
 urxvt: perhaps_aptupdate 
 	bin/chjize urxvt
 
@@ -79,7 +82,7 @@ cj-git-patchtool: debianpackages chj-bin git-sign
 locales: chj-bin
 	bin/chjize locales
 
-chj: git-sign debianpackages chj-bin chj-emacs fastrandom cj-git-patchtool locales
+chj: debian_upgrade git-sign debianpackages chj-bin chj-emacs fastrandom cj-git-patchtool locales
 	touch chj
 
 xfce4_load_profile: chj-bin
