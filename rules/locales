@@ -1,0 +1,57 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+if ! echo "$PATH" | grep -q /opt/chj/bin; then
+    PATH=/opt/chj/bin:"$PATH"
+fi
+
+current_locales=$(tempfile)
+cat /etc/locale.gen | stripcomments > "$current_locales"
+
+export locales_to_be_generated=$(tempfile)
+echo -n 'locales/locales_to_be_generated="' > "$locales_to_be_generated"
+
+seen_first=0
+printlocale () {
+    local loc="$1"
+    if [ $seen_first = 1 ]; then
+        echo -n ", " >> "$locales_to_be_generated"
+    else
+        seen_first=1
+    fi
+    echo -n "$loc" >> "$locales_to_be_generated"
+}
+
+while read loc; do
+    str=$(echo "$loc")
+    printlocale "$str"
+done < "$current_locales"
+
+# the locales we want (in addition to any that were there already):
+for loc in de_DE.UTF-8 de_CH.UTF-8 en_GB.UTF-8 en_US.UTF-8; do
+    re=$(echo "$loc" | sed 's/\./\\./')
+    if ! grep -q  ^"$re"'\b' "$current_locales"; then
+        printlocale "$loc UTF-8"
+    fi
+done
+
+echo '"' >> "$locales_to_be_generated"
+
+# now edit the settings:
+
+export EDITOR=$(lambda '
+    file="$1"
+    if grep -q ^locales/locales_to_be_generated= "$file"; then
+        cat "$locales_to_be_generated" > "$file"
+    fi
+' locales_to_be_generated)
+# ^ locales_to_be_generated: captured, but, needs to be exported
+#   anyway. But who knows, maybe dpkg-reconfigure clears it?
+
+dpkg-reconfigure --frontend=editor locales
+# ^ runs $EDITOR for each question; if that encounters the
+# locales_to_be_generated setting, it will replace the contents with
+# the new settings. Otherwise it will leave it alone.
+
