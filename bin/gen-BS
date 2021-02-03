@@ -1,0 +1,16 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+# Backspace is being processed differently on Cygwin compared to
+# Linux, this is trying to abstract it away. Also see bin/BS and the
+# Makefile.
+
+if [ "$1" = '\\no' ]; then
+    # Linux, Cygwin in some cases
+    printf '%s' '\' > .bs
+else
+    # Cygwin in some other cases
+    printf '%s' '\\' > .bs
+fi

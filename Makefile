@@ -1,9 +1,12 @@
 
 # Backspace is being processed differently on Cygwin compared to
 # Linux, this is trying to abstract it away:
-BS:= $(shell bin/BS)
+BS=$(shell bin/BS)
 
-STATIC_TARGETS=.targets .gitignore help clean
+STATIC_TARGETS=.bs .targets .gitignore help clean
+
+.bs:
+	bin/gen-BS '\\no'
 
 .targets: Makefile
 	bin/make-targets $(STATIC_TARGETS) < Makefile > .targets
@@ -49,13 +52,13 @@ cplusplus: perhaps_aptupdate
 git-sign: key
 	bin/chjize git-sign
 
-chj-perllib-checkout: git-sign
+chj-perllib-checkout: .bs git-sign
 	bin/chj-checkout chj-perllib-checkout https://github.com/pflanze/chj-perllib.git perllib '^r($(BS)d+)$$'
 
 chj-perllib: chj-perllib-checkout
 	bin/chjize chj-perllib
 
-chj-bin: git-sign chj-perllib
+chj-bin: .bs git-sign chj-perllib
 	bin/chj-checkout chj-bin https://github.com/pflanze/chj-bin.git bin '^r($(BS)d+)$$'
 
 chj-emacs-checkout: git-sign
@@ -96,7 +99,7 @@ moduser: chj key
 fperl: git-sign debianpackages chj-bin
 	bin/chjize fperl
 
-gambit-checkout: git-sign
+gambit-checkout: .bs git-sign
 	bin/chj-checkout gambit-checkout https://github.com/pflanze/gambc.git gambc '^cj($(BS)d+)$$'
 
 gambit: gambit-checkout cplusplus debianpackages chj-bin chj-emacs
