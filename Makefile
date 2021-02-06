@@ -95,7 +95,7 @@ cj-git-patchtool: debianpackages chj-bin git-sign
 locales: chj-bin
 	bin/chjize locales
 
-chj: debian_upgrade git-sign debianpackages chj-bin chj-emacs fastrandom cj-git-patchtool locales
+chj: git-sign debianpackages chj-bin chj-emacs fastrandom cj-git-patchtool
 	touch chj
 
 xfce4_load_profile: chj-bin
@@ -129,4 +129,6 @@ dnsresolver:
 
 mercurial: chj-bin
 	bin/chjize mercurial
+
+system: debian_upgrade locales
 
