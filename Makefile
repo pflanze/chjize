@@ -3,7 +3,7 @@
 # Linux, this is trying to abstract it away:
 BS=$(shell bin/BS)
 
-STATIC_TARGETS=.bs .targets .gitignore help clean
+STATIC_TARGETS=.bs .targets .gitignore help graph.dot graph clean
 
 .bs:
 	bin/gen-BS '\\no'
@@ -15,21 +15,31 @@ STATIC_TARGETS=.bs .targets .gitignore help clean
 	bin/make-gitignore
 
 help: .targets .gitignore
-	@echo "Usage: make <target>"
-	@echo
-	@echo "  Normal targets: "
-	@perl -we 'print map { chomp; "    $$_\n" } <STDIN>' < .targets
-	@echo
-	@echo "  Special targets: "
-	@echo "    clean        remove the time stamps for the above targets"
-	@echo "    .gitignore   rebuild .gitignore"
-	@echo "    help         this help text (includes making .gitignore)"
+	@ echo "Usage: make <target>"
+	@ echo
+	@ echo "  Normal targets: "
+	@ perl -we 'print map { chomp; "    $$_\n" } <STDIN>' < .targets
+	@ echo
+	@ echo "  Special targets: "
+	@ echo "    clean        remove the time stamps for the above targets"
+	@ echo "    .gitignore   rebuild .gitignore"
+	@ echo "    help         this help text (includes making .gitignore)"
+	@ echo "    graph        show the graph of dependencies"
 
 clean: .targets
 	xargs rm -f < .targets
 
+graph.dot: graph-deps .targets Makefile bin/make-graph
+	bin/make-graph Makefile < .targets > graph.dot
+
+graph: graph.dot
+	display graph.dot
+
 
 # Targets that are automatically listed in .targets
+
+graph-deps: perhaps_aptupdate
+	bin/chjize graph-deps
 
 key:
 	bin/chjize key

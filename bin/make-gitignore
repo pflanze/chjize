@@ -7,4 +7,5 @@ perl -we 'print map { chomp; "/$_\n" } <STDIN>' < .targets  > .gitignore
 echo /.bs >> .gitignore
 echo /.targets >> .gitignore
 echo /.gitignore >> .gitignore
-echo /src/*/ >> .gitignore
+echo '/src/*/' >> .gitignore
+echo '/*.dot' >> .gitignore

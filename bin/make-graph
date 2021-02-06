@@ -1,0 +1,76 @@
+#!/usr/bin/perl -w
+
+use strict; use warnings FATAL => 'uninitialized';
+
+@ARGV==1 or die "need 1 argument";
+my ($makefile_path)= @ARGV;
+
+my $makefile= do {
+    local $/;
+    open my $in, "<", $makefile_path or die $!;
+    <$in>
+};
+
+my %targetdeps; # target => [deps]
+my %targets;    # targets from stdin => refcount
+my %alltargets; # targets from stdin plus dependencies that might not
+                # be listed in the former => refcount
+
+for my $target (<STDIN>) {
+    chomp $target;
+    $targets{$target}++;
+    $alltargets{$target}++;
+    my @m= $makefile=~ m/\n$target:([^\n]*)/g;
+    @m or die "can't find target '$target' in makefile '$makefile_path'";
+    for my $deps (@m) {
+        my @deps= split /\s+/, $deps;
+        push @{$targetdeps{$target}},
+            map {
+                $alltargets{$_}++;
+                $_
+                } grep {length $_} @deps;
+    }
+}
+
+
+sub target_color {
+    my ($target)=@_;
+    if ($targets{$target}) {
+        my $refcnt = $alltargets{$target};
+        if ($refcnt == 1) { "green" }
+        else { "blue" }
+    } else {
+        # non-stdin target
+        "grey"
+    }
+}
+
+
+print "
+digraph foo {
+\tranksep=0.4;
+";
+
+sub alpha {
+    my ($str)=@_;
+    $str=~ s/\W/_/sg;
+    $str
+}
+
+for my $target (sort keys %alltargets) {
+    my $targetalpha = alpha $target;
+    my $color = target_color $target;
+    print "\t$targetalpha [ label=\"$target\", color=$color ];\n";
+}
+
+for my $target (sort keys %targetdeps) {
+    my $targetalpha = alpha $target;
+    for my $dep (@{ $targetdeps{$target} }) {
+        my $depalpha= alpha $dep;
+        print "\t$targetalpha -> $depalpha;\n";
+    }
+}
+
+print "}\n";
+
+#use FP::Repl;repl;
