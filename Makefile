@@ -12,7 +12,7 @@ STATIC_TARGETS=.bs .targets .gitignore help graph.dot graph docstrings clean
 	bin/make-targets $(STATIC_TARGETS) < Makefile > .targets
 
 .gitignore: .targets
-	bin/make-gitignore
+	bin/make-gitignore $(STATIC_TARGETS)
 
 help: .targets .gitignore
 	@ echo "Usage: make <target>"

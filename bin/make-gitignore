@@ -4,10 +4,9 @@ set -euo pipefail
 IFS=
 
 perl -we 'print map { chomp; "/$_\n" } <STDIN>' < .targets  > .gitignore
-echo /.bs >> .gitignore
-echo /.targets >> .gitignore
-echo /.gitignore >> .gitignore
 echo '/src/*/' >> .gitignore
-echo '/*.dot' >> .gitignore
 echo '/.docstrings/' >> .gitignore
-echo '/docstrings' >> .gitignore
+
+for target in "$@"; do
+    echo "/$target" >> .gitignore
+done
