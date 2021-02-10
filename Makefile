@@ -37,11 +37,14 @@ graph.dot: graph-deps .targets Makefile bin/make-graph
 graph: graph.dot
 	display graph.dot
 
+graph.svg: graph.dot
+	dot -Tsvg *dot > graph.svg
+
 docstrings: .targets
 	bin/make-docstrings Makefile < .targets
 
 # update README file with current docstrings
-README.md: .targets docstrings
+README.md: .targets docstrings graph.svg
 	cj-git-status-is-clean
 	bin/update-readme README.md < .targets
 

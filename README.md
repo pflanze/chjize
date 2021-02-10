@@ -196,3 +196,8 @@ source.
 ### system
 
 Ensure basic system readyness.
+
+## Graph of target dependencies
+
+<img src="graph.svg"/>
+
