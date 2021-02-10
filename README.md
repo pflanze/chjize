@@ -44,3 +44,5 @@ case, see `Makefile` for details), run:
 
     make chj
 
+## Current list of targets
+

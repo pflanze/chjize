@@ -1,0 +1,29 @@
+#!/usr/bin/perl -w
+
+use strict; use warnings FATAL => 'uninitialized';
+
+@ARGV==1 or die "need 1 argument";
+my ($readme_path)= @ARGV;
+
+my $readmetxt= join "", map {
+    my $target= $_; chomp $target;
+    my $in;
+    open $in, "<", ".docstrings/$target" or undef $in;
+    ("\n### $target\n\n",
+     $in ? <$in> : ())
+} (<STDIN>);
+
+
+my $readme= do {
+    local $/;
+    open my $in, "<", $readme_path or die $!;
+    <$in>
+};
+
+$readme=~ s/(\n## Current list of targets *\n).*?(\n##(?!#)|\z)/$1$readmetxt$2/s
+    or die "no match";
+
+open my $out, ">", $readme_path or die $!;
+print $out $readme or die $!;
+close $out or die $!;
+

@@ -3,7 +3,7 @@
 # Linux, this is trying to abstract it away:
 BS=$(shell bin/BS)
 
-STATIC_TARGETS=.bs .targets .gitignore help graph.dot graph docstrings clean
+STATIC_TARGETS=.bs .targets .gitignore help graph.dot graph docstrings README.md clean
 
 .bs:
 	bin/gen-BS '\\no'
@@ -40,6 +40,10 @@ graph: graph.dot
 docstrings: .targets
 	bin/make-docstrings Makefile < .targets
 
+# update README file with current docstrings
+README.md: .targets docstrings
+	cj-git-status-is-clean
+	bin/update-readme README.md < .targets
 
 # Targets that are automatically listed in `.targets`. Docstrings
 # (with markdown formatting) can be given as comment lines above the
