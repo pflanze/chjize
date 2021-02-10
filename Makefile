@@ -50,36 +50,36 @@ README.md: .targets docstrings
 # target, without an empty line between the comments and the target or
 # within.
 
-# install dependencies to run the `graph` target.
+# Install dependencies to run the `graph` target.
 graph-deps: perhaps_aptupdate
 	bin/chjize graph-deps
 
-# import cj-key.asc into the keyring of the current user.
+# Import cj-key.asc into the keyring of the current user.
 key:
 	bin/chjize key
 
-# run `apt-get update` unless already run in the last 24 hours.
+# Run `apt-get update` unless already run in the last 24 hours.
 perhaps_aptupdate:
 	bin/chjize perhaps_aptupdate
 
-# upgrade the system (via dist-upgrade), necessary on a fresh instance
+# Upgrade the system (via dist-upgrade), necessary on a fresh instance
 # on typical cloud hostings like Amazon's.
 debian_upgrade: perhaps_aptupdate
 	bin/chjize debian_upgrade
 
-# install `rxvt-unicode` and trim it down for security and simplicity.
+# Install `rxvt-unicode` and trim it down for security and simplicity.
 urxvt: perhaps_aptupdate 
 	bin/chjize urxvt
 
-# install my preferred Debian packages.
+# Install my preferred Debian packages.
 debianpackages: urxvt
 	bin/chjize debianpackages
 
-# install `g++`
+# Install `g++`.
 cplusplus: perhaps_aptupdate
 	bin/chjize cplusplus
 
-# check out [git-sign](https://github.com/pflanze/git-sign); used by
+# Check out [git-sign](https://github.com/pflanze/git-sign); used by
 # most other targets.
 git-sign: key
 	bin/chjize git-sign
@@ -90,7 +90,7 @@ chj-perllib-checkout: .bs git-sign
 chj-perllib: chj-perllib-checkout
 	bin/chjize chj-perllib
 
-# install [chj-bin](https://github.com/pflanze/chj-bin.git) (checking
+# Install [chj-bin](https://github.com/pflanze/chj-bin.git) (checking
 # signatures).
 chj-bin: .bs git-sign chj-perllib
 	bin/chj-checkout chj-bin https://github.com/pflanze/chj-bin.git bin '^r($(BS)d+)$$'
@@ -98,12 +98,12 @@ chj-bin: .bs git-sign chj-perllib
 chj-emacs-checkout: git-sign
 	bin/chj-checkout chj-emacs-checkout https://github.com/pflanze/chj-emacs.git emacs
 
-# install [chj-emacs](https://github.com/pflanze/chj-emacs) in
+# Install [chj-emacs](https://github.com/pflanze/chj-emacs) in
 # /opt/chj/emacs/.
 chj-emacs: chj-emacs-checkout
 	bin/chjize chj-emacs
 
-# install GNU Emacs from apt.
+# Install GNU Emacs via APT.
 debian-emacs:
 	bin/chjize debian-emacs
 
@@ -115,17 +115,17 @@ chj-fastrandom: git-sign
 /usr/local/bin/fastrandom: chj-fastrandom
 	make -C /opt/chj/fastrandom install
 
-# install [chj-fastrandom](https://github.com/pflanze/fastrandom.git).
+# Install [chj-fastrandom](https://github.com/pflanze/fastrandom.git).
 fastrandom: /usr/local/bin/fastrandom
 
 cj-git-patchtool: debianpackages chj-bin git-sign
 	bin/chj-checkout cj-git-patchtool https://github.com/pflanze/cj-git-patchtool.git cj-git-patchtool
 
-# automatically configure some (English and German speaking) locales.
+# Automatically configure some (English and German speaking) locales.
 locales: chj-bin
 	bin/chjize locales
 
-# check out the last tagged versions of various repositories into
+# Check out the last tagged versions of various repositories into
 # `/opt/chj` (uses signed tags via git-sign to ensure you get what I
 # signed)
 chj: git-sign debianpackages chj-bin chj-emacs fastrandom cj-git-patchtool
@@ -134,12 +134,12 @@ chj: git-sign debianpackages chj-bin chj-emacs fastrandom cj-git-patchtool
 xfce4_load_profile: chj-bin
 	bin/chjize xfce4_load_profile
 
-# sets up Debian so that a graphical login will read the `~/.profile`
+# Set up Debian so that a graphical login will read the `~/.profile`
 # file (which they stopped doing at some point, dunno why); currently
 # only implemented for Xfce.
 load_profile: xfce4_load_profile
 
-# modify the `/root`, `/etc/skel`, and if present `/home/chris`
+# Modify the `/root`, `/etc/skel`, and if present `/home/chris`
 # directories to use a checkout of
 # [chj-home](https://github.com/pflanze/chj-home); it should safely
 # store previous versions of your files in the Git repository that's
@@ -155,7 +155,7 @@ load_profile: xfce4_load_profile
 moduser: chj key
 	bin/chjize moduser
 
-# install the [Functional Perl](http://functional-perl.org) library
+# Install the [Functional Perl](http://functional-perl.org) library
 # and its dependencies. WARNING: not fully secured by signatures as it
 # downloads packages from CPAN whithout verifying signatures (which
 # most packages don't even have). Note: requires you to enter `yes` a
@@ -166,11 +166,11 @@ fperl: git-sign debianpackages chj-bin
 gambit-checkout: .bs git-sign
 	bin/chj-checkout gambit-checkout https://github.com/pflanze/gambc.git gambc '^cj($(BS)d+)$$'
 
-# install a patched version of the Gambit Scheme system
+# Install a patched version of the Gambit Scheme system.
 gambit: gambit-checkout cplusplus debianpackages chj-bin chj-emacs
 	bin/chjize gambit
 
-# install Qemu, and
+# Install Qemu, and
 # [cj-qemucontrol](https://github.com/pflanze/cj-qemucontrol.git).
 qemu: git-sign gambit
 	bin/chjize qemu
@@ -178,7 +178,7 @@ qemu: git-sign gambit
 desktop: chj xfce4_load_profile
 	bin/chjize desktop
 
-# make my preferred changes to Debian's Xfce4 and default display
+# Make my preferred changes to Debian's Xfce4 and default display
 # manager setup (automatically removes superfluous packages via `apt
 # autoremove`, to prevent that you could use the `desktop` target
 # instead.) NOTE: xfce4 has to be started via `startx` from the
@@ -186,15 +186,15 @@ desktop: chj xfce4_load_profile
 desktop_autoremove: desktop
 	apt-get autoremove
 
-# install and configure a local dns resolver (unbound).
+# Install and configure a local dns resolver (unbound).
 dnsresolver:
 	bin/chjize dnsresolver
 
-# install mercurial, and hg-fast-export from either Debian or upstream
+# Install mercurial, and hg-fast-export from either Debian or upstream
 # source.
 mercurial: chj-bin
 	bin/chjize mercurial
 
-# ensure basic system readyness.
+# Ensure basic system readyness.
 system: debian_upgrade locales
 
