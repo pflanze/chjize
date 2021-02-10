@@ -24,7 +24,9 @@ help: .targets .gitignore
 	@ echo "    clean        remove the time stamps for the above targets"
 	@ echo "    .gitignore   rebuild .gitignore"
 	@ echo "    help         this help text (includes making .gitignore)"
-	@ echo "    graph        show the graph of dependencies"
+	@ echo "    graph        show the graph of dependencies; the targets meant"
+	@ echo "                 to be run manually are in green (not used by other"
+	@ echo "                 targets) and blue (used by others)."
 
 clean: .targets
 	xargs rm -f < .targets
