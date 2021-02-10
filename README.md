@@ -48,36 +48,36 @@ case, see `Makefile` for details), run:
 
 ### graph-deps
 
-install dependencies to run the `graph` target.
+Install dependencies to run the `graph` target.
 
 ### key
 
-import cj-key.asc into the keyring of the current user.
+Import cj-key.asc into the keyring of the current user.
 
 ### perhaps_aptupdate
 
-run `apt-get update` unless already run in the last 24 hours.
+Run `apt-get update` unless already run in the last 24 hours.
 
 ### debian_upgrade
 
-upgrade the system (via dist-upgrade), necessary on a fresh instance
+Upgrade the system (via dist-upgrade), necessary on a fresh instance
 on typical cloud hostings like Amazon's.
 
 ### urxvt
 
-install `rxvt-unicode` and trim it down for security and simplicity.
+Install `rxvt-unicode` and trim it down for security and simplicity.
 
 ### debianpackages
 
-install my preferred Debian packages.
+Install my preferred Debian packages.
 
 ### cplusplus
 
-install `g++`
+Install `g++`.
 
 ### git-sign
 
-check out [git-sign](https://github.com/pflanze/git-sign); used by
+Check out [git-sign](https://github.com/pflanze/git-sign); used by
 most other targets.
 
 ### chj-perllib-checkout
@@ -88,7 +88,7 @@ most other targets.
 
 ### chj-bin
 
-install [chj-bin](https://github.com/pflanze/chj-bin.git) (checking
+Install [chj-bin](https://github.com/pflanze/chj-bin.git) (checking
 signatures).
 
 ### chj-emacs-checkout
@@ -96,12 +96,12 @@ signatures).
 
 ### chj-emacs
 
-install [chj-emacs](https://github.com/pflanze/chj-emacs) in
+Install [chj-emacs](https://github.com/pflanze/chj-emacs) in
 /opt/chj/emacs/.
 
 ### debian-emacs
 
-install GNU Emacs from apt.
+Install GNU Emacs via APT.
 
 ### emacs
 
@@ -111,18 +111,18 @@ install GNU Emacs from apt.
 
 ### fastrandom
 
-install [chj-fastrandom](https://github.com/pflanze/fastrandom.git).
+Install [chj-fastrandom](https://github.com/pflanze/fastrandom.git).
 
 ### cj-git-patchtool
 
 
 ### locales
 
-automatically configure some (English and German speaking) locales.
+Automatically configure some (English and German speaking) locales.
 
 ### chj
 
-check out the last tagged versions of various repositories into
+Check out the last tagged versions of various repositories into
 `/opt/chj` (uses signed tags via git-sign to ensure you get what I
 signed)
 
@@ -131,13 +131,13 @@ signed)
 
 ### load_profile
 
-sets up Debian so that a graphical login will read the `~/.profile`
+Set up Debian so that a graphical login will read the `~/.profile`
 file (which they stopped doing at some point, dunno why); currently
 only implemented for Xfce.
 
 ### moduser
 
-modify the `/root`, `/etc/skel`, and if present `/home/chris`
+Modify the `/root`, `/etc/skel`, and if present `/home/chris`
 directories to use a checkout of
 [chj-home](https://github.com/pflanze/chj-home); it should safely
 store previous versions of your files in the Git repository that's
@@ -153,7 +153,7 @@ other users, instead run `/opt/chj/chjize/bin/mod-user` as that user
 
 ### fperl
 
-install the [Functional Perl](http://functional-perl.org) library
+Install the [Functional Perl](http://functional-perl.org) library
 and its dependencies. WARNING: not fully secured by signatures as it
 downloads packages from CPAN whithout verifying signatures (which
 most packages don't even have). Note: requires you to enter `yes` a
@@ -164,11 +164,11 @@ couple times.
 
 ### gambit
 
-install a patched version of the Gambit Scheme system
+Install a patched version of the Gambit Scheme system.
 
 ### qemu
 
-install Qemu, and
+Install Qemu, and
 [cj-qemucontrol](https://github.com/pflanze/cj-qemucontrol.git).
 
 ### desktop
@@ -176,7 +176,7 @@ install Qemu, and
 
 ### desktop_autoremove
 
-make my preferred changes to Debian's Xfce4 and default display
+Make my preferred changes to Debian's Xfce4 and default display
 manager setup (automatically removes superfluous packages via `apt
 autoremove`, to prevent that you could use the `desktop` target
 instead.) NOTE: xfce4 has to be started via `startx` from the
@@ -184,13 +184,13 @@ console after this!
 
 ### dnsresolver
 
-install and configure a local dns resolver (unbound).
+Install and configure a local dns resolver (unbound).
 
 ### mercurial
 
-install mercurial, and hg-fast-export from either Debian or upstream
+Install mercurial, and hg-fast-export from either Debian or upstream
 source.
 
 ### system
 
-ensure basic system readyness.
+Ensure basic system readyness.
