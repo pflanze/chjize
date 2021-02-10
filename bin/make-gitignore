@@ -9,3 +9,5 @@ echo /.targets >> .gitignore
 echo /.gitignore >> .gitignore
 echo '/src/*/' >> .gitignore
 echo '/*.dot' >> .gitignore
+echo '/.docstrings/' >> .gitignore
+echo '/docstrings' >> .gitignore

@@ -3,7 +3,7 @@
 # Linux, this is trying to abstract it away:
 BS=$(shell bin/BS)
 
-STATIC_TARGETS=.bs .targets .gitignore help graph.dot graph clean
+STATIC_TARGETS=.bs .targets .gitignore help graph.dot graph docstrings clean
 
 .bs:
 	bin/gen-BS '\\no'
@@ -35,10 +35,14 @@ graph.dot: graph-deps .targets Makefile bin/make-graph
 graph: graph.dot
 	display graph.dot
 
+docstrings: .targets
+	bin/make-docstrings Makefile < .targets
 
-# Targets that are automatically listed in `.targets`. Docstrings can
-# be given as comment lines above the target, without an empty line
-# between the comments and the target or within.
+
+# Targets that are automatically listed in `.targets`. Docstrings
+# (with markdown formatting) can be given as comment lines above the
+# target, without an empty line between the comments and the target or
+# within.
 
 # install dependencies to run the `graph` target.
 graph-deps: perhaps_aptupdate

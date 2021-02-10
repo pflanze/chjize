@@ -1,0 +1,47 @@
+#!/usr/bin/perl -w
+
+use strict; use warnings FATAL => 'uninitialized';
+
+@ARGV==1 or die "need 1 argument";
+my ($makefile_path)= @ARGV;
+
+
+my %targetdocs; # target => \@lines
+{
+    open my $in, "<", $makefile_path or die $!;
+    my $lines;
+    for my $line (<$in>) {
+        if ($line=~ /^#/) {
+            push @$lines, $line
+        } elsif (my ($target)= $line=~ m/^([\w-]+):(?!:?=)/) {
+            $targetdocs{$target} and die "target multiple times: $target";
+            $targetdocs{$target} = $lines;
+            undef $lines;
+        } else {
+            undef $lines
+        }
+    }
+    close $in or die $!;
+}
+
+my $targetdir= ".docstrings";
+
+mkdir $targetdir;
+
+for my $target (<STDIN>) {
+    chomp $target;
+    if (defined (my $lines= $targetdocs{$target})) {
+        open my $out, ">", "$targetdir/$target" or die $!;
+        print $out map {
+            m/^# ?(.*)/s or die;
+            $1
+        } @$lines
+            or die $!;
+        close $out or die $!;
+    }
+}
+
+open my $touch, ">", "docstrings" or die $!;
+close $touch;
+
+#use FP::Repl;repl;
