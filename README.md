@@ -46,6 +46,8 @@ case, see `Makefile` for details), run:
 
 ## Current list of targets
 
+(Note: these are copied from `Makefile` via `make README.md`.)
+
 ### graph-deps
 
 Install dependencies to run the `graph` target.
