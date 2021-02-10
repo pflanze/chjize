@@ -14,11 +14,11 @@ STATIC_TARGETS=.bs .targets .gitignore help graph.dot graph docstrings clean
 .gitignore: .targets
 	bin/make-gitignore $(STATIC_TARGETS)
 
-help: .targets .gitignore
+help: .targets .gitignore docstrings
 	@ echo "Usage: make <target>"
 	@ echo
 	@ echo "  Normal targets: "
-	@ perl -we 'print map { chomp; "    $$_\n" } <STDIN>' < .targets
+	@ perl -we 'print map { chomp; my $$file= ".docstrings/$$_"; my $$in; open $$in, "<", $$file or undef $$in; ("\n    $$_\n", $$in ? map { "      $$_" } <$$in> : ()) } <STDIN>' < .targets
 	@ echo
 	@ echo "  Special targets: "
 	@ echo "    clean        remove the time stamps for the above targets"
