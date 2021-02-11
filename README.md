@@ -38,11 +38,17 @@ Once you trust that the source is mine, run:
     
     make help
 
-for the list of available targets. To e.g. only install my software
+for the list of available targets (the same as shown
+[below](#current-list-of-targets)). To e.g. only install my software
 into `/opt/chj` (and dependences, which is debianpackages in this
 case, see `Makefile` for details), run:
 
     make chj
+
+## Bugs
+
+Does not work with `-j` in general, since `apt` fails when called
+multiple times in parallel.
 
 ## Current list of targets
 
@@ -198,6 +204,9 @@ source.
 Ensure basic system readyness.
 
 ## Graph of target dependencies
+
+The targets meant to be used manually are shown in green (not used by
+other targets) and blue (used by others).
 
 <img src="graph.svg"/>
 

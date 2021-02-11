@@ -94,8 +94,7 @@ chj-perllib-checkout: .bs git-sign
 chj-perllib: chj-perllib-checkout
 	bin/chjize chj-perllib
 
-# Install [chj-bin](https://github.com/pflanze/chj-bin.git) (checking
-# signatures).
+# Install [chj-bin](https://github.com/pflanze/chj-bin).
 chj-bin: .bs git-sign chj-perllib
 	bin/chj-checkout chj-bin https://github.com/pflanze/chj-bin.git bin '^r($(BS)d+)$$'
 
@@ -111,6 +110,7 @@ chj-emacs: chj-emacs-checkout
 debian-emacs:
 	bin/chjize debian-emacs
 
+# Install debian-emacs and chj-emacs targets.
 emacs: debian-emacs chj-emacs
 
 chj-fastrandom: git-sign
@@ -119,9 +119,10 @@ chj-fastrandom: git-sign
 /usr/local/bin/fastrandom: chj-fastrandom
 	make -C /opt/chj/fastrandom install
 
-# Install [chj-fastrandom](https://github.com/pflanze/fastrandom.git).
+# Install [fastrandom](https://github.com/pflanze/fastrandom).
 fastrandom: /usr/local/bin/fastrandom
 
+# Install [cj-git-patchtool](https://github.com/pflanze/cj-git-patchtool).
 cj-git-patchtool: debianpackages chj-bin git-sign
 	bin/chj-checkout cj-git-patchtool https://github.com/pflanze/cj-git-patchtool.git cj-git-patchtool
 
@@ -175,7 +176,7 @@ gambit: gambit-checkout cplusplus debianpackages chj-bin chj-emacs
 	bin/chjize gambit
 
 # Install Qemu, and
-# [cj-qemucontrol](https://github.com/pflanze/cj-qemucontrol.git).
+# [cj-qemucontrol](https://github.com/pflanze/cj-qemucontrol).
 qemu: git-sign gambit
 	bin/chjize qemu
 
