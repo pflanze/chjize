@@ -47,8 +47,8 @@ case, see `Makefile` for details), run:
 
     make chj
 
-Unlike Ansible, this caches which actions were already done, and thus
-is more efficient when running for various things in sequence. If an
+Unlike Ansible, this caches which actions were already done, and is
+thus more efficient when running for various things in sequence. If an
 action for some reason should be re-run, unlink the file with the same
 name as the target.
 
