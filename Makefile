@@ -42,6 +42,7 @@ graph.svg: graph.dot
 
 docstrings: .targets
 	bin/make-docstrings Makefile < .targets
+	touch docstrings
 
 # update README file with current docstrings
 README.md: .targets docstrings graph.svg

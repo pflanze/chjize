@@ -41,7 +41,4 @@ for my $target (<STDIN>) {
     }
 }
 
-open my $touch, ">", "docstrings" or die $!;
-close $touch;
-
 #use FP::Repl;repl;
