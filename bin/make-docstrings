@@ -30,14 +30,17 @@ mkdir $targetdir;
 
 for my $target (<STDIN>) {
     chomp $target;
+    my $docstringfile= "$targetdir/$target";
     if (defined (my $lines= $targetdocs{$target})) {
-        open my $out, ">", "$targetdir/$target" or die $!;
+        open my $out, ">", $docstringfile or die $!;
         print $out map {
             m/^# ?(.*)/s or die;
             $1
         } @$lines
             or die $!;
         close $out or die $!;
+    } else {
+        unlink $docstringfile
     }
 }
 
