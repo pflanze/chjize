@@ -1,11 +1,10 @@
 # Chjize
 
-Mod a bare-bones (e.g. debootstrap) Debian install into one that I
-like. Also partially works on Cygwin (at least the chj-perllib target
-does).
+This changes a pristine Debian (or possibly Ubuntu or Cygwin (at least
+the chj-perllib target works)) install in ways that I like, including
+software installs and configuration modifications.
 
-
-## How?
+## How to use
 
     sudo su -
     apt-get update
@@ -44,6 +43,11 @@ into `/opt/chj` (and dependences, which is debianpackages in this
 case, see `Makefile` for details), run:
 
     make chj
+
+Unlike Ansible, this caches which actions were already done, and thus
+is more efficient when running for various things in sequence. If an
+action for some reason should be re-run, unlink the file with the same
+name as the target.
 
 ## Bugs
 
