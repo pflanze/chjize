@@ -20,7 +20,7 @@ my $readme= do {
     <$in>
 };
 
-$readme=~ s/(\n## Current list of targets *\n\n\([^()]*\) *\n).*?(\n##(?!#)|\z)/$1$readmetxt$2/s
+$readme=~ s/(\n## Current list of targets *\n\n\(.*?\) *\n) *\n.*?(\n##(?!#)|\z)/$1$readmetxt$2/s
     or die "no match";
 
 open my $out, ">", $readme_path or die $!;

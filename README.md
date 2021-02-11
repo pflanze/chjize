@@ -52,7 +52,7 @@ multiple times in parallel.
 
 ## Current list of targets
 
-(Note: these are copied from `Makefile` via `make README.md`.)
+(Note: these are copied from [`Makefile`](Makefile) via `make README.md`.)
 
 ### graph-deps
 
