@@ -96,8 +96,7 @@ most other targets.
 
 ### chj-bin
 
-Install [chj-bin](https://github.com/pflanze/chj-bin.git) (checking
-signatures).
+Install [chj-bin](https://github.com/pflanze/chj-bin).
 
 ### chj-emacs-checkout
 
@@ -113,16 +112,18 @@ Install GNU Emacs via APT.
 
 ### emacs
 
+Install debian-emacs and chj-emacs targets.
 
 ### chj-fastrandom
 
 
 ### fastrandom
 
-Install [chj-fastrandom](https://github.com/pflanze/fastrandom.git).
+Install [fastrandom](https://github.com/pflanze/fastrandom).
 
 ### cj-git-patchtool
 
+Install [cj-git-patchtool](https://github.com/pflanze/cj-git-patchtool).
 
 ### locales
 
@@ -177,7 +178,7 @@ Install a patched version of the Gambit Scheme system.
 ### qemu
 
 Install Qemu, and
-[cj-qemucontrol](https://github.com/pflanze/cj-qemucontrol.git).
+[cj-qemucontrol](https://github.com/pflanze/cj-qemucontrol).
 
 ### desktop
 
