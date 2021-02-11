@@ -48,9 +48,9 @@ case, see `Makefile` for details), run:
     make chj
 
 Unlike Ansible, this caches which actions were already done, and is
-thus more efficient when running for various things in sequence. If an
-action for some reason should be re-run, unlink the file with the same
-name as the target.
+thus more efficient when asking the same target repeatedly (even
+across runs). If an action for some reason really should be re-run,
+unlink the file with the same name as the target.
 
 ## Bugs
 
