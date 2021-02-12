@@ -136,7 +136,11 @@ locales: chj-bin
 chj: git-sign debianpackages chj-bin chj-emacs fastrandom cj-git-patchtool
 	touch chj
 
-xfce4_load_profile: chj-bin
+# Xfce4 desktop.
+xfce: perhaps_aptupdate desktop chj-bin
+	bin/chjize xfce
+
+xfce4_load_profile: chj-bin xfce
 	bin/chjize xfce4_load_profile
 
 # Set up Debian so that a graphical login will read the `~/.profile`
@@ -206,12 +210,19 @@ system: debian_upgrade locales
 # Server side VNC setup, to be used via client side VNC
 # setup. Currently assumes a single user will be used to run the VNC
 # server as (hard codes ports).
-vncserver: perhaps_aptupdate desktop chj-bin debianpackages urxvt
+vncserver: perhaps_aptupdate desktop chj-bin
 	bin/chjize vncserver
+	@ echo "*** NOTE: xfce4 is not included in this target; run the chjvncserver "
+	@ echo "*** target for the whole convenient setup."
+
+# Server with VNC and Xfce4 desktop plus common chj packages. Note the
+# echoed text about finishing the setup (echo really is a HACK).
+chjvncserver: debianpackages urxvt xfce4_load_profile vncserver
 	@ echo "*** Now please run /opt/chj/chjize/bin/vncserver-setup as the user"
 	@ echo "*** that you want to access from the VNC connection (also, first"
 	@ echo "*** run /opt/chj/chjize/bin/mod-user as that user if 'make moduser' was"
 	@ echo "*** not run as root before creating that user)."
+
 
 # Client side VNC setup.
 vncclient: perhaps_aptupdate
