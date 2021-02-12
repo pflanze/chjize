@@ -3,7 +3,7 @@
 set -euo pipefail
 IFS=
 
-if [ -n "$DISPLAY" ]; then
+if [ -n "${DISPLAY-}" ]; then
     echo "Run this target from a console, since it will restart X!" >&2
     exit 1
 fi
