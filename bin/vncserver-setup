@@ -1,0 +1,48 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+# Depend on mod-user having been run (TODO: cope without?).
+
+set -x
+
+cd
+
+if [ ! -x .vnc/xstartup ]; then
+    private mkdir -p .vnc
+    cat > .vnc/xstartup <<'EOF'
+#!/bin/sh
+[ -x /etc/vnc/xstartup ] && exec /etc/vnc/xstartup
+[ -r $HOME/.Xresources ] && xrdb $HOME/.Xresources
+xsetroot -solid grey
+vncconfig -iconic &
+x-window-manager &
+term
+#emacs --fullscreen
+EOF
+    chmod +x .vnc/xstartup
+fi
+
+/opt/chj/chjize/bin/vncserver-daemon start
+
+set +x
+
+cat <<EOF
+Done.
+
+Now if you want the VNC server to run on boot:
+
+    crontab -e
+
+and add
+
+    PATH=$PATH
+
+at the top and
+
+    @reboot /opt/chj/chjize/bin/vncserver-daemon start
+
+around the end.
+
+EOF

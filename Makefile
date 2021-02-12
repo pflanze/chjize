@@ -203,3 +203,17 @@ mercurial: chj-bin
 # Ensure basic system readyness.
 system: debian_upgrade locales
 
+# Server side VNC setup, to be used via client side VNC
+# setup. Currently assumes a single user will be used to run the VNC
+# server as (hard codes ports).
+vncserver: perhaps_aptupdate desktop chj-bin debianpackages urxvt
+	bin/chjize vncserver
+	@ echo "*** Now please run /opt/chj/chjize/bin/vncserver-setup as the user"
+	@ echo "*** that you want to access from the VNC connection (also, first"
+	@ echo "*** run /opt/chj/chjize/bin/mod-user as that user if 'make moduser' was"
+	@ echo "*** not run as root before creating that user)."
+
+# Client side VNC setup.
+vncclient: perhaps_aptupdate
+	bin/chjize vncclient
+
