@@ -17,9 +17,7 @@ if [ ! -x .vnc/xstartup ]; then
 [ -r $HOME/.Xresources ] && xrdb $HOME/.Xresources
 xsetroot -solid grey
 vncconfig -iconic &
-x-window-manager &
-term
-#emacs --fullscreen
+xfce4-session
 EOF
     chmod +x .vnc/xstartup
 fi
