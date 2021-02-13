@@ -45,8 +45,8 @@ docstrings: .targets
 	touch docstrings
 
 # update README file with current docstrings
-README.md: .targets docstrings graph.svg
-	cj-git-status-is-clean
+README.md: chj-bin .targets docstrings graph.svg
+	cj-git-status-is-clean README.md
 	bin/update-readme README.md < .targets
 
 # Targets that are automatically listed in `.targets`. Docstrings
