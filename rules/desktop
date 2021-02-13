@@ -16,7 +16,7 @@ apt-get remove -y light-locker lightdm
 
 # Instead of using pulseaudio, install jack
 apt-get install -y jackd qjackctl jamin
-# And use xscreensaver for locking the screen instead of lightdm
+# And use xscreensaver for locking the screen instead of light-locker
 apt-get install -y xscreensaver
 
 # Keep those packages installed even though the task (or whatever)
