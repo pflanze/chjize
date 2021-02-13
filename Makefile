@@ -3,7 +3,7 @@
 # Linux, this is trying to abstract it away:
 BS=$(shell bin/BS)
 
-STATIC_TARGETS=.bs .targets .gitignore help graph.dot graph docstrings README.md clean
+STATIC_TARGETS=.bs .targets .gitignore help graph.dot graph docstrings README.md auto-update clean
 
 .bs:
 	bin/gen-BS '\\no'
@@ -49,6 +49,9 @@ README.md: chj-bin .targets docstrings graph.svg
 	cj-git-status-is-clean README.md
 	bin/update-readme README.md < .targets
 
+auto-update: README.md
+
+# ------------------------------------------------------------------
 # Targets that are automatically listed in `.targets`. Docstrings
 # (with markdown formatting) can be given as comment lines above the
 # target, without an empty line between the comments and the target or
