@@ -235,3 +235,8 @@ chjvncserver: debianpackages urxvt desktop _vncserver
 vncclient: perhaps_aptupdate
 	bin/chjize vncclient
 
+
+# Create and activate (including adding to fstab) a swap file if none
+# is already active. Size is automatically chosen from RAM size.
+swap: chj-bin
+	bin/chjize swap

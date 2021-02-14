@@ -1,0 +1,45 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+
+# just to be sure in case chj-bin was just installed or no moduser was
+# done. HACKY.
+PATH=/opt/chj/bin:"$PATH"
+
+
+# should this be called?
+swapon -a
+
+meminfo=$(cat /proc/meminfo)
+
+get () {
+    export FIELD=$1
+    export UNIT=$2
+    echo "$meminfo" | perl -wne \
+      '/^\Q$ENV{FIELD}\E:\s*(\d+)\s*$ENV{UNIT}/ and push @vs, $1; 
+       END { @vs == 1 or die "found ".@vs." values not 1"; print @vs, "\n" or die }'
+}
+
+SwapTotal=$(get SwapTotal kB)
+
+# echo SwapTotal=$SwapTotal; exit 0
+
+if [ "$SwapTotal" -eq 0 ]; then
+    swapfile=/root/tmp/swapfile
+    if ! [ -e $swapfile ]; then
+        size=$(get MemTotal kB)
+        private mksparse --non-sparse "${size}KB" $swapfile
+        mkswap $swapfile
+        echo "Created new swap file at $swapfile."
+    fi
+    swapon $swapfile
+    {
+        echo
+        echo "$swapfile none swap sw 0 0"
+    } >> /etc/fstab
+else
+    echo "There is already some swap configured."
+fi
+
