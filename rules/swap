@@ -3,10 +3,9 @@
 set -euo pipefail
 IFS=
 
-
 # just to be sure in case chj-bin was just installed or no moduser was
-# done. HACKY.
-PATH=/opt/chj/bin:"$PATH"
+# done.
+source /opt/chj/bin/path.bash
 
 
 # should this be called?

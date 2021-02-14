@@ -3,9 +3,7 @@
 set -euo pipefail
 IFS=
 
-if ! echo "$PATH" | grep -q /opt/chj/bin; then
-    PATH=/opt/chj/bin:"$PATH"
-fi
+source /opt/chj/bin/path.bash
 
 current_locales=$(tempfile)
 cat /etc/locale.gen | stripcomments > "$current_locales"

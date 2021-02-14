@@ -4,7 +4,7 @@
 set -e
 set -u
 IFS=
-PATH=/opt/chj/bin:"$PATH"
+source /opt/chj/bin/path.bash
 
 
 # NOTE: there's also `xfconf-query`, but it may be more work to
