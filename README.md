@@ -233,6 +233,11 @@ echoed text about finishing the setup.
 
 Client side VNC setup.
 
+### swap
+
+Create and activate (including adding to fstab) a swap file if none
+is already active. Size is automatically chosen from RAM size.
+
 ## Graph of target dependencies
 
 The targets meant to be used manually are shown in green (not used by
