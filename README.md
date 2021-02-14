@@ -33,8 +33,8 @@ fetches in any case):
     #   my fingerprint (A54A1D7CA1F94C866AC81A1F0FA5B21104EDB072, feel 
     #   free to google it) if you don't have a trust path to the key.
     # You can also do the more paranoid verification of running the
-    #   script lines shown by the above command (those lines starting 
-    #   with a "$"), and verifying that you get the same output as shown.
+    #   script lines shown by the above command (the lines starting
+    #   with a `$`), and verifying that you get the same output as shown.
 
 Once you trust that the source is mine, run:
     
@@ -43,7 +43,8 @@ Once you trust that the source is mine, run:
 for the list of available targets (the same as shown
 [below](#current-list-of-targets)). To e.g. only install my software
 into `/opt/chj` (and dependences, which is debianpackages in this
-case, see `Makefile` for details), run:
+case, see `Makefile` or the [graph](#graph-of-target-dependencies)
+below), run:
 
     make chj
 
