@@ -2,6 +2,7 @@
 
 set -euo pipefail
 IFS=
+PATH=/opt/chj/bin:"$PATH"
 
 logdir=~/log/vncserver-daemon
 
