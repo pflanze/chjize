@@ -3,4 +3,4 @@
 set -euo pipefail
 IFS=
 
-apt-get install imagemagick graphviz
+apt-get install -y imagemagick graphviz
