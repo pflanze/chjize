@@ -182,7 +182,7 @@ moduser: chj key
 # and its dependencies. WARNING: not fully secured by signatures as it
 # downloads packages from CPAN whithout verifying signatures (which
 # most packages don't even have). Note: requires you to enter `yes` a
-# couple times.
+# few times.
 fperl: git-sign debianpackages chj-bin
 	bin/chjize fperl
 
