@@ -3,5 +3,9 @@
 set -euo pipefail
 IFS=
 
-daemonize --action "$1" vncserver :1 -geometry 1150x760
+logdir=~/log/vncserver-daemon
+
+private mkdir -p "$logdir"
+
+daemonize --multilog "$logdir" --action "$1" vncserver :1 -geometry 1150x760
 
