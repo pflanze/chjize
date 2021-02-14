@@ -248,3 +248,7 @@ vncclient: perhaps_aptupdate
 # is already active. Size is automatically chosen from RAM size.
 swap: chj-bin
 	bin/chjize swap
+
+# Remove `sudo` (often provided by images) since it's a security issue.
+nosudo:
+	bin/chjize nosudo
