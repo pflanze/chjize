@@ -24,23 +24,23 @@ fi
 
 /opt/chj/chjize/bin/vncserver-daemon start
 
+tmp=$(tempfile)
+
+{
+printf 'PATH=%q\n' "$PATH"
+crontab -l
+printf '\n@reboot /opt/chj/chjize/bin/vncserver-daemon start\n'
+} > "$tmp"
+
+crontab "$tmp"
+
 set +x
 
 cat <<EOF
 Done.
 
-Now if you want the VNC server to run on boot:
-
-    crontab -e
-
-and add
-
-    PATH=$PATH
-
-at the top and
-
-    @reboot /opt/chj/chjize/bin/vncserver-daemon start
-
-around the end.
+An entry to start the vncserver-daemon has been added to the
+crontab. Remove it again if that's not what you wanted (maybe along
+with the PATH env var setting at the top).
 
 EOF
