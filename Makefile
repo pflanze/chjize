@@ -149,7 +149,7 @@ dotconfig-xfce4-checkout: .bs git-sign
 	bin/chj-checkout dotconfig-xfce4-checkout https://github.com/pflanze/dotconfig-xfce4.git dotconfig-xfce4 '^cj($(BS)d+)$$'
 
 # Xfce4 desktop.
-xfce: perhaps_aptupdate desktop chj-bin dotconfig-xfce4-checkout
+xfce: perhaps_aptupdate chj-bin dotconfig-xfce4-checkout
 	bin/chjize xfce
 	@ echo "*** NOTE: after starting Xfce, run /opt/chj/chjize/bin/xfce-setup"
 	@ echo "*** to apply changes to the newly created Xfce config."
