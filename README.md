@@ -142,6 +142,10 @@ Check out the last tagged versions of various repositories into
 `/opt/chj` (uses signed tags via git-sign to ensure you get what I
 signed)
 
+### xfce
+
+Xfce4 desktop.
+
 ### xfce4_load_profile
 
 
@@ -189,14 +193,13 @@ Install Qemu, and
 
 ### desktop
 
+Debian's Xfce4 plus my changes to it. NOTE: removes pulseaudio (and
+installs jack), as well as the login managers, xfce4 has to be
+started via `startx` from the console after this!
 
 ### desktop_autoremove
 
-Make my preferred changes to Debian's Xfce4 and default display
-manager setup (automatically removes superfluous packages via `apt
-autoremove`, to prevent that you could use the `desktop` target
-instead.) NOTE: xfce4 has to be started via `startx` from the
-console after this!
+The `desktop` target but also runs `apt-get autoremove`.
 
 ### dnsresolver
 
@@ -210,6 +213,21 @@ source.
 ### system
 
 Ensure basic system readyness.
+
+### vncserver
+
+Server side VNC setup, to be used via client side VNC
+setup. Currently assumes a single user will be used to run the VNC
+server as (hard codes ports).
+
+### chjvncserver
+
+Server with VNC and Xfce4 desktop plus common chj packages. Note the
+echoed text about finishing the setup (echo really is a HACK).
+
+### vncclient
+
+Client side VNC setup.
 
 ## Graph of target dependencies
 
