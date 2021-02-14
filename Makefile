@@ -238,6 +238,9 @@ chjvncserver: debianpackages urxvt desktop _vncserver
 	@ echo "*** run /opt/chj/chjize/bin/mod-user as that user if 'make moduser' was"
 	@ echo "*** not run as root before creating that user)."
 
+# `chjvncserver` then runs `apt-get clean`.
+chjvncserver_clean: chjvncserver
+	apt-get clean
 
 # Client side VNC setup.
 vncclient: perhaps_aptupdate
