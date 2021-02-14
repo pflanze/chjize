@@ -214,6 +214,9 @@ source.
 
 Ensure basic system readyness.
 
+### _vncserver
+
+
 ### vncserver
 
 Server side VNC setup, to be used via client side VNC
@@ -223,7 +226,7 @@ server as (hard codes ports).
 ### chjvncserver
 
 Server with VNC and Xfce4 desktop plus common chj packages. Note the
-echoed text about finishing the setup (echo really is a HACK).
+echoed text about finishing the setup.
 
 ### vncclient
 
