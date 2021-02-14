@@ -1,0 +1,62 @@
+#!/bin/bash
+
+#set -euo pipefail
+set -e
+set -u
+IFS=
+PATH=/opt/chj/bin:"$PATH"
+
+
+# NOTE: there's also `xfconf-query`, but it may be more work to
+# translate the changes I'm seeing in the git diffs to calls to that
+# tool than maintaining the following.
+
+
+configdir=~/.config/xfce4
+
+if ! [ -d "$configdir" ]; then
+    echo "*** Folder $configdir does not exist, please start Xfce once first,"
+    echo "*** click on the button that creates the default panel setup,"
+    echo "*** then shut it down again."
+    # According to #xfce4, the shutting down is really needed.
+    exit 1
+fi
+
+if [ -d "$configdir/.git" ]; then
+    echo "Folder $configdir/.git already exists, so it seems to be "
+    echo "done already."
+    exit 0
+fi
+
+
+isup=$(ps ww | grep -v grep | grep xfce4-panel | wc -l)
+if [ "$isup" -ne 0 ]; then
+    echo "*** Xfce4 seems to be running, please shut it down first."
+    echo "*** If you're in the process of setting up the VNC server,"
+    echo "*** use '/opt/chj/chjize/bin/vncserver-daemon stop' for that."
+    exit 1
+fi
+
+set -x
+
+tmp=$(tempdir)
+
+cd "$tmp"
+GIT_DIR=/opt/chj/dotconfig-xfce4/.git git format-patch d212e2cfb1e6d03ffb38082c3e716860b01b6215..
+
+# Change mentions of home directory:
+mysed 's{/home/chris\b}{$ENV{HOME}}sg' *.patch
+
+cd "$configdir"
+
+git init
+
+git add .
+
+git commit -m "orig"
+
+for p in "$tmp/*.patch"; do
+    if ! git am -3 "$p"; then
+        git merge --abort || true
+    fi
+done

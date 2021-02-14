@@ -142,9 +142,17 @@ locales: chj-bin
 chj: git-sign debianpackages chj-bin chj-emacs fastrandom cj-git-patchtool
 	touch chj
 
+# Check out [Xfce4 .config
+# files](https://github.com/pflanze/dotconfig-xfce4), which are used
+# by [xfce-setup](bin/xfce-setup).
+dotconfig-xfce4-checkout: .bs git-sign
+	bin/chj-checkout dotconfig-xfce4-checkout https://github.com/pflanze/dotconfig-xfce4.git dotconfig-xfce4 '^cj($(BS)d+)$$'
+
 # Xfce4 desktop.
-xfce: perhaps_aptupdate desktop chj-bin
+xfce: perhaps_aptupdate desktop chj-bin dotconfig-xfce4-checkout
 	bin/chjize xfce
+	@ echo "*** NOTE: after starting Xfce, run /opt/chj/chjize/bin/xfce-setup"
+	@ echo "*** to apply changes to the newly created Xfce config."
 
 xfce4_load_profile: chj-bin xfce
 	bin/chjize xfce4_load_profile
