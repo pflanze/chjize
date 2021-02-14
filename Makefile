@@ -3,7 +3,10 @@
 # Linux, this is trying to abstract it away:
 BS=$(shell bin/BS)
 
-STATIC_TARGETS=.bs .targets .gitignore help graph.dot graph docstrings README.md auto-update clean
+STATIC_TARGETS=default .bs .targets .gitignore help graph.dot graph docstrings README.md auto-update clean
+
+default: .gitignore auto-update
+	@ echo "Run 'make help' for help."
 
 .bs:
 	bin/gen-BS '\\no'
