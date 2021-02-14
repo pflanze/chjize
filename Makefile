@@ -5,7 +5,7 @@ BS=$(shell bin/BS)
 
 STATIC_TARGETS=default .bs .targets .gitignore help graph.dot graph docstrings README.md auto-update clean
 
-default: .gitignore auto-update
+default: .gitignore
 	@ echo "Run 'make help' for help."
 
 .bs:
