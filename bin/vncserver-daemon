@@ -5,4 +5,3 @@ IFS=
 
 daemonize --action "$1" vncserver :1 -geometry 1150x760
 
-# XX: for stop, do we need to explicitly run `killall Xvnc4` instead?
