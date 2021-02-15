@@ -151,7 +151,10 @@ by [xfce-setup](bin/xfce-setup).
 
 ### xfce
 
-Xfce4 desktop.
+Xfce4 desktop. Comes with `/opt/chj/chjize/bin/xfce-setup` to
+configure Xfce4 the way I like (optionally run afterwards). NOTE:
+better do not use this target directly, but rather use
+`xfce4_load_profile` or one of the `..-desktop` ones.
 
 ### xfce4_load_profile
 
@@ -198,15 +201,21 @@ Install a patched version of the Gambit Scheme system.
 Install Qemu, and
 [cj-qemucontrol](https://github.com/pflanze/cj-qemucontrol).
 
-### desktop
+### slim-desktop
 
-Debian's Xfce4 plus my changes to it. NOTE: removes pulseaudio (and
-installs jack), as well as the login managers, xfce4 has to be
-started via `startx` from the console after this!
+Xfce4, desktop packages.
 
-### desktop_autoremove
+### full-desktop
 
-The `desktop` target but also runs `apt-get autoremove`.
+`slim-desktop`, but also removes pulseaudio and installs jack, and
+removes the login managers. Xfce4 has to be started via `startx`
+from the console after this! (That latter part was a hack to work
+around some issues in Debian stretch / get what I wanted.)
+
+### full-desktop_autoremove
+
+The `full-desktop` target but also runs `apt-get autoremove` to free
+up the space taken by now unused packages.
 
 ### dnsresolver
 
@@ -221,23 +230,23 @@ source.
 
 Ensure basic system readyness.
 
-### _vncserver
+### _slim-vncserver
 
 
-### vncserver
+### slim-vncserver
 
 Server side VNC setup, to be used via client side VNC
 setup. Currently assumes a single user will be used to run the VNC
 server as (hard codes ports).
 
-### chjvncserver
+### full-vncserver
 
 Server with VNC and Xfce4 desktop plus common chj packages. Note the
 echoed text about finishing the setup.
 
-### chjvncserver_clean
+### full-vncserver_clean
 
-`chjvncserver` then runs `apt-get clean`.
+`full-vncserver` then runs `apt-get clean`.
 
 ### vncclient
 
