@@ -242,7 +242,7 @@ slim-vncserver: _slim-vncserver
 
 # Server with VNC and Xfce4 desktop plus common chj packages. Note the
 # echoed text about finishing the setup.
-full-vncserver: debianpackages urxvt _slim-vncserver
+full-vncserver: _slim-vncserver debianpackages urxvt system
 	@ echo "*** Now please run /opt/chj/chjize/bin/slim-vncserver-setup as the user"
 	@ echo "*** that you want to access from the VNC connection (also, first"
 	@ echo "*** run /opt/chj/chjize/bin/mod-user as that user if 'make moduser' was"
