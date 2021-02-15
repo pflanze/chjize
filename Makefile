@@ -230,26 +230,26 @@ mercurial: chj-bin
 # Ensure basic system readyness.
 system: debian_upgrade locales
 
-_vncserver: perhaps_aptupdate slim-desktop chj-bin
-	bin/chjize vncserver
+_slim-vncserver: perhaps_aptupdate slim-desktop chj-bin
+	bin/chjize slim-vncserver
 
 # Server side VNC setup, to be used via client side VNC
 # setup. Currently assumes a single user will be used to run the VNC
 # server as (hard codes ports).
-vncserver: _vncserver
-	@ echo "*** NOTE: xfce4 is not included in this target; run the chjvncserver "
+slim-vncserver: _slim-vncserver
+	@ echo "*** NOTE: xfce4 is not included in this target; run the full-vncserver "
 	@ echo "*** target for the whole convenient setup."
 
 # Server with VNC and Xfce4 desktop plus common chj packages. Note the
 # echoed text about finishing the setup.
-chjvncserver: debianpackages urxvt _vncserver
-	@ echo "*** Now please run /opt/chj/chjize/bin/vncserver-setup as the user"
+full-vncserver: debianpackages urxvt _slim-vncserver
+	@ echo "*** Now please run /opt/chj/chjize/bin/slim-vncserver-setup as the user"
 	@ echo "*** that you want to access from the VNC connection (also, first"
 	@ echo "*** run /opt/chj/chjize/bin/mod-user as that user if 'make moduser' was"
 	@ echo "*** not run as root before creating that user)."
 
-# `chjvncserver` then runs `apt-get clean`.
-chjvncserver_clean: chjvncserver
+# `full-vncserver` then runs `apt-get clean`.
+full-vncserver_clean: full-vncserver
 	apt-get clean
 
 # Client side VNC setup.
