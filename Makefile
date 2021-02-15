@@ -202,12 +202,16 @@ gambit: gambit-checkout cplusplus debianpackages chj-bin chj-emacs
 qemu: git-sign gambit
 	bin/chjize qemu
 
-# Xfce4, desktop packages. Also removes pulseaudio and installs jack,
+# Xfce4, desktop packages.
+slim-desktop: chj xfce4_load_profile
+	bin/chjize full-desktop
+
+# `slim-desktop`, but also removes pulseaudio and installs jack, and
 # removes the login managers. Xfce4 has to be started via `startx`
 # from the console after this! (That latter part was a hack to work
 # around some issues in Debian stretch / get what I wanted.)
-full-desktop: chj xfce4_load_profile
-	bin/chjize full-desktop
+full-desktop: slim-desktop
+	bin/chjize slim-desktop
 
 # The `full-desktop` target but also runs `apt-get autoremove` to free
 # up the space taken by now unused packages.
@@ -226,7 +230,7 @@ mercurial: chj-bin
 # Ensure basic system readyness.
 system: debian_upgrade locales
 
-_vncserver: perhaps_aptupdate desktop chj-bin
+_vncserver: perhaps_aptupdate slim-desktop chj-bin
 	bin/chjize vncserver
 
 # Server side VNC setup, to be used via client side VNC
@@ -238,7 +242,7 @@ vncserver: _vncserver
 
 # Server with VNC and Xfce4 desktop plus common chj packages. Note the
 # echoed text about finishing the setup.
-chjvncserver: debianpackages urxvt desktop _vncserver
+chjvncserver: debianpackages urxvt _vncserver
 	@ echo "*** Now please run /opt/chj/chjize/bin/vncserver-setup as the user"
 	@ echo "*** that you want to access from the VNC connection (also, first"
 	@ echo "*** run /opt/chj/chjize/bin/mod-user as that user if 'make moduser' was"
