@@ -143,6 +143,12 @@ Check out the last tagged versions of various repositories into
 `/opt/chj` (uses signed tags via git-sign to ensure you get what I
 signed)
 
+### dotconfig-xfce4-checkout
+
+Check out [Xfce4 .config
+files](https://github.com/pflanze/dotconfig-xfce4), which are used
+by [xfce-setup](bin/xfce-setup).
+
 ### xfce
 
 Xfce4 desktop.
@@ -178,7 +184,7 @@ Install the [Functional Perl](http://functional-perl.org) library
 and its dependencies. WARNING: not fully secured by signatures as it
 downloads packages from CPAN whithout verifying signatures (which
 most packages don't even have). Note: requires you to enter `yes` a
-couple times.
+few times.
 
 ### gambit-checkout
 
@@ -229,6 +235,10 @@ server as (hard codes ports).
 Server with VNC and Xfce4 desktop plus common chj packages. Note the
 echoed text about finishing the setup.
 
+### chjvncserver_clean
+
+`chjvncserver` then runs `apt-get clean`.
+
 ### vncclient
 
 Client side VNC setup.
@@ -237,6 +247,10 @@ Client side VNC setup.
 
 Create and activate (including adding to fstab) a swap file if none
 is already active. Size is automatically chosen from RAM size.
+
+### nosudo
+
+Remove `sudo` (often provided by images) since it's a security issue.
 
 ## Graph of target dependencies
 
