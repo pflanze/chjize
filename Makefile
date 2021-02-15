@@ -149,7 +149,10 @@ chj: git-sign debianpackages chj-bin chj-emacs fastrandom cj-git-patchtool
 dotconfig-xfce4-checkout: .bs git-sign
 	bin/chj-checkout dotconfig-xfce4-checkout https://github.com/pflanze/dotconfig-xfce4.git dotconfig-xfce4 '^cj($(BS)d+)$$'
 
-# Xfce4 desktop.
+# Xfce4 desktop. Comes with `/opt/chj/chjize/bin/xfce-setup` to
+# configure Xfce4 the way I like (optionally run afterwards). NOTE:
+# better do not use this target directly, but rather use
+# `xfce4_load_profile` or one of the `..-desktop` ones.
 xfce: perhaps_aptupdate chj-bin dotconfig-xfce4-checkout
 	bin/chjize xfce
 	@ echo "*** NOTE: after starting Xfce, run /opt/chj/chjize/bin/xfce-setup"
@@ -199,14 +202,16 @@ gambit: gambit-checkout cplusplus debianpackages chj-bin chj-emacs
 qemu: git-sign gambit
 	bin/chjize qemu
 
-# Debian's Xfce4 plus my changes to it. NOTE: removes pulseaudio (and
-# installs jack), as well as the login managers, xfce4 has to be
-# started via `startx` from the console after this!
-desktop: chj xfce4_load_profile
-	bin/chjize desktop
+# Xfce4, desktop packages. Also removes pulseaudio and installs jack,
+# removes the login managers. Xfce4 has to be started via `startx`
+# from the console after this! (That latter part was a hack to work
+# around some issues in Debian stretch / get what I wanted.)
+full-desktop: chj xfce4_load_profile
+	bin/chjize full-desktop
 
-# The `desktop` target but also runs `apt-get autoremove`.
-desktop_autoremove: desktop
+# The `full-desktop` target but also runs `apt-get autoremove` to free
+# up the space taken by now unused packages.
+full-desktop_autoremove: full-desktop
 	apt-get autoremove
 
 # Install and configure a local dns resolver (unbound).
