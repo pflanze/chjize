@@ -10,7 +10,6 @@ fi
 
 # Use xscreensaver for locking the screen instead of light-locker
 apt-get remove -y light-locker
-apt-get install -y xscreensaver
 
 apt-get install -y fonts-font-awesome fonts-lato fonts-linuxlibertine fonts-sil-gentium fonts-sil-gentium-basic fonts-inconsolata
 apt-get install -y xpdf gv

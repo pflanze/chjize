@@ -10,6 +10,8 @@ fi
 
 # Modify Debian desktop install so that it behaves reasonably for me.
 
+apt-get install -y xscreensaver
+
 # Remove stuff I don't want (not sure remove needs -y)
 apt-get remove -y pulseaudio
 apt-get remove -y lightdm
