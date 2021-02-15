@@ -52,7 +52,8 @@ README.md: chj-bin .targets docstrings graph.svg
 	cj-git-status-is-clean README.md
 	bin/update-readme README.md < .targets
 
-auto-update: README.md
+auto-update: README.md graph.svg
+	git commit -m "auto-update" README.md graph.svg
 
 # ------------------------------------------------------------------
 # Targets that are automatically listed in `.targets`. Docstrings
