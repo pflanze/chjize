@@ -3,7 +3,7 @@
 set -euo pipefail
 IFS=
 
-if [ "${NOSUDO}" = no ]; then
+if [ "${NOSUDO-}" = no ]; then
     echo "nosudo: turned off via NOSUDO env var"
 else
     set -x
