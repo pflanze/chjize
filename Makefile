@@ -194,7 +194,7 @@ gambit-checkout: .bs git-sign
 	bin/chj-checkout gambit-checkout https://github.com/pflanze/gambc.git gambc '^cj($(BS)d+)$$'
 
 # Install a patched version of the Gambit Scheme system.
-gambit: gambit-checkout cplusplus debianpackages chj-bin chj-emacs
+gambit: gambit-checkout cplusplus debianpackages chj-bin chj-emacs virtualmem_2GB
 	bin/chjize gambit
 
 # Install Qemu, and
@@ -254,15 +254,24 @@ vncclient: perhaps_aptupdate
 
 
 # Create and activate (including adding to fstab) a swap file if none
-# is already active. Size is automatically chosen from RAM size.
+# is already active. Size is automatically chosen to be the same as
+# the RAM size.
 swap: chj-bin
 	bin/chjize swap
+
+# Enable swap if there is less than 2 GB of RAM available. (Only
+# provides 2 GB of virtual memory if there is at least 1 GB of RAM!
+# But with 512 MB of RAM Gambit compilation would be swapping so much
+# that more swap wouldn't be helpful anyway, so leave it at just what
+# the `swap` target provides.)
+virtualmem_2GB: chj-bin
+	bin/chjize virtualmem_2GB
 
 # Remove `sudo` (often provided by images) since it's a security issue.
 nosudo:
 	bin/chjize nosudo
 
 # Full set up of a VNC server for Scheme mentoring.
-schememen: system full-vncserver swap nosudo gambit chj-emacs
+schememen: system full-vncserver nosudo gambit chj-emacs
 	apt-get clean
 

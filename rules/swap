@@ -7,28 +7,20 @@ IFS=
 # done.
 source /opt/chj/bin/path.bash
 
+source /opt/chj/chjize/rules/meminfo.bash
+
 
 # should this be called?
 swapon -a
 
-meminfo=$(cat /proc/meminfo)
-
-get () {
-    export FIELD=$1
-    export UNIT=$2
-    echo "$meminfo" | perl -wne \
-      '/^\Q$ENV{FIELD}\E:\s*(\d+)\s*$ENV{UNIT}/ and push @vs, $1; 
-       END { @vs == 1 or die "found ".@vs." values not 1"; print @vs, "\n" or die }'
-}
-
-SwapTotal=$(get SwapTotal kB)
+SwapTotal=$(meminfo_get SwapTotal kB)
 
 # echo SwapTotal=$SwapTotal; exit 0
 
 if [ "$SwapTotal" -eq 0 ]; then
     swapfile=/root/tmp/swapfile
     if ! [ -e $swapfile ]; then
-        size=$(get MemTotal kB)
+        size=$(meminfo_get MemTotal kB)
         private mksparse --non-sparse "${size}KB" $swapfile
         mkswap $swapfile
         echo "Created new swap file at $swapfile."
