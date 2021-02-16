@@ -8,4 +8,4 @@ logdir=~/log/vncserver-daemon
 
 private mkdir -p "$logdir"
 
-daemonize --multilog "$logdir" --action "$1" vncserver :1 -geometry 1280x768
+daemonize --multilog "$logdir" --action "$1" vncserver :1 -geometry 1280x800
