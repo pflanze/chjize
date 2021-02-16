@@ -204,14 +204,14 @@ qemu: git-sign gambit
 
 # Xfce4, desktop packages.
 slim-desktop: chj xfce4_load_profile
-	bin/chjize full-desktop
+	bin/chjize slim-desktop
 
 # `slim-desktop`, but also removes pulseaudio and installs jack, and
 # removes the login managers. Xfce4 has to be started via `startx`
 # from the console after this! (That latter part was a hack to work
 # around some issues in Debian stretch / get what I wanted.)
 full-desktop: slim-desktop
-	bin/chjize slim-desktop
+	bin/chjize full-desktop
 
 # The `full-desktop` target but also runs `apt-get autoremove` to free
 # up the space taken by now unused packages.
