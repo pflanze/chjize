@@ -55,8 +55,9 @@ unlink the file with the same name as the target.
 
 ## Bugs
 
-Does not work with `-j` in general, since `apt` fails when called
-multiple times in parallel.
+May not work with `-j`, since at least `apt` fails (instead of
+blocking) on older Debian releases when called multiple times in
+parallel.
 
 ## Current list of targets
 
