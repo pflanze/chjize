@@ -248,10 +248,6 @@ full-vncserver: _slim-vncserver debianpackages urxvt system
 	@ echo "*** run /opt/chj/chjize/bin/mod-user as that user if 'make moduser' was"
 	@ echo "*** not run as root before creating that user)."
 
-# `full-vncserver` then runs `apt-get clean`.
-full-vncserver_clean: full-vncserver
-	apt-get clean
-
 # Client side VNC setup.
 vncclient: perhaps_aptupdate
 	bin/chjize vncclient
@@ -265,3 +261,8 @@ swap: chj-bin
 # Remove `sudo` (often provided by images) since it's a security issue.
 nosudo:
 	bin/chjize nosudo
+
+# Full set up of a VNC server for Scheme mentoring.
+schememen: system full-vncserver swap nosudo gambit chj-emacs
+	apt-get clean
+
