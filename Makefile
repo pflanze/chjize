@@ -272,6 +272,6 @@ nosudo:
 	bin/chjize nosudo
 
 # Full set up of a VNC server for Scheme mentoring.
-schememen: system full-vncserver nosudo gambit chj-emacs
+schememen: system full-vncserver nosudo gambit emacs moduser
 	apt-get clean
 
