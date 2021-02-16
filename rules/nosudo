@@ -3,4 +3,9 @@
 set -euo pipefail
 IFS=
 
-apt-get remove -y sudo
+if [ "${NOSUDO}" = no ]; then
+    echo "nosudo: turned off via NOSUDO env var"
+else
+    set -x
+    apt-get remove -y sudo
+fi

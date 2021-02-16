@@ -267,7 +267,11 @@ swap: chj-bin
 virtualmem_2GB: chj-bin
 	bin/chjize virtualmem_2GB
 
-# Remove `sudo` (often provided by images) since it's a security issue.
+# Remove `sudo` (often provided by images) since it's a security
+# issue. Since this will lock you out from acting as root unless you
+# have enabled corresponding access, you have to set
+# `SUDO_FORCE_REMOVE=yes` before running this target or it will
+# fail. If instead you want to keep `sudo` installed, set `NOSUDO=no`.
 nosudo:
 	bin/chjize nosudo
 
