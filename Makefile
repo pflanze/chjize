@@ -231,7 +231,7 @@ mercurial: chj-bin
 system: debian_upgrade locales
 
 _slim-vncserver: perhaps_aptupdate slim-desktop chj-bin
-	bin/chjize slim-vncserver
+	bin/chjize _slim-vncserver
 
 # Server side VNC setup, to be used via client side VNC
 # setup. Currently assumes a single user will be used to run the VNC
