@@ -13,9 +13,8 @@ You can get a script that runs the following at [install](install).
 
     apt-get update
     apt-get install -y git make gnupg
-    cd /opt/
-    mkdir chj
-    cd chj
+    mkdir -p /opt/chj
+    cd /opt/chj
     git clone https://github.com/pflanze/chjize.git
     cd chjize/
     
