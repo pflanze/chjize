@@ -262,7 +262,7 @@ vncclient: perhaps_aptupdate
 
 # Create and activate (including adding to fstab) a swap file if none
 # is already active. Size is automatically chosen to be the same as
-# the RAM size plus another 1 GB.
+# the RAM size or enough to give a total of RAM+swap of 3 GB.
 swap: chj-bin
 	bin/chjize swap
 
