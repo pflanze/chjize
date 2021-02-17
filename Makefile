@@ -3,7 +3,7 @@
 # Linux, this is trying to abstract it away:
 BS=$(shell bin/BS)
 
-STATIC_TARGETS=default .bs .targets .gitignore help graph.dot graph docstrings README.md auto-update clean
+STATIC_TARGETS=default .bs .targets .gitignore help graph.dot graph docstrings README.md auto-update clean install
 
 default: .gitignore
 	@ echo "Run 'make help' for help."
@@ -51,6 +51,9 @@ docstrings: .targets
 README.md: chj-bin .targets docstrings graph.svg
 	cj-git-status-is-clean README.md
 	bin/update-readme README.md < .targets
+
+install: README.md
+	bin/chjize install
 
 auto-update: README.md graph.svg
 	git commit -m "auto-update" README.md graph.svg

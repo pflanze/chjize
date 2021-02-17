@@ -9,7 +9,8 @@ right code is installed.
 
 ## How to use
 
-    sudo su -
+You can get a script that runs the following at [install](install).
+
     apt-get update
     apt-get install -y git make gnupg
     cd /opt/

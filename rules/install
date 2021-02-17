@@ -1,0 +1,58 @@
+#!/usr/bin/perl -w
+
+use strict; use warnings FATAL => 'uninitialized';
+
+@ARGV==0 or die "need 0 argument";
+
+my $path= "README.md";
+
+my $readme= do {
+    local $/;
+    open my $in, "<", $path or die "$path: $!";
+    <$in>
+};
+
+my ($section)= $readme=~ m/\n## How to use *\n(.*?\n)## /s
+    or die "no match";
+
+my ($part1, $part2)= $section=~ m/(.*)Once you trust.*?, *(.*)/s
+    or die "no match";
+
+my @lines= split /\n/, $part1;
+
+my @sourcelines= map {
+    /^    (.*)/ ? $1 : ()
+} @lines;
+
+my @helplines= split /\n/, ucfirst $part2;
+
+
+my $script= join("", map { "$_\n" }
+                 ("#!/bin/bash",
+                  "",
+                  "# *** This has been auto-generated from $path by $0 ***",
+                  "",
+                  "set -eu",
+                  "set -x",
+                  "",
+                  @sourcelines,
+                  "",
+                  "set +x",
+                  "echo -n 'Ready. '",
+                  "",
+                  "cat <<'END'",
+                  @helplines,
+                  "END"
+                 ));
+
+{
+    my $path= "install";
+    open my $out, ">", $path
+        or die $!;
+    print $out $script or die $!;
+    close $out or die $!;
+    
+    chmod 0755, $path or die $!;
+}
+
+#use FP::Repl;repl;
