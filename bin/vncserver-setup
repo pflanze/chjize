@@ -7,8 +7,7 @@ IFS=
 
 if [ -e ~/.vncserver-setup-done ]; then
     echo "$0: already done. If you want to re-run this, rm ~/.vncserver-setup-done"
-    exit 0
-fi
+else
 
 set -x
 
@@ -26,8 +25,6 @@ xfce4-session
 EOF
     chmod +x .vnc/xstartup
 fi
-
-/opt/chj/chjize/bin/vncserver-daemon start
 
 tmp=$(tempfile)
 
@@ -51,3 +48,10 @@ crontab. Remove it again if that's not what you wanted (maybe along
 with the PATH env var setting at the top).
 
 EOF
+
+fi
+
+set +x
+
+/opt/chj/chjize/bin/vncserver-daemon start
+
