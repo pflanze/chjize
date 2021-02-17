@@ -119,6 +119,7 @@ debian-emacs:
 
 # Install debian-emacs and chj-emacs targets.
 emacs: debian-emacs chj-emacs
+	touch emacs
 
 chj-fastrandom: git-sign
 	bin/chj-checkout chj-fastrandom https://github.com/pflanze/fastrandom.git fastrandom
@@ -166,6 +167,7 @@ xfce4_load_profile: chj-bin xfce
 # file (which they stopped doing at some point, dunno why); currently
 # only implemented for Xfce.
 load_profile: xfce4_load_profile
+	touch load_profile
 
 # Modify the `/root`, `/etc/skel`, and if present `/home/chris`
 # directories to use a checkout of
@@ -218,6 +220,7 @@ full-desktop: slim-desktop
 # up the space taken by now unused packages.
 full-desktop_autoremove: full-desktop
 	apt-get -y autoremove
+	touch full-desktop_autoremove
 
 # Install and configure a local dns resolver (unbound).
 dnsresolver:
@@ -230,6 +233,7 @@ mercurial: chj-bin
 
 # Ensure basic system readyness.
 system: debian_upgrade locales
+	touch system
 
 _slim-vncserver: perhaps_aptupdate slim-desktop chj-bin
 	bin/chjize _slim-vncserver
@@ -238,12 +242,14 @@ _slim-vncserver: perhaps_aptupdate slim-desktop chj-bin
 # setup. Currently assumes a single user will be used to run the VNC
 # server as (hard codes ports).
 slim-vncserver: _slim-vncserver
+	touch slim-vncserver
 	@ echo "*** NOTE: xfce4 is not included in this target; run the full-vncserver "
 	@ echo "*** target for the whole convenient setup."
 
 # Server with VNC and Xfce4 desktop plus common chj packages. Note the
 # echoed text about finishing the setup.
 full-vncserver: _slim-vncserver debianpackages urxvt system
+	touch full-vncserver
 	@ echo "*** Now please run /opt/chj/chjize/bin/vncserver-setup as the user"
 	@ echo "*** that you want to access from the VNC connection (also, first"
 	@ echo "*** run /opt/chj/chjize/bin/mod-user as that user if 'make moduser' was"
