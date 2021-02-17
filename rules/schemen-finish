@@ -5,9 +5,7 @@ IFS=
 
 set -x
 
-su - schemen bash -c '/opt/chj/chjize/bin/vncserver-daemon stop'
-
-sleep 1
+su - schemen bash -c '/opt/chj/chjize/bin/vncserver-daemon stop' || true
 
 su - schemen bash -c /opt/chj/chjize/bin/xfce-setup
 
