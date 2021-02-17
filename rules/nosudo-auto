@@ -51,6 +51,7 @@ do_nosudo_force () {
 passwd_field () {
     local passwd=$1
     local fieldindex=$2
+    local - ; set +x
     set -eu
     local IFS
     IFS=:
@@ -60,15 +61,17 @@ passwd_field () {
 
 uid_passwd () {
     local uid=$1
+    local - ; set +x
     set -eu
     getent passwd "$uid"
 }
 
-uid_name () { local uid=$1; set -eu; local passwd; passwd=$(uid_passwd "$uid"); passwd_field "$passwd" 0; }
-uid_home () { local uid=$1; set -eu; local passwd; passwd=$(uid_passwd "$uid"); passwd_field "$passwd" 5; }
+uid_name () { local uid=$1; local - ; set +x; set -eu; local passwd; passwd=$(uid_passwd "$uid"); passwd_field "$passwd" 0; }
+uid_home () { local uid=$1; local - ; set +x; set -eu; local passwd; passwd=$(uid_passwd "$uid"); passwd_field "$passwd" 5; }
 
 uid_authorizedkeysfile () {
     local uid=$1
+    local - ; set +x
     set -eu
     local home
     home=$(uid_home "$uid")
@@ -80,6 +83,7 @@ procstatus_get () {
     local procstatus=$1
     local field=$2
 
+    local - ; set +x
     set -eu
     printf '%s' "$procstatus" | FIELD=$field perl -wne \
       '/^\Q$ENV{FIELD}\E:\s*(.+)/ and push @vs, $1; 
@@ -89,6 +93,7 @@ procstatus_get () {
 pid_procstatus () {
     local pid=$1
 
+    local - ; set +x
     set -eu
     cat "/proc/$pid/status"
 }
@@ -97,6 +102,7 @@ pid_status_get () {
     local pid=$1
     local key=$2
 
+    local - ; set +x
     set -eu
     local procstatus
     procstatus=$(pid_procstatus "$pid")
@@ -106,6 +112,7 @@ pid_status_get () {
 pid_presudo_Uid () {
     local pid=$1
 
+    local - ; set +x
     set -eu
     if [ "$pid" = 0 ]; then
         # sudo not found, return root user, ok?
@@ -126,6 +133,7 @@ pid_presudo_Uid () {
 pid_is_ssh () {
     local pid=$1
 
+    local - ; set +x
     set -eu
     if [ "$pid" = 0 ]; then
         # ssh not found
