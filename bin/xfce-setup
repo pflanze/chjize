@@ -42,7 +42,7 @@ set -x
 tmp=$(tempdir)
 
 cd "$tmp"
-GIT_DIR=/opt/chj/dotconfig-xfce4/.git git format-patch d212e2cfb1e6d03ffb38082c3e716860b01b6215..
+GIT_DIR=/opt/chj/dotconfig-xfce4/.git git format-patch e0753fd36e8e5b822984f08eb2d40fa6f9661c5c..
 
 # Change mentions of home directory:
 mysed 's{/home/chris\b}{$ENV{HOME}}sg' *.patch
