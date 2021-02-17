@@ -128,6 +128,7 @@ chj-fastrandom: git-sign
 
 # Install [fastrandom](https://github.com/pflanze/fastrandom).
 fastrandom: /usr/local/bin/fastrandom
+	touch fastrandom
 
 # Install [cj-git-patchtool](https://github.com/pflanze/cj-git-patchtool).
 cj-git-patchtool: debianpackages chj-bin git-sign
