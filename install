@@ -1,15 +1,14 @@
 #!/bin/bash
 
-# *** This has been auto-generated from README.md by rules/install ***
+# *** This has been auto-generated from README.md by /opt/chj/chjize/rules/install ***
 
 set -eu
 set -x
 
 apt-get update
 apt-get install -y git make gnupg
-cd /opt/
-mkdir chj
-cd chj
+mkdir -p /opt/chj
+cd /opt/chj
 git clone https://github.com/pflanze/chjize.git
 cd chjize/
 

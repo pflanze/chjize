@@ -250,12 +250,12 @@ Client side VNC setup.
 
 Create and activate (including adding to fstab) a swap file if none
 is already active. Size is automatically chosen to be the same as
-the RAM size.
+the RAM size or enough to give a total of RAM+swap of 3 GB.
 
-### virtualmem_2GB
+### virtualmem_3GB
 
-Enable swap if there is less than 2 GB of RAM available. (Only
-provides 2 GB of virtual memory if there is at least 1 GB of RAM!
+Enable swap if there is less than 3 GB of RAM available. (Only
+provides 3 GB of virtual memory if there is at least 1 GB of RAM!
 But with 512 MB of RAM Gambit compilation would be swapping so much
 that more swap wouldn't be helpful anyway, so leave it at just what
 the `swap` target provides.)
@@ -281,6 +281,11 @@ set.
 ### schemen-user
 
 Create `schemen` user, copy ssh keys from root to it.
+
+### schemen-lili
+
+Check out and build [lili](https://github.com/pflanze/lili) as the
+`schemen` user.
 
 ### schemen
 
