@@ -27,13 +27,9 @@ source /opt/chj/chjize/bin/chj-env
 xcheck_location /opt/chj/chjize/bin/chj-checkout
 
 
-mkdir -p /opt/chj
-
-(
+doit () {
     set -euo pipefail
     set -x
-
-    cd /opt/chj
 
     if [ -d "$subdir" ]; then
 	cd "$subdir"
@@ -61,8 +57,21 @@ mkdir -p /opt/chj
     else
 	checkout-latest-release -v
     fi
-)
+}
+
+
 
 if [ "$(pwd)" = "/opt/chj/chjize" ]; then
+    (
+        set -euo pipefail
+        set -x
+        mkdir -p /opt/chj
+        cd /opt/chj
+        doit
+    )
     touch "$tag"
+else
+    doit
 fi
+
+
