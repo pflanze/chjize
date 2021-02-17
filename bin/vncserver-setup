@@ -51,7 +51,7 @@ EOF
 
 fi
 
-set +x
+set -x
 
 /opt/chj/chjize/bin/vncserver-daemon start
 
