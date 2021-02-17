@@ -28,7 +28,7 @@ tmp=$(tempfile)
 
 {
 printf 'PATH=%q\n' "$PATH"
-crontab -l
+crontab -l || true
 printf '\n@reboot /opt/chj/chjize/bin/vncserver-daemon start\n'
 } > "$tmp"
 
