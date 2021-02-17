@@ -2,6 +2,8 @@
 meminfo_get () {
     export FIELD=$1
     export UNIT=$2
+    local -
+    set +x
     set -eu
     local meminfo
     meminfo=$(cat /proc/meminfo)
