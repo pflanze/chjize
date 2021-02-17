@@ -13,7 +13,6 @@ moduser() {
     su - "$user" bash -c "
 set -eux
 cd $(printf '%q' "$dir")
-gpg --import /opt/chj/chjize/cj-key.asc
 $mod_user
 "
     
