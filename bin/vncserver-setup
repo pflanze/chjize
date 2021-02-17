@@ -5,6 +5,11 @@ IFS=
 
 # Depend on mod-user having been run (TODO: cope without?).
 
+if [ -e .vncserver-setup-done ]; then
+    echo "$0: already done. If you want to re-run this, rm .vncserver-setup-done"
+    exit 0
+fi
+
 set -x
 
 cd
@@ -33,6 +38,8 @@ printf '\n@reboot /opt/chj/chjize/bin/vncserver-daemon start\n'
 } > "$tmp"
 
 crontab "$tmp"
+
+touch .vncserver-setup-done
 
 set +x
 
