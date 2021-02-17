@@ -245,10 +245,6 @@ server as (hard codes ports).
 Server with VNC and Xfce4 desktop plus common chj packages. Note the
 echoed text about finishing the setup.
 
-### full-vncserver_clean
-
-`full-vncserver` then runs `apt-get clean`.
-
 ### vncclient
 
 Client side VNC setup.
@@ -256,11 +252,54 @@ Client side VNC setup.
 ### swap
 
 Create and activate (including adding to fstab) a swap file if none
-is already active. Size is automatically chosen from RAM size.
+is already active. Size is automatically chosen to be the same as
+the RAM size.
+
+### virtualmem_2GB
+
+Enable swap if there is less than 2 GB of RAM available. (Only
+provides 2 GB of virtual memory if there is at least 1 GB of RAM!
+But with 512 MB of RAM Gambit compilation would be swapping so much
+that more swap wouldn't be helpful anyway, so leave it at just what
+the `swap` target provides.)
 
 ### nosudo
 
-Remove `sudo` (often provided by images) since it's a security issue.
+Remove `sudo` (often provided by images) since it's a security
+issue. Since this will lock you out from acting as root unless you
+have enabled corresponding access, you have to set
+`SUDO_FORCE_REMOVE=yes` before running this target or it will
+fail. If instead you want to keep `sudo` installed, set `NOSUDO=no`.
+
+### nosudo-auto
+
+Runs the `nosudo` target except it will force removal even without
+`SUDO_FORCE_REMOVE=yes` if it can ensure that the root login can be
+used: either since root was not logged in via sudo, or, it is an ssh
+login, in which case the authorized_keys are copied to the root
+account--NOTE that this still will you lock out if you actually log
+in via password instead of a key! Still is a NOP if `NOSUDO=no` is
+set.
+
+### schemen-user
+
+Create `schemen` user, copy ssh keys from root to it.
+
+### schemen
+
+Full set up of a VNC server for Scheme mentoring. Requires VNC
+passwd file, first run on server: `( umask 077; mkdir tmp )` then
+on your desktop: `scp .vncclient-passwords/passwd
+root@tmp:/opt/chj/chjize/tmp/`.
+
+### schemen-finish
+
+
+### remove-xserver
+
+Remove xorg and xserver-xorg packages. This is a horrible HACK for
+cases where they should never be installed in the first place but I
+can't figure out why they are.
 
 ## Graph of target dependencies
 
