@@ -303,7 +303,7 @@ schemen-user: moduser
 # root@tmp:/opt/chj/chjize/tmp/`.
 schemen: system full-vncserver nosudo-auto gambit emacs schemen-user tmp/passwd
 	bin/chjize schemen
-	@ echo "Now connect to the VNC desktop, and click on the default panel".
+	@ echo "Now connect to the VNC desktop, and click on 'Use default config'.".
 	@ echo "Then run 'make schemen-finish'."
 
 schemen-finish:
