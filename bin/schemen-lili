@@ -5,7 +5,7 @@ IFS=
 
 set -x
 
-# key is imported via `schemen-user: moduser` (moduser before creating user)
+# key was imported via `chj-home`'s init via `schemen-user` target
 /opt/chj/chjize/bin/chj-checkout '' https://github.com/pflanze/lili.git lili '^cj(\d+)$'
 
 cd lili/parser

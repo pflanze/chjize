@@ -3,8 +3,6 @@
 set -euo pipefail
 IFS=
 
-# Sigh, and recursive again please.
-
 su - schemen bash -c /opt/chj/chjize/bin/schemen-lili
 
 
