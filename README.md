@@ -42,9 +42,8 @@ Once you trust that the source is mine, run:
 
 for the list of available targets (the same as shown
 [below](#current-list-of-targets)). To e.g. only install my software
-into `/opt/chj` (and dependences, which is debianpackages in this
-case, see `Makefile` or the [graph](#graph-of-target-dependencies)
-below), run:
+into `/opt/chj` (and dependences, see `Makefile` or the
+[graph](#graph-of-target-dependencies) below), run:
 
     make chj
 
