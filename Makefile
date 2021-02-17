@@ -309,3 +309,8 @@ schemen: system full-vncserver nosudo-auto gambit emacs schemen-user tmp/passwd
 schemen-finish:
 	bin/chjize schemen-finish
 
+# Remove xorg and xserver-xorg packages. This is a horrible HACK for
+# cases where they should never be installed in the first place but I
+# can't figure out why they are.
+remove-xserver:
+	bin/chjize remove-xserver

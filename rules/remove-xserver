@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+set -x
+
+apt-get remove -y xserver-xorg
+
+apt-get -y autoremove
