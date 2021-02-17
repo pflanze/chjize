@@ -5,6 +5,6 @@ IFS=
 
 set -x
 
-apt-get remove -y xserver-xorg
+apt-get remove -y xserver-xorg cups-bsd cups-client cups-common
 
 apt-get -y autoremove
