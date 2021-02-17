@@ -53,11 +53,9 @@ thus more efficient when asking the same target repeatedly (even
 across runs). If an action for some reason really should be re-run,
 unlink the file with the same name as the target.
 
-## Bugs
-
-May not work with `-j`, since at least `apt` fails (instead of
-blocking) on older Debian releases when called multiple times in
-parallel.
+May work with parallel builds (`-j2` etc.), since we're now using
+wrappers around `apt-get` and `apt` (in [bin/](bin/)) that use waiting
+locks.
 
 ## Current list of targets
 
