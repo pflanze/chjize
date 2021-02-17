@@ -1,0 +1,21 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+set -x
+
+apt-get clean
+
+apt-get -y autoremove
+
+cat tmp/passwd | su - schemen bash -c 'private mkdir -p .vnc; cat > .vnc/passwd'
+
+su - schemen /opt/chj/chjize/bin/vncserver-setup
+
+su - schemen /opt/chj/chjize/bin/vncserver-daemon stop || true
+# ^ if this fails, check /home/schemen/log/vncserver-daemon/current
+
+su - schemen /opt/chj/chjize/bin/xfce-setup
+
+su - schemen /opt/chj/chjize/bin/vncserver-daemon start

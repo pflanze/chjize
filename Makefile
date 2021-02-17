@@ -293,7 +293,13 @@ nosudo-auto:
 	bin/chjize nosudo-auto
 
 
-# Full set up of a VNC server for Scheme mentoring.
-schememen: system full-vncserver nosudo-auto gambit emacs moduser
-	apt-get clean
-	apt-get -y autoremove
+# Create `schemen` user, copy ssh keys from root to it.
+schemen-user: moduser
+	bin/chjize schemen-user
+
+# Full set up of a VNC server for Scheme mentoring. Requires VNC
+# passwd file, first run on server: `( umask 077; mkdir tmp )` then
+# on your desktop: `scp .vncclient-passwords/passwd
+# root@tmp:/opt/chj/chjize/tmp/`.
+schemen: system full-vncserver nosudo-auto gambit emacs schemen-user tmp/passwd
+	bin/chjize schemen

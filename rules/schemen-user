@@ -1,0 +1,16 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+set -x
+
+adduser --disabled-password --gecos "" schemen
+
+{
+    echo
+    echo
+} | su - schemen .chj-home/init
+
+cat /root/.ssh/authorized_keys >> /home/schemen/.ssh/authorized_keys
+
