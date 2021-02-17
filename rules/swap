@@ -20,6 +20,7 @@ SwapTotal=$(meminfo_get SwapTotal kB)
 if [ "$SwapTotal" -eq 0 ]; then
     swapfile=/root/tmp/swapfile
     if ! [ -e $swapfile ]; then
+        private mkdir -p /root/tmp
         size=$(meminfo_get MemTotal kB)
         private mksparse --non-sparse "${size}KB" $swapfile
         mkswap $swapfile
