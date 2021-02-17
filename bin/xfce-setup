@@ -6,6 +6,9 @@ set -u
 IFS=
 source /opt/chj/bin/path.bash
 
+export GIT_AUTHOR_NAME=xfce-setup
+export GIT_AUTHOR_EMAIL=ch@christianjaeger.ch
+
 
 # NOTE: there's also `xfconf-query`, but it may be more work to
 # translate the changes I'm seeing in the git diffs to calls to that
