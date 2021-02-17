@@ -62,7 +62,7 @@ git commit -m "orig"
 
 for p in "$tmp"/*.patch; do
     if ! git am -3 "$p"; then
-        git merge --abort || true
+        git am --abort || true
         rm -rf .git/rebase-apply
         git reset --hard || true
         git clean -d -f || true
