@@ -297,11 +297,17 @@ nosudo-auto:
 schemen-user: moduser
 	bin/chjize schemen-user
 
+# Check out and build [lili](https://github.com/pflanze/lili) as the
+# `schemen` user.
+schemen-lili: schemen-user gambit chj-emacs
+	bin/chjize schemen-lili
+# ^ chj-emacs for /opt/chj/emacs/bin/gam-emacs
+
 # Full set up of a VNC server for Scheme mentoring. Requires VNC
 # passwd file, first run on server: `( umask 077; mkdir tmp )` then
 # on your desktop: `scp .vncclient-passwords/passwd
 # root@tmp:/opt/chj/chjize/tmp/`.
-schemen: system full-vncserver nosudo-auto gambit emacs schemen-user tmp/passwd
+schemen: system full-vncserver nosudo-auto gambit emacs schemen-user schemen-lili tmp/passwd
 	bin/chjize schemen
 	@ echo "Now connect to the VNC desktop, and click on 'Use default config'.".
 	@ echo "Then run 'make schemen-finish'."

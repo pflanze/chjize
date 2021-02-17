@@ -1,0 +1,16 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+set -x
+
+# key is imported via `schemen-user: moduser` (moduser before creating user)
+/opt/chj/chjize/bin/chj-checkout '' https://github.com/pflanze/lili.git lili '^cj(\d+)$'
+
+cd lili/parser
+
+/opt/chj/chjize/bin/chj-checkout '' https://github.com/pflanze/chj-schemelib.git lib '^r(\d+)$'
+
+/opt/chj/emacs/bin/gam-emacs -e '(run-tests "lib")'
+# not currently trusting the state of testing in lily itself.
