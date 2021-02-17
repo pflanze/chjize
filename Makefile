@@ -209,7 +209,7 @@ qemu: git-sign gambit
 	bin/chjize qemu
 
 # Xfce4, desktop packages.
-slim-desktop: chj xfce4_load_profile
+slim-desktop: chj set-x-terminal-emulator xfce4_load_profile
 	bin/chjize slim-desktop
 
 # `slim-desktop`, but also removes pulseaudio and installs jack, and
@@ -294,6 +294,10 @@ nosudo:
 # set.
 nosudo-auto:
 	bin/chjize nosudo-auto
+
+# Set `x-terminal-emulator` in Debian's alternatives system to `term`.
+set-x-terminal-emulator: chj-bin
+	bin/chjize set-x-terminal-emulator
 
 
 # Create `schemen` user, copy ssh keys from root to it.
