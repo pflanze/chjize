@@ -197,7 +197,7 @@ gambit-checkout: .bs git-sign
 	bin/chj-checkout gambit-checkout https://github.com/pflanze/gambc.git gambc '^cj($(BS)d+)$$'
 
 # Install a patched version of the Gambit Scheme system.
-gambit: gambit-checkout cplusplus debianpackages chj-bin chj-emacs virtualmem_2GB
+gambit: gambit-checkout cplusplus debianpackages chj-bin chj-emacs virtualmem_3GB
 	bin/chjize gambit
 
 # Install Qemu, and
@@ -271,8 +271,8 @@ swap: chj-bin
 # But with 512 MB of RAM Gambit compilation would be swapping so much
 # that more swap wouldn't be helpful anyway, so leave it at just what
 # the `swap` target provides.)
-virtualmem_2GB: chj-bin
-	bin/chjize virtualmem_2GB
+virtualmem_3GB: chj-bin
+	bin/chjize virtualmem_3GB
 
 # Remove `sudo` (often provided by images) since it's a security
 # issue. Since this will lock you out from acting as root unless you
