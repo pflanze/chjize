@@ -275,7 +275,18 @@ virtualmem_2GB: chj-bin
 nosudo:
 	bin/chjize nosudo
 
+# Runs the `nosudo` target except it will force removal even without
+# `SUDO_FORCE_REMOVE=yes` if it can ensure that the root login can be
+# used: either since root was not logged in via sudo, or, it is an ssh
+# login, in which case the authorized_keys are copied to the root
+# account--NOTE that this still will you lock out if you actually log
+# in via password instead of a key! Still is a NOP if `NOSUDO=no` is
+# set.
+nosudo-auto:
+	bin/chjize nosudo-auto
+
+
 # Full set up of a VNC server for Scheme mentoring.
-schememen: system full-vncserver nosudo gambit emacs moduser
+schememen: system full-vncserver nosudo-auto gambit emacs moduser
 	apt-get clean
 	apt-get autoremove
