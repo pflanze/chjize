@@ -216,7 +216,7 @@ full-desktop: slim-desktop
 # The `full-desktop` target but also runs `apt-get autoremove` to free
 # up the space taken by now unused packages.
 full-desktop_autoremove: full-desktop
-	apt-get autoremove
+	apt-get -y autoremove
 
 # Install and configure a local dns resolver (unbound).
 dnsresolver:
@@ -289,4 +289,4 @@ nosudo-auto:
 # Full set up of a VNC server for Scheme mentoring.
 schememen: system full-vncserver nosudo-auto gambit emacs moduser
 	apt-get clean
-	apt-get autoremove
+	apt-get -y autoremove
