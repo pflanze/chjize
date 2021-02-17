@@ -9,13 +9,11 @@ apt-get clean
 
 apt-get -y autoremove
 
-cat tmp/passwd | su - schemen bash -c 'private mkdir -p .vnc; cat > .vnc/passwd'
+# Have to use umask for the cat, too, or the passwd file will
+# apparently be removed by the vncserver!
+cat tmp/passwd | su - schemen bash -c 'umask 077; mkdir -p .vnc; cat > .vnc/passwd'
 
 su - schemen bash -c /opt/chj/chjize/bin/vncserver-setup
 
-su - schemen bash -c '/opt/chj/chjize/bin/vncserver-daemon stop' || true
-# ^ if this fails, check /home/schemen/log/vncserver-daemon/current
+# Now continue with schemen-finish (read instructions!)
 
-su - schemen bash -c /opt/chj/chjize/bin/xfce-setup
-
-su - schemen bash -c '/opt/chj/chjize/bin/vncserver-daemon start'

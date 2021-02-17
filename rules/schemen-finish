@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+set -x
+
+su - schemen bash -c '/opt/chj/chjize/bin/vncserver-daemon stop'
+
+sleep 1
+
+su - schemen bash -c /opt/chj/chjize/bin/xfce-setup
+
+su - schemen bash -c '/opt/chj/chjize/bin/vncserver-daemon start'
