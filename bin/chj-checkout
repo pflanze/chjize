@@ -22,7 +22,7 @@ subdir=$3
 regex=${4-}
 
 
-source /opt/chj/chjize/bin/chj-env
+source /opt/chj/chjize/bin/chj-env.bash
 
 xcheck_location /opt/chj/chjize/bin/chj-checkout
 
