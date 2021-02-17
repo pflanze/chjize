@@ -262,12 +262,12 @@ vncclient: perhaps_aptupdate
 
 # Create and activate (including adding to fstab) a swap file if none
 # is already active. Size is automatically chosen to be the same as
-# the RAM size.
+# the RAM size plus another 1 GB.
 swap: chj-bin
 	bin/chjize swap
 
-# Enable swap if there is less than 2 GB of RAM available. (Only
-# provides 2 GB of virtual memory if there is at least 1 GB of RAM!
+# Enable swap if there is less than 3 GB of RAM available. (Only
+# provides 3 GB of virtual memory if there is at least 1 GB of RAM!
 # But with 512 MB of RAM Gambit compilation would be swapping so much
 # that more swap wouldn't be helpful anyway, so leave it at just what
 # the `swap` target provides.)

@@ -11,13 +11,13 @@ memtotal=$(meminfo_get MemTotal kB)
 # cut off at 85.8% of 2 GB of RAM (to allow for parts missing in
 # kernel or so):
 if [ "$memtotal" -lt 1800000 ]; then
-    echo "virtualmem_2GB: not enough RAM, need swap"
+    echo "$0: not enough RAM, need swap"
     if ! [ -e swap ]; then
-        echo "virtualmem_2GB: enabling swap"
+        echo "$0: enabling swap"
         make swap
     else
-        echo "virtualmem_2GB: swap is already enabled"
+        echo "$0: swap is already enabled"
     fi
 else
-    echo "virtualmem_2GB: there is enough RAM"
+    echo "$0: there is enough RAM"
 fi

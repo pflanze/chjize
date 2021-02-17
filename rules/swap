@@ -21,7 +21,9 @@ if [ "$SwapTotal" -eq 0 ]; then
     swapfile=/root/tmp/swapfile
     if ! [ -e $swapfile ]; then
         private mkdir -p /root/tmp
-        size=$(meminfo_get MemTotal kB)
+        memtotal=$(meminfo_get MemTotal kB)
+        # 1 GB more:
+        size=$(( $memtotal + 1048576 ))
         private mksparse --non-sparse "${size}KB" $swapfile
         mkswap $swapfile
         echo "Created new swap file at $swapfile."
