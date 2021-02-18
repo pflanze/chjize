@@ -251,7 +251,7 @@ slim-vncserver: _slim-vncserver
 
 # Server with VNC and Xfce4 desktop plus common chj packages. Note the
 # echoed text about finishing the setup.
-full-vncserver: _slim-vncserver debianpackages urxvt system
+full-vncserver: _slim-vncserver debianpackages system
 	touch full-vncserver
 	@ echo "*** Now please run /opt/chj/chjize/bin/vncserver-setup as the user"
 	@ echo "*** that you want to access from the VNC connection (also, first"
@@ -295,8 +295,9 @@ nosudo:
 nosudo-auto:
 	bin/chjize nosudo-auto
 
-# Set `x-terminal-emulator` in Debian's alternatives system to `term`.
-set-x-terminal-emulator: chj-bin
+# Set `x-terminal-emulator` in Debian's alternatives system to `term`,
+# which uses urxvt.
+set-x-terminal-emulator: urxvt chj-bin
 	bin/chjize set-x-terminal-emulator
 
 # Install Firefox from Debian.
