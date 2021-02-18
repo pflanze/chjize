@@ -32,9 +32,14 @@ fetches in any case):
     # Check that the above command says "Good signature", and shows
     #   my fingerprint (A54A1D7CA1F94C866AC81A1F0FA5B21104EDB072, feel 
     #   free to google it) if you don't have a trust path to the key.
+    git tag -v "$version" 2>&1 | grep 'A54A 1D7C A1F9 4C86 6AC8 *1A1F 0FA5 B211 04ED B072'
+    
     # You can also do the more paranoid verification of running the
     #   script lines shown by the above command (the lines starting
     #   with a `$`), and verifying that you get the same output as shown.
+    sumExpect=$(git tag -v "$version" 2>/dev/null | perl -we 'local $/; $a=<STDIN>; $a=~ s{.*\n\$[^\n]*sha256sum\n}{}s; print $a' | sha256sum)
+    sumGot=$(git ls-files -z | xargs -0 --no-run-if-empty -s 129023 -n 129023 sha256sum | sha256sum)
+    [ "$sumExpect" = "$sumGot" ] || { echo "check failure"; false; }
 
 Once you trust that the source is mine, run:
     
