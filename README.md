@@ -278,6 +278,14 @@ account--NOTE that this still will you lock out if you actually log
 in via password instead of a key! Still is a NOP if `NOSUDO=no` is
 set.
 
+### set-x-terminal-emulator
+
+Set `x-terminal-emulator` in Debian's alternatives system to `term`.
+
+### firefox
+
+Install Firefox from Debian.
+
 ### schemen-user
 
 Create `schemen` user, copy ssh keys from root to it.
