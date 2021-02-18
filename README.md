@@ -56,6 +56,12 @@ May work with parallel builds (`-j2` etc.), since we're now using
 wrappers around `apt-get` and `apt` (in [bin/](bin/)) that use waiting
 locks.
 
+## Client side automation
+
+To set up servers, some more client side automation is desirable. For
+an example (just a recipe) see
+[client-side-todo](client-side-todo.md).
+
 ## Current list of targets
 
 (Note: these are copied from [`Makefile`](Makefile) via `make README.md`.)
