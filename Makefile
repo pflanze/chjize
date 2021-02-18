@@ -56,7 +56,7 @@ install: README.md
 	bin/chjize install
 
 auto-update: README.md graph.svg install
-	git commit -m "auto-update" README.md graph.svg install
+	git commit -m "auto-update" README.md graph.svg install || true
 
 # ------------------------------------------------------------------
 # Targets that are automatically listed in `.targets`. Docstrings
