@@ -298,6 +298,10 @@ which uses urxvt.
 
 Install Firefox from Debian.
 
+### unison
+
+Install unison from Debian (console version).
+
 ### schemen-user
 
 Create `schemen` user, copy ssh keys from root to it.
@@ -321,7 +325,8 @@ root@tmp:/opt/chj/chjize/tmp/`.
 
 Remove xorg and xserver-xorg packages. This is a horrible HACK for
 cases where they should never be installed in the first place but I
-can't figure out why they are.
+can't figure out why they are. (This is called from within the
+slim-desktop rule.)
 
 ## Graph of target dependencies
 
