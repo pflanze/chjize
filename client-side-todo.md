@@ -77,3 +77,7 @@ What to run, extending from the [README](README.md).
         git remote add tmp schemen@tmp:foo/.git
         git push tmp master # etc.
         
+* Or simply install `unison-gtk` client side and use that to keep a
+  synchronized copy of the server locally that you copy back after
+  creating the new server.
+
