@@ -304,6 +304,11 @@ set-x-terminal-emulator: urxvt chj-bin
 firefox: perhaps_aptupdate
 	bin/chjize firefox
 
+# Install unison from Debian (console version).
+unison: perhaps_aptupdate
+	bin/chjize unison
+
+
 # Create `schemen` user, copy ssh keys from root to it.
 schemen-user: moduser
 	bin/chjize schemen-user
@@ -318,7 +323,7 @@ schemen-lili: schemen-user gambit chj-emacs
 # passwd file, first run on server: `( umask 077; mkdir tmp )` then
 # on your desktop: `scp .vncclient-passwords/passwd
 # root@tmp:/opt/chj/chjize/tmp/`.
-schemen: system full-vncserver nosudo-auto gambit emacs schemen-user schemen-lili tmp/passwd firefox
+schemen: system full-vncserver nosudo-auto gambit emacs schemen-user schemen-lili tmp/passwd firefox unison
 	bin/chjize schemen
 	@ echo "Now connect to the VNC desktop, and click on 'Use default config'.".
 	@ echo "Then run 'make schemen-finish'."
