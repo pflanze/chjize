@@ -19,16 +19,18 @@ What to run, extending from the [README](README.md).
         ssh admin@tmp
         sudo ./install 
  
-  Verify the key fingerprint is `A54A 1D7C A1F9 4C86 6AC8  1A1F 0FA5 B211 04ED B072`
+  Verify the key fingerprint is `A54A 1D7C A1F9 4C86 6AC8  1A1F 0FA5 B211 04ED B072`.
   
-* If this is AWS or another such root-avoiding service (`make
-  nosudo-auto` works even if already root, i.e. in all cases, and is
-  in fact part of the `schemen` target, but is too late for the
-  following step):
+* If this is AWS or another such root-avoiding service (`nosudo-auto`
+  is also part of the `schemen` target, but is too late to allow for
+  the copying of the passwd file in such a non-root based service):
 
         sudo su -
         cd /opt/chj/chjize/
-        make nosudo
+        make nosudo-auto
+
+  Now it should be possible to log in via ssh as `root`.
+
 
 * Prepare directory for VNC passwd file:
 
@@ -38,7 +40,7 @@ What to run, extending from the [README](README.md).
 
         scp .vncclient-passwords/schemen-passwd root@tmp:/opt/chj/chjize/tmp/passwd
 
-* Now the big install step can run, will take 13 minutes on t3.small AWS instance:
+* Now the big install step can run, will take 13 minutes on t3.small AWS instance (2 cores, 2 GB RAM):
 
         ssh root@tmp
         time make -j2 schemen
