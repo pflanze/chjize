@@ -23,6 +23,8 @@ git tag -v "$version"
 #   script lines shown by the above command (the lines starting
 #   with a `$`), and verifying that you get the same output as shown.
 
+make
+
 set +x
 echo -n 'Ready. '
 

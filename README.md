@@ -280,7 +280,8 @@ set.
 
 ### set-x-terminal-emulator
 
-Set `x-terminal-emulator` in Debian's alternatives system to `term`.
+Set `x-terminal-emulator` in Debian's alternatives system to `term`,
+which uses urxvt.
 
 ### firefox
 
