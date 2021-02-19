@@ -17,7 +17,7 @@ shift
 
 source /opt/chj/chjize/bin/chj-env.bash
 
-xcheck_location /opt/chj/chjize/bin/chjize
+xcheck_location /opt/chj/chjize/bin/action
 
 set -x
 
