@@ -11,6 +11,6 @@ apt-get install -y vnc4server
 
 set +x
 message full-vncserver \
-	"*** NOTE: xfce4 is not included in this target; run the full-vncserver " \
-	"*** target for the whole convenient setup."
+	"Note: xfce4 is not included in this target; run the full-vncserver " \
+	"target for the whole convenient setup."
 

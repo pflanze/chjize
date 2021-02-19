@@ -35,6 +35,7 @@ else
     abort=1
 fi
 
+# XX can't use `message` yet as it would not be shown in aborted case; well would that matter?
 echo "NOTE: if getting message from qemu about KVM module not loaded, and it is (kvm-intel), then enable virtualization in the BIOS (even though cpuinfo already shows virtualization!)"
 echo "Also,  'chgrp \$groupname /dev/disk-devices-used'."
 echo "Also, you need to run 'masquerade on', and 'tunctl -t tap0 -g netdev ; ifconfig tap0 192.168.66.1 netmask 255.255.255.0' to set up networking."
