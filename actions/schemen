@@ -14,10 +14,14 @@ apt-get -y autoremove
 cat tmp/passwd | su - schemen bash -c 'umask 077; mkdir -p .vnc; cat > .vnc/passwd'
 
 su - schemen bash -c /opt/chj/chjize/bin/vncserver-setup
+delete-message full-vncserver.vncserver-setup
 
 # Now continue with schemen-finish (read instructions!)
 
 message finish \
         "Now connect to the VNC desktop, and click on 'Use default config'." \
         "Then run 'chjize schemen-finish'."
+
+# since schemen-finish will run it:
+delete-message xfce.xfce-setup
 
