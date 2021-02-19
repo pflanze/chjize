@@ -39,7 +39,7 @@ seen_msgs=0
 
 while read msgfile; do
     ruler
-    printf 'Messages from %q:\n' "$msgfile"
+    printf 'Messages from %q:\n' "$(printf '%q\n' "$msgfile" | sed 's/\./: /')"
     cat "$MESSAGEBASE/$msgfile"
     seen_msgs=1
 done < <(ls "$MESSAGEBASE")
