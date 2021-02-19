@@ -53,5 +53,6 @@ fi
 
 set -x
 
-/opt/chj/chjize/bin/vncserver-daemon start
-
+/opt/chj/chjize/bin/vncserver-daemon start || true
+# ^ don't fail when re-running. XX Ugly. Add a start-if-not-already to
+#   daemonize.
