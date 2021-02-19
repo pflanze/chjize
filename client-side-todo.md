@@ -26,7 +26,6 @@ What to run, extending from the [README](README.md).
   the copying of the passwd file in such a non-root based service):
 
         sudo su -
-        cd /opt/chj/chjize/
         PATH=/opt/chj/chjize/bin:$PATH
         chjize nosudo-auto
 

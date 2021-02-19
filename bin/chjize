@@ -3,6 +3,8 @@
 set -euo pipefail
 IFS=
 
+cd /opt/chj/chjize
+
 usage () {
     {
         echo "$0 [make options] [target(s)]"
