@@ -224,8 +224,7 @@ full-desktop: slim-desktop
 # The `full-desktop` target but also runs `apt-get autoremove` to free
 # up the space taken by now unused packages.
 full-desktop_autoremove: full-desktop
-	apt-get -y autoremove
-	touch full-desktop_autoremove
+	sbin/action full-desktop_autoremove
 
 # Install and configure a local dns resolver (unbound).
 dnsresolver:

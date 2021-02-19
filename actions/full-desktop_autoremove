@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+set -x
+
+apt-get -y autoremove
