@@ -44,6 +44,8 @@ What to run, extending from the [README](README.md).
         PATH=/opt/chj/chjize/bin:$PATH
         time chjize -j2 schemen
 
+    If you get errors, try re-running the last line without the `-j2` and tell me about it.
+
 * Create a client side script `tunnel-tmp`:
 
         #!/bin/bash
