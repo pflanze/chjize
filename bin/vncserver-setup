@@ -40,14 +40,10 @@ touch ~/.vncserver-setup-done
 
 set +x
 
-cat <<EOF
-Done.
-
-An entry to start the vncserver-daemon has been added to the
-crontab. Remove it again if that's not what you wanted (maybe along
-with the PATH env var setting at the top).
-
-EOF
+message crontab \
+        "An entry to start the vncserver-daemon has been added to the" \
+        "crontab. Remove it again if that's not what you wanted (maybe along" \
+        "with the PATH env var setting at the top)."
 
 fi
 
