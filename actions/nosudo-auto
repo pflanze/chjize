@@ -7,8 +7,9 @@ IFS=
 set -x
 
 # Still check first, since otherwise we would carry out actions
-# *before* running `make nosudo` (which does look at the same env var,
-# but the actions would already have been done for no benefit).
+# *before* running `make -f targets.mk nosudo` (which does look at the
+# same env var, but the actions would already have been done for no
+# benefit).
 if [ "${NOSUDO-}" = no ]; then
     exit 0
 fi
@@ -20,7 +21,7 @@ fi
 
 do_nosudo () {
     set -eu
-    make nosudo
+    make -f targets.mk nosudo
 }
 do_nosudo_force () {
     set -eu
