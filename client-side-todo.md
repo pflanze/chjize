@@ -32,7 +32,7 @@ What to run, extending from the [README](README.md).
 
 * Prepare directory for VNC passwd file:
 
-        ( umask 077; mkdir tmp )
+        ( umask 077; mkdir /opt/chj/chjize/tmp )
         
 * Copy over passwd file from client side:
 
@@ -41,6 +41,7 @@ What to run, extending from the [README](README.md).
 * Now the big install step can run, will take 13 minutes on t3.small AWS instance (2 cores, 2 GB RAM):
 
         ssh root@tmp
+        PATH=/opt/chj/chjize/bin:$PATH
         time chjize -j2 schemen
 
 * Create a client side script `tunnel-tmp`:
