@@ -20,6 +20,9 @@ source /opt/chj/chjize/lib/chj-env.bash
 
 xcheck_location /opt/chj/chjize/bin/action
 
+# Used by bin/message
+export ACTION=$targetname
+
 set -x
 
 "$actionsdir"/"$targetname" "$@"

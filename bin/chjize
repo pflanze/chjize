@@ -1,0 +1,45 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+usage () {
+    {
+        echo "$0 [make options] [target(s)]"
+        echo "  Runs the given targets."
+        echo
+        make -s -f targets.mk help
+    } | less # --quit-if-one-screen
+    exit 0
+}
+
+if [ $# -gt 0 ]; then
+    if [ "$1" = "-h" -o "$1" = "--help" ]; then
+        usage
+    fi
+fi
+
+
+export MESSAGEBASE=$(tempdir)
+
+make -f targets.mk "$@"
+
+# If successful [XX or always?], show the messages:
+
+ruler () {
+    printf '%q\n' --------------------------------------------------------------------
+}
+
+seen_msgs=0
+
+while read msgfile; do
+    ruler
+    printf 'Messages from %q:\n' "$msgfile"
+    cat "$MESSAGEBASE/$msgfile"
+    seen_msgs=1
+done < <(ls "$MESSAGEBASE")
+
+if [ "$seen_msgs" = 1 ]; then
+    ruler
+fi
+

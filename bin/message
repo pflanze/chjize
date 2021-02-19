@@ -1,0 +1,21 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+# Save a (bunch of) message(s), under a given tag name, and implicitly
+# an action/target name. They are displayed by chjize after the last
+# action is finished.
+
+# Also see `bin/delete-message`.
+
+tag=$1
+shift
+# the remaining arguments are messages for that tag
+
+file="$MESSAGEBASE/$ACTION.$tag"
+
+for msg in "$@"; do
+    printf '%s\n' "$msg" >> "$file"
+done
+

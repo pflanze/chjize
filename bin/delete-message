@@ -1,0 +1,21 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+# Delete a given message from `bin/message` (since it (presumably) has
+# been taken care of).
+
+action_dot_tag=$1
+shift
+
+[ $# -eq 0 ] || { echo "$0: wrong number of arguments"; false; }
+
+if ! printf '%s' "$action_dot_tag" | grep -q -F .; then
+    echo "$0: the first argument must be \$action.\$tag, with the dot"
+    false
+fi
+
+file="$MESSAGEBASE/$action_dot_tag"
+
+rm -f "$file"

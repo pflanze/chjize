@@ -18,8 +18,6 @@ default: .gitignore
 	bin/make-gitignore $(STATIC_TARGETS)
 
 help: .targets .gitignore docstrings
-	@ echo "Usage: make <target>"
-	@ echo
 	@ echo "  Normal targets: "
 	@ perl -we 'print map { chomp; my $$file= ".docstrings/$$_"; my $$in; open $$in, "<", $$file or undef $$in; ("\n    $$_\n", $$in ? map { "      $$_" } <$$in> : ()) } <STDIN>' < .targets
 	@ echo
