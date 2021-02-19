@@ -44,7 +44,7 @@ fi
 
 set -x
 
-tmp=$(tempdir)
+tmp=$(mktemp -d)
 
 cd "$tmp"
 GIT_DIR=/opt/chj/dotconfig-xfce4/.git git format-patch e0753fd36e8e5b822984f08eb2d40fa6f9661c5c..

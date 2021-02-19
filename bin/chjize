@@ -22,7 +22,7 @@ if [ $# -gt 0 ]; then
 fi
 
 
-export MESSAGEBASE=$(tempdir)
+export MESSAGEBASE=$(mktemp -d)
 
 make -f targets.mk "$@"
 
