@@ -18,17 +18,17 @@ What to run, extending from the [README](README.md).
 
         ssh admin@tmp
         sudo ./install 
+        sudo su -
+        PATH=/opt/chj/chjize/bin:$PATH
+        chjize debconf-noninteractive
 
 * If this is AWS or another such root-avoiding service (`nosudo-auto`
   is also part of the `schemen` target, but is too late to allow for
   the copying of the passwd file in such a non-root based service):
 
-        sudo su -
-        PATH=/opt/chj/chjize/bin:$PATH
         chjize nosudo-auto
 
   Now it should be possible to log in via ssh as `root`.
-
 
 * Prepare directory for VNC passwd file:
 

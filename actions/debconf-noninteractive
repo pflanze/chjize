@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+
+export EDITOR=/opt/chj/chjize/sbin/debconf-noninteractive-editor
+
+dpkg-reconfigure --frontend=editor debconf
+# ^ runs $EDITOR for each question, which will modify the
+# `debconf/frontend` setting if encountered.
+

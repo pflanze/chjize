@@ -140,6 +140,12 @@ cj-git-patchtool: debianpackages chj-bin git-sign
 locales: chj-bin
 	sbin/action locales
 
+# Automatically configure debconf to be in Noninteractive mode (run
+# this to avoid other targets waiting for inputs; also, it will be the
+# only mode that works with -j2).
+debconf-noninteractive:
+	sbin/action debconf-noninteractive
+
 # Check out the last tagged versions of various repositories into
 # `/opt/chj` (uses signed tags via git-sign to ensure you get what I
 # signed)
