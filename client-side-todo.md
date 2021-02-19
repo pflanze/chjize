@@ -18,9 +18,7 @@ What to run, extending from the [README](README.md).
 
         ssh admin@tmp
         sudo ./install 
- 
-  Verify the key fingerprint is `A54A 1D7C A1F9 4C86 6AC8  1A1F 0FA5 B211 04ED B072`.
-  
+
 * If this is AWS or another such root-avoiding service (`nosudo-auto`
   is also part of the `schemen` target, but is too late to allow for
   the copying of the passwd file in such a non-root based service):
