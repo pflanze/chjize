@@ -28,7 +28,7 @@ sumExpect=$(git tag -v "$version" 2>/dev/null | perl -we 'local $/; $a=<STDIN>; 
 sumGot=$(git ls-files -z | xargs -0 --no-run-if-empty -s 129023 -n 129023 sha256sum | sha256sum)
 [ "$sumExpect" = "$sumGot" ] || { echo "check failure"; false; }
 
-make
+make -f targets.mk
 
 set +x
 echo -n 'Ready. '
