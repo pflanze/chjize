@@ -7,7 +7,7 @@ IFS=
 # done.
 source /opt/chj/bin/path.bash
 
-source /opt/chj/chjize/rules/meminfo.bash
+source /opt/chj/chjize/lib/meminfo.bash
 
 
 # should this be called?

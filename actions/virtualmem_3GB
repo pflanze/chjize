@@ -4,7 +4,7 @@ set -euo pipefail
 IFS=
 
 
-source /opt/chj/chjize/rules/meminfo.bash
+source /opt/chj/chjize/lib/meminfo.bash
 
 memtotal=$(meminfo_get MemTotal kB)
 swaptotal=$(meminfo_get SwapTotal kB)

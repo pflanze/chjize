@@ -3,15 +3,16 @@
 set -euo pipefail
 IFS=
 
-rulesdir=/opt/chj/chjize/rules
+actionsdir=/opt/chj/chjize/actions
 
 usage () {
-    echo "$0 command [ args ]"
-    echo "  run command from $rulesdir with proper env"
+    echo "$0 targetname [ args ]"
+    echo "  Run \$targetname from $actionsdir with proper env,"
+    echo "  touch \$targetname upon successful completion."
     exit 1
 }
 
-command=$1
+targetname=$1
 shift
 
 
@@ -21,8 +22,8 @@ xcheck_location /opt/chj/chjize/bin/action
 
 set -x
 
-"$rulesdir"/"$command" "$@"
+"$actionsdir"/"$targetname" "$@"
 
 if [ "$(pwd)" = "/opt/chj/chjize" ]; then
-    touch "$command"
+    touch "$targetname"
 fi
