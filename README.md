@@ -15,6 +15,8 @@ developer machine, and then when you want to install chjize on another
 machine you copy over the script and then run it instead of copying
 these instructions.
 
+As root:
+
     apt-get update
     apt-get install -y git make gnupg
     mkdir -p /opt/chj
