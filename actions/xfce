@@ -11,6 +11,7 @@ apt-get install -y xfce4
 
 
 message xfce-setup \
-        "*** NOTE: after starting Xfce, run /opt/chj/chjize/bin/xfce-setup" \
-        "*** to apply changes to the newly created Xfce config."
+        "After starting Xfce and clicking 'Use default config', run" \
+        "   /opt/chj/chjize/bin/xfce-setup" \
+        "to apply my config on top of the newly created Xfce config."
 
