@@ -82,3 +82,5 @@ What to run, extending from the [README](README.md).
   synchronized copy of the server locally that you copy back after
   creating the new server.
 
+* Add more ssh public keys
+
