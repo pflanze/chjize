@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+delete-message slim-vncserver.full-vncserver
+
+message vncserver-setup \
+	"*** Now please run /opt/chj/chjize/bin/vncserver-setup as the user" \
+	"*** that you want to access from the VNC connection (also, first" \
+	"*** run /opt/chj/chjize/bin/mod-user as that user if 'chjize moduser' was" \
+	"*** not run as root before creating that user)."
+

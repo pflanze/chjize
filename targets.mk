@@ -158,8 +158,6 @@ dotconfig-xfce4-checkout: .bs git-sign
 # `xfce4_load_profile` or one of the `..-desktop` ones.
 xfce: perhaps_aptupdate chj-bin dotconfig-xfce4-checkout
 	bin/action xfce
-	@ echo "*** NOTE: after starting Xfce, run /opt/chj/chjize/bin/xfce-setup"
-	@ echo "*** to apply changes to the newly created Xfce config."
 
 xfce4_load_profile: chj-bin xfce
 	bin/action xfce4_load_profile
@@ -236,25 +234,16 @@ mercurial: chj-bin
 system: debian_upgrade locales
 	touch system
 
-_slim-vncserver: perhaps_aptupdate slim-desktop chj-bin
-	bin/action _slim-vncserver
-
 # Server side VNC setup, to be used via client side VNC
 # setup. Currently assumes a single user will be used to run the VNC
 # server as (hard codes ports).
-slim-vncserver: _slim-vncserver
-	touch slim-vncserver
-	@ echo "*** NOTE: xfce4 is not included in this target; run the full-vncserver "
-	@ echo "*** target for the whole convenient setup."
+slim-vncserver: perhaps_aptupdate slim-desktop chj-bin
+	bin/action slim-vncserver
 
 # Server with VNC and Xfce4 desktop plus common chj packages. Note the
-# echoed text about finishing the setup.
-full-vncserver: _slim-vncserver debianpackages system
-	touch full-vncserver
-	@ echo "*** Now please run /opt/chj/chjize/bin/vncserver-setup as the user"
-	@ echo "*** that you want to access from the VNC connection (also, first"
-	@ echo "*** run /opt/chj/chjize/bin/mod-user as that user if 'chjize moduser' was"
-	@ echo "*** not run as root before creating that user)."
+# message about finishing the setup.
+full-vncserver: slim-vncserver debianpackages system
+	bin/action full-vncserver
 
 # Client side VNC setup.
 vncclient: perhaps_aptupdate
@@ -323,8 +312,6 @@ schemen-lili: schemen-user gambit chj-emacs
 # root@tmp:/opt/chj/chjize/tmp/`.
 schemen: system full-vncserver nosudo-auto gambit emacs schemen-user schemen-lili tmp/passwd firefox unison
 	bin/action schemen
-	@ echo "Now connect to the VNC desktop, and click on 'Use default config'.".
-	@ echo "Then run 'chjize schemen-finish'."
 
 schemen-finish:
 	bin/action schemen-finish

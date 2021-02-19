@@ -9,4 +9,8 @@ apt-get install -y vnc4server
 # Note: there were issues with tigervnc (copy-pasting not working, and
 # 1-2 other issues).
 
+set +x
+message full-vncserver \
+	"*** NOTE: xfce4 is not included in this target; run the full-vncserver " \
+	"*** target for the whole convenient setup."
 

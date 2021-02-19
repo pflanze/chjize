@@ -8,3 +8,9 @@ IFS=
 
 # For the server case, this is enough:
 apt-get install -y xfce4 
+
+
+message xfce-setup \
+        "*** NOTE: after starting Xfce, run /opt/chj/chjize/bin/xfce-setup" \
+        "*** to apply changes to the newly created Xfce config."
+
