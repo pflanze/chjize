@@ -4,7 +4,7 @@ set -euo pipefail
 IFS=
 
 # Backspace is being processed differently on Cygwin compared to
-# Linux, this is trying to abstract it away. Also see bin/BS and
+# Linux, this is trying to abstract it away. Also see sbin/BS and
 # targets.mk.
 
 if [ "$1" = '\\no' ]; then

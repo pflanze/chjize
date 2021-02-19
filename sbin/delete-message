@@ -3,7 +3,7 @@
 set -euo pipefail
 IFS=
 
-# Delete a given message from `bin/message` (since it (presumably) has
+# Delete a given message from `sbin/message` (since it (presumably) has
 # been taken care of).
 
 action_dot_tag=$1

@@ -18,9 +18,9 @@ shift
 
 source /opt/chj/chjize/lib/chj-env.bash
 
-xcheck_location /opt/chj/chjize/bin/action
+xcheck_location /opt/chj/chjize/sbin/action
 
-# Used by bin/message
+# Used by sbin/message
 export ACTION=$targetname
 
 set -x

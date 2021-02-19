@@ -6,7 +6,7 @@ function xcheck_location {
 
     if [ "$OS" = Cygwin ]; then
         # 'C:\cygwin64\opt\chj\chjize\bin\chjize' instead of
-        # '/opt/chj/chjize/bin/action', I don't care, just ignore the
+        # '/opt/chj/chjize/sbin/action', I don't care, just ignore the
         # check
         true
     else

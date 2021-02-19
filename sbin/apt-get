@@ -5,7 +5,7 @@ IFS=
 
 # get our own lock so that we can run make -j2
 
-# also see bin/apt
+# also see sbin/apt
 
 mkdir -p /root/tmp/
 

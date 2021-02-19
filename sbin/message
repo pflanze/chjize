@@ -7,7 +7,7 @@ IFS=
 # an action/target name. They are displayed by chjize after the last
 # action is finished.
 
-# Also see `bin/delete-message`.
+# Also see `sbin/delete-message`.
 
 tag=$1
 shift
