@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+# get our own lock so that we can run make -j2
+
+# also see sbin/{apt-get,apt}
+
+mkdir -p /root/tmp/
+
+flock /root/tmp/.apt.lock /usr/sbin/dpkg-reconfigure "$@"
+
