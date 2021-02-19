@@ -3,7 +3,7 @@
 set -euo pipefail
 IFS=
 
-source /opt/chj/chjize/bin/chj-env.bash
+source /opt/chj/chjize/lib/chj-env.bash
 
 usage () {
     echo "usage: $0 [-v] [-p pattern] ['>'|'>=' mintagname]"
