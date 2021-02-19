@@ -37,7 +37,7 @@ my $script= join("", map { "$_\n" }
                   "",
                   @sourcelines,
                   "",
-                  "make", # to build the .gitignore etc. files
+                  "make -f targets.mk", # to build the .gitignore etc. files
                   "",
                   "set +x",
                   "echo -n 'Ready. '",
