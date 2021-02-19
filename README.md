@@ -43,14 +43,15 @@ fetches in any case):
 
 Once you trust that the source is mine, run:
     
-    make help
+    PATH=/opt/chj/chjize/bin:$PATH
+    chjize -h
 
 for the list of available targets (the same as shown
 [below](#current-list-of-targets)). To e.g. only install my software
 into `/opt/chj` (and dependences, see `targets.mk` or the
 [graph](#graph-of-target-dependencies) below), run:
 
-    make chj
+    chjize chj
 
 Unlike Ansible, this caches which actions were already done, and is
 thus more efficient when asking the same target repeatedly (even
@@ -69,7 +70,7 @@ an example (just a recipe) see
 
 ## Current list of targets
 
-(Note: these are copied from [`targets.mk`](targets.mk) via `make README.md`.)
+(Note: these are copied from [`targets.mk`](targets.mk) via `chjize README.md`.)
 
 ### graph-deps
 

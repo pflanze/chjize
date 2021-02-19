@@ -27,7 +27,8 @@ What to run, extending from the [README](README.md).
 
         sudo su -
         cd /opt/chj/chjize/
-        make nosudo-auto
+        PATH=/opt/chj/chjize/bin:$PATH
+        chjize nosudo-auto
 
   Now it should be possible to log in via ssh as `root`.
 
@@ -43,7 +44,7 @@ What to run, extending from the [README](README.md).
 * Now the big install step can run, will take 13 minutes on t3.small AWS instance (2 cores, 2 GB RAM):
 
         ssh root@tmp
-        time make -j2 schemen
+        time chjize -j2 schemen
 
 * Create a client side script `tunnel-tmp`:
 
@@ -59,7 +60,7 @@ What to run, extending from the [README](README.md).
 
 * When the big install step is finished, run `tunnel-tmp` and then `vnc-schemen`. Click on the mentioned button, exit the VNC client. On the server run:
 
-        make schemen-finish
+        chjize schemen-finish
 
 ## Other setup like:
 

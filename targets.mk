@@ -6,7 +6,7 @@ BS=$(shell bin/BS)
 STATIC_TARGETS=default .bs .targets .gitignore help graph.dot graph docstrings README.md auto-update clean install
 
 default: .gitignore
-	@ echo "Run 'make help' for help."
+	@ echo "Run 'chjize -h' for help."
 
 .bs:
 	bin/gen-BS '\\no'
@@ -253,7 +253,7 @@ full-vncserver: _slim-vncserver debianpackages system
 	touch full-vncserver
 	@ echo "*** Now please run /opt/chj/chjize/bin/vncserver-setup as the user"
 	@ echo "*** that you want to access from the VNC connection (also, first"
-	@ echo "*** run /opt/chj/chjize/bin/mod-user as that user if 'make moduser' was"
+	@ echo "*** run /opt/chj/chjize/bin/mod-user as that user if 'chjize moduser' was"
 	@ echo "*** not run as root before creating that user)."
 
 # Client side VNC setup.
@@ -324,7 +324,7 @@ schemen-lili: schemen-user gambit chj-emacs
 schemen: system full-vncserver nosudo-auto gambit emacs schemen-user schemen-lili tmp/passwd firefox unison
 	bin/action schemen
 	@ echo "Now connect to the VNC desktop, and click on 'Use default config'.".
-	@ echo "Then run 'make schemen-finish'."
+	@ echo "Then run 'chjize schemen-finish'."
 
 schemen-finish:
 	bin/action schemen-finish
