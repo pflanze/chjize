@@ -5,5 +5,5 @@ IFS=
 
 source /opt/chj/chjize/lib/apt-locked.bash
 
-apt-locked dpkg-reconfigure "$@"
+apt-locked dpkg-divert "$@"
 

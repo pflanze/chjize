@@ -3,11 +3,7 @@
 set -euo pipefail
 IFS=
 
-# get our own lock so that we can run make -j2
+source /opt/chj/chjize/lib/apt-locked.bash
 
-# also see sbin/apt-get
-
-mkdir -p /root/tmp/
-
-flock /root/tmp/.apt.lock /usr/bin/apt "$@"
+apt-locked apt "$@"
 
