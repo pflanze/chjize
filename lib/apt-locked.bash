@@ -5,6 +5,7 @@
 source /opt/chj/chjize/lib/remove-path.bash
 
 apt-locked() {
+    local PATH=$PATH
     remove-path /opt/chj/chjize/sbin
     mkdir -p /root/tmp/
     flock /root/tmp/.apt.lock "$@"
