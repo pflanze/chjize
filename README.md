@@ -240,9 +240,6 @@ source.
 
 Ensure basic system readyness.
 
-### _slim-vncserver
-
-
 ### slim-vncserver
 
 Server side VNC setup, to be used via client side VNC
@@ -252,7 +249,7 @@ server as (hard codes ports).
 ### full-vncserver
 
 Server with VNC and Xfce4 desktop plus common chj packages. Note the
-echoed text about finishing the setup.
+message about finishing the setup.
 
 ### vncclient
 
