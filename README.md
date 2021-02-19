@@ -47,7 +47,7 @@ Once you trust that the source is mine, run:
 
 for the list of available targets (the same as shown
 [below](#current-list-of-targets)). To e.g. only install my software
-into `/opt/chj` (and dependences, see `Makefile` or the
+into `/opt/chj` (and dependences, see `targets.mk` or the
 [graph](#graph-of-target-dependencies) below), run:
 
     make chj
@@ -69,7 +69,7 @@ an example (just a recipe) see
 
 ## Current list of targets
 
-(Note: these are copied from [`Makefile`](Makefile) via `make README.md`.)
+(Note: these are copied from [`targets.mk`](targets.mk) via `make README.md`.)
 
 ### graph-deps
 

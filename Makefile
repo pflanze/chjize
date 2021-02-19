@@ -11,8 +11,8 @@ default: .gitignore
 .bs:
 	bin/gen-BS '\\no'
 
-.targets: Makefile
-	bin/make-targets $(STATIC_TARGETS) < Makefile > .targets
+.targets: targets.mk
+	bin/make-targets $(STATIC_TARGETS) < targets.mk > .targets
 
 .gitignore: .targets
 	bin/make-gitignore $(STATIC_TARGETS)
@@ -34,8 +34,8 @@ help: .targets .gitignore docstrings
 clean: .targets
 	xargs rm -f < .targets
 
-graph.dot: graph-deps .targets Makefile bin/make-graph
-	bin/make-graph Makefile < .targets > graph.dot
+graph.dot: graph-deps .targets targets.mk bin/make-graph
+	bin/make-graph targets.mk < .targets > graph.dot
 
 graph: graph.dot
 	display graph.dot
@@ -44,7 +44,7 @@ graph.svg: graph.dot
 	dot -Tsvg *dot > graph.svg
 
 docstrings: .targets
-	bin/make-docstrings Makefile < .targets
+	bin/make-docstrings targets.mk < .targets
 	touch docstrings
 
 # update README file with current docstrings
