@@ -147,6 +147,12 @@ Install [cj-git-patchtool](https://github.com/pflanze/cj-git-patchtool).
 
 Automatically configure some (English and German speaking) locales.
 
+### debconf-noninteractive
+
+Automatically configure debconf to be in Noninteractive mode (run
+this to avoid other targets waiting for inputs; also, it will be the
+only mode that works with -j2).
+
 ### chj
 
 Check out the last tagged versions of various repositories into
