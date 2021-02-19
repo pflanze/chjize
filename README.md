@@ -9,7 +9,11 @@ right code is installed.
 
 ## How to use
 
-You can get a script that runs the following at [install](install).
+Note: you can get a script [here](install) that runs the same as the
+following. How it is meant to be used is, you check out chjize on your
+developer machine, and then when you want to install chjize on another
+machine you copy over the script and then run it instead of copying
+these instructions.
 
     apt-get update
     apt-get install -y git make gnupg
