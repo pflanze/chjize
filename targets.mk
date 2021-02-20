@@ -315,7 +315,7 @@ schemen-lili: schemen-user gambit chj-emacs
 # passwd file, first run on server: `( umask 077; mkdir tmp )` then
 # on your desktop: `scp .vncclient-passwords/passwd
 # root@tmp:/opt/chj/chjize/tmp/`.
-schemen: system full-vncserver nosudo-auto gambit emacs schemen-user schemen-lili tmp/passwd firefox unison
+schemen: tmp/passwd system full-vncserver nosudo-auto gambit emacs schemen-user schemen-lili firefox unison
 	sbin/action schemen
 
 schemen-finish:
