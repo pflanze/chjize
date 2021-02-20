@@ -343,5 +343,5 @@ slim-desktop rule.)
 The targets meant to be used manually are shown in green (not used by
 other targets) and blue (used by others).
 
-<img src="graph.svg"/>
+<img src="graph.svg" title="Dependency graph"/>
 
