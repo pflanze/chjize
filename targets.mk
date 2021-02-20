@@ -287,8 +287,8 @@ nosudo:
 nosudo-auto:
 	sbin/action nosudo-auto
 
-# Set `x-terminal-emulator` in Debian's alternatives system to `term`,
-# which uses urxvt.
+# Set `x-terminal-emulator` in Debian's alternatives system to
+# `/opt/chj/bin/term`, which uses urxvt.
 set-x-terminal-emulator: urxvt chj-bin
 	sbin/action set-x-terminal-emulator
 
