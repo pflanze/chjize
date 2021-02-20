@@ -47,7 +47,7 @@ sub target_color {
 
 
 print "
-digraph foo {
+digraph \"Dependency graph\" {
 \tranksep=0.4;
 ";
 
