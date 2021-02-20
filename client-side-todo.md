@@ -1,4 +1,4 @@
-# How to install on client side
+# How to use: the client side
 
 What to run, extending from the [README](README.md).
 
