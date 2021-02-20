@@ -7,7 +7,7 @@ IFS=
 # This also installs xserver, which we don't want on a server.
 
 # For the server case, this is enough:
-apt-get install -y xfce4 
+apt-get install -y xfce4 xfce4-screenshooter
 
 
 message xfce-setup \
