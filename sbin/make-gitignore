@@ -7,7 +7,6 @@ perl -we 'print map { chomp; "/$_\n" } <STDIN>' < .targets  > .gitignore
 echo '/src/*/' >> .gitignore
 echo '/.docstrings/' >> .gitignore
 echo '/.messages/' >> .gitignore
-echo '/tmp/' >> .gitignore
 
 for target in "$@"; do
     echo "/$target" >> .gitignore
