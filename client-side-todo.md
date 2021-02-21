@@ -30,10 +30,6 @@ What to run, extending from the [README](README.md).
 
   Now it should be possible to log in via ssh as `root`.
 
-* Prepare directory for VNC passwd file:
-
-        ( umask 077; mkdir /opt/chj/chjize/tmp )
-        
 * Copy over passwd file from client side:
 
         scp .vncclient-passwords/schemen-passwd root@tmp:/opt/chj/chjize/tmp/passwd

@@ -5,7 +5,9 @@ BS=$(shell sbin/BS)
 
 STATIC_TARGETS=default .bs .targets .gitignore help graph.dot graph docstrings README.md auto-update clean install
 
-default: .gitignore
+# No 'better' way to generate tmp/ *before* `schemen` target is
+# started (?). `default` is called by `install` script.
+default: .gitignore tmp/.gitignore
 	@ echo "Run 'chjize -h' for help."
 
 .bs:
@@ -17,7 +19,11 @@ default: .gitignore
 .gitignore: .targets
 	sbin/make-gitignore $(STATIC_TARGETS)
 
-help: .targets .gitignore docstrings
+tmp/.gitignore:
+	sbin/create-tmp
+
+
+help: .targets docstrings default
 	@ echo "  Normal targets: "
 	@ perl -we 'print map { chomp; my $$file= ".docstrings/$$_"; my $$in; open $$in, "<", $$file or undef $$in; ("\n    $$_\n", $$in ? map { "      $$_" } <$$in> : ()) } <STDIN>' < .targets
 	@ echo

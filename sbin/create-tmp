@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+( umask 077; mkdir /opt/chj/chjize/tmp )
+
+cat <<'EOF' > /opt/chj/chjize/tmp/.gitignore
+*
+EOF
+
