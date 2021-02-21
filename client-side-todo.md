@@ -52,7 +52,7 @@ What to run, extending from the [README](README.md).
 
         #!/bin/bash
 
-        xvncviewer -FullScreen -RemoteResize=0 -MenuKey F7 -shared -passwd ~/.vncclient-passwords/passwd localhost:1
+        xvncviewer -FullScreen -RemoteResize=0 -MenuKey F7 -shared -passwd ~/.vncclient-passwords/schemen-passwd localhost:1
 
 * When the big install step is finished, run `tunnel-tmp` and then `vnc-schemen`. Click on the mentioned button, exit the VNC client. On the server run:
 
