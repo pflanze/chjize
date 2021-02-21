@@ -30,6 +30,15 @@ What to run, extending from the [README](README.md).
 
   Now it should be possible to log in via ssh as `root`.
 
+* If you haven't already done before, install `tigervnc-viewer` and
+  create a VNC passwd file on your client side (desktop/laptop):
+
+        sudo apt install tigervnc-viewer
+        vncpasswd
+        # (say n to view-only)
+        ( umask 077; mkdir ~/.vncclient-passwords/ )
+        mv .vnc/passwd .vncclient-passwords/schemen-passwd
+
 * Copy over passwd file from client side:
 
         scp .vncclient-passwords/schemen-passwd root@tmp:/opt/chj/chjize/tmp/passwd
