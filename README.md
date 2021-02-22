@@ -7,22 +7,24 @@ software installs and configuration modifications.
 Except where mentioned, it uses cryptographic signatures to ensure the
 right code is installed.
 
-## How to use
+## Installation
 
-Note: you can get a script [here](install) that runs the same as the
-following. How it is meant to be used is, you check out chjize on your
-developer machine, and then when you want to install chjize on another
-machine you copy over the script and then run it instead of copying
-these instructions.
+The quickest way to install chjize is to open a terminal and run the following command as root:
 
-As root:
+```sh
+$ curl -L https://raw.githubusercontent.com/pflanze/chjize/master/install | sh
+```
 
-    apt-get update
-    apt-get install -y git make gnupg
-    mkdir -p /opt/chj
-    cd /opt/chj
-    git clone https://github.com/pflanze/chjize.git
-    cd chjize/
+The above [script](install) runs the equivalent of the following commands:
+
+```sh
+$ apt-get update
+$ apt-get install -y git make gnupg
+$ mkdir -p /opt/chj
+$ cd /opt/chj
+$ git clone https://github.com/pflanze/chjize.git
+$ cd chjize/
+```
     
 You can verify via signed git tags that you've got the pristine source
 (note that most rules import the key to gpg, too, and as the key is
@@ -47,17 +49,21 @@ fetches in any case):
     sumGot=$(git ls-files -z | xargs -0 --no-run-if-empty -s 129023 -n 129023 sha256sum | sha256sum)
     [ "$sumExpect" = "$sumGot" ] || { echo "check failure"; false; }
 
-Once you trust that the source is mine, run:
-    
-    PATH=/opt/chj/chjize/bin:$PATH
-    chjize -h
+Once you trust that the source is mine, run the following:
+
+```sh
+$ PATH=/opt/chj/chjize/bin:$PATH
+$ chjize -h
+```
 
 for the list of available targets (the same as shown
 [below](#current-list-of-targets)). To e.g. only install my software
 into `/opt/chj` (and dependences, see `targets.mk` or the
 [graph](#graph-of-target-dependencies) below), run:
 
-    chjize chj
+```sh
+chjize chj
+```
 
 Unlike Ansible, this caches which actions were already done, and is
 thus more efficient when asking the same target repeatedly (even
@@ -344,4 +350,3 @@ The targets meant to be used manually are shown in green (not used by
 other targets) and blue (used by others).
 
 <img src="graph.svg" title="Dependency graph"/>
-
