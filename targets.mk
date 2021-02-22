@@ -306,6 +306,9 @@ firefox: perhaps_aptupdate
 unison: perhaps_aptupdate
 	sbin/action unison
 
+# Install guix from Debian.
+guix: perhaps_aptupdate # depend on future sid action
+	sbin/action guix
 
 # Create `schemen` user, copy ssh keys from root to it.
 schemen-user: moduser
