@@ -28,6 +28,7 @@ for my $target (<STDIN>) {
     } $makefile=~ m/\n$target:([^\n]*)/g;
     @m or die "can't find target '$target' in makefile '$makefile_path'";
     for my $deps (@m) {
+        $deps=~ s/#.*//; # remove comments
         my @deps= split /\s+/, $deps;
         push @{$targetdeps{$target}},
             map {
