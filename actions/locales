@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# XX what about `update-locale`?
+
 set -euo pipefail
 IFS=
 
