@@ -47,9 +47,9 @@ What to run, extending from the [README](README.md).
 
         ssh root@tmp
         PATH=/opt/chj/chjize/bin:$PATH
-        time chjize -j2 schemen
+        time chjize schemen
 
-    If you get errors, try re-running the last line without the `-j2` and tell me about it.
+    It is the aim to allow to run `chjize -j2 schemen`, but apparently there are still cases that don't work in parallel.
 
 * Create a client side script `tunnel-tmp`:
 
