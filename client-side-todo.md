@@ -34,10 +34,9 @@ What to run, extending from the [README](README.md).
   create a VNC passwd file on your client side (desktop/laptop):
 
         sudo apt install tigervnc-viewer
-        vncpasswd
-        # (say n to view-only)
         ( umask 077; mkdir ~/.vncclient-passwords/ )
-        mv .vnc/passwd .vncclient-passwords/schemen-passwd
+        vncpasswd .vncclient-passwords/schemen-passwd
+        # (say n to view-only)
 
 * Copy over passwd file from client side:
 
