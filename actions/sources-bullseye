@@ -7,7 +7,6 @@ set -x
 
 path=/etc/apt/sources.list
 
-keep "$path"
 tmp=$path.tmp
 
 perl -wne 's{stretch}{bullseye}sg; print or die $!' < "$path" > "$tmp"
