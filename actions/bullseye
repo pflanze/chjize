@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+set -x
+
+apt-get update
+
+apt-get dist-upgrade
+

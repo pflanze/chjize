@@ -1,0 +1,14 @@
+#!/usr/bin/perl -w
+
+use strict; use warnings FATAL => 'uninitialized';
+
+use Chj::xIOUtil qw(xgetfile_utf8 xputfile_utf8);
+
+my $path = "/etc/apt/sources.list";
+
+my $cnt= xgetfile_utf8 $path;
+
+$cnt=~ s{buster}{bullseye}sg;
+
+xputfile_utf8 $path, $cnt;
+

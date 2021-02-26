@@ -333,3 +333,13 @@ schemen-finish:
 # slim-desktop rule.)
 remove-xserver:
 	sbin/action remove-xserver
+
+
+# Changes /etc/apt/sources.list to point to bullseye instead of buster
+sources-bullseye: chj-bin
+	sbin/action sources-bullseye
+
+# Upgrade a Debian system running Buster to Bullseye
+bullseye: sources-bullseye
+	sbin/action bullseye
+
