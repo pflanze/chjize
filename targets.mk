@@ -306,8 +306,8 @@ firefox: perhaps_aptupdate
 unison: perhaps_aptupdate
 	sbin/action unison
 
-# Install guix from Debian.
-guix: perhaps_aptupdate # depend on future sid action
+# Install guix from Debian. Upgrades system to Debian Bullseye!
+guix: perhaps_aptupdate bullseye
 	sbin/action guix
 
 # Create `schemen` user, copy ssh keys from root to it.
