@@ -9,6 +9,6 @@ path=/etc/apt/sources.list
 
 tmp=$path.tmp
 
-perl -wne 's{buster}{bullseye}sg; print or die $!' < "$path" > "$tmp"
+perl -wne 's{buster}{sid}sg; print or die $!' < "$path" > "$tmp"
 
 mv "$tmp" "$path"
