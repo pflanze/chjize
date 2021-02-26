@@ -2,21 +2,28 @@
 
 What to run, extending from the [README](README.md).
 
-* Clone chjize to client side (desktop), verify its integrity there.
+* Clone chjize to client side (desktop), verify its integrity there. 
 
 * Create server, configure .ssh/config to define a server name like e.g. `tmp`:
 
         host tmp
             hostname 1.2.3.4
 
-* If the server is from AWS, it will not allow root logins but only
-  admin. Copy over install script:
+* Figure out which user you need to log into the server. If the server is from AWS,
+  it will be `admin`, for Exoscale it will be `debian`, for Vultr it
+  will be `root`. Set a variable so you can copy-paste the next
+  commands.
 
-        scp /opt/chj/chjize/install admin@tmp:
+        adminuser=root
+
+* Copy over install script:
+
+        cd chjize
+        scp install $adminuser@tmp:
 
 * Log into server,
 
-        ssh admin@tmp
+        ssh $adminuser@tmp
         sudo ./install 
         sudo su -
         PATH=/opt/chj/chjize/bin:$PATH
