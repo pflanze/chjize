@@ -5,9 +5,7 @@ IFS=
 
 set -x
 
-apt-get install -y vnc4server
-# Note: there were issues with tigervnc (copy-pasting not working, and
-# 1-2 other issues).
+apt-get install -y tigervnc-standalone-server
 
 set +x
 message full-vncserver \
