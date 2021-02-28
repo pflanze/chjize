@@ -314,6 +314,10 @@ Install Firefox from Debian.
 
 Install unison from Debian (console version).
 
+### guix
+
+Install guix from Debian. Upgrades system to Debian Bullseye!
+
 ### schemen-user
 
 Create `schemen` user, copy ssh keys from root to it.
@@ -339,6 +343,14 @@ Remove xorg and xserver-xorg packages. This is a horrible HACK for
 cases where they should never be installed in the first place but I
 can't figure out why they are. (This is called from within the
 slim-desktop rule.)
+
+### sources-bullseye
+
+Changes /etc/apt/sources.list to point to bullseye instead of buster
+
+### bullseye
+
+Upgrade a Debian system running Buster to Bullseye
 
 ## Graph of target dependencies
 
