@@ -33,7 +33,7 @@ fetches in any case):
 
     gpg --import cj-key.asc
     version=r$(git tag -l | grep ^r | sed s/^r// | LANG=C sort -rn | head -1)
-    git checkout "$version"
+    git checkout -b local "$version"
     tmptag=$(mktemp)
     git tag -v "$version" > "$tmptag" 2>&1 || { cat "$tmptag"; false; }
     cat "$tmptag"
