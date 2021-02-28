@@ -32,18 +32,20 @@ skipped; it will properly check signatures of other repositories it
 fetches in any case):
 
     gpg --import cj-key.asc
-    version=r`git tag -l | grep ^r | sed s/^r// | LANG=C sort -rn | head -1`
+    version=r$(git tag -l | grep ^r | sed s/^r// | LANG=C sort -rn | head -1)
     git checkout "$version"
-    git tag -v "$version"
-    # Check that the above command says "Good signature", and shows
+    tmptag=$(mktemp)
+    git tag -v "$version" > "$tmptag" 2>&1 || { cat "$tmptag"; false; }
+    cat "$tmptag"
+    # Check that the above command gives "Good signature", and (if warning) shows
     #   my fingerprint (A54A1D7CA1F94C866AC81A1F0FA5B21104EDB072, feel 
     #   free to google it) if you don't have a trust path to the key.
-    git tag -v "$version" 2>&1 | grep 'A54A 1D7C A1F9 4C86 6AC8 *1A1F 0FA5 B211 04ED B072'
+    if grep -q WARNING "$tmptag"; then grep "A54A 1D7C A1F9 4C86 6AC8.*1A1F 0FA5 B211 04ED B072" "$tmptag"; fi
     
     # You can also do the more paranoid verification of running the
-    #   script lines shown by the above command (the lines starting
-    #   with a `$`), and verifying that you get the same output as shown.
-    sumsSig=$(git tag -v "$version" 2>/dev/null | perl -we 'local $/; $a=<STDIN>; $a=~ s{.*\n\$[^\n]*sha256sum\n}{}s; print $a')
+    #   script lines shown in the tag (the lines starting with a `$`),
+    #   and verifying that you get the same output as shown:
+    sumsSig=$(perl -we 'local $/; $a=<STDIN>; $a=~ s{.*\n\$[^\n]*sha256sum\n}{}s; print $a' < "$tmptag")
     sumsLocal=$(git ls-files -z | xargs -0 --no-run-if-empty -s 129023 -n 129023 sha256sum)
     if ! diff <(echo "$sumsSig") <(echo "$sumsLocal"); then echo "check failure"; false; fi
 
