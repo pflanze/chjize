@@ -5,7 +5,7 @@ IFS=
 
 file=$1
 
-tmp=$(tempfile)
+tmp=$(mktemp)
 
 perl -wne 's{^(\s*debconf/frontend\s*=\s*)[^\n]*}{$1"Noninteractive"}; print or die $!' < "$file" > "$tmp"
 

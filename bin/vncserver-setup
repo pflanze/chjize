@@ -26,7 +26,7 @@ EOF
     chmod +x .vnc/xstartup
 fi
 
-tmp=$(tempfile)
+tmp=$(mktemp)
 
 {
 printf 'PATH=%q\n' "$PATH"

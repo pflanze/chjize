@@ -7,10 +7,10 @@ IFS=
 
 source /opt/chj/bin/path.bash
 
-current_locales=$(tempfile)
+current_locales=$(mktemp)
 cat /etc/locale.gen | stripcomments > "$current_locales"
 
-export locales_to_be_generated=$(tempfile)
+export locales_to_be_generated=$(mktemp)
 echo -n 'locales/locales_to_be_generated="' > "$locales_to_be_generated"
 
 seen_first=0
