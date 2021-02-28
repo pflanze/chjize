@@ -43,9 +43,9 @@ fetches in any case):
     # You can also do the more paranoid verification of running the
     #   script lines shown by the above command (the lines starting
     #   with a `$`), and verifying that you get the same output as shown.
-    sumExpect=$(git tag -v "$version" 2>/dev/null | perl -we 'local $/; $a=<STDIN>; $a=~ s{.*\n\$[^\n]*sha256sum\n}{}s; print $a' | sha256sum)
-    sumGot=$(git ls-files -z | xargs -0 --no-run-if-empty -s 129023 -n 129023 sha256sum | sha256sum)
-    [ "$sumExpect" = "$sumGot" ] || { echo "check failure"; false; }
+    sumsSig=$(git tag -v "$version" 2>/dev/null | perl -we 'local $/; $a=<STDIN>; $a=~ s{.*\n\$[^\n]*sha256sum\n}{}s; print $a')
+    sumsLocal=$(git ls-files -z | xargs -0 --no-run-if-empty -s 129023 -n 129023 sha256sum)
+    if ! diff <(echo "$sumsSig") <(echo "$sumsLocal"); then echo "check failure"; false; fi
 
 Once you trust that the source is mine, run:
     
