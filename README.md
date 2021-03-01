@@ -4,8 +4,8 @@ This changes a pristine Debian (or possibly Ubuntu or Cygwin (at least
 the chj-perllib target works)) install in ways that I like, including
 software installs and configuration modifications.
 
-Except where mentioned, it uses cryptographic signatures to ensure the
-right code is installed.
+Currently uses cryptographic signatures without exception to ensure
+code integrity.
 
 ## How to use
 

@@ -197,12 +197,22 @@ moduser: chj key
 	sbin/action moduser
 
 # Install the [Functional Perl](http://functional-perl.org) library
-# and its dependencies. WARNING: not fully secured by signatures as it
-# downloads packages from CPAN whithout verifying signatures (which
-# most packages don't even have). Note: requires you to enter `yes` a
-# few times.
-fperl: git-sign debianpackages chj-bin
+# and its dependencies. Currently installs dependencies only from
+# Debian, and Functional Perl itself via Git and checks the signature,
+# thus is secure and won't ask questions (assuming
+# `debconf-noninteractive` was run).  Does not actually run `make
+# install`, thus Programs using functional-perl need to `use lib
+# /opt/functional-perl/lib;`! For a full installation, use the `fperl`
+# target.
+fperl-noinstall: git-sign debianpackages chj-bin
+	sbin/action fperl-noinstall
+
+# This is the `fperl-noinstall` target but also *does* run `make
+# install`. (This still does not access CPAN, and thus is still
+# secure.)
+fperl: fperl
 	sbin/action fperl
+
 
 gambit-checkout: .bs git-sign
 	bin/chj-checkout gambit-checkout https://github.com/pflanze/gambc.git gambc '^cj($(BS)d+)$$'

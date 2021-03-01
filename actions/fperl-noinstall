@@ -1,0 +1,30 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+set -x
+
+apt-get install -y libtest-requires-perl libtext-csv-perl liburi-perl libclone-perl liblwp-protocol-https-perl libb-hooks-op-check-entersubforcv-perl libparent-perl libfile-spec-perl libproc-processtable-perl libmoo-perl libstrictures-perl libdevel-globaldestruction-perl libmodule-runtime-perl librole-tiny-perl libbareword-filehandles-perl libindirect-perl libmultidimensional-perl libcapture-tiny-perl
+
+#cpan install Function::Parameters Sub::Call::Tail Eval::WithLexicals
+# ^ XX missing signature checking, of course...
+
+cd /opt
+
+if [ ! -d functional-perl ]; then
+    git clone https://github.com/pflanze/functional-perl.git
+fi
+
+(
+set -euo pipefail
+set -x
+cd functional-perl
+
+checkout-latest-release -v
+
+#perl Makefile.PL
+#make install
+# No, this is now done in fperl-install target.
+)
+
