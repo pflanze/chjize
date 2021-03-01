@@ -105,8 +105,12 @@ git-sign: key
 chj-perllib-checkout: .bs git-sign
 	bin/chj-checkout chj-perllib-checkout https://github.com/pflanze/chj-perllib.git perllib '^r($(BS)d+)$$'
 
-chj-perllib: chj-perllib-checkout
+# Install (via symlink)
+# [chj-perllib](https://github.com/pflanze/chj-perllib). These depend
+# on `fperl` now, thus that is installed as well.
+chj-perllib: chj-perllib-checkout fperl
 	sbin/action chj-perllib
+# ^ XX would fperl-noinstall be enough? It would be preferable.
 
 # Install [chj-bin](https://github.com/pflanze/chj-bin).
 chj-bin: .bs git-sign chj-perllib
