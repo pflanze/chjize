@@ -205,13 +205,22 @@ If you want to modify a particular user's home without affecting the
 other users, instead run `/opt/chj/chjize/bin/mod-user` as that user
 (in its home dir)
 
-### fperl
+### fperl-noinstall
 
 Install the [Functional Perl](http://functional-perl.org) library
-and its dependencies. WARNING: not fully secured by signatures as it
-downloads packages from CPAN whithout verifying signatures (which
-most packages don't even have). Note: requires you to enter `yes` a
-few times.
+and its dependencies. Currently installs dependencies only from
+Debian, and Functional Perl itself via Git and checks the signature,
+thus is secure and won't ask questions (assuming
+`debconf-noninteractive` was run).  Does not actually run `make
+install`, thus Programs using functional-perl need to `use lib
+/opt/functional-perl/lib;`! For a full installation, use the `fperl`
+target.
+
+### fperl
+
+This is the `fperl-noinstall` target but also *does* run `make
+install`. (This still does not access CPAN, and thus is still
+secure.)
 
 ### gambit-checkout
 
