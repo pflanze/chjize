@@ -4,7 +4,7 @@ set -euo pipefail
 IFS=
 
 
-apt-get install -y libtest-requires-perl libtext-csv-perl liburi-perl libclone-perl liblwp-protocol-https-perl libb-hooks-op-check-entersubforcv-perl libparent-perl libfile-spec-perl libproc-processtable-perl libmoo-perl libstrictures-perl libdevel-globaldestruction-perl libmodule-runtime-perl librole-tiny-perl libbareword-filehandles-perl libindirect-perl libmultidimensional-perl
+apt-get install -y libtest-requires-perl libtext-csv-perl liburi-perl libclone-perl liblwp-protocol-https-perl libb-hooks-op-check-entersubforcv-perl libparent-perl libfile-spec-perl libproc-processtable-perl libmoo-perl libstrictures-perl libdevel-globaldestruction-perl libmodule-runtime-perl librole-tiny-perl libbareword-filehandles-perl libindirect-perl libmultidimensional-perl libcapture-tiny-perl
 
 #cpan install Function::Parameters Sub::Call::Tail Eval::WithLexicals
 # ^ XX missing signature checking, of course...
