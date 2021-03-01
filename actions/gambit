@@ -96,4 +96,5 @@ if true; then
     done
 else
     echo "cancelled since no answer"
+    false
 fi
