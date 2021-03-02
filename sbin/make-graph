@@ -2,47 +2,18 @@
 
 use strict; use warnings FATAL => 'uninitialized';
 
+use lib "/opt/chj/chjize/lib";
+use Chjize::TargetDependencies;
+
 @ARGV==1 or die "need 1 argument";
 my ($makefile_path)= @ARGV;
 
-my $makefile= do {
-    local $/;
-    open my $in, "<", $makefile_path or die $!;
-    <$in>
-};
-
-my %targetdeps; # target => [deps]
-my %targets;    # targets from stdin => refcount
-my %alltargets; # targets from stdin plus dependencies that might not
-                # be listed in the former => refcount
-
-for my $target (<STDIN>) {
-    chomp $target;
-    $targets{$target}++;
-    $alltargets{$target}++;
-    my @m= grep {
-        # handle the same change as commit
-        # 97090e0279b70cffe0eb04a31811d2501bd3c49a did to
-        # sbin/make-targets
-        not /^:?=/
-    } $makefile=~ m/\n$target:([^\n]*)/g;
-    @m or die "can't find target '$target' in makefile '$makefile_path'";
-    for my $deps (@m) {
-        $deps=~ s/#.*//; # remove comments
-        my @deps= split /\s+/, $deps;
-        push @{$targetdeps{$target}},
-            map {
-                $alltargets{$_}++;
-                $_
-                } grep {length $_} @deps;
-    }
-}
-
+my $td= targetDependencies($makefile_path, *STDIN{IO});
 
 sub target_color {
     my ($target)=@_;
-    if ($targets{$target}) {
-        my $refcnt = $alltargets{$target};
+    if ($td->targets_refcnt($target)) {
+        my $refcnt = $td->alltargets_refcnt($target);
         if ($refcnt == 1) { "green" }
         else { "blue" }
     } else {
@@ -63,15 +34,15 @@ sub alpha {
     $str
 }
 
-for my $target (sort keys %alltargets) {
+for my $target ($td->alltargetnames) {
     my $targetalpha = alpha $target;
     my $color = target_color $target;
     print "\t$targetalpha [ label=\"$target\", color=$color ];\n";
 }
 
-for my $target (sort keys %targetdeps) {
+for my $target ($td->targetnames) {
     my $targetalpha = alpha $target;
-    for my $dep (@{ $targetdeps{$target} }) {
+    for my $dep (@{ $td->target_deps($target) }) {
         my $depalpha= alpha $dep;
         print "\t$targetalpha -> $depalpha;\n";
     }
