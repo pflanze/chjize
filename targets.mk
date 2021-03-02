@@ -356,7 +356,10 @@ remove-xserver:
 sources-bullseye: chj-bin
 	sbin/action sources-bullseye
 
-# Upgrade a Debian system running Buster to Bullseye
+# Upgrade a Debian system running Buster to Bullseye (does include
+# running `apt-get update` as part of the action).
 bullseye: sources-bullseye
 	sbin/action bullseye
-
+# (Depending on perhaps_aptupdate would be wrong, both because that
+# would not run if it ran within the last 24 hours, but also because
+# there's no way to specify it running *after* sources-bullseye.)
