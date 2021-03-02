@@ -25,6 +25,56 @@ our @EXPORT=qw(targetDependencies);
 our @EXPORT_OK=qw();
 our %EXPORT_TAGS=(all=>[@EXPORT,@EXPORT_OK]);
 
+
+sub list_items ($l) {
+    my @a;
+    while (defined $l) {
+        push @a, $l->[0];
+        $l= $l->[1];
+    }
+    @a
+}
+
+sub list_length ($l) {
+    my $len= 0;
+    while (defined $l) {
+        $len++;
+        $l= $l->[1];
+    }
+    $len
+}
+
+sub list_drop ($l, $n) {
+    while ($n > 0) {
+        $n--;
+        $l= $l->[1];
+    }
+    $l
+}
+
+sub list_reverse ($l) {
+    my $r= undef;
+    while (defined $l) {
+        $r= [$l->[0], $r];
+        $l= $l->[1];
+    }
+    $r
+}
+
+sub list_find_tail ($l, $pred) {
+    while (1) {
+        if (defined $l) {
+            if ($pred->($l->[0])) {
+                return $l
+            } else {
+                $l= $l->[1];
+            }
+        } else {
+            return undef
+        }
+    }
+}
+
 package Chjize::_::TargetDependencies {
     my $accessor1= sub ($field) {
         sub ($self, $key) {
@@ -43,6 +93,41 @@ package Chjize::_::TargetDependencies {
     # Only the ones given
     sub targetnames ($self) {
         sort keys %{$self->{target_deps}}
+    }
+
+    sub _target_maybe_cycle ($self, $target,
+                             $uplist, $globalseen) {
+        my $deps= $self->target_deps($target) // do {
+            # warn "target $target has no deps record";
+            # This happens for "static targets".
+            []
+        };
+        for my $dep (@$deps) {
+            # XX not very performant, but shouldn't ever be too deep.
+            if (my $l= Chjize::TargetDependencies::list_find_tail(
+                    $uplist, sub { $_[0] eq $dep })) {
+                # warn "offending dep=$dep";
+                return [[$dep, $uplist], $l]
+            }
+            $$globalseen{$dep}++;
+            if (my $hasc= $self->_target_maybe_cycle(
+                    $dep, [$dep, $uplist], $globalseen)) {
+                return $hasc
+            }
+        }
+        undef
+    }
+
+    sub maybe_cycle ($self) {
+        my %seen;
+        for my $target ($self->alltargetnames) {
+            next if $seen{$target};
+            if (my $hasc= $self->_target_maybe_cycle(
+                    $target, [$target, undef], \%seen)) {
+                return $hasc
+            }
+        }
+        undef
     }
 }
 
@@ -80,11 +165,20 @@ sub targetDependencies ($makefile_path, $targetsfh) {
         }
     }
 
-    bless {
+    my $self= bless {
         target_deps=> \%targetdeps,
         targets_refcnt=> \%targets,
         alltargets_refcnt=> \%alltargets
-    }, "Chjize::_::TargetDependencies"
+    }, "Chjize::_::TargetDependencies";
+
+    if (my $c = $self->maybe_cycle) {
+        my ($uplist, $l)= @$c;
+        my $cyclicpart= list_drop(list_reverse($uplist), list_length($l));
+        my $cpstr= join " -> ", list_items($cyclicpart);
+        die "found dependency cycle: $cpstr"
+    }
+
+    $self
 }
 
 1
