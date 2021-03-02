@@ -26,19 +26,22 @@ What to run, extending from the [README](README.md).
         ssh $adminuser@tmp
         sudo ./install 
         sudo su -
-        PATH=/opt/chj/chjize/bin:$PATH
-        chjize debconf-noninteractive
+        /opt/chj/chjize/bin/chjize debconf-noninteractive moduser
+
+    The `moduser` target changes the bash startup (and other config)
+    files in `root`'s home directory (and `/etc/skel`), which sets up
+    `PATH` so that `chjize` is found without using the full path.
 
 * If this is AWS or another such root-avoiding service (`nosudo-auto`
   is also part of the `schemen` target, but is too late to allow for
   the copying of the passwd file in such a non-root based service):
 
-        chjize nosudo-auto
+        /opt/chj/chjize/bin/chjize nosudo-auto
 
-  Now it should be possible to log in via ssh as `root`.
+    Now it should be possible to log in via ssh as `root`.
 
-* If you haven't already done it before, install `tigervnc-viewer` and
-  create a VNC passwd file on your client side (desktop/laptop):
+* On your *client side* (desktop/laptop), if you haven't already done
+  it before, install `tigervnc-viewer` and create a VNC passwd file:
 
         sudo apt install tigervnc-viewer
         ( umask 077; mkdir ~/.vncclient-passwords/ )
@@ -49,10 +52,11 @@ What to run, extending from the [README](README.md).
 
         scp .vncclient-passwords/schemen-passwd root@tmp:/opt/chj/chjize/tmp/passwd
 
-* Now the big install step can run, will take 13 minutes on t3.small AWS instance (2 cores, 2 GB RAM):
+* Now the big install step can run, will take 13 minutes on t3.small
+  AWS instance (2 cores, 2 GB RAM). Run in freshly as root to pick up
+  the `PATH` from `moduser` above.
 
         ssh root@tmp
-        PATH=/opt/chj/chjize/bin:$PATH
         time chjize schemen
 
     It is the aim to allow to run `chjize -j2 schemen`, but apparently there are still cases that don't work in parallel.
