@@ -208,7 +208,7 @@ moduser: chj key
 # install`, thus Programs using functional-perl need to `use lib
 # /opt/functional-perl/lib;`! For a full installation, use the `fperl`
 # target.
-fperl-noinstall: git-sign debianpackages
+fperl-noinstall: git-sign
 	sbin/action fperl-noinstall
 
 # This is the `fperl-noinstall` target but also *does* run `make
