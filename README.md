@@ -362,7 +362,8 @@ Changes /etc/apt/sources.list to point to bullseye instead of buster
 
 ### bullseye
 
-Upgrade a Debian system running Buster to Bullseye
+Upgrade a Debian system running Buster to Bullseye (does include
+running `apt-get update` as part of the action).
 
 ## Graph of target dependencies
 
