@@ -33,7 +33,8 @@ my $script= join("", map { "$_\n" }
                   "# *** This has been auto-generated from $path by $0 ***",
                   "",
                   "set -eu",
-                  "set -x",
+                  # "set -x", The issue with -x is that handling large
+                  # strings makes output very verbose.
                   "",
                   @sourcelines,
                   "",
