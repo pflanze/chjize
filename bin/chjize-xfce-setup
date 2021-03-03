@@ -19,20 +19,11 @@ export GIT_COMMITTER_EMAIL=$GIT_AUTHOR_EMAIL
 
 configdir=~/.config/xfce4
 
-if ! [ -d "$configdir" ]; then
-    echo "*** Folder $configdir does not exist, please start Xfce once first,"
-    echo "*** click on the button that creates the default panel setup,"
-    echo "*** then shut it down again."
-    # According to #xfce4, the shutting down is really needed.
-    exit 1
-fi
-
 if [ -d "$configdir/.git" ]; then
     echo "Folder $configdir/.git already exists, so it seems to be "
-    echo "done already."
+    echo "done already or you're already tracking it yourself."
     exit 0
 fi
-
 
 isup=$(ps ww | grep -v grep | grep xfce4-panel | wc -l)
 if [ "$isup" -ne 0 ]; then
@@ -42,34 +33,22 @@ if [ "$isup" -ne 0 ]; then
     exit 1
 fi
 
+private mkdir -p "$configdir"
+
 set -x
-
-tmp=$(mktemp -d)
-
-cd "$tmp"
-GIT_DIR=/opt/chj/dotconfig-xfce4/.git git format-patch e0753fd36e8e5b822984f08eb2d40fa6f9661c5c..
-
-# Change mentions of home directory:
-mysed 's{/home/chris\b}{$ENV{HOME}}sg' *.patch
 
 cd "$configdir"
 
 git init
 
 git add .
+git commit -m "orig" || true
 
-git commit -m "orig"
+git remote add -f dotconfig_xfce4 /opt/chj/dotconfig-xfce4/.git
 
-rm -f xfconf/xfce-perchannel-xml/xfce4-panel.xml
+gcob dotconfig_xfce4/master
 
-git commit -a -m "remove panel config"
-# so that the version from the repo can be used without conflict.
+gls |» mysed 's{/home/chris\b}{\Q$ENV{HOME}\E}sg'
+git add .
+git commit -m "Change mentions of home directory" || true
 
-for p in "$tmp"/*.patch; do
-    if ! git am -3 "$p"; then
-        git am --abort || true
-        rm -rf .git/rebase-apply
-        git reset --hard || true
-        git clean -d -f || true
-    fi
-done

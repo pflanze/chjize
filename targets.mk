@@ -169,9 +169,10 @@ dotconfig-xfce4-checkout: .bs git-sign
 	bin/chj-checkout dotconfig-xfce4-checkout https://github.com/pflanze/dotconfig-xfce4.git dotconfig-xfce4 '^cj($(BS)d+)$$'
 
 # Xfce4 desktop. Comes with `/opt/chj/chjize/bin/chjize-xfce-setup` to
-# configure Xfce4 the way I like (optionally run afterwards). NOTE:
-# better do not use this target directly, but rather use
-# `xfce4_load_profile` or one of the `..-desktop` ones.
+# configure Xfce4 the way I like (optionally run afterwards--see
+# message emitted by this target for some more detail). NOTE: better
+# do not use this target directly, but rather use `xfce4_load_profile`
+# or one of the `..-desktop` ones.
 xfce: perhaps_aptupdate chj-bin dotconfig-xfce4-checkout
 	sbin/action xfce
 
@@ -342,9 +343,6 @@ schemen-lili: schemen-user gambit chj-emacs
 # root@tmp:/opt/chj/chjize/tmp/`.
 schemen: tmp/passwd system full-vncserver nosudo-auto gambit emacs schemen-user schemen-lili firefox unison
 	sbin/action schemen
-
-schemen-finish:
-	sbin/action schemen-finish
 
 # Remove xorg and xserver-xorg packages. This is a horrible HACK for
 # cases where they should never be installed in the first place but I

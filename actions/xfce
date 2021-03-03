@@ -12,7 +12,9 @@ apt-get install -y xfce4 xfce4-screenshooter \
 
 
 message chjize-xfce-setup \
-        "After starting Xfce and clicking 'Use default config', run" \
+        "If you'd like to use my Xfce config, run" \
         "   /opt/chj/chjize/bin/chjize-xfce-setup" \
-        "to apply my config on top of the newly created Xfce config."
+        "from the user account in question, best before running Xfce4" \
+        "the first time (otherwise it will leave the current config" \
+        "in the Git history in ~/.config/xfce4/.)"
 

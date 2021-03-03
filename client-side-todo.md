@@ -73,9 +73,7 @@ What to run, extending from the [README](README.md).
 
         xvncviewer -FullScreen -RemoteResize=0 -MenuKey F7 -shared -passwd ~/.vncclient-passwords/schemen-passwd localhost:1
 
-* When the big install step is finished, run `tunnel-tmp` and then `vnc-schemen`. Click on the mentioned button, exit the VNC client. On the server run:
-
-        chjize schemen-finish
+* On the client side, run `tunnel-tmp` and then `vnc-schemen`.
 
 ## Other setup like:
 
