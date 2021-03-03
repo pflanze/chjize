@@ -25,7 +25,7 @@
 <text text-anchor="middle" x="819" y="-469.3" font-family="Times,serif" font-size="14.00">bullseye</text>
 </g>
 <!-- sources_bullseye -->
-<g id="node49" class="node"><title>sources_bullseye</title>
+<g id="node48" class="node"><title>sources_bullseye</title>
 <ellipse fill="none" stroke="blue" cx="844" cy="-408" rx="69.5877" ry="18"/>
 <text text-anchor="middle" x="844" y="-404.3" font-family="Times,serif" font-size="14.00">sources&#45;bullseye</text>
 </g>
@@ -225,7 +225,7 @@
 <polygon fill="black" stroke="black" points="225.347,-236.95 232.097,-228.783 221.727,-230.958 225.347,-236.95"/>
 </g>
 <!-- urxvt -->
-<g id="node54" class="node"><title>urxvt</title>
+<g id="node53" class="node"><title>urxvt</title>
 <ellipse fill="none" stroke="blue" cx="667" cy="-278" rx="29.4969" ry="18"/>
 <text text-anchor="middle" x="667" y="-274.3" font-family="Times,serif" font-size="14.00">urxvt</text>
 </g>
@@ -305,7 +305,7 @@
 <text text-anchor="middle" x="1061" y="-599.3" font-family="Times,serif" font-size="14.00">full&#45;desktop</text>
 </g>
 <!-- slim_desktop -->
-<g id="node47" class="node"><title>slim_desktop</title>
+<g id="node46" class="node"><title>slim_desktop</title>
 <ellipse fill="none" stroke="blue" cx="1071" cy="-538" rx="56.59" ry="18"/>
 <text text-anchor="middle" x="1071" y="-534.3" font-family="Times,serif" font-size="14.00">slim&#45;desktop</text>
 </g>
@@ -335,7 +335,7 @@
 <polygon fill="black" stroke="black" points="610.602,-361.451 619.456,-355.631 608.905,-354.659 610.602,-361.451"/>
 </g>
 <!-- slim_vncserver -->
-<g id="node48" class="node"><title>slim_vncserver</title>
+<g id="node47" class="node"><title>slim_vncserver</title>
 <ellipse fill="none" stroke="blue" cx="713" cy="-603" rx="63.8893" ry="18"/>
 <text text-anchor="middle" x="713" y="-599.3" font-family="Times,serif" font-size="14.00">slim&#45;vncserver</text>
 </g>
@@ -345,7 +345,7 @@
 <polygon fill="black" stroke="black" points="653.037,-619.221 662.17,-613.851 651.681,-612.354 653.037,-619.221"/>
 </g>
 <!-- system -->
-<g id="node51" class="node"><title>system</title>
+<g id="node50" class="node"><title>system</title>
 <ellipse fill="none" stroke="blue" cx="344" cy="-603" rx="35.9954" ry="18"/>
 <text text-anchor="middle" x="344" y="-599.3" font-family="Times,serif" font-size="14.00">system</text>
 </g>
@@ -390,7 +390,7 @@
 <polygon fill="black" stroke="black" points="1079.15,-236.495 1070.22,-230.801 1073.65,-240.824 1079.15,-236.495"/>
 </g>
 <!-- virtualmem_3GB -->
-<g id="node55" class="node"><title>virtualmem_3GB</title>
+<g id="node54" class="node"><title>virtualmem_3GB</title>
 <ellipse fill="none" stroke="blue" cx="1326" cy="-408" rx="73.387" ry="18"/>
 <text text-anchor="middle" x="1326" y="-404.3" font-family="Times,serif" font-size="14.00">virtualmem_3GB</text>
 </g>
@@ -450,7 +450,7 @@
 <text text-anchor="middle" x="1465" y="-534.3" font-family="Times,serif" font-size="14.00">load_profile</text>
 </g>
 <!-- xfce4_load_profile -->
-<g id="node58" class="node"><title>xfce4_load_profile</title>
+<g id="node57" class="node"><title>xfce4_load_profile</title>
 <ellipse fill="none" stroke="blue" cx="1465" cy="-473" rx="77.1866" ry="18"/>
 <text text-anchor="middle" x="1465" y="-469.3" font-family="Times,serif" font-size="14.00">xfce4_load_profile</text>
 </g>
@@ -555,7 +555,7 @@
 <polygon fill="black" stroke="black" points="256.569,-682.372 245.979,-682.053 254.058,-688.906 256.569,-682.372"/>
 </g>
 <!-- schemen_lili -->
-<g id="node44" class="node"><title>schemen_lili</title>
+<g id="node43" class="node"><title>schemen_lili</title>
 <ellipse fill="none" stroke="blue" cx="1260" cy="-668" rx="54.6905" ry="18"/>
 <text text-anchor="middle" x="1260" y="-664.3" font-family="Times,serif" font-size="14.00">schemen&#45;lili</text>
 </g>
@@ -565,7 +565,7 @@
 <polygon fill="black" stroke="black" points="1210.79,-685.991 1219.77,-680.37 1209.24,-679.164 1210.79,-685.991"/>
 </g>
 <!-- schemen_user -->
-<g id="node45" class="node"><title>schemen_user</title>
+<g id="node44" class="node"><title>schemen_user</title>
 <ellipse fill="none" stroke="blue" cx="230" cy="-603" rx="59.5901" ry="18"/>
 <text text-anchor="middle" x="230" y="-599.3" font-family="Times,serif" font-size="14.00">schemen&#45;user</text>
 </g>
@@ -580,7 +580,7 @@
 <polygon fill="black" stroke="black" points="347.042,-630.989 343.441,-621.025 340.043,-631.06 347.042,-630.989"/>
 </g>
 <!-- tmp_passwd -->
-<g id="node52" class="node"><title>tmp_passwd</title>
+<g id="node51" class="node"><title>tmp_passwd</title>
 <ellipse fill="none" stroke="grey" cx="551" cy="-668" rx="53.0913" ry="18"/>
 <text text-anchor="middle" x="551" y="-664.3" font-family="Times,serif" font-size="14.00">tmp/passwd</text>
 </g>
@@ -590,7 +590,7 @@
 <polygon fill="black" stroke="black" points="507.55,-688.362 515.774,-681.681 505.179,-681.776 507.55,-688.362"/>
 </g>
 <!-- unison -->
-<g id="node53" class="node"><title>unison</title>
+<g id="node52" class="node"><title>unison</title>
 <ellipse fill="none" stroke="blue" cx="112" cy="-278" rx="34.394" ry="18"/>
 <text text-anchor="middle" x="112" y="-274.3" font-family="Times,serif" font-size="14.00">unison</text>
 </g>
@@ -598,11 +598,6 @@
 <g id="edge65" class="edge"><title>schemen&#45;&gt;unison</title>
 <path fill="none" stroke="black" d="M333.778,-731.191C256.008,-727.225 98,-706.549 98,-604 98,-604 98,-604 98,-537 98,-452.728 105.54,-353.199 109.553,-306.19"/>
 <polygon fill="black" stroke="black" points="113.043,-306.458 110.421,-296.193 106.069,-305.852 113.043,-306.458"/>
-</g>
-<!-- schemen_finish -->
-<g id="node43" class="node"><title>schemen_finish</title>
-<ellipse fill="none" stroke="green" cx="1067" cy="-733" rx="64.9885" ry="18"/>
-<text text-anchor="middle" x="1067" y="-729.3" font-family="Times,serif" font-size="14.00">schemen&#45;finish</text>
 </g>
 <!-- schemen_lili&#45;&gt;chj_emacs -->
 <g id="edge68" class="edge"><title>schemen_lili&#45;&gt;chj_emacs</title>
@@ -625,7 +620,7 @@
 <polygon fill="black" stroke="black" points="226.584,-565.363 221.275,-556.194 219.708,-566.673 226.584,-565.363"/>
 </g>
 <!-- set_x_terminal_emulator -->
-<g id="node46" class="node"><title>set_x_terminal_emulator</title>
+<g id="node45" class="node"><title>set_x_terminal_emulator</title>
 <ellipse fill="none" stroke="blue" cx="1026" cy="-408" rx="94.7833" ry="18"/>
 <text text-anchor="middle" x="1026" y="-404.3" font-family="Times,serif" font-size="14.00">set&#45;x&#45;terminal&#45;emulator</text>
 </g>
@@ -675,7 +670,7 @@
 <polygon fill="black" stroke="black" points="1250.52,-351.668 1260.13,-347.22 1249.84,-344.7 1250.52,-351.668"/>
 </g>
 <!-- swap -->
-<g id="node50" class="node"><title>swap</title>
+<g id="node49" class="node"><title>swap</title>
 <ellipse fill="none" stroke="green" cx="1629" cy="-408" rx="28.6953" ry="18"/>
 <text text-anchor="middle" x="1629" y="-404.3" font-family="Times,serif" font-size="14.00">swap</text>
 </g>
@@ -710,7 +705,7 @@
 <polygon fill="black" stroke="black" points="1310.8,-368.186 1303.25,-360.759 1304.52,-371.277 1310.8,-368.186"/>
 </g>
 <!-- vncclient -->
-<g id="node56" class="node"><title>vncclient</title>
+<g id="node55" class="node"><title>vncclient</title>
 <ellipse fill="none" stroke="green" cx="477" cy="-278" rx="42.7926" ry="18"/>
 <text text-anchor="middle" x="477" y="-274.3" font-family="Times,serif" font-size="14.00">vncclient</text>
 </g>
@@ -720,7 +715,7 @@
 <polygon fill="black" stroke="black" points="326.104,-226.759 315.524,-227.333 324.152,-233.482 326.104,-226.759"/>
 </g>
 <!-- xfce -->
-<g id="node57" class="node"><title>xfce</title>
+<g id="node56" class="node"><title>xfce</title>
 <ellipse fill="none" stroke="blue" cx="1703" cy="-408" rx="27" ry="18"/>
 <text text-anchor="middle" x="1703" y="-404.3" font-family="Times,serif" font-size="14.00">xfce</text>
 </g>

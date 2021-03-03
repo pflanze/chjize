@@ -177,14 +177,15 @@ signed)
 
 Check out [Xfce4 .config
 files](https://github.com/pflanze/dotconfig-xfce4), which are used
-by [xfce-setup](bin/xfce-setup).
+by [chjize-xfce-setup](bin/chjize-xfce-setup).
 
 ### xfce
 
-Xfce4 desktop. Comes with `/opt/chj/chjize/bin/xfce-setup` to
-configure Xfce4 the way I like (optionally run afterwards). NOTE:
-better do not use this target directly, but rather use
-`xfce4_load_profile` or one of the `..-desktop` ones.
+Xfce4 desktop. Comes with `/opt/chj/chjize/bin/chjize-xfce-setup` to
+configure Xfce4 the way I like (optionally run afterwards--see
+message emitted by this target for some more detail). NOTE: better
+do not use this target directly, but rather use `xfce4_load_profile`
+or one of the `..-desktop` ones.
 
 ### xfce4_load_profile
 
@@ -348,9 +349,6 @@ Full set up of a VNC server for Scheme mentoring. Requires VNC
 passwd file, first run on server: `( umask 077; mkdir tmp )` then
 on your desktop: `scp .vncclient-passwords/passwd
 root@tmp:/opt/chj/chjize/tmp/`.
-
-### schemen-finish
-
 
 ### remove-xserver
 

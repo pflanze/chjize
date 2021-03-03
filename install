@@ -53,7 +53,10 @@ thus more efficient when asking the same target repeatedly (even
 across runs). If an action for some reason really should be re-run,
 unlink the file with the same name as the target.
 
-May work with parallel builds (`-j2` etc.), since we're now using
-wrappers around `apt-get` and `apt` (in [bin/](bin/)) that use waiting
-locks.
+The `moduser` target, or `mod-user` script, sets up bash startup files
+so that `PATH` is set so that `chjize` is found automatically.
+
+Chjize may work with parallel builds (`chjize -j2` and higher
+numbers), since we're now using wrappers around `apt-get` and `apt`
+(in [bin/](bin/)) that use waiting locks.
 END
