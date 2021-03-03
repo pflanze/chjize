@@ -3,7 +3,6 @@
 # *** This has been auto-generated from README.md by /opt/chj/chjize/actions/install ***
 
 set -eu
-set -x
 
 apt-get update
 apt-get install -y git make gnupg
@@ -15,18 +14,19 @@ cd chjize/
 gpg --import cj-key.asc
 version=r$(git tag -l | grep ^r | sed s/^r// | LANG=C sort -rn | head -1)
 git checkout -b local "$version"
-tmptag=$(mktemp)
-git tag -v "$version" > "$tmptag" 2>&1 || { cat "$tmptag"; false; }
-cat "$tmptag"
+tmpout=$(mktemp)
+tmperr=$(mktemp)
+git tag -v "$version" > "$tmpout" 2> "$tmperr" || { cat "$tmpout" "$tmperr"; false; }
+cat "$tmpout" "$tmperr"
 # Check that the above command gives "Good signature", and (if warning) shows
 #   my fingerprint (A54A1D7CA1F94C866AC81A1F0FA5B21104EDB072, feel 
 #   free to google it) if you don't have a trust path to the key.
-if grep -q WARNING "$tmptag"; then grep "A54A 1D7C A1F9 4C86 6AC8.*1A1F 0FA5 B211 04ED B072" "$tmptag"; fi
+if grep -q WARNING "$tmperr"; then grep "A54A 1D7C A1F9 4C86 6AC8.*1A1F 0FA5 B211 04ED B072" "$tmperr"; fi
 
 # You can also do the more paranoid verification of running the
 #   script lines shown in the tag (the lines starting with a `$`),
 #   and verifying that you get the same output as shown:
-sumsSig=$(perl -we 'local $/; $a=<STDIN>; $a=~ s{.*\n\$[^\n]*sha256sum\n}{}s; print $a' < "$tmptag")
+sumsSig=$(perl -we 'local $/; $a=<STDIN>; $a=~ s{.*\n\$[^\n]*sha256sum\n}{}s; print $a' < "$tmpout")
 sumsLocal=$(git ls-files -z | xargs -0 --no-run-if-empty -s 129023 -n 129023 sha256sum)
 if ! diff <(echo "$sumsSig") <(echo "$sumsLocal"); then echo "check failure"; false; fi
 
