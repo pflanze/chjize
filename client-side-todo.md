@@ -9,14 +9,14 @@ What to run, extending from the [README](README.md).
         host tmp
             hostname 1.2.3.4
 
-* Figure out which user you need to log into the server. If the server is from AWS,
-  it will be `admin`, for Exoscale it will be `debian`, for Vultr it
-  will be `root`. Set a variable so you can copy-paste the next
-  commands.
+* Figure out which user you need to log into the server. If the server
+  is from AWS, it will be `admin`, for Exoscale it will be `debian`,
+  for Vultr it will be `root`. Set a variable on the client side so
+  that you can copy-paste the next commands.
 
-        adminuser=root
+        export adminuser=root
 
-* Copy over install script:
+* From the client side, copy over the install script:
 
         cd chjize
         scp install $adminuser@tmp:
