@@ -333,6 +333,8 @@ schemen-user: moduser
 # `schemen` user.
 schemen-lili: schemen-user gambit chj-emacs
 	sbin/action schemen-lili
+# ^ chj-emacs for gam-emacs, that's already part of `gambit`, but
+# being explicit won't hurt. Full `emacs` is required by `schemen`.
 
 # Full set up of a VNC server for Scheme mentoring. Requires VNC
 # passwd file, first run on server: `( umask 077; mkdir tmp )` then
