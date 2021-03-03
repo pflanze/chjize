@@ -27,5 +27,5 @@ message finish \
         "Then run 'chjize schemen-finish'."
 
 # since schemen-finish will run it:
-delete-message xfce.xfce-setup
+delete-message xfce.chjize-xfce-setup
 

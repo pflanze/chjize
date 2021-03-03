@@ -7,6 +7,6 @@ set -x
 
 su - schemen bash -c '/opt/chj/chjize/bin/vncserver-daemon stop' || true
 
-su - schemen bash -c /opt/chj/chjize/bin/xfce-setup
+su - schemen bash -c /opt/chj/chjize/bin/chjize-xfce-setup
 
 su - schemen bash -c '/opt/chj/chjize/bin/vncserver-daemon start'

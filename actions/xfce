@@ -11,8 +11,8 @@ apt-get install -y xfce4 xfce4-screenshooter \
         xfce4-netload-plugin xfce4-systemload-plugin
 
 
-message xfce-setup \
+message chjize-xfce-setup \
         "After starting Xfce and clicking 'Use default config', run" \
-        "   /opt/chj/chjize/bin/xfce-setup" \
+        "   /opt/chj/chjize/bin/chjize-xfce-setup" \
         "to apply my config on top of the newly created Xfce config."
 
