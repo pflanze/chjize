@@ -224,6 +224,7 @@ gambit-checkout: .bs git-sign
 # Install a patched version of the Gambit Scheme system.
 gambit: gambit-checkout cplusplus debianpackages chj-bin chj-emacs virtualmem_3GB
 	sbin/action gambit
+# ^ chj-emacs for /opt/chj/emacs/bin/gam-emacs
 
 # Install Qemu, and
 # [cj-qemucontrol](https://github.com/pflanze/cj-qemucontrol).
@@ -332,7 +333,6 @@ schemen-user: moduser
 # `schemen` user.
 schemen-lili: schemen-user gambit chj-emacs
 	sbin/action schemen-lili
-# ^ chj-emacs for /opt/chj/emacs/bin/gam-emacs
 
 # Full set up of a VNC server for Scheme mentoring. Requires VNC
 # passwd file, first run on server: `( umask 077; mkdir tmp )` then
