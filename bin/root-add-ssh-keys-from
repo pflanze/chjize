@@ -90,7 +90,8 @@ else
     LANG=C sort -u < "$tmp" > "$tmp2"
     new=$(mktemp -p "$(dirname "$to")")
     egrep -v '^$' < "$tmp2" > "$new"
-    chmod go-rwx "$new"
+    # new is private, make it "normal"
+    chmod a+r "$new"
     mv -f "$new" "$to"
 fi
 
