@@ -68,8 +68,16 @@ if [ "$from" = "$to" ]; then
     exit 1
 else
     cleaned=$(mktemp)
-    # Remove entries from AWS
-    01ok grep -v 'Please login as the user' < "$to" > "$cleaned"
+
+    if [ -e "$to" ]; then
+        # Remove entries from AWS
+        01ok grep -v 'Please login as the user' < "$to" > "$cleaned"
+        # keep backup, all of them due to concurrency, use file's inode
+        # number for guaranteed conflict freedom
+        ino=$(stat --printf '%i' "$to")
+        ln "$to" "$to.$ino~" || true
+    fi
+
     # Add entries from $from which are not in $cleaned
     tmp=$(mktemp)
     {
@@ -83,10 +91,6 @@ else
     new=$(mktemp -p "$(dirname "$to")")
     egrep -v '^$' < "$tmp2" > "$new"
     chmod go-rwx "$new"
-    # keep backup, all of them due to concurrency, use file's inode
-    # number for guaranteed conflict freedom
-    ino=$(stat --printf '%i' "$to")
-    ln "$to" "$to.$ino~" || true
     mv -f "$new" "$to"
 fi
 
