@@ -7,6 +7,9 @@ usage () {
     echo "$0 uid"
     echo "  Copies over the authorized ssh keys of user uid (which must be numerical?)"
     echo "  to the root user's authorized keys file."
+    echo "  Safe to call multiple times in parallel in the sense"
+    echo "  that it will not destroy the old entries, but one of the"
+    echo "  concurrent invocation's changes will be lost."
     exit 1
 }
 
@@ -80,6 +83,10 @@ else
     new=$(mktemp -d -p "$(dirname "$to")")
     egrep -v '^$' < "$tmp2" > "$new"
     chmod go-rwx "$new"
+    # keep backup, all of them due to concurrency, use file's inode
+    # number for guaranteed conflict freedom
+    ino=$(stat --printf '%i' "$to")
+    ln "$to" "$to.$ino~" || true
     mv -f "$new" "$to"
 fi
 
