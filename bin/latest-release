@@ -1,0 +1,88 @@
+#!/usr/bin/perl -w
+
+# Thu  4 Mar 21:49:53 GMT 2021
+(my $email='ch%christianjaeger,ch')=~ tr/%,/@./;
+
+use strict; use warnings FATAL => 'uninitialized';
+
+$0=~ /(.*?)([^\/]+)\z/s or die "?";
+my ($mydir, $myname)=($1,$2);
+sub usage {
+    print STDERR map{"$_\n"} @_ if @_;
+    print "$myname pattern [ maybe_ge_gt mintagname ]
+
+  `pattern` is a Perl regular expression.
+
+  If `maybe_ge_gt` and `mintagname` are given (are not the empty
+  string or nothign), then `maybe_ge_gt` must be `>` or `>=`, and
+  `mintagname` the tag name of the one to compare against.
+
+  (Christian Jaeger <$email>)
+";
+exit (@_ ? 1 : 0);
+}
+
+use Getopt::Long;
+our $verbose=0;
+#our $opt_dry;
+GetOptions("verbose"=> \$verbose,
+	   "help"=> sub{usage},
+	   #"dry-run"=> \$opt_dry,
+	   ) or exit 1;
+usage unless (@ARGV >= 1 and @ARGV <= 3);
+
+my ($pattern, $maybe_ge_gt, $mintagname) = @ARGV;
+$mintagname //= "";
+
+my @v0;
+{
+    open my $in, "-|", "git", "tag", "-l"
+        or die "git tag -l: $? $!";
+
+    while(<$in>) {
+        chomp;
+        if (/$pattern/) {
+              my $version = $1
+                // die "pattern /$pattern/ does not capture anything, please add a capture group (parens)";
+              push @v0, [ $_, $version ];
+          }
+    }
+
+    close $in or die "git tag -l: $? $!";
+}
+
+
+@v0 or die "no tags matching /$pattern/ found";
+
+sub vparse {
+    my ($v)=@_;
+    my ($pre,$post)= $v=~ /^(\d+)(?:\.(.*))?$/s
+        or die "invalid version number, does not start with digits and optionally a dot and string: '$v'";
+    [$pre, $post//""]
+}
+
+sub vcmp {
+    my ($a,$b)=@_;
+    my $A= vparse $a;
+    my $B= vparse $b;
+    $$A[0] <=> $$B[0] or $$A[1] cmp $$B[1]
+}
+
+my @v= do {
+    if ($maybe_ge_gt) {
+        my ($mintagversion)= $mintagname=~ /$pattern/
+            or die "mintagname \"$mintagname\" does not match pattern \"$pattern\"";
+        my $mincmpok= $maybe_ge_gt eq ">" ? 1 
+                    : $maybe_ge_gt eq ">=" ? 0
+                    : die "invalid maybe_ge_gt value: '$maybe_ge_gt'";
+        grep { vcmp($$_[1], $mintagversion) >= $mincmpok } @v0
+    } else {
+        @v0
+    }
+};
+
+@v or die ( $maybe_ge_gt ? "no tags $maybe_ge_gt $mintagname found"
+            : "no tags found");
+
+print((sort { vcmp $$a[1], $$b[1] } @v)[-1][0]) or die $!;
+

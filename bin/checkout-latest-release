@@ -57,54 +57,7 @@ while [ "${#@}" -gt 0 ]; do
 done
 
 
-export pattern maybe_ge_gt maybe_mintagname
-ver=$(git tag -l | perl -we 'use strict; use warnings FATAL => "uninitialized";
-
-    my $pattern= $ENV{pattern};
-    my $maybe_ge_gt= $ENV{maybe_ge_gt};
-    my $mintagname= $ENV{maybe_mintagname};
-
-    my @v0;
-    while(<STDIN>) {
-        chomp;
-        push @v0, [$_, $1 // die "pattern /$pattern/ does not capture anything for: '\''$_'\''" ] 
-            if /$pattern/;
-    }
-
-    @v0 or die "no tags matching /$pattern/ found";
-
-    sub vparse {
-        my ($v)=@_;
-        my ($pre,$post)= $v=~ /^(\d+)(?:\.(.*))?$/s
-            or die "invalid version number, does not start with digits and optionally a dot and string: '\''$v'\''";
-        [$pre, $post//""]
-    }
-
-    sub vcmp {
-        my ($a,$b)=@_;
-        my $A= vparse $a;
-        my $B= vparse $b;
-        $$A[0] <=> $$B[0] or $$A[1] cmp $$B[1]
-    }
-
-    my @v= do {
-        if ($maybe_ge_gt) {
-            my ($mintagversion)= $mintagname=~ /$pattern/
-                or die "mintagname \"$mintagname\" does not match pattern \"$pattern\"";
-            my $mincmpok= $maybe_ge_gt eq ">" ? 1 
-                        : $maybe_ge_gt eq ">=" ? 0
-                        : die "bug";
-            grep { vcmp($$_[1], $mintagversion) >= $mincmpok } @v0
-        } else {
-            @v0
-        }
-    };
-
-    @v or die "no tags $maybe_ge_gt $mintagname found";
-
-    print((sort { vcmp $$a[1], $$b[1] } @v)[-1][0]) or die $!
-
-')
+ver=$(git tag -l | /opt/chj/chjize/bin/latest-release "$pattern" "$maybe_ge_gt" "$maybe_mintagname")
 
 #echo "do_verify=$do_verify, pattern='$pattern'"
 #echo "ver='$ver'";
