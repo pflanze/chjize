@@ -8,9 +8,14 @@ source /opt/chj/chjize/lib/chj-env.bash
 usage () {
     echo "usage: $0 [-v] [-p pattern] ['>'|'>=' mintagname]"
     echo
-    echo "  check out latest (well, highest-numbered) release tag."
+    echo "  Check out the highest-numbered release tag."
+    echo 
     echo "  If '>' or '>=' and mintagname are given, die unless a tag with"
     echo "  higher version number is found."
+    echo "  Since the release tag name itself is part of the git tag signature,"
+    echo "  this is cryptographically safe (it's impossible to give tags created"
+    echo "  lower than mintagname a new tag name that's higher as it would make"
+    echo "  the signature check fail.)"
     echo
     echo "  Options:"
     echo "     -v           run verify-sig and git-tag-hashed (default)"
