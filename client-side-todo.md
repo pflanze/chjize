@@ -52,16 +52,17 @@ What to run, extending from the [README](README.md).
 
         scp .vncclient-passwords/schemen-passwd root@tmp:/opt/chj/chjize/tmp/passwd
 
-* If wanting to use Guix, which implies updating the system to Debian sid (bullseye):
+* Log in freshly as root to pick up the `PATH` change from `moduser` above.
 
         ssh root@tmp
+
+* If wanting to use Guix, which implies updating the system to Debian sid (bullseye):
+
         time chjize guix
 
 * Now the big install step can run, will take 13 minutes on t3.small
-  AWS instance (2 cores, 2 GB RAM). Run in freshly as root to pick up
-  the `PATH` from `moduser` above.
+  AWS instance (2 cores, 2 GB RAM). 
 
-        ssh root@tmp
         time chjize schemen
 
     It is the aim to allow to run `chjize -j2 schemen`, but apparently there are still cases that don't work in parallel.
