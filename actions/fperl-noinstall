@@ -21,7 +21,7 @@ set -euo pipefail
 set -x
 cd functional-perl
 
-checkout-latest-release -v
+checkout-latest-release -v -p '^v(\d+\.\d+\.\d+)$'
 
 #perl Makefile.PL
 #make install
