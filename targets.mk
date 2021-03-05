@@ -144,7 +144,7 @@ fastrandom: /usr/local/bin/fastrandom
 
 # Install [cj-git-patchtool](https://github.com/pflanze/cj-git-patchtool).
 cj-git-patchtool: debianpackages chj-bin git-sign
-	bin/chj-checkout cj-git-patchtool https://github.com/pflanze/cj-git-patchtool.git cj-git-patchtool
+	bin/chj-checkout cj-git-patchtool https://github.com/pflanze/cj-git-patchtool.git cj-git-patchtool '^v($(BS)d+$(BS).$(BS)d+$(BS).$(BS)d+)$$'
 
 # Automatically configure some (English and German speaking) locales.
 locales: chj-bin
