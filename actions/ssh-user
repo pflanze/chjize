@@ -1,0 +1,27 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+usage () {
+    echo "$0: need 1 argument: user"
+    exit 1
+}
+
+if [ $# -ne 1 ]; then
+    usage
+fi
+
+user="$1"
+
+set -x
+
+adduser --disabled-password --gecos "" "$user"
+
+{
+    echo
+    echo
+} | su - "$user" .chj-home/init
+
+cat /root/.ssh/authorized_keys >> /home/"$user"/.ssh/authorized_keys
+

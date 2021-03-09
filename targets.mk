@@ -333,7 +333,7 @@ guix: perhaps_aptupdate bullseye
 
 # Create `schemen` user, copy ssh keys from root to it.
 schemen-user: moduser
-	sbin/action schemen-user
+	sbin/action ssh-user schemen
 
 # Check out and build [lili](https://github.com/pflanze/lili) as the
 # `schemen` user.
