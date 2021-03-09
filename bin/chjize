@@ -25,7 +25,21 @@ fi
 export MESSAGEBASE=/opt/chj/chjize/.messages
 mkdir -p "$MESSAGEBASE"
 
-make -f targets.mk "$@"
+log=$(mktemp --suff -chjize)
+
+tail -f "$log" --pid="$$" &
+
+if make -f targets.mk "$@" >> "$log" 2>&1; then
+    # give tail -f time to catch up before going on (hack):
+    sleep 0.3
+    echo OK.
+else
+    # give tail -f time to catch up before exiting
+    sleep 1.1
+    echo "(For all messages, see log file at $log)"
+    false
+fi
+
 
 # If successful [or always?, but now keeping messages from
 # unsuccessful runs around until a successful one, which is probably
