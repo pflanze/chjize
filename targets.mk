@@ -174,12 +174,12 @@ dotconfig-xfce4-checkout: .bs git-sign
 # for some more detail). NOTE: better do not use this target directly,
 # but rather use `xfce4_load_profile` or one of the `..-desktop` ones.
 xfce-local: perhaps_aptupdate chj-bin dotconfig-xfce4-checkout
-	sbin/action xfce local
+	sbin/action $@ xfce local
 
 # Same as xfce-local, but tries to avoid installing the xserver
 # packages.
 xfce-server: perhaps_aptupdate chj-bin dotconfig-xfce4-checkout
-	sbin/action xfce server
+	sbin/action $@ xfce server
 
 xfce4_load_profile: chj-bin xfce-server
 	sbin/action xfce4_load_profile
@@ -333,7 +333,7 @@ guix: perhaps_aptupdate bullseye
 
 # Create `schemen` user, copy ssh keys from root to it.
 schemen-user: moduser
-	sbin/action ssh-user schemen
+	sbin/action $@ ssh-user schemen
 
 # Check out and build [lili](https://github.com/pflanze/lili) as the
 # `schemen` user.
