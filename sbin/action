@@ -6,13 +6,25 @@ IFS=
 actionsdir=/opt/chj/chjize/actions
 
 usage () {
-    echo "$0 targetname [ args ]"
-    echo "  Run \$targetname from $actionsdir with proper env,"
-    echo "  touch \$targetname upon successful completion."
+    echo "$0 targetname actionname [ args ]"
+    echo "  - or - "
+    echo "$0 targetname"
+    echo "  Run \$actionname from $actionsdir with proper"
+    echo "  environment and the given args, then upon successful"
+    echo "  completion creates an empty file at \$targetname ."
+    echo "  If only one argument is given, \$targetname is also taken"
+    echo "  to be the \$actionname."
     exit 1
 }
 
+if [ $# -lt 1 ]; then
+    usage
+fi
+
+
 targetname=$1
+shift
+actionname=${1-$targetname}
 shift
 
 
@@ -25,7 +37,7 @@ export ACTION=$targetname
 
 set -x
 
-"$actionsdir"/"$targetname" "$@"
+"$actionsdir"/"$actionname" "$@"
 
 if [ "$(pwd)" = "/opt/chj/chjize" ]; then
     touch "$targetname"
