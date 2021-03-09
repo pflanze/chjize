@@ -13,7 +13,7 @@ tag=$1
 shift
 # the remaining arguments are messages for that tag
 
-file="$MESSAGEBASE/$ACTION.$tag"
+file="$MESSAGEBASE/$TARGET.$tag"
 
 for msg in "$@"; do
     printf '%s\n' "$msg" >> "$file"

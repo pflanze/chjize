@@ -37,7 +37,7 @@ source /opt/chj/chjize/lib/chj-env.bash
 xcheck_location /opt/chj/chjize/sbin/action
 
 # Used by sbin/message
-export ACTION=$targetname
+export TARGET=$targetname
 
 set -x
 
