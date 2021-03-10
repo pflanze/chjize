@@ -300,22 +300,29 @@ unison: perhaps_aptupdate
 # Install guix from Debian. Upgrades system to Debian Bullseye!
 guix: perhaps_aptupdate bullseye
 
-# Create `schemen` user, copy ssh keys from root to it.
-schemen-user: moduser
-	sbin/action $@ ssh-user schemen
+# Create a new user for co-working (`$COWORKING_USER`, `coworking` by
+# default); copy ssh keys from root to it.
+coworking-user: moduser
+	sbin/action $@ ssh-user $${COWORKING_USER-coworking}
 
 # Check out and build [lili](https://github.com/pflanze/lili) as the
 # `schemen` user.
-schemen-lili: schemen-user gambit chj-emacs
+schemen-lili: coworking-user gambit chj-emacs
 # ^ chj-emacs for gam-emacs, that's already part of `gambit`, but
 # being explicit won't hurt. Full `emacs` is required by `schemen`.
 
-# Full set up of a VNC server for Scheme mentoring. Requires VNC
+
+# Full set up of a user with VNC server for co-working. Requires VNC
 # passwd file, first run on server: `( umask 077; mkdir tmp )` then
 # on your desktop: `scp .vncclient-passwords/passwd
 # root@tmp:/opt/chj/chjize/tmp/`.
-schemen: tmp/passwd system full-vncserver nosudo-auto gambit emacs schemen-user schemen-lili firefox unison
-	sbin/action $@ vnc-setup schemen
+coworking: tmp/passwd system full-vncserver coworking-user nosudo-auto emacs firefox unison
+	sbin/action $@ vnc-setup $${COWORKING_USER-coworking}
+
+# Set up for Scheme mentoring: `coworking` target (see there for
+# details), plus Scheme.
+schemen: coworking emacs schemen-lili
+	touch schemen
 
 # Remove xorg and xserver-xorg packages. This is a horrible HACK for
 # cases where they should never be installed in the first place but I
