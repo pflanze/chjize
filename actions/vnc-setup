@@ -1,0 +1,40 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+usage () {
+    echo "$0: need 1 argument: user"
+    exit 1
+}
+
+if [ $# -ne 1 ]; then
+    usage
+fi
+
+user="$1"
+
+set -x
+
+apt-get clean
+
+apt-get -y autoremove
+
+# Have to use umask for the cat, too, or the passwd file will
+# apparently be removed by the vncserver!
+cat tmp/passwd | su - "$user" bash -c 'umask 077; mkdir -p .vnc; cat > .vnc/passwd'
+
+su - "$user" bash -c /opt/chj/chjize/bin/vncserver-setup
+delete-message full-vncserver.vncserver-setup
+message crontab \
+        "An entry to start the vncserver-daemon has been added to the crontab" \
+        "of the '$user' user. Remove it again if that's not what you wanted" \
+        "(maybe along with the PATH env var setting at the top)."
+
+su - "$user" bash -c '/opt/chj/chjize/bin/vncserver-daemon stop' || true
+
+su - "$user" bash -c /opt/chj/chjize/bin/chjize-xfce-setup
+delete-message xfce.chjize-xfce-setup
+
+su - "$user" bash -c '/opt/chj/chjize/bin/vncserver-daemon start'
+

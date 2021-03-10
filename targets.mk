@@ -315,6 +315,7 @@ schemen-lili: schemen-user gambit chj-emacs
 # on your desktop: `scp .vncclient-passwords/passwd
 # root@tmp:/opt/chj/chjize/tmp/`.
 schemen: tmp/passwd system full-vncserver nosudo-auto gambit emacs schemen-user schemen-lili firefox unison
+	sbin/action $@ vnc-setup schemen
 
 # Remove xorg and xserver-xorg packages. This is a horrible HACK for
 # cases where they should never be installed in the first place but I
