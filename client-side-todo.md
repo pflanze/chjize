@@ -47,12 +47,12 @@ What to run, extending from the [README](README.md).
 
         sudo apt install tigervnc-viewer
         ( umask 077; mkdir ~/.vncclient-passwords/ )
-        vncpasswd .vncclient-passwords/schemen-passwd
+        vncpasswd .vncclient-passwords/coworking-passwd
         # (say n to view-only)
 
 * Copy over passwd file from client side:
 
-        scp .vncclient-passwords/schemen-passwd root@tmp:/opt/chj/chjize/tmp/passwd
+        scp .vncclient-passwords/coworking-passwd root@tmp:/opt/chj/chjize/tmp/passwd
 
 * Log in freshly as root to pick up the `PATH` change from `moduser` above.
 
@@ -62,12 +62,10 @@ What to run, extending from the [README](README.md).
 
         time chjize guix
 
-* Now the big install step can run, will take 13 minutes on t3.small
-  AWS instance (2 cores, 2 GB RAM). 
+* For co-working (on a 2 core, 2 GB RAM instance on Exoscale,
+  this takes 1m15s)
 
-        time chjize schemen
-
-    It is the aim to allow to run `chjize -j2 schemen`, but apparently there are still cases that don't work in parallel.
+        time chjize coworking
 
 * Create a client side script `tunnel-tmp`:
 
@@ -75,13 +73,13 @@ What to run, extending from the [README](README.md).
 
         ssh -o compression=no -L5901:localhost:5901 coworking@tmp
 
-* Create a client side script `vnc-schemen`:
+* Create a client side script `vnc-coworking`:
 
         #!/bin/bash
 
-        xvncviewer -FullScreen -RemoteResize=0 -MenuKey F7 -shared -passwd ~/.vncclient-passwords/schemen-passwd localhost:1
+        xvncviewer -FullScreen -RemoteResize=0 -MenuKey F7 -shared -passwd ~/.vncclient-passwords/coworking-passwd localhost:1
 
-* On the client side, run `tunnel-tmp` and then `vnc-schemen`.
+* On the client side, run `tunnel-tmp` and then `vnc-coworking`.
 
 ## Other setup like:
 
