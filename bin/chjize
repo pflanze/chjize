@@ -51,8 +51,7 @@ wait_for_tail () {
 }
 
 if make -f targets.mk "$@" >> "$log" 2>&1; then
-    wait_for_tail
-    echo OK.
+    echo OK. >> "$log"
 else
     wait_for_tail
     echo "(For all messages, see log file at $log)"
@@ -68,19 +67,24 @@ ruler () {
     printf '%q\n' --------------------------------------------------------------------
 }
 
-seen_msgs=0
+{
+    seen_msgs=0
 
-while read msgfile; do
-    ruler
-    printf 'Message %q:\n' "$msgfile"
-    cat "$MESSAGEBASE/$msgfile"
-    seen_msgs=1
-done < <(ls "$MESSAGEBASE")
+    while read msgfile; do
+        ruler
+        printf 'Message %q:\n' "$msgfile"
+        cat "$MESSAGEBASE/$msgfile"
+        seen_msgs=1
+    done < <(ls "$MESSAGEBASE")
 
-if [ "$seen_msgs" = 1 ]; then
-    ruler
-fi
+    if [ "$seen_msgs" = 1 ]; then
+        ruler
+    fi
 
-# now that they have been shown, remove the messages:
-rm -rf "$MESSAGEBASE"
+    # now that they have been shown, remove the messages:
+    rm -rf "$MESSAGEBASE"
+} >> "$log"
 
+wait_for_tail
+
+echo "(Done. See log file at $log .)"
