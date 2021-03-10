@@ -294,6 +294,9 @@ set-x-terminal-emulator: urxvt chj-bin
 # Install Firefox from Debian.
 firefox: perhaps_aptupdate
 
+# Install Gimp from Debian.
+gimp: perhaps_aptupdate
+
 # Install unison from Debian (console version).
 unison: perhaps_aptupdate
 
@@ -313,11 +316,12 @@ schemen-lili: coworking-user gambit chj-emacs
 # being explicit won't hurt. Full `emacs` is required by `schemen`.
 
 
-# Full set up of a user with VNC server for co-working. Requires VNC
-# passwd file, first run on server: `( umask 077; mkdir tmp )` then
-# on your desktop: `scp .vncclient-passwords/passwd
-# root@tmp:/opt/chj/chjize/tmp/`.
-coworking: tmp/passwd system full-vncserver coworking-user nosudo-auto emacs firefox unison
+# Full set up of a user with Xfce desktop, various programs (like
+# chj-bin/fperl/emacs, Firefox, Gimp, Unison), and VNC server for
+# co-working. Requires VNC passwd file, first run on server: `( umask
+# 077; mkdir tmp )` then on your desktop: `scp
+# .vncclient-passwords/passwd root@tmp:/opt/chj/chjize/tmp/`.
+coworking: tmp/passwd system full-vncserver coworking-user nosudo-auto emacs firefox unison gimp
 	sbin/action $@ vnc-setup $${COWORKING_USER-coworking}
 
 # Set up for Scheme mentoring: `coworking` target (see there for
