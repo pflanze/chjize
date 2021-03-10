@@ -180,13 +180,18 @@ Check out [Xfce4 .config
 files](https://github.com/pflanze/dotconfig-xfce4), which are used
 by [chjize-xfce-setup](bin/chjize-xfce-setup).
 
-### xfce
+### xfce-local
 
-Xfce4 desktop. Comes with `/opt/chj/chjize/bin/chjize-xfce-setup` to
-configure Xfce4 the way I like (optionally run afterwards--see
-message emitted by this target for some more detail). NOTE: better
-do not use this target directly, but rather use `xfce4_load_profile`
-or one of the `..-desktop` ones.
+Xfce4 desktop, local. Comes with
+`/opt/chj/chjize/bin/chjize-xfce-setup` to configure Xfce4 the way I
+like (optionally run afterwards--see message emitted by this target
+for some more detail). NOTE: better do not use this target directly,
+but rather use `xfce4_load_profile` or one of the `..-desktop` ones.
+
+### xfce-server
+
+Same as xfce-local, but tries to avoid installing the xserver
+packages.
 
 ### xfce4_load_profile
 
