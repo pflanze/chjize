@@ -26,11 +26,13 @@ What to run, extending from the [README](README.md).
         ssh $adminuser@tmp
         sudo ./install 
         sudo su -
-        /opt/chj/chjize/bin/chjize debconf-noninteractive moduser
+        /opt/chj/chjize/bin/chjize debconf-noninteractive
 
     The `moduser` target changes the bash startup (and other config)
     files in `root`'s home directory (and `/etc/skel`), which sets up
     `PATH` so that `chjize` is found without using the full path.
+    
+        /opt/chj/chjize/bin/chjize moduser
 
 * If this is AWS or another such root-avoiding service (`nosudo-auto`
   is also part of the `schemen` target, but is too late to allow for
