@@ -308,6 +308,7 @@ coworking-user: moduser
 # Check out and build [lili](https://github.com/pflanze/lili) as the
 # `schemen` user.
 schemen-lili: coworking-user gambit chj-emacs
+	sbin/action $@ schemen-lili $${COWORKING_USER-coworking}
 # ^ chj-emacs for gam-emacs, that's already part of `gambit`, but
 # being explicit won't hurt. Full `emacs` is required by `schemen`.
 
