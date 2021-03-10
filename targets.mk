@@ -168,15 +168,20 @@ chj: git-sign debianpackages chj-bin chj-emacs fastrandom cj-git-patchtool
 dotconfig-xfce4-checkout: .bs git-sign
 	bin/chj-checkout dotconfig-xfce4-checkout https://github.com/pflanze/dotconfig-xfce4.git dotconfig-xfce4 '^cj($(BS)d+)$$'
 
-# Xfce4 desktop. Comes with `/opt/chj/chjize/bin/chjize-xfce-setup` to
-# configure Xfce4 the way I like (optionally run afterwards--see
-# message emitted by this target for some more detail). NOTE: better
-# do not use this target directly, but rather use `xfce4_load_profile`
-# or one of the `..-desktop` ones.
-xfce: perhaps_aptupdate chj-bin dotconfig-xfce4-checkout
-	sbin/action xfce
+# Xfce4 desktop, local. Comes with
+# `/opt/chj/chjize/bin/chjize-xfce-setup` to configure Xfce4 the way I
+# like (optionally run afterwards--see message emitted by this target
+# for some more detail). NOTE: better do not use this target directly,
+# but rather use `xfce4_load_profile` or one of the `..-desktop` ones.
+xfce-local: perhaps_aptupdate chj-bin dotconfig-xfce4-checkout
+	sbin/action xfce local
 
-xfce4_load_profile: chj-bin xfce
+# Same as xfce-local, but tries to avoid installing the xserver
+# packages.
+xfce-server: perhaps_aptupdate chj-bin dotconfig-xfce4-checkout
+	sbin/action xfce server
+
+xfce4_load_profile: chj-bin xfce-server
 	sbin/action xfce4_load_profile
 
 # Set up Debian so that a graphical login will read the `~/.profile`

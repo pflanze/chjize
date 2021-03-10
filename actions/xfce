@@ -3,13 +3,35 @@
 set -euo pipefail
 IFS=
 
-# apt-get install -y task-xfce-desktop
-# This also installs xserver, which we don't want on a server.
+usage () {
+    echo "$0: need 1 argument: server|local"
+    exit 1
+}
 
-# For the server case, this is enough:
-apt-get install -y xfce4 xfce4-screenshooter \
+if [ $# -ne 1 ]; then
+    usage
+fi
+
+mode=$1
+
+case "$mode" in
+    server)
+        # `task-xfce-desktop` also installs xserver, which we don't
+        # want on a server.
+
+        # For the server case, this is enough:
+        apt-get install -y xfce4
+        ;;
+    local)
+        apt-get install -y task-xfce-desktop
+        ;;
+    *)
+        usage
+        ;;
+esac
+
+apt-get install -y xfce4-screenshooter \
         xfce4-netload-plugin xfce4-systemload-plugin
-
 
 message chjize-xfce-setup \
         "If you'd like to use my Xfce config, run" \
