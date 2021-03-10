@@ -24,8 +24,12 @@ fi
 
 targetname=$1
 shift
-actionname=${1-$targetname}
-shift
+if [ $# -ge 1 ]; then
+    actionname=$1
+    shift
+else
+    actionname=$targetname
+fi
 
 
 source /opt/chj/chjize/lib/chj-env.bash
