@@ -31,14 +31,30 @@ mkdir -p "$LOGDIR"
 log=$(mktemp --tmpdir="$LOGDIR" --suff -chjize)
 
 tail -f "$log" --pid="$$" &
+tailpid=$!
+wait_for_tail () {
+    # wait until tail has caught up printing
+    local siz
+    siz=$(stat --format=%s "$log")
+    local i
+    i=0
+    while [[ $i -le 60 ]]; do
+        i=$(( $i + 1 ))
+        sleep 0.05
+        if egrep -q '^pos:[\t ]*'"$siz"'[\t ]*$' /proc/"$tailpid"/fdinfo/3; then
+            # make "more sure" that tail can also *print* last buffer
+            sleep 0.05
+            return 0
+        fi
+    done
+    echo "(Giving up waiting for tail to catch up printing the log (bug?))"
+}
 
 if make -f targets.mk "$@" >> "$log" 2>&1; then
-    # give tail -f time to catch up before going on (hack):
-    sleep 0.3
+    wait_for_tail
     echo OK.
 else
-    # give tail -f time to catch up before exiting
-    sleep 1.1
+    wait_for_tail
     echo "(For all messages, see log file at $log)"
     false
 fi
