@@ -34,7 +34,7 @@ message crontab \
 su - "$user" bash -c '/opt/chj/chjize/bin/vncserver-daemon stop' || true
 
 su - "$user" bash -c /opt/chj/chjize/bin/chjize-xfce-setup
-delete-message xfce.chjize-xfce-setup
+delete-message xfce-server.chjize-xfce-setup
 
 su - "$user" bash -c '/opt/chj/chjize/bin/vncserver-daemon start'
 
