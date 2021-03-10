@@ -30,6 +30,7 @@ tmp=$(mktemp)
 
 {
 printf 'PATH=%q\n' "$PATH"
+printf 'SHELL=/bin/bash'
 crontab -l || true
 printf '\n@reboot /opt/chj/chjize/bin/vncserver-daemon start\n'
 } > "$tmp"
@@ -45,7 +46,7 @@ Done.
 
 An entry to start the vncserver-daemon has been added to the
 crontab. Remove it again if that's not what you wanted (maybe along
-with the PATH env var setting at the top).
+with the env var settings at the top).
 
 EOF
 
