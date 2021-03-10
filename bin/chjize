@@ -25,7 +25,10 @@ fi
 export MESSAGEBASE=/opt/chj/chjize/.messages
 mkdir -p "$MESSAGEBASE"
 
-log=$(mktemp --suff -chjize)
+LOGDIR=/opt/chj/chjize/.log
+mkdir -p "$LOGDIR"
+
+log=$(mktemp --tmpdir="$LOGDIR" --suff -chjize)
 
 tail -f "$log" --pid="$$" &
 
