@@ -340,21 +340,27 @@ Install unison from Debian (console version).
 
 Install guix from Debian. Upgrades system to Debian Bullseye!
 
-### schemen-user
+### coworking-user
 
-Create `schemen` user, copy ssh keys from root to it.
+Create a new user for co-working (`$COWORKING_USER`, `coworking` by
+default); copy ssh keys from root to it.
 
 ### schemen-lili
 
 Check out and build [lili](https://github.com/pflanze/lili) as the
 `schemen` user.
 
-### schemen
+### coworking
 
-Full set up of a VNC server for Scheme mentoring. Requires VNC
+Full set up of a user with VNC server for co-working. Requires VNC
 passwd file, first run on server: `( umask 077; mkdir tmp )` then
 on your desktop: `scp .vncclient-passwords/passwd
 root@tmp:/opt/chj/chjize/tmp/`.
+
+### schemen
+
+Set up for Scheme mentoring: `coworking` target (see there for
+details), plus Scheme.
 
 ### remove-xserver
 
