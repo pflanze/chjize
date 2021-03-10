@@ -35,7 +35,7 @@ What to run, extending from the [README](README.md).
         /opt/chj/chjize/bin/chjize moduser
 
 * If this is AWS or another such root-avoiding service (`nosudo-auto`
-  is also part of the `schemen` target, but is too late to allow for
+  is also part of the `coworking` target, but is too late to allow for
   the copying of the passwd file in such a non-root based service):
 
         /opt/chj/chjize/bin/chjize nosudo-auto
