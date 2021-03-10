@@ -71,7 +71,7 @@ What to run, extending from the [README](README.md).
 
         #!/bin/bash
 
-        ssh -o compression=no -L5901:localhost:5901 schemen@tmp
+        ssh -o compression=no -L5901:localhost:5901 coworking@tmp
 
 * Create a client side script `vnc-schemen`:
 
@@ -87,14 +87,14 @@ What to run, extending from the [README](README.md).
 
 * Push private git repositories from client to server.
 
-        ssh schemen@tmp
+        ssh coworking@tmp
         cdnewdir foo
         git init
         
     and on client:
     
         cd foo
-        git remote add tmp schemen@tmp:foo/.git
+        git remote add tmp coworking@tmp:foo/.git
         git push tmp master # etc.
         
 * Or simply install `unison-gtk` client side and use that to keep a
