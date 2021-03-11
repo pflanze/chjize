@@ -332,6 +332,10 @@ Set `x-terminal-emulator` in Debian's alternatives system to
 
 Install Firefox from Debian.
 
+### gimp
+
+Install Gimp from Debian.
+
 ### unison
 
 Install unison from Debian (console version).
@@ -352,10 +356,11 @@ Check out and build [lili](https://github.com/pflanze/lili) as the
 
 ### coworking
 
-Full set up of a user with VNC server for co-working. Requires VNC
-passwd file, first run on server: `( umask 077; mkdir tmp )` then
-on your desktop: `scp .vncclient-passwords/passwd
-root@tmp:/opt/chj/chjize/tmp/`.
+Full set up of a user with Xfce desktop, various programs (like
+chj-bin/fperl/emacs, Firefox, Gimp, Unison), and VNC server for
+co-working. Requires VNC passwd file, first run on server: `( umask
+077; mkdir tmp )` then on your desktop: `scp
+.vncclient-passwords/passwd root@tmp:/opt/chj/chjize/tmp/`.
 
 ### schemen
 
