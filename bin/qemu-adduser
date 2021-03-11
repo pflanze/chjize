@@ -27,5 +27,6 @@ fi
 adduser "$username" netdev
 adduser "$username" kvm
 
+su - "$username" bash -c /opt/chj/cj-qemucontrol/bin/q-init
 
 # XX move message from actions/qemu here? (Would need to modify `message`.)
