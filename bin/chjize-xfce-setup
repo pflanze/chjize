@@ -48,7 +48,7 @@ git remote add -f dotconfig_xfce4 /opt/chj/dotconfig-xfce4/.git
 
 gcob dotconfig_xfce4/master
 
-gls |» mysed 's{/home/chris\b}{\Q$ENV{HOME}\E}sg'
+gls |» mysed 's{/home/chris\b}{$ENV{HOME}}sg'
 git add .
 git commit -m "Change mentions of home directory" || true
 
