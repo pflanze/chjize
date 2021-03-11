@@ -238,9 +238,12 @@ secure.)
 
 Install a patched version of the Gambit Scheme system.
 
+### cj-qemucontrol-checkout
+
+
 ### cj-qemucontrol
 
-Check out [cj-qemucontrol](https://github.com/pflanze/cj-qemucontrol).
+Install [cj-qemucontrol](https://github.com/pflanze/cj-qemucontrol).
 
 ### dnsmasq
 
