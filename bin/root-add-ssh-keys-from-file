@@ -6,13 +6,13 @@ IFS=
 source /opt/chj/chjize/lib/root-add-ssh.bash
 
 usage () {
-    echo "$0 uid"
-    echo "  Copies over the authorized ssh keys of user uid (which must be numerical?)"
+    echo "$0 file"
+    echo "  Copies over the ssh public keys from \$file"
     echo "  to the root user's authorized keys file."
     echo "  Safe to call multiple times in parallel in the sense"
     echo "  that it will not destroy the old entries, but one of the"
     echo "  concurrent invocation's changes will be lost."
-    echo "  (Also see: root-add-ssh-keys-from-file)"
+    echo "  (Also see: root-add-ssh-keys-from-uid)"
     exit 1
 }
 
@@ -20,9 +20,6 @@ if [ $# -ne 1 ]; then
     usage
 fi
 
-presudouid=$1
-
-
-fromfile=$(uid_authorizedkeysfile "$presudouid")
+fromfile=$1
 
 root_add_ssh_keys_from_file "$fromfile"
