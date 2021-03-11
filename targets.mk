@@ -96,7 +96,7 @@ cplusplus:
 git-sign: key
 
 chj-perllib-checkout: .bs git-sign
-	bin/chj-checkout chj-perllib-checkout https://github.com/pflanze/chj-perllib.git perllib '^r($(BS)d+)$$'
+	bin/chj-checkout $@ https://github.com/pflanze/chj-perllib.git perllib '^r($(BS)d+)$$'
 
 # Install (via symlink)
 # [chj-perllib](https://github.com/pflanze/chj-perllib). These depend
@@ -106,10 +106,10 @@ chj-perllib: chj-perllib-checkout fperl
 
 # Install [chj-bin](https://github.com/pflanze/chj-bin).
 chj-bin: .bs git-sign chj-perllib
-	bin/chj-checkout chj-bin https://github.com/pflanze/chj-bin.git bin '^r($(BS)d+)$$'
+	bin/chj-checkout $@ https://github.com/pflanze/chj-bin.git bin '^r($(BS)d+)$$'
 
 chj-emacs-checkout: git-sign
-	bin/chj-checkout chj-emacs-checkout https://github.com/pflanze/chj-emacs.git emacs
+	bin/chj-checkout $@ https://github.com/pflanze/chj-emacs.git emacs
 
 # Install [chj-emacs](https://github.com/pflanze/chj-emacs) in
 # /opt/chj/emacs/.
@@ -123,7 +123,7 @@ emacs: debian-emacs chj-emacs
 	touch emacs
 
 chj-fastrandom: git-sign
-	bin/chj-checkout chj-fastrandom https://github.com/pflanze/fastrandom.git fastrandom
+	bin/chj-checkout $@ https://github.com/pflanze/fastrandom.git fastrandom
 
 /usr/local/bin/fastrandom: chj-fastrandom
 	make -C /opt/chj/fastrandom install
@@ -134,7 +134,7 @@ fastrandom: /usr/local/bin/fastrandom
 
 # Install [cj-git-patchtool](https://github.com/pflanze/cj-git-patchtool).
 cj-git-patchtool: debianpackages chj-bin git-sign
-	bin/chj-checkout cj-git-patchtool https://github.com/pflanze/cj-git-patchtool.git cj-git-patchtool '^v($(BS)d+$(BS).$(BS)d+$(BS).$(BS)d+)$$'
+	bin/chj-checkout $@ https://github.com/pflanze/cj-git-patchtool.git cj-git-patchtool '^v($(BS)d+$(BS).$(BS)d+$(BS).$(BS)d+)$$'
 
 # Automatically configure some (English and German speaking) locales.
 locales: chj-bin
@@ -154,7 +154,7 @@ chj: git-sign debianpackages chj-bin chj-emacs fastrandom cj-git-patchtool
 # files](https://github.com/pflanze/dotconfig-xfce4), which are used
 # by [chjize-xfce-setup](bin/chjize-xfce-setup).
 dotconfig-xfce4-checkout: .bs git-sign
-	bin/chj-checkout dotconfig-xfce4-checkout https://github.com/pflanze/dotconfig-xfce4.git dotconfig-xfce4 '^cj($(BS)d+)$$'
+	bin/chj-checkout $@ https://github.com/pflanze/dotconfig-xfce4.git dotconfig-xfce4 '^cj($(BS)d+)$$'
 
 # Xfce4 desktop, local. Comes with
 # `/opt/chj/chjize/bin/chjize-xfce-setup` to configure Xfce4 the way I
@@ -209,7 +209,7 @@ fperl: fperl-noinstall
 
 
 gambit-checkout: .bs git-sign
-	bin/chj-checkout gambit-checkout https://github.com/pflanze/gambc.git gambc '^cj($(BS)d+)$$'
+	bin/chj-checkout $@ https://github.com/pflanze/gambc.git gambc '^cj($(BS)d+)$$'
 
 # Install a patched version of the Gambit Scheme system.
 gambit: gambit-checkout cplusplus debianpackages chj-bin chj-emacs virtualmem_3GB
