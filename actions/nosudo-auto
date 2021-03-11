@@ -130,7 +130,7 @@ else
         # We have an ssh login to non-root that used sudo to get root.
         # Ensure that ssh is also possible to root by the same keys
         # that have access to $presudouid.
-        bin/root-add-ssh-keys-from "$presudouid"
+        bin/root-add-ssh-keys-from-uid "$presudouid"
         # Now we can force sudo removal without risk of losing root
         # access.
         do_nosudo_force
