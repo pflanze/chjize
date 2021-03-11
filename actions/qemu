@@ -3,44 +3,36 @@
 set -euo pipefail
 IFS=
 
-abort=
-if read -e -p "Please enter a username dedicated to running your VMs (account will be created if it doesn't already exist): " username; then
+set -x
 
-    echo "username: '$username'"
+username=${QEMU_USER-qemu}
 
-    set -x
 
-    # see arcolatheatre-wiki/Windows-with-QEMU-KVM.xhtml
-    # XX do we actually need to rebuild the packages with the patch?
+# see arcolatheatre-wiki/Windows-with-QEMU-KVM.xhtml
+# XX do we actually need to rebuild the packages with the patch?
 
-    apt-get install -y qemu-kvm qemu-utils uml-utilities 
+apt-get install -y qemu-kvm qemu-utils uml-utilities 
 
-    # for UEFI to boot newer versions of Windows:
-    apt-get install -y ovmf
+# for UEFI to boot newer versions of Windows:
+apt-get install -y ovmf
 
-    cd /opt/chj
-    git clone https://github.com/pflanze/cj-qemucontrol.git
-    cd cj-qemucontrol
-    checkout-latest-release -v
+cd /opt/chj
+git clone https://github.com/pflanze/cj-qemucontrol.git
+cd cj-qemucontrol
+checkout-latest-release -v
 
-    if ! grep -q "^$username:" /etc/passwd; then
-	adduser --disabled-password "$username"
-	adduser "$username" netdev
-	adduser "$username" kvm
-    fi
-
-    set +x
-    abort=0
-else
-    abort=1
+if ! grep -q "^$username:" /etc/passwd; then
+    adduser --disabled-password "$username"
+    adduser "$username" netdev
+    adduser "$username" kvm
 fi
 
-# XX can't use `message` yet as it would not be shown in aborted case; well would that matter?
-echo "NOTE: if getting message from qemu about KVM module not loaded, and it is (kvm-intel), then enable virtualization in the BIOS (even though cpuinfo already shows virtualization!)"
-echo "Also,  'chgrp \$groupname /dev/disk-devices-used'."
-echo "Also, you need to run 'masquerade on', and 'tunctl -t tap0 -g netdev ; ifconfig tap0 192.168.66.1 netmask 255.255.255.0' to set up networking."
+set +x
 
-if [ "$abort" -eq 1 ]; then
-    echo "aborted."
-    false
-fi
+message bios \
+        "NOTE: if getting message from qemu about KVM module not loaded, and it is (kvm-intel)," \
+        "then enable virtualization in the BIOS (even though cpuinfo already shows virtualization!)" \
+        "Also,  'chgrp \$groupname /dev/disk-devices-used'." \
+        "Also, you need to run 'masquerade on', " \
+        "and 'tunctl -t tap0 -g netdev ; ifconfig tap0 192.168.66.1 netmask 255.255.255.0' to set up networking."
+
