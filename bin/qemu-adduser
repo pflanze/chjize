@@ -1,0 +1,31 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+usage () {
+    echo "usage: $0 username"
+    echo "  Creates \$username if not already exists."
+    echo "  Gives it the necessary permissions."
+    exit 1
+}
+
+if [ $# -ne 1 ]; then
+    usage
+fi
+
+if [ "$1" = "-h" -o "$1" = "--help" ]; then
+    usage
+fi
+
+username=$1
+
+if ! grep -q "^$username:" /etc/passwd; then
+    adduser --disabled-password "$username"
+fi
+
+adduser "$username" netdev
+adduser "$username" kvm
+
+
+# XX move message from actions/qemu here? (Would need to modify `message`.)

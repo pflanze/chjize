@@ -220,9 +220,10 @@ gambit: gambit-checkout cplusplus debianpackages chj-bin chj-emacs virtualmem_3G
 cj-qemucontrol: .bs git-sign gambit
 	bin/chj-checkout $@ https://github.com/pflanze/cj-qemucontrol.git cj-qemucontrol '^v($(BS)d+)$$'
 
-# Install Qemu and cj-qemucontrol, and create the user specified in
-# `$QEMU_USER` or `qemu` if not given, and give it the necessary
-# permissions.
+# Install Qemu and cj-qemucontrol, and run
+# [qemu-adduser](bin/qemu-adduser) to create the user specified in
+# `$QEMU_USER` or the default `qemu` if not given, and give it the
+# necessary permissions.
 qemu: cj-qemucontrol
 
 # Xfce4, desktop packages.

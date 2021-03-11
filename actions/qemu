@@ -16,12 +16,9 @@ apt-get install -y qemu-kvm qemu-utils uml-utilities
 # for UEFI to boot newer versions of Windows:
 apt-get install -y ovmf
 
-if ! grep -q "^$username:" /etc/passwd; then
-    adduser --disabled-password "$username"
-fi
 
-adduser "$username" netdev
-adduser "$username" kvm
+qemu-adduser "$username"
+
 
 set +x
 
