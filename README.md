@@ -238,10 +238,21 @@ secure.)
 
 Install a patched version of the Gambit Scheme system.
 
+### cj-qemucontrol
+
+Check out [cj-qemucontrol](https://github.com/pflanze/cj-qemucontrol).
+
+### dnsmasq
+
+Install `dnsmasq` from Debian. (Used by `serve-dhcp` from
+`chj-bin`.)
+
 ### qemu
 
-Install Qemu, and
-[cj-qemucontrol](https://github.com/pflanze/cj-qemucontrol).
+Install Qemu, cj-qemucontrol, dnsmasq, and run
+[qemu-adduser](bin/qemu-adduser) to create the user specified in
+`$QEMU_USER` or the default `qemu` if not given, and give it the
+necessary permissions.
 
 ### slim-desktop
 
