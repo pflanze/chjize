@@ -92,10 +92,6 @@ Install dependencies to run the `graph` target.
 
 Import cj-key.asc into the keyring of the current user.
 
-### perhaps_aptupdate
-
-Run `apt-get update` unless already run in the last 24 hours.
-
 ### debian_upgrade
 
 Upgrade the system (via dist-upgrade), necessary on a fresh instance
