@@ -73,26 +73,23 @@ auto-update: README.md graph.svg install
 # within.
 
 # Install dependencies to run the `graph` target.
-graph-deps: perhaps_aptupdate
+graph-deps:
 
 # Import cj-key.asc into the keyring of the current user.
 key:
 
-# Run `apt-get update` unless already run in the last 24 hours.
-perhaps_aptupdate:
-
 # Upgrade the system (via dist-upgrade), necessary on a fresh instance
 # on typical cloud hostings like Amazon's.
-debian_upgrade: perhaps_aptupdate
+debian_upgrade:
 
 # Install `rxvt-unicode` and trim it down for security and simplicity.
-urxvt: perhaps_aptupdate 
+urxvt: 
 
 # Install my preferred Debian packages.
 debianpackages: urxvt
 
 # Install `g++`.
-cplusplus: perhaps_aptupdate
+cplusplus:
 
 # Check out [git-sign](https://github.com/pflanze/git-sign); used by
 # most other targets.
@@ -164,12 +161,12 @@ dotconfig-xfce4-checkout: .bs git-sign
 # like (optionally run afterwards--see message emitted by this target
 # for some more detail). NOTE: better do not use this target directly,
 # but rather use `xfce4_load_profile` or one of the `..-desktop` ones.
-xfce-local: perhaps_aptupdate chj-bin dotconfig-xfce4-checkout
+xfce-local: chj-bin dotconfig-xfce4-checkout
 	sbin/action $@ xfce local
 
 # Same as xfce-local, but tries to avoid installing the xserver
 # packages.
-xfce-server: perhaps_aptupdate chj-bin dotconfig-xfce4-checkout
+xfce-server: chj-bin dotconfig-xfce4-checkout
 	sbin/action $@ xfce server
 
 xfce4_load_profile: chj-bin xfce-server
@@ -249,14 +246,14 @@ system: debian_upgrade locales
 # Server side VNC setup, to be used via client side VNC
 # setup. Currently assumes a single user will be used to run the VNC
 # server as (hard codes ports).
-slim-vncserver: perhaps_aptupdate slim-desktop chj-bin
+slim-vncserver: slim-desktop chj-bin
 
 # Server with VNC and Xfce4 desktop plus common chj packages. Note the
 # message about finishing the setup.
 full-vncserver: slim-vncserver debianpackages system
 
 # Client side VNC setup.
-vncclient: perhaps_aptupdate
+vncclient:
 
 
 # Create and activate (including adding to fstab) a swap file if none
@@ -292,16 +289,16 @@ nosudo-auto:
 set-x-terminal-emulator: urxvt chj-bin
 
 # Install Firefox from Debian.
-firefox: perhaps_aptupdate
+firefox:
 
 # Install Gimp from Debian.
-gimp: perhaps_aptupdate
+gimp:
 
 # Install unison from Debian (console version).
-unison: perhaps_aptupdate
+unison:
 
 # Install guix from Debian. Upgrades system to Debian Bullseye!
-guix: perhaps_aptupdate bullseye
+guix: bullseye
 
 # Create a new user for co-working (`$COWORKING_USER`, `coworking` by
 # default); copy ssh keys from root to it.
@@ -342,6 +339,3 @@ sources-bullseye: chj-bin
 # Upgrade a Debian system running Buster to Bullseye (does include
 # running `apt-get update` as part of the action).
 bullseye: sources-bullseye
-# (Depending on perhaps_aptupdate would be wrong, both because that
-# would not run if it ran within the last 24 hours, but also because
-# there's no way to specify it running *after* sources-bullseye.)
