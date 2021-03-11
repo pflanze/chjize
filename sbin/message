@@ -15,7 +15,9 @@ shift
 
 file="$MESSAGEBASE/$TARGET.$tag"
 
-for msg in "$@"; do
-    printf '%s\n' "$msg" >> "$file"
-done
+{
+    for msg in "$@"; do
+        printf '%s\n' "$msg"
+    done
+} >> "$file"
 
