@@ -5,5 +5,7 @@ IFS=
 
 source /opt/chj/chjize/lib/apt-locked.bash
 
+conditional_apt_update "$@"
+
 apt-locked apt "$@"
 
