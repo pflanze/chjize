@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+set -x
+
+root-allow-login-from-user "${COWORKING_USER-coworking}"
+

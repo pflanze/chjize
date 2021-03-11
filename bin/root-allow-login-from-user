@@ -1,0 +1,36 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+source /opt/chj/chjize/lib/root-add-ssh.bash
+
+usage () {
+    echo "$0 username"
+    echo "  Creates an ssh key for username if not already exists,"
+    echo "  then adds it to the root user's authorized keys file."
+    echo "  This is providing a simple and hopefully more secure replacement"
+    echo "  for 'sudo'."
+    exit 1
+}
+
+if [ $# -ne 1 ]; then
+    usage
+fi
+
+username=$1
+
+privkeyfile="/home/$username/.ssh/id_rsa"
+pubkeyfile="$privkeyfile.pub"
+
+set -x
+
+if [ ! -f "$pubkeyfile" ]; then
+    # provide -f so that it doesn't ask for the location; provide -N
+    # so it doesn't ask for that (even no security issue in this
+    # case..).
+    su - "$username" bash -c 'ssh-keygen -t rsa -N "" -f '"$(printf '%q' "$privkeyfile")"
+fi
+
+root_add_ssh_keys_from_file "$pubkeyfile"
+

@@ -326,13 +326,17 @@ schemen-lili: coworking-user gambit chj-emacs
 # ^ chj-emacs for gam-emacs, that's already part of `gambit`, but
 # being explicit won't hurt. Full `emacs` is required by `schemen`.
 
+# Allow coworking user (again, ${COWORKING_USER-coworking}) to log
+# into the root account via `ssh root@localhost` (as a sudo
+# replacement).
+root-allow-login-from-coworking-user: coworking-user
 
 # Full set up of a user with Xfce desktop, various programs (like
 # chj-bin/fperl/emacs, Firefox, Gimp, Unison), and VNC server for
 # co-working. Requires VNC passwd file, first run on server: `( umask
 # 077; mkdir tmp )` then on your desktop: `scp
 # .vncclient-passwords/passwd root@tmp:/opt/chj/chjize/tmp/`.
-coworking: tmp/passwd system full-vncserver coworking-user nosudo-auto emacs firefox unison gimp
+coworking: tmp/passwd system full-vncserver coworking-user root-allow-login-from-coworking-user nosudo-auto emacs firefox unison gimp
 	sbin/action $@ vnc-setup $${COWORKING_USER-coworking}
 
 # Set up for Scheme mentoring: `coworking` target (see there for
