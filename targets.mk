@@ -216,9 +216,12 @@ gambit: gambit-checkout cplusplus debianpackages chj-bin chj-emacs virtualmem_3G
 # ^ chj-emacs for /opt/chj/emacs/bin/gam-emacs
 
 
-# Check out [cj-qemucontrol](https://github.com/pflanze/cj-qemucontrol).
-cj-qemucontrol: .bs git-sign gambit
+cj-qemucontrol-checkout: .bs git-sign
 	bin/chj-checkout $@ https://github.com/pflanze/cj-qemucontrol.git cj-qemucontrol '^v($(BS)d+)$$'
+
+# Install [cj-qemucontrol](https://github.com/pflanze/cj-qemucontrol).
+cj-qemucontrol: cj-qemucontrol-checkout gambit
+	touch $@
 
 # Install `dnsmasq` from Debian. (Used by `serve-dhcp` from
 # `chj-bin`.)
