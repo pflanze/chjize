@@ -215,10 +215,15 @@ gambit-checkout: .bs git-sign
 gambit: gambit-checkout cplusplus debianpackages chj-bin chj-emacs virtualmem_3GB
 # ^ chj-emacs for /opt/chj/emacs/bin/gam-emacs
 
-# Install Qemu, and
-# [cj-qemucontrol](https://github.com/pflanze/cj-qemucontrol). Creates
-# the user specified in `$QEMU_USER` or `qemu` if not given.
-qemu: git-sign gambit
+
+# Check out [cj-qemucontrol](https://github.com/pflanze/cj-qemucontrol).
+cj-qemucontrol: .bs git-sign gambit
+	bin/chj-checkout $@ https://github.com/pflanze/cj-qemucontrol.git cj-qemucontrol '^v($(BS)d+)$$'
+
+# Install Qemu and cj-qemucontrol, and create the user specified in
+# `$QEMU_USER` or `qemu` if not given, and give it the necessary
+# permissions.
+qemu: cj-qemucontrol
 
 # Xfce4, desktop packages.
 slim-desktop: chj set-x-terminal-emulator xfce4_load_profile
