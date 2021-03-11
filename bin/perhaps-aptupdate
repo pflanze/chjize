@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+source /opt/chj/chjize/lib/chj-env.bash
+
+perhaps_update .perhaps-aptupdate.stamp apt-get update
