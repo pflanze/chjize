@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+set -x
+
+apt-get install -y dnsmasq
+

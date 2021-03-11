@@ -220,11 +220,15 @@ gambit: gambit-checkout cplusplus debianpackages chj-bin chj-emacs virtualmem_3G
 cj-qemucontrol: .bs git-sign gambit
 	bin/chj-checkout $@ https://github.com/pflanze/cj-qemucontrol.git cj-qemucontrol '^v($(BS)d+)$$'
 
-# Install Qemu and cj-qemucontrol, and run
+# Install `dnsmasq` from Debian. (Used by `serve-dhcp` from
+# `chj-bin`.)
+dnsmasq:
+
+# Install Qemu, cj-qemucontrol, dnsmasq, and run
 # [qemu-adduser](bin/qemu-adduser) to create the user specified in
 # `$QEMU_USER` or the default `qemu` if not given, and give it the
 # necessary permissions.
-qemu: cj-qemucontrol
+qemu: cj-qemucontrol dnsmasq
 
 # Xfce4, desktop packages.
 slim-desktop: chj set-x-terminal-emulator xfce4_load_profile
