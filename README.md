@@ -364,6 +364,12 @@ default); copy ssh keys from root to it.
 Check out and build [lili](https://github.com/pflanze/lili) as the
 `schemen` user.
 
+### root-allow-login-from-coworking-user
+
+Allow coworking user (again, ${COWORKING_USER-coworking}) to log
+into the root account via `ssh root@localhost` (as a sudo
+replacement).
+
 ### coworking
 
 Full set up of a user with Xfce desktop, various programs (like
