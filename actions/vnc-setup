@@ -29,7 +29,7 @@ delete-message full-vncserver.vncserver-setup
 message crontab \
         "An entry to start the vncserver-daemon has been added to the crontab" \
         "of the '$user' user. Remove it again if that's not what you wanted" \
-        "(maybe along with the PATH env var setting at the top)."
+        "(maybe along with the env var settings at the top)."
 
 su - "$user" bash -c '/opt/chj/chjize/bin/vncserver-daemon stop' || true
 
