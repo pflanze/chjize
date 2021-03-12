@@ -22,9 +22,11 @@ is_update () {
 
 conditional_apt_update () {
     if is_update "$@"; then
-        # (XX could optimize this by defining this in a library
-        # instead of as a separate process: )
-        perhaps-aptupdate
+        if [ "${CONDITIONAL_APT_UPDATE-0}" = 0 ]; then
+            # (XX could optimize this by defining this in a library
+            # instead of as a separate process: )
+            CONDITIONAL_APT_UPDATE=1 perhaps-aptupdate
+        fi
     fi
 }
 
