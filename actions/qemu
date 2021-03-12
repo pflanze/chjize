@@ -25,10 +25,12 @@ set +x
 message bios \
         "NOTE: if getting message from qemu about KVM module not loaded, and it" \
         "is (kvm-intel), then enable virtualization in the BIOS (even though " \
-        "cpuinfo already shows virtualization!)" \
-        "Also:" \
-        "    chgrp \$groupname /dev/disk-devices-used" \
-        "Also, to set up non-userspace networking:" \
+        "cpuinfo already shows virtualization!)"
+message disks \
+        "To give access to disks:" \
+        "    chgrp \$groupname /dev/disk-devices-used"
+message networking \
+        "To set up non-userspace networking:" \
         "    masquerade on" \
         "    tunctl -t tap0 -g netdev " \
         "    ifconfig tap0 192.168.66.1 netmask 255.255.255.0" \
