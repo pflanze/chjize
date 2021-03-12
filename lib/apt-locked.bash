@@ -10,7 +10,10 @@ is_update () {
     local arg
     for arg in "$@"; do
         case "$arg" in
-            update | upgrade | dist-upgrade | dselect-upgrade \
+            # no need to include 'update' here as then it will do it
+            # anyway; XX although, update will be run on the next
+            # update-"requiring" apt command anyway.
+            upgrade | dist-upgrade | dselect-upgrade \
                 | install | download | source)
                 return 0;;
             *)
