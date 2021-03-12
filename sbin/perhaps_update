@@ -29,8 +29,19 @@ usage unless @ARGV >= 2;
 
 my ($stamp_path, @cmd)= @ARGV;
 
+# copy from Chj::xperlfunc
+use Carp;
+sub xsystem_safe {
+    @_>0 or croak "xsystem_safe: missing arguments";
+    no warnings;
+    (system { $_[0] } @_)>=0
+      or croak "xsystem_safe: could not start command '$_[0]': $!";
+    $?
+}
+# /copy
+
 sub update {
-    my $exitcode= system(@cmd);
+    my $exitcode= xsystem_safe(@cmd);
     if ($exitcode == 0) {
 	open my $o, ">", $stamp_path
 	  or die "could not create stamp '$stamp_path': $!";
