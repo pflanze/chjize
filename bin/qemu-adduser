@@ -21,7 +21,7 @@ fi
 username=$1
 
 if ! grep -q "^$username:" /etc/passwd; then
-    adduser --disabled-password "$username"
+    adduser --disabled-password --gecos "" "$username"
 fi
 
 adduser "$username" netdev
