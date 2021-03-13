@@ -86,7 +86,7 @@ debian_upgrade:
 urxvt: 
 
 # Install my preferred Debian packages.
-debianpackages: urxvt
+debianpackages:
 
 # Install `g++`.
 cplusplus:
