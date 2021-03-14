@@ -79,6 +79,14 @@ What to run, extending from the [README](README.md).
 
         xvncviewer -FullScreen -RemoteResize=0 -MenuKey F7 -shared -passwd ~/.vncclient-passwords/coworking-passwd localhost:1
 
+    Note: xvncviewer in fullscreen mode
+    [can/does](https://github.com/TigerVNC/tigervnc/issues/1150)
+    interact weirdly with screensavers. When xscreensaver locks the
+    screen, xvncviewer apparently keeps its own window atop the
+    screensaver's, thus the locking can't be noticed; the keyboard
+    appears dead at that point. But simply clicking into the window
+    shown by the VNC client revives the keyboard focus.
+
 * On the client side, run `tunnel-tmp` and then `vnc-coworking`.
 
 ## Other setup like:
