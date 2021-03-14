@@ -43,32 +43,36 @@ What to run, extending from the [README](README.md).
     Now it should be possible to log in via ssh as `root`.
 
 * On your *client side* (desktop/laptop), if you haven't already done
-  it before, install `tigervnc-viewer` and create a VNC passwd file:
+  it before and you're on a Linux(-like) system:
+  
+    1. install `tigervnc-viewer` and create a VNC passwd file:
 
         sudo apt install tigervnc-viewer
         ( umask 077; mkdir ~/.vncclient-passwords/ )
         vncpasswd .vncclient-passwords/coworking-passwd
         # (say n to view-only)
 
-    Create a client side script `tunnel-tmp`:
+    2. Create a client side script `tunnel-tmp`:
 
         #!/bin/bash
 
         ssh -o compression=no -L5901:localhost:5901 coworking@tmp
 
-    Create a client side script `vnc-coworking`:
+    3. Create a client side script `vnc-coworking`:
 
         #!/bin/bash
 
         xvncviewer -FullScreen -RemoteResize=0 -MenuKey F7 -shared -passwd ~/.vncclient-passwords/coworking-passwd localhost:1
 
-    Note: xvncviewer in fullscreen mode
-    [can/does](https://github.com/TigerVNC/tigervnc/issues/1150)
-    interact weirdly with screensavers. When xscreensaver locks the
-    screen, xvncviewer apparently keeps its own window atop the
-    screensaver's, thus the locking can't be noticed; the keyboard
-    appears dead at that point. But simply clicking into the window
-    shown by the VNC client revives the keyboard focus.
+        Note: xvncviewer in fullscreen mode
+        [can/does](https://github.com/TigerVNC/tigervnc/issues/1150)
+        interact weirdly with screensavers. When xscreensaver locks
+        the screen, xvncviewer apparently keeps its own window atop
+        the screensaver's, thus the locking can't be noticed; the
+        keyboard appears dead at that point. But simply clicking into
+        the window shown by the VNC client revives the keyboard focus.
+    
+    If you're on OS X, replace points 1 and 3 with appropriate alternatives.
 
 * Copy over passwd file from client side:
 
