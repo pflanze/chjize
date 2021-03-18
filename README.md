@@ -123,6 +123,9 @@ Install (via symlink)
 [chj-perllib](https://github.com/pflanze/chj-perllib). These depend
 on `fperl` now, thus that is installed as well.
 
+### chj-bin-checkout
+
+
 ### chj-bin
 
 Install [chj-bin](https://github.com/pflanze/chj-bin).
