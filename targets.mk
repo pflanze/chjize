@@ -104,9 +104,12 @@ chj-perllib-checkout: .bs git-sign
 chj-perllib: chj-perllib-checkout fperl
 # ^ XX would fperl-noinstall be enough? It would be preferable.
 
-# Install [chj-bin](https://github.com/pflanze/chj-bin).
-chj-bin: .bs git-sign chj-perllib
+chj-bin-checkout: .bs git-sign
 	bin/chj-checkout $@ https://github.com/pflanze/chj-bin.git bin '^r($(BS)d+)$$'
+
+# Install [chj-bin](https://github.com/pflanze/chj-bin).
+chj-bin: chj-bin-checkout chj-perllib
+	touch chj-bin
 
 chj-emacs-checkout: git-sign
 	bin/chj-checkout $@ https://github.com/pflanze/chj-emacs.git emacs
