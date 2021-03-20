@@ -36,4 +36,5 @@ apt-get install -y git build-essential chase tkdiff wiggle mlocate \
     libpadwalker-perl libmethod-signatures-perl libbsd-resource-perl \
     libtext-markdown-perl rlwrap strace tcpdump netcat telnet lsof \
     iotop lzop rzip xz-utils zip unzip rsync psmisc links \
-    libtimedate-perl libtext-csv-perl libxml-libxml-perl
+    libtimedate-perl libtext-csv-perl libxml-libxml-perl \
+    libmodule-signature-perl
