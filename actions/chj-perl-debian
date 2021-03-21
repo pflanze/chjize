@@ -6,7 +6,7 @@ IFS=
 
 # also see actions/fperl-perl-debian
 
-apt-get -y install libterm-readline-gnu-perl libbsd-resource-perl
-    libtext-markdown-perl libtimedate-perl libtext-csv-perl
+apt-get -y install libterm-readline-gnu-perl libbsd-resource-perl \
+    libtext-markdown-perl libtimedate-perl libtext-csv-perl \
     libxml-libxml-perl 
 
