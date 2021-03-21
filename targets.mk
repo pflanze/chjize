@@ -88,6 +88,13 @@ urxvt:
 # Install my preferred Debian packages.
 debianpackages:
 
+# Install the Perl packages from Debian needed for chj-bin.
+chj-perl-debian:
+
+# Install the Perl packages from Debian needed for fperl.
+fperl-perl-debian:
+
+
 # Install `g++`.
 cplusplus:
 
@@ -101,14 +108,14 @@ chj-perllib-checkout: .bs git-sign
 # Install (via symlink)
 # [chj-perllib](https://github.com/pflanze/chj-perllib). These depend
 # on `fperl` now, thus that is installed as well.
-chj-perllib: chj-perllib-checkout fperl
+chj-perllib: chj-perllib-checkout chj-perl-debian fperl
 # ^ XX would fperl-noinstall be enough? It would be preferable.
 
 chj-bin-checkout: .bs git-sign
 	bin/chj-checkout $@ https://github.com/pflanze/chj-bin.git bin '^r($(BS)d+)$$'
 
 # Install [chj-bin](https://github.com/pflanze/chj-bin).
-chj-bin: chj-bin-checkout chj-perllib
+chj-bin: chj-bin-checkout chj-perllib chj-perl-debian
 	touch chj-bin
 
 chj-emacs-checkout: git-sign
@@ -138,6 +145,7 @@ fastrandom: /usr/local/bin/fastrandom
 # Install [cj-git-patchtool](https://github.com/pflanze/cj-git-patchtool).
 cj-git-patchtool: .bs debianpackages chj-bin git-sign
 	bin/chj-checkout $@ https://github.com/pflanze/cj-git-patchtool.git cj-git-patchtool '^v($(BS)d+$(BS).$(BS)d+$(BS).$(BS)d+)$$'
+# ^ does it really need debianpackages ?
 
 # Automatically configure some (English and German speaking) locales.
 locales: chj-bin
@@ -201,19 +209,19 @@ moduser: chj key
 Module-Locate-checkout: .bs git-sign
 	bin/chj-checkout $@ https://github.com/pflanze/Module-Locate.git Module-Locate '^cj($(BS)d+)$$'
 
-Module-Locate: Module-Locate-checkout debianpackages
+Module-Locate: Module-Locate-checkout fperl-perl-debian
 
 Test-Pod-Snippets-checkout: .bs git-sign
 	bin/chj-checkout $@ https://github.com/pflanze/test-pod-snippets.git test-pod-snippets '^cj($(BS)d+)$$'
 
 # `Test::Pod::Snippets`, has a CPAN signature but for ease of checking
-# I forked, verified and signed it myself. Depends on libpod-parser-perl from
-# debianpackages.
-Test-Pod-Snippets: Test-Pod-Snippets-checkout debianpackages Module-Locate
+# I forked, verified and signed it myself. Depends on
+# libpod-parser-perl from fperl-perl-debian.
+Test-Pod-Snippets: Test-Pod-Snippets-checkout fperl-perl-debian Module-Locate
 
 # `fperl-noinstall` and the necessary dependencies to run its test
 # suite. Run the test suite.
-fperl-test: fperl-noinstall debianpackages Test-Pod-Snippets
+fperl-test: fperl-noinstall chj-perl-debian fperl-perl-debian Test-Pod-Snippets
 
 # Install the [Functional Perl](http://functional-perl.org) library
 # and its dependencies. Currently installs dependencies only from
@@ -223,7 +231,7 @@ fperl-test: fperl-noinstall debianpackages Test-Pod-Snippets
 # install`, thus Programs using functional-perl need to `use lib
 # /opt/functional-perl/lib;`! For a full installation, use the `fperl`
 # target.
-fperl-noinstall: git-sign
+fperl-noinstall: git-sign fperl-perl-debian
 
 # This is the `fperl-noinstall` target but also *does* run `make
 # install`. (This still does not access CPAN, and thus is still
@@ -237,7 +245,7 @@ gambit-checkout: .bs git-sign
 # Install a patched version of the Gambit Scheme system.
 gambit: gambit-checkout cplusplus debianpackages chj-bin chj-emacs virtualmem_3GB
 # ^ chj-emacs for /opt/chj/emacs/bin/gam-emacs
-
+# Does it really depend on debianpackages?
 
 cj-qemucontrol-checkout: .bs git-sign
 	bin/chj-checkout $@ https://github.com/pflanze/cj-qemucontrol.git cj-qemucontrol '^v($(BS)d+)$$'

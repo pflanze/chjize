@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+# Also see actions/chj-perl-debian.
+
+# Needed by FunctionalPerl or its dependencies:
+apt-get -y install libpadwalker-perl libmethod-signatures-perl \
+    libmodule-signature-perl libmodule-build-perl libmoose-perl \
+    libmoosex-semiaffordanceaccessor-perl libparams-validate-perl
+
+# Needed by Test-Pod-Snippets-0.07-2:
+apt-get -y install libpod-parser-perl
+
