@@ -195,6 +195,26 @@ load_profile: xfce4_load_profile
 # (in its home dir)
 moduser: chj key
 
+
+# `Module::Locate` has no signature on CPAN, thus I forked, verified
+# and signed it myself.
+Module-Locate-checkout: .bs git-sign
+	bin/chj-checkout $@ https://github.com/pflanze/Module-Locate.git Module-Locate '^cj($(BS)d+)$$'
+
+Module-Locate: Module-Locate-checkout debianpackages
+
+Test-Pod-Snippets-checkout: .bs git-sign
+	bin/chj-checkout $@ https://github.com/pflanze/test-pod-snippets.git test-pod-snippets '^cj($(BS)d+)$$'
+
+# `Test::Pod::Snippets`, has a CPAN signature but for ease of checking
+# I forked, verified and signed it myself. Depends on libpod-parser-perl from
+# debianpackages.
+Test-Pod-Snippets: Test-Pod-Snippets-checkout debianpackages Module-Locate
+
+# `fperl-noinstall` and the necessary dependencies to run its test
+# suite. Run the test suite.
+fperl-test: fperl-noinstall debianpackages Test-Pod-Snippets
+
 # Install the [Functional Perl](http://functional-perl.org) library
 # and its dependencies. Currently installs dependencies only from
 # Debian, and Functional Perl itself via Git and checks the signature,

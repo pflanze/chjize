@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+set -x
+
+cd /opt/functional-perl
+
+perl Makefile.PL
+make test

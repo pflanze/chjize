@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+set -x
+
+cd /opt/chj/Module-Locate
+
+perl Makefile.PL
+make test
+make install

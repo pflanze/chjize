@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+set -x
+
+cd /opt/chj/test-pod-snippets
+
+perl Makefile.PL
+make test
+make install
