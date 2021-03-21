@@ -207,12 +207,12 @@ moduser: chj key
 # `Module::Locate` has no signature on CPAN, thus I forked, verified
 # and signed it myself.
 Module-Locate-checkout: .bs git-sign
-	bin/chj-checkout $@ https://github.com/pflanze/Module-Locate.git Module-Locate '^cj($(BS)d+)$$'
+	bin/chj-checkout $@ https://github.com/pflanze/Module-Locate.git Module-Locate '^cj($(BS)d+)$$' '>=' cj3
 
 Module-Locate: Module-Locate-checkout fperl-perl-debian
 
 Test-Pod-Snippets-checkout: .bs git-sign
-	bin/chj-checkout $@ https://github.com/pflanze/test-pod-snippets.git test-pod-snippets '^cj($(BS)d+)$$'
+	bin/chj-checkout $@ https://github.com/pflanze/test-pod-snippets.git test-pod-snippets '^cj($(BS)d+)$$' '>=' cj3
 
 # `Test::Pod::Snippets`, has a CPAN signature but for ease of checking
 # I forked, verified and signed it myself. Depends on

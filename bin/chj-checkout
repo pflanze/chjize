@@ -5,13 +5,18 @@ IFS=
 
 
 usage () {
-    echo "$0 tag url subdir [release-regex]"
+    echo "$0 tag url subdir [release-regex [ >|>= mintagname ]]"
     echo "  check out and verify latest release \$url into /opt/chj/\$subdir,"
+    echo "  (optionally requiring it to be mintagname or larger),"
     echo "  then touch \$tag"
     exit 1
 }
 
-if [ $# != 3 -a $# != 4 ]; then
+if [ $# -eq 3 -o \
+     $# -eq 4 -o \
+     $# -eq 6 ]; then
+    true
+else
     usage
 fi
 
@@ -20,6 +25,13 @@ tag=$1
 url=$2
 subdir=$3
 regex=${4-}
+lteq=${5-}
+mintagname=${6-}
+
+have_mintagname=0
+if [ $# -eq 6 ]; then
+    have_mintagname=1
+fi
 
 
 source /opt/chj/chjize/lib/chj-env.bash
@@ -53,7 +65,11 @@ doit () {
     fi
 
     if [ -n "$regex" ]; then
-	checkout-latest-release -v -p "$regex"
+        if [ "$have_mintagname" = 1 ]; then
+            checkout-latest-release -v -p "$regex" "$lteq" "$mintagname"
+        else
+	    checkout-latest-release -v -p "$regex"
+        fi
     else
 	checkout-latest-release -v
     fi
