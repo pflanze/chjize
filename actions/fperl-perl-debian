@@ -13,3 +13,5 @@ apt-get -y install libpadwalker-perl libmethod-signatures-perl \
 # Needed by Test-Pod-Snippets-0.07-2:
 apt-get -y install libpod-parser-perl
 
+# Needed to build Module-Locate
+apt-get -y install libdist-zilla-perl libdist-zilla-plugin-githubmeta-perl
