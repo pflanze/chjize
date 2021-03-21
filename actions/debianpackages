@@ -37,4 +37,9 @@ apt-get install -y git build-essential chase tkdiff wiggle mlocate \
     libtext-markdown-perl rlwrap strace tcpdump netcat telnet lsof \
     iotop lzop rzip xz-utils zip unzip rsync psmisc links \
     libtimedate-perl libtext-csv-perl libxml-libxml-perl \
-    libmodule-signature-perl
+    libmodule-signature-perl libmodule-build-perl libmoose-perl \
+    libmoosex-semiaffordanceaccessor-perl libparams-validate-perl
+
+# Needed by Test-Pod-Snippets-0.07-2
+apt-get -y install libpod-parser-perl
+
