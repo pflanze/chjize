@@ -7,6 +7,4 @@ set -x
 
 cd /opt/chj/Module-Locate
 
-perl Makefile.PL
-make test
-make install
+dzil-build-test-install

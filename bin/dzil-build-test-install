@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+tmp=$(mktemp)
+
+set -x
+
+dzil build > "$tmp"
+
+dir=$(perl -wne 'm/built in (\S+)/ and print "$1\n"' < "$tmp")
+
+cd "$dir"
+
+perl Makefile.PL
+make test
+make install
