@@ -105,6 +105,14 @@ Install `rxvt-unicode` and trim it down for security and simplicity.
 
 Install my preferred Debian packages.
 
+### chj-perl-debian
+
+Install the Perl packages from Debian needed for chj-bin.
+
+### fperl-perl-debian
+
+Install the Perl packages from Debian needed for fperl.
+
 ### cplusplus
 
 Install `g++`.
@@ -216,6 +224,28 @@ before, it will ask whether to continue by first moving those to
 If you want to modify a particular user's home without affecting the
 other users, instead run `/opt/chj/chjize/bin/mod-user` as that user
 (in its home dir)
+
+### Module-Locate-checkout
+
+`Module::Locate` has no signature on CPAN, thus I forked, verified
+and signed it myself.
+
+### Module-Locate
+
+
+### Test-Pod-Snippets-checkout
+
+
+### Test-Pod-Snippets
+
+`Test::Pod::Snippets`, has a CPAN signature but for ease of checking
+I forked, verified and signed it myself. Depends on
+libpod-parser-perl from fperl-perl-debian.
+
+### fperl-test
+
+`fperl-noinstall` and the necessary dependencies to run its test
+suite. Run the test suite.
 
 ### fperl-noinstall
 
