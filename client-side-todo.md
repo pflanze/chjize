@@ -15,15 +15,16 @@ What to run, extending from the [README](README.md).
   that you can copy-paste the next commands.
 
         export adminuser=root
+        export server=tmp
 
 * From the client side, copy over the install script:
 
         cd chjize
-        scp install $adminuser@tmp:
+        scp install $adminuser@$server:
 
 * Log into server,
 
-        ssh $adminuser@tmp
+        ssh $adminuser@$server
         sudo ./install 
         sudo su -
         /opt/chj/chjize/bin/chjize debconf-noninteractive
@@ -76,11 +77,11 @@ What to run, extending from the [README](README.md).
 
 * Copy over passwd file from client side:
 
-        scp .vncclient-passwords/coworking-passwd root@tmp:/opt/chj/chjize/tmp/passwd
+        scp .vncclient-passwords/coworking-passwd root@$server:/opt/chj/chjize/tmp/passwd
 
 * Log in freshly as root to pick up the `PATH` change from `moduser` above.
 
-        ssh root@tmp
+        ssh root@$server
 
 * If wanting to use Guix, which implies updating the system to Debian sid (bullseye):
 
