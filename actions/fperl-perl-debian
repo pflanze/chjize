@@ -3,13 +3,26 @@
 set -euo pipefail
 IFS=
 
-# Also see actions/chj-perl-debian.
+# Also see actions/chj-perl-debian (which has some more which are
+# needed by fperl *tests*).
 
 # Needed by FunctionalPerl or its dependencies:
 apt-get -y install libpadwalker-perl libmethod-signatures-perl \
     libmodule-signature-perl libmodule-build-perl libmoose-perl \
     libmoosex-semiaffordanceaccessor-perl libparams-validate-perl \
-    libscalar-list-utils-perl
+    libscalar-list-utils-perl libperlio-utf8-strict-perl
+
+# Not sure which of those are needed exactly:
+apt-get install -y libtest-requires-perl liburi-perl libclone-perl \
+    liblwp-protocol-https-perl libb-hooks-op-check-entersubforcv-perl \
+    libparent-perl libfile-spec-perl libproc-processtable-perl \
+    libmoo-perl libstrictures-perl libdevel-globaldestruction-perl \
+    libmodule-runtime-perl librole-tiny-perl \
+    libbareword-filehandles-perl libindirect-perl \
+    libmultidimensional-perl libcapture-tiny-perl
+
+# Optional dependencies, but needed at least for `fperl` script:
+apt-get install -y libsafe-isa-perl libautobox-perl libdbi-perl
 
 # Needed by Test-Pod-Snippets-0.07-2:
 apt-get -y install libpod-parser-perl
