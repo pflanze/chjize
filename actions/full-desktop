@@ -12,13 +12,15 @@ fi
 
 apt-get install -y xscreensaver
 
-# Remove stuff I don't want (not sure remove needs -y)
-apt-get remove -y pulseaudio
 apt-get remove -y lightdm
 
 # Instead of using pulseaudio, install jack, and change volumes
 # directly on ALSA
 apt-get install -y jackd qjackctl jamin qasmixer
+
+# Disable PulseAudio (but leave it installed so it can be started manually):
+# local diversion of /usr/bin/pulseaudio to /usr/bin/pulseaudio.distrib
+dpkg-divert --local --rename /usr/bin/pulseaudio
 
 # Keep those packages installed even though the task (or whatever)
 # package X, which depended on them, was removed because of the above:
