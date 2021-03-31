@@ -16,8 +16,9 @@ apt-get install -y xscreensaver
 apt-get remove -y pulseaudio
 apt-get remove -y lightdm
 
-# Instead of using pulseaudio, install jack
-apt-get install -y jackd qjackctl jamin
+# Instead of using pulseaudio, install jack, and change volumes
+# directly on ALSA
+apt-get install -y jackd qjackctl jamin qasmixer
 
 # Keep those packages installed even though the task (or whatever)
 # package X, which depended on them, was removed because of the above:
