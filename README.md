@@ -319,6 +319,14 @@ source.
 
 Ensure basic system readyness.
 
+### fail2ban
+
+fail2ban, with some config tweaks for stricter SSH blocking
+
+### ssh-server
+
+SSH service
+
 ### slim-vncserver
 
 Server side VNC setup, to be used via client side VNC
