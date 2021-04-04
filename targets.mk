@@ -288,6 +288,14 @@ mercurial: chj-bin
 system: debian_upgrade locales
 	touch system
 
+
+# fail2ban, with some config tweaks for stricter SSH blocking
+fail2ban: 
+
+# SSH service
+ssh-server: fail2ban
+
+
 # Server side VNC setup, to be used via client side VNC
 # setup. Currently assumes a single user will be used to run the VNC
 # server as (hard codes ports).

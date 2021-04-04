@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+set -x
+
+apt-get install -y openssh-server
+
+# openssh-sftp-server ?
+# openssh-client no?
+

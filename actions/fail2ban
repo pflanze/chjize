@@ -1,0 +1,21 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+set -x
+
+apt-get install -y fail2ban crudini
+
+
+# make config stricter:
+
+file=/etc/fail2ban/jail.conf
+
+#crudini --set "$file" DEFAULT bantime 2h findtime 100m maxretry 3
+# NOPE, not working
+
+crudini --set "$file" DEFAULT bantime 2h
+crudini --set "$file" DEFAULT findtime 100m
+crudini --set "$file" DEFAULT maxretry 3
+
