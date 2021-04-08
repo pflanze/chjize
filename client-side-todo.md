@@ -48,22 +48,22 @@ What to run, extending from the [README](README.md).
   
     1. install `tigervnc-viewer` and create a VNC passwd file:
 
-	    sudo apt install tigervnc-viewer
-	    ( umask 077; mkdir ~/.vncclient-passwords/ )
-	    vncpasswd .vncclient-passwords/coworking-passwd
-	    # (say n to view-only)
+            sudo apt install tigervnc-viewer
+            ( umask 077; mkdir ~/.vncclient-passwords/ )
+            vncpasswd .vncclient-passwords/coworking-passwd
+            # (say n to view-only)
 
     2. Create a client side script `tunnel-tmp`:
 
-	    #!/bin/bash
+            #!/bin/bash
 
-	    ssh -o compression=no -L5901:localhost:5901 coworking@tmp
+            ssh -o compression=no -L5901:localhost:5901 coworking@tmp
 
     3. Create a client side script `vnc-coworking`:
 
-	    #!/bin/bash
+            #!/bin/bash
 
-	    xvncviewer -FullScreen -RemoteResize=0 -MenuKey F7 -shared -passwd ~/.vncclient-passwords/coworking-passwd localhost:1
+            xvncviewer -FullScreen -RemoteResize=0 -MenuKey F7 -shared -passwd ~/.vncclient-passwords/coworking-passwd localhost:1
 
         Note: xvncviewer in fullscreen mode
         [can/does](https://github.com/TigerVNC/tigervnc/issues/1150)
