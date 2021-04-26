@@ -109,7 +109,10 @@ chj-perllib-checkout: .bs git-sign
 # [chj-perllib](https://github.com/pflanze/chj-perllib). These depend
 # on `fperl` now, thus that is installed as well.
 chj-perllib: chj-perllib-checkout chj-perl-debian fperl
-# ^ XX would fperl-noinstall be enough? It would be preferable.
+# ^ fperl-noinstall is (currently) not enough, and adding explicit
+# "use lib" statements in pretty much all Perl scripts in chj-bin
+# would be ugly, and, just accept it needs an installation step like
+# normal software, *or* an env var, this *is* how it should be.
 
 chj-bin-checkout: .bs git-sign
 	bin/chj-checkout $@ https://github.com/pflanze/chj-bin.git bin '^r($(BS)d+)$$'
