@@ -83,6 +83,12 @@ What to run, extending from the [README](README.md).
 
         ssh root@$server
 
+* In case you want to upgrade to Debian Sid (Bullseye at the time of
+  this writing), maybe do this first (to avoid having to install two
+  versions of the other packages):
+
+        time chjize bullseye
+
 * If wanting to use Guix, which implies updating the system to Debian sid (bullseye):
 
         time chjize guix
