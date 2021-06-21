@@ -46,6 +46,12 @@ git commit -m "orig" || true
 
 git remote add -f dotconfig_xfce4 /opt/chj/dotconfig-xfce4/.git
 
+# Move out of the way since gcob will be unable to allocate 'master',
+# and merging unrelated histories is not allowed by default or even
+# welcome.
+name=master_$(passwdgen 6)
+git branch -m master "$name" || git branch -m main "$name"
+
 gcob dotconfig_xfce4/master
 
 gls |» mysed 's{/home/(?:chris|coworking)\b}{$ENV{HOME}}sg'
