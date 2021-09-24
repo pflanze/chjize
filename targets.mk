@@ -308,9 +308,6 @@ slim-vncserver: slim-desktop-server chj-bin
 # message about finishing the setup.
 full-vncserver: slim-vncserver debianpackages system
 
-# Client side VNC setup.
-vncclient:
-
 
 # Create and activate (including adding to fstab) a swap file if none
 # is already active. Size is automatically chosen to be the same as
