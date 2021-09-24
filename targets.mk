@@ -135,10 +135,10 @@ debian-emacs:
 emacs: debian-emacs chj-emacs
 	touch emacs
 
-chj-fastrandom: git-sign
+fastrandom-checkout: git-sign
 	bin/chj-checkout $@ https://github.com/pflanze/fastrandom.git fastrandom
 
-/usr/local/bin/fastrandom: chj-fastrandom
+/usr/local/bin/fastrandom: fastrandom-checkout
 	make -C /opt/chj/fastrandom install
 
 # Install [fastrandom](https://github.com/pflanze/fastrandom).
