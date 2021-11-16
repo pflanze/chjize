@@ -4,7 +4,7 @@ set -euo pipefail
 IFS=
 
 error () {
-    echo "$@" >&2
+    echo "$0: $@" >&2
     false
 }
 
