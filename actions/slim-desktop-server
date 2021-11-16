@@ -3,8 +3,18 @@
 set -euo pipefail
 IFS=
 
-set -x
+warn () {
+    echo "$0: $@" >&2
+}
 
-apt-get remove -y xserver-xorg cups-bsd cups-client cups-common
+if local-X-is-running; then
+    warn "X is running locally, so don't remove it"
+else
+    
+    set -x
 
-apt-get -y autoremove
+    apt-get remove -y xserver-xorg cups-bsd cups-client cups-common
+
+    apt-get -y autoremove
+
+fi

@@ -1,0 +1,114 @@
+#!/usr/bin/env perl
+
+my $copyright= <<'COPYRIGHT';
+# Copyright 2021 by Christian Jaeger <ch@christianjaeger.ch>
+# Published under the same terms as perl itself
+COPYRIGHT
+
+use strict;
+use utf8;
+use warnings;
+use warnings FATAL => 'uninitialized';
+use experimental 'signatures';
+
+# use FP::Repl::Trap; #
+
+my ($email_full)= $copyright=~ / by ([^\n]*)/s;
+
+my ($mydir, $myname);
+BEGIN {
+    $0=~ /(.*?)([^\/]+)\z/s or die "?";
+    ($mydir, $myname)=($1,$2);
+}
+
+sub usage {
+    print STDERR map{"$_\n"} @_ if @_;
+    print "$myname
+
+  Exit 0 if an X server is running locally, 1 otherwise.
+
+  ($email_full)
+";
+exit (@_ ? 1 : 0);
+}
+
+usage if @ARGV;
+
+my $verbose = $ENV{VERBOSE};
+
+# Check $ENV{DISPLAY} ? No, really just look out for running X
+# instances of any kind, since might be logged in via ssh without -X
+# and that still shouldn't destroy X if runing on a local display.
+
+# But, distinguish between chroot and outside.
+
+# To be able to detect this, first break out of potential chroot.
+
+sub unchroot {
+    # From:
+    # unchroot.pl Dec 2007
+    # http://pentestmonkey.net/blog/chroot-breakout-perl
+
+    # Go to the root of the jail
+    chdir "/";
+    # Open filehandle to root of jail
+    opendir JAILROOT, "." or die "ERROR: Couldn't get file handle to root of jailn";
+    # Create a subdir, move into it
+    my $subdir= "usr";
+    mkdir $subdir;
+    chdir $subdir;
+    # Lock ourselves in a new jail
+    chroot ".";
+    # Use our filehandle to get back to the root of the old jail
+    chdir(*JAILROOT);
+    # Get to the real root
+    while ((stat("."))[0] != (stat(".."))[0] or (stat("."))[1] != (stat(".."))[1]) {
+        chdir "..";
+    }
+    # Lock ourselves in real root - so we're not really in a jail at all now
+    chroot ".";
+}
+
+my $child = fork;
+defined $child or die "fork: $!";
+if (!$child) { sleep 9999999999999999 };
+
+unchroot;
+
+my $ownroot= readlink "/proc/$child/root"
+    or die "can't find own root";
+
+kill 9, $child;
+
+warn "ownroot: '$ownroot'" if $verbose;
+
+my @proc;
+
+for my $dir (glob "/proc/[0-9]*") {
+    my $exe = readlink "$dir/exe";
+    unless ($exe) {
+        # warn "ignoring proc dir '$dir' since it has no exe";
+        # This happens for kernel threads
+        next;
+    }
+    my $root = readlink "$dir/root";
+    unless ($root) {
+        warn "ignoring proc dir '$dir' since it has no root";
+        next;
+    }
+    unless ($root eq $ownroot) {
+        warn "different root: '$dir': '$root'"
+            if $verbose;
+        next;
+    }
+    if ($exe =~ m{(^|/)Xorg$}) {
+        exit 0;
+    }
+}
+
+exit 1;
+
+#use FP::Repl; repl;
+#use Chj::ruse;
+#use Chj::Backtrace; 
+
