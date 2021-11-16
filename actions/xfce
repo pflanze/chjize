@@ -31,7 +31,7 @@ case "$mode" in
 esac
 
 apt-get install -y xfce4-screenshooter \
-        xfce4-netload-plugin xfce4-systemload-plugin
+        xfce4-netload-plugin xfce4-systemload-plugin dbus-x11
 
 message chjize-xfce-setup \
         "If you'd like to use my Xfce config, run" \
