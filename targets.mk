@@ -314,7 +314,7 @@ slim-vncserver: slim-desktop-server chj-bin
 
 # Server with VNC and Xfce4 desktop plus common chj packages. Note the
 # message about finishing the setup.
-full-vncserver: slim-vncserver debianpackages system
+full-vncserver: slim-vncserver debianpackages
 
 
 # Create and activate (including adding to fstab) a swap file if none
@@ -383,7 +383,7 @@ root-allow-login-from-coworking-user: coworking-user
 # co-working. Requires VNC passwd file, first run on server: `( umask
 # 077; mkdir tmp )` then on your desktop: `scp
 # .vncclient-passwords/passwd root@tmp:/opt/chj/chjize/tmp/`.
-coworking: tmp/passwd system full-vncserver coworking-user root-allow-login-from-coworking-user nosudo-auto emacs firefox unison gimp
+coworking: tmp/passwd full-vncserver coworking-user root-allow-login-from-coworking-user nosudo-auto emacs firefox unison gimp
 	sbin/action $@ vnc-setup $${COWORKING_USER-coworking}
 
 # Set up for Scheme mentoring: `coworking` target (see there for
