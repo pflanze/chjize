@@ -32,6 +32,7 @@ skipped; it will properly check signatures of other repositories it
 fetches in any case):
 
     gpg --import cj-key.asc
+    gpg --import cj-key-2.asc
     version=r$(git tag -l | grep ^r | sed s/^r// | LANG=C sort -rn | head -1)
     git checkout -b local "$version"
     tmpout=$(mktemp)
@@ -39,9 +40,10 @@ fetches in any case):
     git tag -v "$version" > "$tmpout" 2> "$tmperr" || { cat "$tmpout" "$tmperr"; false; }
     cat "$tmpout" "$tmperr"
     # Check that the above command gives "Good signature", and (if warning) shows
-    #   my fingerprint (A54A1D7CA1F94C866AC81A1F0FA5B21104EDB072, feel 
-    #   free to google it) if you don't have a trust path to the key.
-    if grep -q WARNING "$tmperr"; then grep "A54A 1D7C A1F9 4C86 6AC8.*1A1F 0FA5 B211 04ED B072" "$tmperr"; fi
+    #   my fingerprint 7312F47D9436FBF8C3F80CF2748247966F366AE9 if you don't have
+    #   a trust path to the key (which is signed by my older key A54A1D7CA1F94C866AC81A1F0FA5B21104EDB072 
+    #   (A54A 1D7C A1F9 4C86 6AC8.*1A1F 0FA5 B211 04ED B072), which you can google) 
+    if grep -q WARNING "$tmperr"; then grep "7312 F47D 9436 FBF8 C3F8  0CF2 7482 4796 6F36 6AE9" "$tmperr"; fi
     
     # You can also do the more paranoid verification of running the
     #   script lines shown in the tag (the lines starting with a `$`),
