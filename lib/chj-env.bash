@@ -19,5 +19,5 @@ function xcheck_location {
 }
 
 PATH=/opt/chj/chjize/bin:/opt/chj/chjize/sbin:/opt/chj/git-sign/bin:"$PATH"
-export VERIFY_SIG_ACCEPT_KEYS="A54A 1D7C A1F9 4C86 6AC8  1A1F 0FA5 B211 04ED B072"
+export VERIFY_SIG_ACCEPT_KEYS="A54A 1D7C A1F9 4C86 6AC8  1A1F 0FA5 B211 04ED B072, 7312 F47D 9436 FBF8 C3F8  0CF2 7482 4796 6F36 6AE9"
 
