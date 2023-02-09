@@ -46,8 +46,8 @@ clean: .targets
 graph.dot: graph-deps .targets targets.mk sbin/make-graph
 	sbin/make-graph targets.mk < .targets > graph.dot
 
-graph: graph.dot
-	display graph.dot
+graph: graph.svg
+	eog graph.svg
 
 graph.svg: graph.dot
 	dot -Tsvg *dot > graph.svg
