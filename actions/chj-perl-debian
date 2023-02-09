@@ -4,8 +4,11 @@ set -euo pipefail
 IFS=
 
 
+# Install the Perl packages from Debian needed for chj-bin.
+
 # also see actions/fperl-perl-debian
 
 apt-get -y install libterm-readline-gnu-perl libbsd-resource-perl \
     libtext-markdown-perl libtimedate-perl libtext-csv-perl \
-    libxml-libxml-perl libtime-parsedate-perl perl-doc
+    libxml-libxml-perl libtime-parsedate-perl perl-doc \
+    liblinux-inotify2-perl
