@@ -399,3 +399,8 @@ sources-bullseye: chj-bin
 # Upgrade a Debian system running Buster to Bullseye (does include
 # running `apt-get update` as part of the action).
 bullseye: sources-bullseye
+
+
+# Packages for development in Rust
+rust: emacs
+

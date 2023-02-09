@@ -1,0 +1,9 @@
+#!/bin/bash
+set -euo pipefail
+# enable job control consistently, not just when there is a tty:
+set -m
+IFS=
+
+set -x
+
+apt-get install -y elpa-rust-mode
