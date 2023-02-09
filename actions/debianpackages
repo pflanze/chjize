@@ -36,5 +36,6 @@ apt-get install -y locales man
 
 apt-get install -y git build-essential chase tkdiff wiggle mlocate \
     x11-utils xkbset xsel gitk git-gui rlwrap strace tcpdump netcat \
-    telnet lsof iotop lzop rzip xz-utils zip unzip rsync psmisc links
+    telnet lsof iotop lzop rzip xz-utils zip unzip rsync psmisc links \
+    rename
 
