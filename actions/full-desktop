@@ -10,9 +10,8 @@ fi
 
 # Modify Debian desktop install so that it behaves reasonably for me.
 
-apt-get install -y xscreensaver
-
-apt-get remove -y lightdm
+#apt-get remove -y lightdm
+# Removing light-locker is enough! as done in slim-desktop.
 
 # Instead of using pulseaudio, install jack, and change volumes
 # directly on ALSA
