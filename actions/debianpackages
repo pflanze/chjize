@@ -39,3 +39,9 @@ apt-get install -y git build-essential chase tkdiff wiggle mlocate \
     netcat telnet lsof iotop lzop rzip xz-utils zip unzip rsync psmisc \
     links rename
 
+# These are rather optional:
+
+# System installation:
+
+apt-get install -y gparted
+
