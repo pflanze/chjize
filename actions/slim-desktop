@@ -12,7 +12,7 @@ fi
 apt-get remove -y light-locker
 
 apt-get install -y fonts-font-awesome fonts-lato fonts-linuxlibertine fonts-sil-gentium fonts-sil-gentium-basic fonts-inconsolata
-apt-get install -y xpdf gv
+apt-get install -y xpdf gv redshift
 
 make -f targets.mk remove-xserver
 
