@@ -8,5 +8,5 @@ IFS=
 
 apt-get -y install libterm-readline-gnu-perl libbsd-resource-perl \
     libtext-markdown-perl libtimedate-perl libtext-csv-perl \
-    libxml-libxml-perl 
+    libxml-libxml-perl libtime-parsedate-perl
 
