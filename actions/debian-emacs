@@ -15,3 +15,9 @@ else
 fi
 
 # Emacs packages are now installed via chj-emacs's Makefile.
+
+# {Thu 9 Feb 19:24:45 CET 2023}
+# Except do these ones still here since they don't need
+# symlinking. (TODO: do *any* need symlinking? Mess?)
+
+apt-get install -y elpa-markdown-mode
