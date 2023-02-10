@@ -407,3 +407,12 @@ rustc:
 # Packages for development in Rust
 rust: emacs rustc
 
+
+cj-unattended-upgrades-checkout: git-sign
+	bin/chj-checkout $@ https://github.com/pflanze/cj-unattended-upgrades.git cj-unattended-upgrades '^cj($(BS)d+)$$'
+
+# Set up cj-unattended-upgrades on a server (no claws-mail installation).
+cj-unattended-upgrades-server: cj-unattended-upgrades-checkout chj-bin 
+
+# Set up cj-unattended-upgrades on a desktop, which includes claws-mail.
+cj-unattended-upgrades-desktop: cj-unattended-upgrades-server

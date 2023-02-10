@@ -1,0 +1,41 @@
+#!/bin/bash
+set -euo pipefail
+# enable job control consistently, not just when there is a tty:
+set -m
+IFS=
+
+log () {
+    echo "$0: $@" >&2
+}
+
+if grep '^deb .*\bstable\b' /etc/apt/sources.list; then
+    log "***  ERROR: not enabling cj-unattended-upgrades, because sources.list"
+    log "***  is referring to 'stable' instead of a particular release, which"
+    log "***  is dangerous in the face of dist-upgrade."
+    exit 1
+fi
+
+if [ ! -e /etc/cj-unattended-upgrades.sh ]; then
+    log "/etc/cj-unattended-upgrades.sh does not exist yet, creating it.."
+    primary_nonroot_user=$(id -un 1000)
+    log "NOTE: we *assume* that this is the user who should get the upgrades email: $primary_nonroot_user"
+    echo "notification_email=$primary_nonroot_user" > /etc/cj-unattended-upgrades.sh
+fi
+
+set -x
+
+# `daemontools` (used for the logging) and `libtime-parsedate-perl`
+# are already installed by 'chj-perl-debian', which is a dependency of
+# 'chj-bin', which is a dependency of ourselves.
+
+if [ ! -x /etc/init.d/cj-unattended-upgrades ]; then
+
+    # just in case of a dangling symlink
+    rm -f /etc/init.d/cj-unattended-upgrades
+
+    ln -s /opt/chj/cj-unattended-upgrades/cj-unattended-upgrades \
+       /etc/init.d/cj-unattended-upgrades
+
+    systemctl enable --now cj-unattended-upgrades
+
+fi
