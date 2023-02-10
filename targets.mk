@@ -268,7 +268,7 @@ dnsmasq:
 qemu: cj-qemucontrol dnsmasq
 
 # Xfce4, desktop packages.
-slim-desktop: system chj set-x-terminal-emulator xfce4_load_profile cj-unattended-upgrades-desktop
+slim-desktop: system chj set-x-terminal-emulator xfce4_load_profile cj-unattended-upgrades-desktop firefox
 
 # `slim-desktop`, but also removes pulseaudio and installs jack, and
 # removes the login managers. Xfce4 has to be started via `startx`
