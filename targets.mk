@@ -268,7 +268,7 @@ dnsmasq:
 qemu: cj-qemucontrol dnsmasq
 
 # Xfce4, desktop packages.
-slim-desktop: chj set-x-terminal-emulator xfce4_load_profile
+slim-desktop: chj set-x-terminal-emulator xfce4_load_profile cj-unattended-upgrades-desktop
 
 # `slim-desktop`, but also removes pulseaudio and installs jack, and
 # removes the login managers. Xfce4 has to be started via `startx`
@@ -288,7 +288,7 @@ dnsresolver:
 mercurial: chj-bin
 
 # Ensure basic system readyness.
-system: debian_upgrade locales
+system: debian_upgrade locales cj-unattended-upgrades-server
 	touch system
 
 
