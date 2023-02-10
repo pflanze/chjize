@@ -37,5 +37,7 @@ if [ ! -x /etc/init.d/cj-unattended-upgrades ]; then
        /etc/init.d/cj-unattended-upgrades
 
     systemctl enable --now cj-unattended-upgrades
+    # ^ Why does that not (always?) start it? systemd is confusing me.
+    /etc/init.d/cj-unattended-upgrades start
 
 fi
