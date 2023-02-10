@@ -401,6 +401,9 @@ sources-bullseye: chj-bin
 bullseye: sources-bullseye
 
 
+# Packages for compilation/installation of programs in Rust (e.g. chj-rustbin)
+rustc: 
+
 # Packages for development in Rust
-rust: emacs
+rust: emacs rustc
 
