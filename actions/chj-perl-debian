@@ -8,6 +8,8 @@ IFS=
 
 # also see actions/fperl-perl-debian
 
+apt-get install -y daemontools
+
 apt-get -y install libterm-readline-gnu-perl libbsd-resource-perl \
     libtext-markdown-perl libtimedate-perl libtext-csv-perl \
     libxml-libxml-perl libtime-parsedate-perl perl-doc \
