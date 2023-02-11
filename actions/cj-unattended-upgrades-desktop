@@ -6,6 +6,6 @@ IFS=
 
 set -x
 
-apt-get install -y xfce4-mailwatch-plugin claws-mail
+apt-get install -y xfce4-mailwatch-plugin claws-mail gxmessage
 
 # Config done via https://github.com/pflanze/dotconfig-xfce4.git
