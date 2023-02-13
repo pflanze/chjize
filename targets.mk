@@ -302,7 +302,7 @@ ssh-server: fail2ban
 # Server side VNC setup, to be used via client side VNC
 # setup. Currently assumes a single user will be used to run the VNC
 # server as (hard codes ports).
-slim-vncserver: slim-desktop chj-bin
+slim-vncserver: slim-desktop-server chj-bin
 
 # Server with VNC and Xfce4 desktop plus common chj packages. Note the
 # message about finishing the setup.
@@ -386,11 +386,10 @@ coworking: tmp/passwd system full-vncserver coworking-user root-allow-login-from
 schemen: coworking emacs schemen-lili
 	touch schemen
 
-# Remove xorg and xserver-xorg packages. This is a horrible HACK for
-# cases where they should never be installed in the first place but I
-# can't figure out why they are. (This is called from within the
-# slim-desktop rule.)
-remove-xserver:
+# `slim-desktop`, but then remove xorg and xserver-xorg packages. This
+# is a horrible HACK for cases where they should never be installed in
+# the first place but I can't figure out why they are.
+slim-desktop-server: slim-desktop
 
 
 # Changes /etc/apt/sources.list to point to bullseye instead of buster
