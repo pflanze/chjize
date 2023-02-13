@@ -426,12 +426,11 @@ co-working. Requires VNC passwd file, first run on server: `( umask
 Set up for Scheme mentoring: `coworking` target (see there for
 details), plus Scheme.
 
-### remove-xserver
+### slim-desktop-server
 
-Remove xorg and xserver-xorg packages. This is a horrible HACK for
-cases where they should never be installed in the first place but I
-can't figure out why they are. (This is called from within the
-slim-desktop rule.)
+`slim-desktop`, but then remove xorg and xserver-xorg packages. This
+is a horrible HACK for cases where they should never be installed in
+the first place but I can't figure out why they are.
 
 ### sources-bullseye
 
@@ -441,6 +440,25 @@ Changes /etc/apt/sources.list to point to bullseye instead of buster
 
 Upgrade a Debian system running Buster to Bullseye (does include
 running `apt-get update` as part of the action).
+
+### rustc
+
+Packages for compilation/installation of programs in Rust (e.g. chj-rustbin)
+
+### rust
+
+Packages for development in Rust
+
+### cj-unattended-upgrades-checkout
+
+
+### cj-unattended-upgrades-server
+
+Set up cj-unattended-upgrades on a server (no claws-mail installation).
+
+### cj-unattended-upgrades-desktop
+
+Set up cj-unattended-upgrades on a desktop, which includes claws-mail.
 
 ## Graph of target dependencies
 
