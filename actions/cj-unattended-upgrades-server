@@ -8,6 +8,15 @@ log () {
     echo "$0: $@" >&2
 }
 
+primary_nonroot_user=
+if ! primary_nonroot_user=$(id -un 1000); then
+    log "No user with ID 1000, are we in a chroot?"
+    log " => Not actually installing cj-unattended-upgrades."
+    # exit successfully
+    exit 0
+fi
+
+
 if grep '^deb .*\bstable\b' /etc/apt/sources.list; then
     log "***  ERROR: not enabling cj-unattended-upgrades, because sources.list"
     log "***  is referring to 'stable' instead of a particular release, which"
@@ -17,7 +26,6 @@ fi
 
 if [ ! -e /etc/cj-unattended-upgrades.sh ]; then
     log "/etc/cj-unattended-upgrades.sh does not exist yet, creating it.."
-    primary_nonroot_user=$(id -un 1000)
     log "NOTE: we *assume* that this is the user who should get the upgrades email: $primary_nonroot_user"
     echo "notification_email=$primary_nonroot_user" > /etc/cj-unattended-upgrades.sh
 fi
