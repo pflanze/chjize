@@ -6,4 +6,4 @@ IFS=
 
 set -x
 
-apt-get install -y rustc
+apt-get install -y rustc pkg-config
