@@ -407,6 +407,15 @@ rustc:
 rust: emacs rustc
 
 
+# Check out [chj-rustbin](https://github.com/pflanze/chj-rustbin).
+chj-rustbin-checkout: rustc
+	bin/chj-checkout $@ https://github.com/pflanze/chj-rustbin.git chj-rustbin '^cj($(BS)d+)$$'
+
+# Install [chj-rustbin](https://github.com/pflanze/chj-rustbin).
+chj-rustbin: chj-rustbin-checkout
+
+
+
 cj-unattended-upgrades-checkout: git-sign
 	bin/chj-checkout $@ https://github.com/pflanze/cj-unattended-upgrades.git cj-unattended-upgrades '^cj($(BS)d+)$$'
 
