@@ -37,8 +37,5 @@ apt-locked() {
     local PATH=$PATH
     remove-path /opt/chj/chjize/sbin
     mkdir -p /root/tmp/
-    # XXX does this introduce spurious 150 exit codes?
-    # flock /root/tmp/.apt.lock "$@"
-    # so, instead, disable it for now
-    "$@"
+    flock /root/tmp/.apt.lock "$@"
 }
