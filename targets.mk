@@ -373,6 +373,10 @@ schemen-lili: coworking-user gambit chj-emacs
 # replacement).
 root-allow-login-from-coworking-user: coworking-user
 
+tmp/passwd:
+	@echo "Missing file $@"
+	@false
+
 # Full set up of a user with Xfce desktop, various programs (like
 # chj-bin/fperl/emacs, Firefox, Gimp, Unison), and VNC server for
 # co-working. Requires VNC passwd file, first run on server: `( umask
