@@ -48,7 +48,7 @@ What to run, extending from the [README](README.md).
   
     1. install `tigervnc-viewer` and create a VNC passwd file:
 
-            sudo apt install tigervnc-viewer
+            sudo apt install tigervnc-viewer tigervnc-common
             ( umask 077; mkdir ~/.vncclient-passwords/ )
             vncpasswd .vncclient-passwords/coworking-passwd
             # (say n to view-only)

@@ -4,6 +4,6 @@ set -euo pipefail
 set -m
 IFS=
 
-set -x
+apt-get install -y earlyoom
 
-apt-get install -y rustc pkg-config
+# XX configure it  with what values exactly?

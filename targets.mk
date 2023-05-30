@@ -97,6 +97,8 @@ chj-perl-debian:
 # Install the Perl packages from Debian needed for fperl.
 fperl-perl-debian:
 
+# Install Debian packages around image processing (like optipng, gimp, mat2)
+imageprocessing:
 
 # Install `g++`.
 cplusplus:
@@ -295,8 +297,11 @@ dnsresolver:
 # source.
 mercurial: chj-bin
 
+# Install earlyoom (and, todo: configure it)
+earlyoom:
+
 # Ensure basic system readyness.
-system: debian_upgrade locales cj-unattended-upgrades-server
+system: debian_upgrade locales cj-unattended-upgrades-server earlyoom
 	touch system
 
 
@@ -378,6 +383,10 @@ schemen-lili: coworking-user gambit chj-emacs
 # replacement).
 root-allow-login-from-coworking-user: coworking-user
 
+tmp/passwd:
+	@echo "Missing file $@"
+	@false
+
 # Full set up of a user with Xfce desktop, various programs (like
 # chj-bin/fperl/emacs, Firefox, Gimp, Unison), and VNC server for
 # co-working. Requires VNC passwd file, first run on server: `( umask
@@ -410,6 +419,15 @@ rustc:
 
 # Packages for development in Rust
 rust: emacs rustc
+
+
+# Check out [chj-rustbin](https://github.com/pflanze/chj-rustbin).
+chj-rustbin-checkout: rustc
+	bin/chj-checkout $@ https://github.com/pflanze/chj-rustbin.git chj-rustbin '^cj($(BS)d+)$$'
+
+# Install [chj-rustbin](https://github.com/pflanze/chj-rustbin).
+chj-rustbin: chj-rustbin-checkout
+
 
 
 cj-unattended-upgrades-checkout: git-sign

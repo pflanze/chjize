@@ -1,0 +1,14 @@
+#!/bin/bash
+set -euo pipefail
+# enable job control consistently, not just when there is a tty:
+set -m
+IFS=
+
+set -x
+
+apt-get install -y libasound2-dev libspa-0.2-dev libclang-dev libpipewire-0.3-dev
+
+cd /opt/chj/chj-rustbin
+
+make install
+

@@ -4,6 +4,4 @@ set -euo pipefail
 set -m
 IFS=
 
-set -x
-
-apt-get install -y rustc pkg-config
+apt-get install -y optipng gimp mat2
