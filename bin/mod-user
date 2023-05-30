@@ -40,10 +40,11 @@ if [ -d .git ]; then
 fi
 
 gpg --import /opt/chj/chjize/cj-key.asc || true
-# ^ aha, when this is run on /etc/skel it is being run by root and
-#   thus will not create the .gnupg files, of course, so after making
-#   a user it still won't be there. Now instead run again in
-#   `chj-home`'s `.chj-home/init`.
+gpg --import /opt/chj/chjize/cj-key-2.asc || true
+#  aha, when this is run on /etc/skel it is being run by root and
+#  thus will not create the .gnupg files, of course, so after making
+#  a user it still won't be there. Now instead run again in
+#  `chj-home`'s `.chj-home/init`.
 
 export GIT_AUTHOR_NAME="chjize's mod-user"
 export GIT_AUTHOR_EMAIL=${EMAIL-you@example.com}
