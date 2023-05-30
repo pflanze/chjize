@@ -77,7 +77,7 @@ What to run, extending from the [README](README.md).
 
 * Copy over passwd file from client side:
 
-        scp .vncclient-passwords/coworking-passwd root@$server:/opt/chj/chjize/actions/tmp/passwd
+        scp .vncclient-passwords/coworking-passwd root@$server:/opt/chj/chjize/tmp/passwd
 
 * Log in freshly as root to pick up the `PATH` change from `moduser` above.
 
