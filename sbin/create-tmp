@@ -3,7 +3,9 @@
 set -euo pipefail
 IFS=
 
-( umask 077; mkdir /opt/chj/chjize/tmp )
+if ! [ -d /opt/chj/chjize/tmp ]; then
+    ( umask 077; mkdir /opt/chj/chjize/tmp )
+fi
 
 cat <<'EOF' > /opt/chj/chjize/tmp/.gitignore
 *
