@@ -94,6 +94,8 @@ chj-perl-debian:
 # Install the Perl packages from Debian needed for fperl.
 fperl-perl-debian:
 
+# Install Debian packages around image processing (like optipng, gimp, mat2)
+imageprocessing:
 
 # Install `g++`.
 cplusplus:
