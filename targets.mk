@@ -289,8 +289,11 @@ dnsresolver:
 # source.
 mercurial: chj-bin
 
+# Install earlyoom (and, todo: configure it)
+earlyoom:
+
 # Ensure basic system readyness.
-system: debian_upgrade locales cj-unattended-upgrades-server
+system: debian_upgrade locales cj-unattended-upgrades-server earlyoom
 	touch system
 
 

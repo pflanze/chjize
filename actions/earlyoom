@@ -1,0 +1,9 @@
+#!/bin/bash
+set -euo pipefail
+# enable job control consistently, not just when there is a tty:
+set -m
+IFS=
+
+apt-get install -y earlyoom
+
+# XX configure it  with what values exactly?
