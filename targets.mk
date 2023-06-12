@@ -126,18 +126,12 @@ chj-bin-checkout: .bs git-sign
 chj-bin: chj-bin-checkout chj-perllib chj-perl-debian
 	touch chj-bin
 
-chj-emacs-checkout: git-sign
-	bin/chj-checkout $@ https://github.com/pflanze/chj-emacs.git emacs
-
-# Install [chj-emacs](https://github.com/pflanze/chj-emacs) in
-# /opt/chj/emacs/.
-chj-emacs: chj-emacs-checkout
-
 # Install GNU Emacs via APT.
 debian-emacs:
 
-# Install debian-emacs and chj-emacs targets.
-emacs: debian-emacs chj-emacs
+# Install debian-emacs. 
+emacs: debian-emacs
+	@echo "NOTE: chj-emacs will be installed per-user when you run mod-user."
 	touch emacs
 
 fastrandom-checkout: git-sign
@@ -166,7 +160,7 @@ debconf-noninteractive:
 # Check out the last tagged versions of various repositories into
 # `/opt/chj` (uses signed tags via git-sign to ensure you get what I
 # signed)
-chj: git-sign debianpackages chj-bin chj-emacs fastrandom cj-git-patchtool
+chj: git-sign debianpackages chj-bin emacs fastrandom cj-git-patchtool
 	touch chj
 
 # Check out [Xfce4 .config
@@ -251,8 +245,7 @@ gambit-checkout: .bs git-sign
 	bin/chj-checkout $@ https://github.com/pflanze/gambc.git gambc '^cj($(BS)d+)$$'
 
 # Install a patched version of the Gambit Scheme system.
-gambit: gambit-checkout cplusplus debianpackages chj-bin chj-emacs virtualmem_3GB
-# ^ chj-emacs for /opt/chj/emacs/bin/gam-emacs
+gambit: gambit-checkout cplusplus debianpackages chj-bin virtualmem_3GB
 # Does it really depend on debianpackages?
 
 cj-qemucontrol-checkout: .bs git-sign
@@ -373,10 +366,8 @@ coworking-user: moduser
 
 # Check out and build [lili](https://github.com/pflanze/lili) as the
 # `schemen` user.
-schemen-lili: coworking-user gambit chj-emacs
+schemen-lili: coworking-user gambit
 	sbin/action $@ schemen-lili $${COWORKING_USER-coworking}
-# ^ chj-emacs for gam-emacs, that's already part of `gambit`, but
-# being explicit won't hurt. Full `emacs` is required by `schemen`.
 
 # Allow coworking user (again, ${COWORKING_USER-coworking}) to log
 # into the root account via `ssh root@localhost` (as a sudo

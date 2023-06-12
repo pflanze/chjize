@@ -1,9 +1,0 @@
-#!/bin/bash
-
-set -euo pipefail
-IFS=
-
-set -x
-
-cd /opt/chj/emacs
-make
