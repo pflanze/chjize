@@ -23,7 +23,11 @@ apt-get install -y ltrace || true
 # exim4-daemon-light
 apt-get install -y bsd-mailx
 
+
 # Expected to succeed:
+
+
+apt-get install -y cron
 
 # Stuff that's missing in debootstrap images:
 
