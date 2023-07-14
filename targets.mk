@@ -363,7 +363,8 @@ unison:
 guix: bullseye
 
 # Create a new user for co-working (`$COWORKING_USER`, `coworking` by
-# default); copy ssh keys from root to it.
+# default); run .chj-home/init, giving it `$CHJIZE_FULL_EMAIL` as
+# fullname/email input if present; copy ssh keys from root to it.
 coworking-user: moduser
 	sbin/action $@ ssh-user $${COWORKING_USER-coworking}
 
@@ -383,9 +384,11 @@ tmp/passwd:
 
 # Full set up of a user with Xfce desktop, various programs (like
 # chj-bin/fperl/emacs, Firefox, Gimp, Unison), and VNC server for
-# co-working. Requires VNC passwd file, first run on server: `( umask
-# 077; mkdir tmp )` then on your desktop: `scp
-# .vncclient-passwords/passwd root@tmp:/opt/chj/chjize/tmp/`.
+# co-working. Requires VNC passwd file, run on your desktop: `scp
+# .vncclient-passwords/passwd root@$server:/opt/chj/chjize/tmp/`.  Set
+# the `CHJIZE_FULL_EMAIL` env var to the email address with full name
+# if you want the coworking user to be set up with it (default is
+# empty strings).
 coworking: tmp/passwd full-vncserver coworking-user root-allow-login-from-coworking-user nosudo-auto emacs firefox unison gimp
 	sbin/action $@ vnc-setup $${COWORKING_USER-coworking}
 

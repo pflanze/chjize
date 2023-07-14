@@ -19,7 +19,7 @@ set -x
 adduser --disabled-password --gecos "" "$user"
 
 {
-    echo
+    echo "${CHJIZE_FULL_EMAIL-}"
     echo
 } | su - "$user" .chj-home/init
 
