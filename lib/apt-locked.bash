@@ -37,6 +37,5 @@ apt-locked() {
     local PATH=$PATH
     remove-path /opt/chj/chjize/sbin
     mkdir -p /root/tmp/
-    # HACK: why do we get exit code 150 sometimes?
-    flock /root/tmp/.apt.lock "$@" || true
+    flock /root/tmp/.apt.lock "$@"
 }
