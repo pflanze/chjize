@@ -17,15 +17,15 @@ What to run, extending from the [README](README.md).
         export adminuser=root
         export server=tmp
 
-* From the client side, copy over the install script:
+* From the client side, copy over the install-chjize script:
 
         cd chjize
-        scp install $adminuser@$server:
+        scp install-chjize $adminuser@$server:
 
 * Log into server,
 
         ssh $adminuser@$server
-        sudo ./install 
+        sudo ./install-chjize 
         sudo su -
         /opt/chj/chjize/bin/chjize debconf-noninteractive
 

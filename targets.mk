@@ -8,7 +8,7 @@
 # Linux, this is trying to abstract it away:
 BS=$(shell sbin/BS)
 
-STATIC_TARGETS=default .bs .targets .gitignore help graph.dot graph docstrings README.md auto-update clean install
+STATIC_TARGETS=default .bs .targets .gitignore help graph.dot graph docstrings README.md auto-update clean install-chjize
 
 # No 'better' way to generate tmp/ *before* `schemen` target is
 # started (?). `default` is called by `install` script.
@@ -61,10 +61,10 @@ README.md: chj-bin .targets docstrings graph.svg
 	cj-git-status-is-clean README.md
 	sbin/update-readme README.md < .targets
 
-install: README.md
+install-chjize: README.md
 
-auto-update: README.md graph.svg install
-	git commit -m "auto-update" README.md graph.svg install || true
+auto-update: README.md graph.svg install-chjize
+	git commit -m "auto-update" README.md graph.svg install-chjize || true
 
 # ------------------------------------------------------------------
 # Targets that are automatically listed in `.targets`. Docstrings
