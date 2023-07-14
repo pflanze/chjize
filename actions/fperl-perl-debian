@@ -7,7 +7,7 @@ IFS=
 # needed by fperl *tests*).
 
 # Needed by FunctionalPerl or its dependencies:
-apt-get -y install libpadwalker-perl libmethod-signatures-perl \
+apt-get install -y libpadwalker-perl libmethod-signatures-perl \
     libmodule-signature-perl libmodule-build-perl libmoose-perl \
     libmoosex-semiaffordanceaccessor-perl libparams-validate-perl \
     libscalar-list-utils-perl libperlio-utf8-strict-perl
@@ -25,7 +25,7 @@ apt-get install -y libtest-requires-perl liburi-perl libclone-perl \
 apt-get install -y libsafe-isa-perl libautobox-perl libdbi-perl
 
 # Needed by Test-Pod-Snippets-0.07-2:
-apt-get -y install libpod-parser-perl
+apt-get install -y libpod-parser-perl
 
 # Needed to build Module-Locate
-apt-get -y install libdist-zilla-perl libdist-zilla-plugin-githubmeta-perl
+apt-get install -y libdist-zilla-perl libdist-zilla-plugin-githubmeta-perl

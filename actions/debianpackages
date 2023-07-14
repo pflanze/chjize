@@ -14,7 +14,7 @@ apt-get install -y ltrace || true
 # somehow not available on beaglebone black's Debian, huh
 
 # for dist upgrades to new releases:
-#apt-get install debian-keyring
+#apt-get install -y debian-keyring
 # actually this is wrong, only debian-archive-keyring seems used and
 # that one is installed anyway? It's Priority: important.
 
