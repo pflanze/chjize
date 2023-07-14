@@ -25,36 +25,12 @@ fi
 export MESSAGEBASE=/opt/chj/chjize/.messages
 mkdir -p "$MESSAGEBASE"
 
-LOGDIR=/opt/chj/chjize/.log
-mkdir -p "$LOGDIR"
+# NOTE: Logging removed for now to see if it is the thing that
+# randomly(?) breaks apt-get install; see Git history.
 
-log=$(mktemp --tmpdir="$LOGDIR" --suff -chjize)
-
-tail -f "$log" --pid="$$" &
-tailpid=$!
-wait_for_tail () {
-    # wait until tail has caught up printing
-    local siz
-    siz=$(stat --format=%s "$log")
-    local i
-    i=0
-    while [[ $i -le 60 ]]; do
-        i=$(( $i + 1 ))
-        sleep 0.05
-        if egrep -q '^pos:.*\b'"$siz"'\b' /proc/"$tailpid"/fdinfo/3; then
-            # make "more sure" that tail can also *print* last buffer
-            sleep 0.05
-            return 0
-        fi
-    done
-    echo "(Giving up waiting for tail to catch up printing the log (bug?))"
-}
-
-if make -f targets.mk "$@" >> "$log" 2>&1; then
-    echo OK. >> "$log"
+if make -f targets.mk "$@"; then
+    echo OK.
 else
-    wait_for_tail
-    echo "(For all messages, see log file at $log)"
     false
 fi
 
@@ -83,8 +59,5 @@ ruler () {
 
     # now that they have been shown, remove the messages:
     rm -rf "$MESSAGEBASE"
-} >> "$log"
+}
 
-wait_for_tail
-
-echo "(Done. See log file at $log .)"
