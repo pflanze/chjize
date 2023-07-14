@@ -86,6 +86,9 @@ an example (just a recipe) see
 
 (Note: these are copied from [`targets.mk`](targets.mk) via `chjize README.md`.)
 
+### release
+
+
 ### graph-deps
 
 Install dependencies to run the `graph` target.
@@ -98,6 +101,10 @@ Import cj-key.asc into the keyring of the current user.
 
 Upgrade the system (via dist-upgrade), necessary on a fresh instance
 on typical cloud hostings like Amazon's.
+
+### fonts
+
+Install some fonts, amongst them Inconsolata for urxvt.
 
 ### urxvt
 
@@ -114,6 +121,10 @@ Install the Perl packages from Debian needed for chj-bin.
 ### fperl-perl-debian
 
 Install the Perl packages from Debian needed for fperl.
+
+### imageprocessing
+
+Install Debian packages around image processing (like optipng, gimp, mat2)
 
 ### cplusplus
 
@@ -140,23 +151,15 @@ on `fperl` now, thus that is installed as well.
 
 Install [chj-bin](https://github.com/pflanze/chj-bin).
 
-### chj-emacs-checkout
-
-
-### chj-emacs
-
-Install [chj-emacs](https://github.com/pflanze/chj-emacs) in
-/opt/chj/emacs/.
-
 ### debian-emacs
 
 Install GNU Emacs via APT.
 
 ### emacs
 
-Install debian-emacs and chj-emacs targets.
+Install debian-emacs. 
 
-### chj-fastrandom
+### fastrandom-checkout
 
 
 ### fastrandom
@@ -292,6 +295,11 @@ Install Qemu, cj-qemucontrol, dnsmasq, and run
 `$QEMU_USER` or the default `qemu` if not given, and give it the
 necessary permissions.
 
+### chroot-desktop
+
+Desktop things still needed in a chroot (via `chrootlogin` tool from
+chj-bin) running inside a deskop which is installed on the host.
+
 ### slim-desktop
 
 Xfce4, desktop packages.
@@ -317,6 +325,10 @@ Install and configure a local dns resolver (unbound).
 Install mercurial, and hg-fast-export from either Debian or upstream
 source.
 
+### earlyoom
+
+Install earlyoom (and, todo: configure it)
+
 ### system
 
 Ensure basic system readyness.
@@ -339,10 +351,6 @@ server as (hard codes ports).
 
 Server with VNC and Xfce4 desktop plus common chj packages. Note the
 message about finishing the setup.
-
-### vncclient
-
-Client side VNC setup.
 
 ### swap
 
@@ -448,6 +456,14 @@ Packages for compilation/installation of programs in Rust (e.g. chj-rustbin)
 ### rust
 
 Packages for development in Rust
+
+### chj-rustbin-checkout
+
+Check out [chj-rustbin](https://github.com/pflanze/chj-rustbin).
+
+### chj-rustbin
+
+Install [chj-rustbin](https://github.com/pflanze/chj-rustbin).
 
 ### cj-unattended-upgrades-checkout
 
