@@ -15,6 +15,9 @@ STATIC_TARGETS=default .bs .targets .gitignore help graph.dot graph docstrings R
 default: .gitignore tmp/.gitignore
 	@ echo "Run 'chjize -h' for help."
 
+release: auto-update
+	@true
+
 .bs:
 	sbin/gen-BS '\\no'
 
