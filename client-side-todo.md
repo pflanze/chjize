@@ -46,7 +46,8 @@ What to run, extending from the [README](README.md).
 * On your *client side* (desktop/laptop), if you haven't already done
   it before and you're on a Linux(-like) system:
   
-    1. install `tigervnc-viewer` and create a VNC passwd file:
+    1. install `tigervnc-viewer` and `tigervnc-common` and create a
+       VNC passwd file:
 
             sudo apt install tigervnc-viewer tigervnc-common
             ( umask 077; mkdir ~/.vncclient-passwords/ )
