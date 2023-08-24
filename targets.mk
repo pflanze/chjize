@@ -417,6 +417,9 @@ rustc:
 # Packages for development in Rust
 rust: emacs rustc
 
+# Packages for development (including [cj50](https://github.com/pflanze/cj50))
+dev: debianpackages
+
 
 # Check out [chj-rustbin](https://github.com/pflanze/chj-rustbin).
 chj-rustbin-checkout: rustc

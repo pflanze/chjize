@@ -1,0 +1,9 @@
+#!/bin/bash
+set -euo pipefail
+# enable job control consistently, not just when there is a tty:
+set -m
+IFS=
+
+# on top of 'debianpackages'
+
+apt-get install -y gdb clang libsdl2-dev pandoc
