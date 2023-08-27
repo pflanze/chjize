@@ -20,6 +20,15 @@ apt-get clean
 
 apt-get -y autoremove
 
+# HACK: better would be to configure it for this user account. (Or opt
+# into xscreensaver explicitly in the other targets.)
+#
+# But all I can see for my real-world use of 'coworking', it will be on
+# a server dedicated for remote access, and then xscreensaver never
+# makes sense.
+#
+apt-get remove -y xscreensaver
+
 # Have to use umask for the cat, too, or the passwd file will
 # apparently be removed by the vncserver!
 cat tmp/passwd | su - "$user" bash -c 'umask 077; mkdir -p .vnc; cat > .vnc/passwd'
