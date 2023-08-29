@@ -417,7 +417,8 @@ rustc:
 # Packages for development in Rust
 rust: emacs rustc
 
-# Packages for development (including [cj50](https://github.com/pflanze/cj50))
+# Packages for development (including what
+# [cj50](https://github.com/pflanze/cj50) needs, and valgrind)
 dev: debianpackages
 
 

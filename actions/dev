@@ -4,6 +4,7 @@ set -euo pipefail
 set -m
 IFS=
 
-# on top of 'debianpackages'
+# On top of 'debianpackages', for development activity (not just
+# building software).
 
-apt-get install -y gdb clang libsdl2-dev pandoc
+apt-get install -y gdb clang libsdl2-dev pandoc valgrind
