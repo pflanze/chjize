@@ -4,8 +4,26 @@ set -euo pipefail
 IFS=
 source /opt/chj/bin/path.bash
 
-logdir=~/log/vncserver-daemon
+usage() {
+    echo "usage: $0 action [number]"
+    echo "  Needs display number (integer) as second argument; use 1 for the first one."
+    echo "  If omitted, requires the file ~/.vnc_display_number with the number."
+    exit 1
+}
+
+if [ $# -ne 2 -a $# -ne 1 ]; then
+    usage
+fi
+if [ "$1" = "-h" -o "$1" = "--help" ]; then
+    usage
+fi
+
+action="$1"
+number="${2-$(cat ~/.vnc_display_number)}"
+
+logdir=~/log/vncserver-daemon-"$number"
 
 private mkdir -p "$logdir"
 
-daemonize --multilog "$logdir" --action "$1" vncserver :1 -geometry 1280x800
+daemonize --multilog "$logdir" --action "$action" vncserver :"$number" -geometry 1280x800
+
