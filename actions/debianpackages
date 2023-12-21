@@ -48,3 +48,5 @@ apt-get install -y git build-essential chase tkdiff wiggle mlocate \
 
 apt-get install -y gparted
 
+# only use netcat-traditional
+apt-get remove -y netcat-openbsd || true
