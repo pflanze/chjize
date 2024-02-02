@@ -5,7 +5,8 @@ IFS=
 
 set -x
 
-apt-get install -y emacs emacs-common-non-dfsg
+apt-get install -y emacs 
+apt-get install -y emacs-common-non-dfsg || true
 
 # Emacs packages are now installed via chj-emacs's Makefile.
 
