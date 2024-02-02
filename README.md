@@ -331,7 +331,11 @@ Install earlyoom (and, todo: configure it)
 
 ### system
 
-Ensure basic system readyness.
+Ensure basic system readyness for any system.
+
+### system-desktop
+
+Ensure basic system readyness for a desktop.
 
 ### fail2ban
 
@@ -408,7 +412,8 @@ Install guix from Debian. Upgrades system to Debian Bullseye!
 ### coworking-user
 
 Create a new user for co-working (`$COWORKING_USER`, `coworking` by
-default); copy ssh keys from root to it.
+default); run .chj-home/init, giving it `$CHJIZE_FULL_EMAIL` as
+fullname/email input if present; copy ssh keys from root to it.
 
 ### schemen-lili
 
@@ -425,9 +430,11 @@ replacement).
 
 Full set up of a user with Xfce desktop, various programs (like
 chj-bin/fperl/emacs, Firefox, Gimp, Unison), and VNC server for
-co-working. Requires VNC passwd file, first run on server: `( umask
-077; mkdir tmp )` then on your desktop: `scp
-.vncclient-passwords/passwd root@tmp:/opt/chj/chjize/tmp/`.
+co-working. Requires VNC passwd file, run on your desktop: `scp
+.vncclient-passwords/passwd root@$server:/opt/chj/chjize/tmp/`.  Set
+the `CHJIZE_FULL_EMAIL` env var to the email address with full name
+if you want the coworking user to be set up with it (default is
+empty strings).
 
 ### schemen
 
@@ -440,15 +447,6 @@ details), plus Scheme.
 is a horrible HACK for cases where they should never be installed in
 the first place but I can't figure out why they are.
 
-### sources-bullseye
-
-Changes /etc/apt/sources.list to point to bullseye instead of buster
-
-### bullseye
-
-Upgrade a Debian system running Buster to Bullseye (does include
-running `apt-get update` as part of the action).
-
 ### rustc
 
 Packages for compilation/installation of programs in Rust (e.g. chj-rustbin)
@@ -456,6 +454,11 @@ Packages for compilation/installation of programs in Rust (e.g. chj-rustbin)
 ### rust
 
 Packages for development in Rust
+
+### dev
+
+Packages for development (including what
+[cj50](https://github.com/pflanze/cj50) needs, and valgrind)
 
 ### chj-rustbin-checkout
 
