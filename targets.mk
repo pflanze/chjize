@@ -402,15 +402,6 @@ schemen: coworking emacs schemen-lili
 # the first place but I can't figure out why they are.
 slim-desktop-server: slim-desktop
 
-
-# Changes /etc/apt/sources.list to point to bullseye instead of buster
-sources-bullseye: chj-bin
-
-# Upgrade a Debian system running Buster to Bullseye (does include
-# running `apt-get update` as part of the action).
-bullseye: sources-bullseye
-
-
 # Packages for compilation/installation of programs in Rust (e.g. chj-rustbin)
 rustc: 
 
