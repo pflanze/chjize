@@ -23,9 +23,9 @@ qemu-adduser "$username"
 set +x
 
 message bios \
-        "NOTE: if getting message from qemu about KVM module not loaded, and it" \
-        "is (kvm-intel), then enable virtualization in the BIOS (even though " \
-        "cpuinfo already shows virtualization!)"
+        "NOTE: if getting message from qemu about KVM module not loaded, but it" \
+        "is (module kvm-intel), then enable virtualization in the BIOS (even " \
+        "though cpuinfo already shows virtualization!)"
 message disks \
         "To give access to disks:" \
         "    chgrp \$groupname /dev/disk-devices-used"
