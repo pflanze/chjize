@@ -7,3 +7,6 @@ set -x
 
 apt-get install -y dnsmasq
 
+# only using it via scripts, so:
+update-rc.d dnsmasq disable
+/etc/init.d/dnsmasq stop
