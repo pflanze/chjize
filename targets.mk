@@ -296,8 +296,11 @@ mercurial: chj-bin
 # Install earlyoom (and, todo: configure it)
 earlyoom:
 
+# Security relevant actions, like divert cupsd so it never runs by accident.
+security:
+
 # Ensure basic system readyness for any system.
-system: debian_upgrade locales cj-unattended-upgrades-server earlyoom
+system: debian_upgrade locales cj-unattended-upgrades-server earlyoom security
 	touch system
 
 # Ensure basic system readyness for a desktop.

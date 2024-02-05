@@ -1,0 +1,16 @@
+#!/bin/bash
+set -euo pipefail
+# enable job control consistently, not just when there is a tty:
+set -m
+IFS=
+
+# These should work even if cups is not yet installed, right?
+dpkg-divert --local --rename /usr/sbin/cupsd
+dpkg-divert --local --rename /usr/sbin/cups-browsed
+
+message security \
+        "If you'd like to actually use cups locally, undo the diversions on " \
+        "cupsd and cups-browsed:" \
+        "   dpkg-divert --remove --local --rename /usr/sbin/cupsd " \
+        "   dpkg-divert --remove --local --rename /usr/sbin/cups-browsed "
+
