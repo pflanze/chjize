@@ -279,6 +279,9 @@ slim-desktop: chroot-desktop xfce4_load_profile cj-unattended-upgrades-desktop f
 # `slim-desktop`, but also setup for real hardware desktops/laptops (not VPSs or VMs).
 real-desktop: system slim-desktop
 
+# `linux-perf` and perhaps in the future other performance benchmarking tooling.
+perf:
+
 # `slim-desktop`, but also removes pulseaudio and installs jack, and
 # removes the login managers. Xfce4 has to be started via `startx`
 # from the console after this! (That latter part was a hack to work
