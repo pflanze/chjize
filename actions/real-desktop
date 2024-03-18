@@ -6,6 +6,7 @@ IFS=
 
 set -x
 
+apt-get install -y xscreensaver
 apt-get install -y pm-utils
 apt-get install -y tigervnc-viewer tigervnc-common
 apt-get install -y oathtool

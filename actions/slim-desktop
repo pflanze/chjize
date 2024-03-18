@@ -8,9 +8,11 @@ if [ -n "${DISPLAY-}" ]; then
     exit 1
 fi
 
+set -x
+
 # Use xscreensaver for locking the screen instead of light-locker
 apt-get remove -y light-locker
-apt-get install -y xscreensaver
+# but only install xscreensaver on real-desktop
 
 apt-get install -y xpdf gv redshift mpv eog
 
