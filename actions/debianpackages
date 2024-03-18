@@ -37,7 +37,8 @@ apt-get install -y locales man
 # chj-perl-debian and fperl-perl-debian) and development specific
 # packages (see `dev`):
 
-apt-get install -y git build-essential chase tkdiff wiggle mlocate \
+apt-get install -y mlocate || apt-get install -y plocate  # Ubuntu 
+apt-get install -y git build-essential chase tkdiff wiggle \
     x11-utils xkbset xsel gitk git-gui rlwrap strace tcpdump traceroute nmap \
     netcat-traditional telnet lsof iotop lzop rzip xz-utils zip unzip rsync psmisc \
     links rename xxd wget
