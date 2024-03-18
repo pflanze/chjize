@@ -274,7 +274,10 @@ chroot-desktop: system chj fonts set-x-terminal-emulator
 	touch chroot-desktop
 
 # Xfce4, desktop packages.
-slim-desktop: chroot-desktop xfce4_load_profile cj-unattended-upgrades-desktop firefox system-desktop
+slim-desktop: chroot-desktop xfce4_load_profile cj-unattended-upgrades-desktop firefox
+
+# `slim-desktop`, but also setup for real hardware desktops/laptops (not VPSs or VMs).
+real-desktop: system slim-desktop
 
 # `slim-desktop`, but also removes pulseaudio and installs jack, and
 # removes the login managers. Xfce4 has to be started via `startx`
@@ -302,9 +305,6 @@ security:
 # Ensure basic system readyness for any system.
 system: debian_upgrade locales cj-unattended-upgrades-server earlyoom security
 	touch system
-
-# Ensure basic system readyness for a desktop.
-system-desktop: system
 
 # fail2ban, with some config tweaks for stricter SSH blocking
 fail2ban: 

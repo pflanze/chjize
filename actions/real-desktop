@@ -4,4 +4,7 @@ set -euo pipefail
 set -m
 IFS=
 
+set -x
+
 apt-get install -y pm-utils
+apt-get install -y tigervnc-viewer tigervnc-common
