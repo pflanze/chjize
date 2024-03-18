@@ -9,5 +9,5 @@ set -x
 apt-get install -y xscreensaver
 apt-get install -y x11-xserver-utils # xrandr
 apt-get install -y pm-utils
-apt-get install -y tigervnc-viewer tigervnc-common
+apt-get install -y tigervnc-viewer tigervnc-common tigervnc-tools
 apt-get install -y oathtool
