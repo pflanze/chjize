@@ -48,5 +48,8 @@ apt-get install -y git build-essential chase tkdiff wiggle mlocate \
 
 apt-get install -y gparted
 
+# Networking for all systems (not only real hw):
+apt-get install -y iptables
+
 # only use netcat-traditional
 apt-get remove -y netcat-openbsd || true
