@@ -49,7 +49,7 @@ my $script= join("", map { "$_\n" }
                  ));
 
 {
-    my $path= "install";
+    my $path= "install-chjize";
     open my $out, ">", $path
         or die $!;
     print $out $script or die $!;
