@@ -38,7 +38,7 @@ apt-get install -y locales man
 # packages (see `dev`):
 
 apt-get install -y git build-essential chase tkdiff wiggle mlocate \
-    x11-utils xkbset xsel gitk git-gui rlwrap strace tcpdump traceroute \
+    x11-utils xkbset xsel gitk git-gui rlwrap strace tcpdump traceroute nmap \
     netcat-traditional telnet lsof iotop lzop rzip xz-utils zip unzip rsync psmisc \
     links rename xxd wget
 
