@@ -304,6 +304,14 @@ chj-bin) running inside a deskop which is installed on the host.
 
 Xfce4, desktop packages.
 
+### real-desktop
+
+`slim-desktop`, but also setup for real hardware desktops/laptops (not VPSs or VMs).
+
+### perf
+
+`linux-perf` and perhaps in the future other performance benchmarking tooling.
+
 ### full-desktop
 
 `slim-desktop`, but also removes pulseaudio and installs jack, and
@@ -329,13 +337,13 @@ source.
 
 Install earlyoom (and, todo: configure it)
 
+### security
+
+Security relevant actions, like divert cupsd so it never runs by accident.
+
 ### system
 
 Ensure basic system readyness for any system.
-
-### system-desktop
-
-Ensure basic system readyness for a desktop.
 
 ### fail2ban
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# *** This has been auto-generated from README.md by /opt/chj/chjize/actions/install ***
+# *** This has been auto-generated from README.md by /opt/chj/chjize/actions/install-chjize ***
 
 set -eu
 
