@@ -7,3 +7,5 @@ IFS=
 set -x
 
 apt-get install -y rustc pkg-config
+apt-get install -y cargo || true
+
