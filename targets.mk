@@ -428,7 +428,7 @@ slim-desktop-server: slim-desktop
 rustc: 
 
 # Packages for development in Rust
-rust: emacs rustc
+rust: emacs-full rustc
 
 # Packages for development (including what
 # [cj50](https://github.com/pflanze/cj50) needs, and valgrind)
