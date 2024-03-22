@@ -104,7 +104,10 @@ fperl-perl-debian:
 imageprocessing:
 
 # Install `g++`.
-cplusplus:
+cplusplus-compiler:
+
+# Packages for development in C++.
+cplusplus: cplusplus-compiler emacs-full
 
 # Check out [git-sign](https://github.com/pflanze/git-sign); used by
 # most other targets.
@@ -259,7 +262,7 @@ gambit-checkout: .bs git-sign
 	bin/chj-checkout $@ https://github.com/pflanze/gambc.git gambc '^cj($(BS)d+)$$'
 
 # Install a patched version of the Gambit Scheme system.
-gambit: gambit-checkout cplusplus debianpackages chj-bin virtualmem_3GB
+gambit: gambit-checkout cplusplus-compiler debianpackages chj-bin virtualmem_3GB
 # Does it really depend on debianpackages?
 
 cj-qemucontrol-checkout: .bs git-sign
