@@ -108,6 +108,7 @@ cplusplus-compiler:
 
 # Packages for development in C++.
 cplusplus: cplusplus-compiler emacs-full
+	touch cplusplus
 
 # Check out [git-sign](https://github.com/pflanze/git-sign); used by
 # most other targets.
