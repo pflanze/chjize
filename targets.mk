@@ -152,6 +152,18 @@ chj-emacs: .bs git-sign
 # symlinks, though.
 emacs-full: emacs chj-emacs
 
+
+# Install wget from Debian
+wget:
+
+get_codium_deb: wget
+
+# Install vscode from a binary off GitHub, WARNING: just hashed once
+# on first retrieval. HACK, unfinished: needs `slim-desktop` or
+# similar to be installed or add exact dependencies to the action, or
+# run apt-get -f install for fixing it up.
+vscodium: get_codium_deb
+
 fastrandom-checkout: git-sign
 	bin/chj-checkout $@ https://github.com/pflanze/fastrandom.git fastrandom
 

@@ -1,0 +1,11 @@
+#!/bin/bash
+set -euo pipefail
+# enable job control consistently, not just when there is a tty:
+set -m
+IFS=
+
+set -x
+
+# amazingly all the dependencies are already there. with coworking target, anyway.
+dpkg -i /opt/chj/chjize/tmp/codium.deb
+

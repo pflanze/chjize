@@ -1,0 +1,25 @@
+#!/bin/bash
+set -euo pipefail
+# enable job control consistently, not just when there is a tty:
+set -m
+IFS=
+
+# See https://github.com/VSCodium/vscodium/releases
+url=https://github.com/VSCodium/vscodium/releases/download/1.87.2.24072/codium_1.87.2.24072_amd64.deb
+expected_hash=19e8bf484dafda1a4e53c0c3f7898989db5114d39c8f3188902f7813037846f93e3f608a82d9cf95f2b31409ab8e57b35d1cbb4e4d87b4cfd7366d7bbcff217e
+
+cd /opt/chj/chjize/tmp/
+wget "$url"
+
+filename=$(basename "$url")
+
+hash_file=$(sha512sum "$filename")
+hash=$(echo "$hash_file" | awk '{ print $1 }')
+
+if [ "$hash" = "$expected_hash" ]; then
+    rm -f codium.deb
+    ln "$filename" codium.deb
+else
+    echo "ERROR: inexpected hash $hash instead of $expected_hash"
+    false
+fi
