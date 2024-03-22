@@ -18,6 +18,14 @@ set -x
 
 adduser --disabled-password --gecos "" "$user"
 
+set +x
+if [ ! -e /opt/chj/chjize/moduser ]; then
+    echo "ssh-user: running mod-user because the chjize 'moduser' target has not been run"
+    set -x
+    su - "$user" /opt/chj/chjize/bin/mod-user
+    set +x
+fi
+
 {
     echo "${CHJIZE_FULL_EMAIL-}"
     echo

@@ -388,7 +388,7 @@ guix: bullseye
 # Create a new user for co-working (`$COWORKING_USER`, `coworking` by
 # default); run .chj-home/init, giving it `$CHJIZE_FULL_EMAIL` as
 # fullname/email input if present; copy ssh keys from root to it.
-coworking-user: moduser
+coworking-user:
 	sbin/action $@ ssh-user $${COWORKING_USER-coworking}
 
 # Check out and build [lili](https://github.com/pflanze/lili) as the
