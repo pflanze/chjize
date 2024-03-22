@@ -33,3 +33,13 @@ fi
 
 cat /root/.ssh/authorized_keys >> /home/"$user"/.ssh/authorized_keys
 
+set +x
+vdnconfpath=/opt/chj/chjize/conf/"$user"
+if [ -e "$vdnconfpath" ]; then
+    set -x
+    su - "$user" bash -c 'cat > .vnc_display_number' < "$vdnconfpath"
+else
+    message ssh-user \
+            "The user '$user' does not yet have the file ~/.vnc_display_number" \
+            "which is needed to run the vncserver-daemon"
+fi
