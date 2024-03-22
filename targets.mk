@@ -137,6 +137,17 @@ emacs: debian-emacs
 	@echo "NOTE: chj-emacs will be installed per-user when you run mod-user."
 	touch emacs
 
+# Checkout `chj-emacs`. Does not run `make` in it.
+chj-emacs:
+	bin/chj-checkout $@ https://github.com/pflanze/chj-emacs.git chj-emacs '^v($(BS)d+)$$'
+
+# Install emacs, including cloning `chj-emacs` in `/opt/chj` and
+# running `make` which installs further Debian packages (including
+# GHC, currently); you still also need to run `make` per user in
+# `.chj-emacs` after `mod-user` to get the local checkouts and
+# symlinks, though.
+emacs-full: emacs chj-emacs
+
 fastrandom-checkout: git-sign
 	bin/chj-checkout $@ https://github.com/pflanze/fastrandom.git fastrandom
 
