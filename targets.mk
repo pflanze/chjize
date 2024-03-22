@@ -4,7 +4,7 @@
 % ::
 	sbin/action $@
 
-# Backspace is being processed differently on Cygwin compared to
+# Backslash is being processed differently on Cygwin compared to
 # Linux, this is trying to abstract it away:
 BS=$(shell sbin/BS)
 
@@ -141,7 +141,7 @@ emacs: debian-emacs
 	touch emacs
 
 # Checkout `chj-emacs`. Does not run `make` in it.
-chj-emacs:
+chj-emacs: .bs
 	bin/chj-checkout $@ https://github.com/pflanze/chj-emacs.git chj-emacs '^v($(BS)d+)$$'
 
 # Install emacs, including cloning `chj-emacs` in `/opt/chj` and
@@ -436,7 +436,7 @@ dev: debianpackages
 
 
 # Check out [chj-rustbin](https://github.com/pflanze/chj-rustbin).
-chj-rustbin-checkout: rustc
+chj-rustbin-checkout: rustc .bs
 	bin/chj-checkout $@ https://github.com/pflanze/chj-rustbin.git chj-rustbin '^cj($(BS)d+)$$'
 
 # Install [chj-rustbin](https://github.com/pflanze/chj-rustbin).
@@ -444,7 +444,7 @@ chj-rustbin: chj-rustbin-checkout
 
 
 
-cj-unattended-upgrades-checkout: git-sign
+cj-unattended-upgrades-checkout: git-sign .bs
 	bin/chj-checkout $@ https://github.com/pflanze/cj-unattended-upgrades.git cj-unattended-upgrades '^cj($(BS)d+)$$'
 
 # Set up cj-unattended-upgrades on a server (no claws-mail installation).
