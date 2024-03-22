@@ -5,7 +5,7 @@ set -m
 IFS=
 
 log () {
-    echo "$0: $@" >&2
+    echo "$0:" "$@" >&2
 }
 
 primary_nonroot_user=

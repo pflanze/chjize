@@ -77,7 +77,7 @@ git checkout master || true  # so that branch -D can work below
 #git checkout "$ver"
 #
 # Or, generate random name:
-randomid=`(base64 < /dev/urandom || true) | head -c 20 | tr /+ XX`
+randomid=$( (base64 < /dev/urandom || true) | head -c 20 | tr /+ XX )
 git checkout -b "${ver}_${randomid}" "$ver"
 
 if [[ $do_verify = yes ]]; then

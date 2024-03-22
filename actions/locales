@@ -8,9 +8,10 @@ IFS=
 source /opt/chj/bin/path.bash
 
 current_locales=$(mktemp)
-cat /etc/locale.gen | stripcomments > "$current_locales"
+stripcomments > "$current_locales" < /etc/locale.gen
 
-export locales_to_be_generated=$(mktemp)
+export locales_to_be_generated
+locales_to_be_generated=$(mktemp)
 echo -n 'locales/locales_to_be_generated="' > "$locales_to_be_generated"
 
 seen_first=0
@@ -24,7 +25,7 @@ printlocale () {
     echo -n "$loc" >> "$locales_to_be_generated"
 }
 
-while read loc; do
+while read -r loc; do
     str=$(echo "$loc")
     printlocale "$str"
 done < "$current_locales"
@@ -41,7 +42,8 @@ echo '"' >> "$locales_to_be_generated"
 
 # now edit the settings:
 
-export EDITOR=$(lambda '
+export EDITOR
+EDITOR=$(lambda '
     file="$1"
     if grep -q ^locales/locales_to_be_generated= "$file"; then
         cat "$locales_to_be_generated" > "$file"

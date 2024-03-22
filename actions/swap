@@ -24,10 +24,10 @@ if [ "$SwapTotal" -eq 0 ]; then
         memtotal=$(meminfo_get MemTotal kB)
         # 1 GB more:
         size=$memtotal
-        all=$(( $size + $memtotal ))
+        all=$(( size + memtotal ))
         if [ "$all" -lt 2800000 ]; then
             # make sure RAM+swap is at least 3 GB
-            size=$(( 3145728 - $memtotal ))
+            size=$(( 3145728 - memtotal ))
         fi
         private mksparse --non-sparse "${size}KB" $swapfile
         mkswap $swapfile

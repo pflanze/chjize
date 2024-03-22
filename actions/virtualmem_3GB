@@ -8,12 +8,12 @@ source /opt/chj/chjize/lib/meminfo.bash
 
 memtotal=$(meminfo_get MemTotal kB)
 swaptotal=$(meminfo_get SwapTotal kB)
-allmem=$(( $memtotal + $swaptotal ))
+allmem=$(( memtotal + swaptotal ))
 
 # cut off at 85.8% of 2 GB of RAM (to allow for parts missing in
 # kernel or so).
 
-if [ "$memtotal" -lt 1800000 -o "$allmem" -lt 2800000 ]; then
+if [ "$memtotal" -lt 1800000 ] || [ "$allmem" -lt 2800000 ]; then
     echo "$0: not enough RAM or RAM/swap, need swap"
     if ! [ -e swap ]; then
         echo "$0: enabling swap"

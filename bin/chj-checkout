@@ -12,9 +12,9 @@ usage () {
     exit 1
 }
 
-if [ $# -eq 3 -o \
-     $# -eq 4 -o \
-     $# -eq 6 ]; then
+if [ $# -eq 3 ] || \
+   [ $# -eq 4 ] || \
+   [ $# -eq 6 ]; then
     true
 else
     usage
@@ -57,7 +57,7 @@ doit () {
 	fi
 
 	if [ "$need_tag" = 1 ]; then
-	    git tag "before_chj_checkout_`date|sed 's/://g; s/ /_/g'`"
+	    git tag "before_chj_checkout_$(date|sed 's/://g; s/ /_/g')"
 	fi
     else 
 	git clone "$url" "$subdir"

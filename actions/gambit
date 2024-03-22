@@ -4,17 +4,20 @@ set -euo pipefail
 IFS=
 
 error () {
-    echo "$0: $@" >&2
+    echo "$0:" "$@" >&2
     false
 }
 
 MemTotalKb () {
-    local lines=$(egrep -i ^MemTotal: /proc/meminfo)
-    local wc=$(echo "$lines" | wc -l)
+    local lines
+    lines=$(grep -E -i ^MemTotal: /proc/meminfo)
+    local wc
+    wc=$(echo "$lines" | wc -l)
     if [ "$wc" -eq 1 ]; then
-        if echo "$lines" | egrep -q '.*[Kk]B$'; then
-            local n=$(echo "$lines" | awk '{ print $2 }')
-            if echo "$n" | egrep -q '^[0-9]+$'; then
+        if echo "$lines" | grep -E -q '.*[Kk]B$'; then
+            local n
+            n=$(echo "$lines" | awk '{ print $2 }')
+            if echo "$n" | grep -E -q '^[0-9]+$'; then
                 echo "$n"
             else
                 error "can't parse /proc/meminfo (number is '$n'): $lines"
@@ -41,7 +44,8 @@ numJobs() {
     if [ "$nmem" -lt 1 ]; then
         nmem=1
     fi
-    local ncpu=$(egrep '^processor\b.*:' /proc/cpuinfo | wc -l)
+    local ncpu
+    ncpu=$(grep -E '^processor\b.*:' /proc/cpuinfo | wc -l)
     if [ "$ncpu" -lt "$nmem" ]; then
         echo "$ncpu"
     else
@@ -73,7 +77,7 @@ if true; then
     # make sure the makefile doesn't try to rebuild the .c files
     # (which would fail as gsc-comp is not available yet):
     touch configure
-    find -name "*.[ch]" -print0 | xargs -0 touch
+    find . -name "*.[ch]" -print0 | xargs -0 touch
     sleep 1
     touch lib/_gambc.c gsc/_gambcgsc.c gsi/_gambcgsi.c
     sleep 1
@@ -88,8 +92,8 @@ if true; then
     make install
 
     for f in /usr/local/Gambit-C/bin/*; do
-	n=`basename "$f"`
-	if [ -e /usr/local/bin/"$n" -o -L /usr/local/bin/"$n" ]; then
+	n=$(basename "$f")
+	if [ -e /usr/local/bin/"$n" ] || [ -L /usr/local/bin/"$n" ]; then
 	    /opt/chj/bin/trash /usr/local/bin/"$n"
 	fi
 	ln -s "$f" /usr/local/bin/

@@ -4,7 +4,7 @@ set -euo pipefail
 IFS=
 
 warn () {
-    echo "$0: $@" >&2
+    echo "$0:" "$@" >&2
 }
 
 if local-X-is-running; then
