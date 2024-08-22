@@ -5,6 +5,7 @@ set -m
 IFS=
 
 # On top of 'debianpackages', for development activity (not just
-# building software).
+# building software). Without documentation packages (pandoc) to avoid
+# large installs, see `dev-doc` for that.
 
-apt-get install -y gdb clang libsdl2-dev pandoc valgrind
+apt-get install -y gdb clang libsdl2-dev valgrind

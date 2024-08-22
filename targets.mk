@@ -451,11 +451,16 @@ rustc:
 rust: emacs-full rustc
 
 # Packages for development (including what
-# [cj50](https://github.com/pflanze/cj50) needs, and valgrind)
+# [cj50](https://github.com/pflanze/cj50) needs, and valgrind, but
+# excluding documentation packages like pandoc)
 dev: debianpackages
 
 # Packages for development including those requiring X11
 dev-x: dev debianpackages-x
+
+# Packages for "documentation development": pandoc, and
+# debianpackages.
+dev-doc: debianpackages
 
 # Check out [chj-rustbin](https://github.com/pflanze/chj-rustbin).
 chj-rustbin-checkout: rustc .bs git-sign

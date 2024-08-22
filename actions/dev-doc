@@ -1,0 +1,5 @@
+#!/bin/bash
+set -meuo pipefail
+IFS=
+
+apt-get install -y pandoc
