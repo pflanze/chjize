@@ -112,7 +112,11 @@ Install `rxvt-unicode` and trim it down for security and simplicity.
 
 ### debianpackages
 
-Install my preferred Debian packages.
+Install my preferred Debian packages that are command-line only.
+
+### debianpackages-x
+
+Install my preferred Debian packages requiring X11.
 
 ### chj-perl-debian
 
@@ -126,9 +130,13 @@ Install the Perl packages from Debian needed for fperl.
 
 Install Debian packages around image processing (like optipng, gimp, mat2)
 
-### cplusplus
+### cplusplus-compiler
 
 Install `g++`.
+
+### cplusplus
+
+Packages for development in C++.
 
 ### git-sign
 
@@ -159,6 +167,32 @@ Install GNU Emacs via APT.
 
 Install debian-emacs. 
 
+### chj-emacs
+
+Checkout `chj-emacs`. Does not run `make` in it.
+
+### emacs-full
+
+Install emacs, including cloning `chj-emacs` in `/opt/chj` and
+running `make` which installs further Debian packages (including
+GHC, currently); you still also need to run `make` per user in
+`.chj-emacs` after `mod-user` to get the local checkouts and
+symlinks, though.
+
+### wget
+
+Install wget from Debian
+
+### get_codium_deb
+
+
+### vscodium
+
+Install vscode from a binary off GitHub, WARNING: just hashed once
+on first retrieval. HACK, unfinished: needs `slim-desktop` or
+similar to be installed or add exact dependencies to the action, or
+run apt-get -f install for fixing it up.
+
 ### fastrandom-checkout
 
 
@@ -185,6 +219,10 @@ only mode that works with -j2).
 Check out the last tagged versions of various repositories into
 `/opt/chj` (uses signed tags via git-sign to ensure you get what I
 signed)
+
+### chj-x
+
+Chj including parts requiring X11
 
 ### dotconfig-xfce4-checkout
 
@@ -467,6 +505,10 @@ Packages for development in Rust
 
 Packages for development (including what
 [cj50](https://github.com/pflanze/cj50) needs, and valgrind)
+
+### dev-x
+
+Packages for development including those requiring X11
 
 ### chj-rustbin-checkout
 
