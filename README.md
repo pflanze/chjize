@@ -504,11 +504,17 @@ Packages for development in Rust
 ### dev
 
 Packages for development (including what
-[cj50](https://github.com/pflanze/cj50) needs, and valgrind)
+[cj50](https://github.com/pflanze/cj50) needs, and valgrind, but
+excluding documentation packages like pandoc)
 
 ### dev-x
 
 Packages for development including those requiring X11
+
+### dev-doc
+
+Packages for "documentation development": pandoc, and
+debianpackages.
 
 ### chj-rustbin-checkout
 
