@@ -1,9 +1,10 @@
 #!/bin/bash
-
 set -euo pipefail
 IFS=
 
 set -x
+
+# IMPORTANT: add packages requiring X11 to `debianpackages-x`, not here!
 
 # Various possibly failing ones:
 
@@ -12,6 +13,11 @@ apt-get install -y net-tools || true
 
 apt-get install -y ltrace || true
 # somehow not available on beaglebone black's Debian, huh
+
+
+
+# Expected to succeed:
+
 
 # for dist upgrades to new releases:
 #apt-get install -y debian-keyring
@@ -22,9 +28,6 @@ apt-get install -y ltrace || true
 # cron, right? This also installs dependency exim4-base and
 # exim4-daemon-light
 apt-get install -y bsd-mailx
-
-
-# Expected to succeed:
 
 
 apt-get install -y cron at
@@ -38,16 +41,11 @@ apt-get install -y locales man
 # packages (see `dev`):
 
 apt-get install -y mlocate || apt-get install -y plocate  # Ubuntu 
-apt-get install -y git build-essential chase tkdiff wiggle \
-    x11-utils xkbset xsel gitk git-gui rlwrap strace tcpdump traceroute nmap \
+apt-get install -y git build-essential chase wiggle \
+    rlwrap strace tcpdump traceroute nmap \
     netcat-traditional telnet lsof iotop lzop rzip xz-utils zip unzip rsync psmisc \
     links rename xxd wget
 
-# These are rather optional:
-
-# System installation:
-
-apt-get install -y gparted
 
 # Networking for all systems (not only real hw):
 apt-get install -y iptables

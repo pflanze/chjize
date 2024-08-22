@@ -91,8 +91,11 @@ fonts:
 # Install `rxvt-unicode` and trim it down for security and simplicity.
 urxvt: fonts
 
-# Install my preferred Debian packages.
+# Install my preferred Debian packages that are command-line only.
 debianpackages:
+
+# Install my preferred Debian packages requiring X11.
+debianpackages-x:
 
 # Install the Perl packages from Debian needed for chj-bin.
 chj-perl-debian:
@@ -178,6 +181,7 @@ fastrandom: /usr/local/bin/fastrandom
 cj-git-patchtool: .bs debianpackages chj-bin git-sign
 	bin/chj-checkout $@ https://github.com/pflanze/cj-git-patchtool.git cj-git-patchtool '^v($(BS)d+$(BS).$(BS)d+$(BS).$(BS)d+)$$'
 # ^ does it really need debianpackages ?
+#   Well, debianpackages-x even for usability, but only optionally.
 
 # Automatically configure some (English and German speaking) locales.
 locales: chj-bin
@@ -192,6 +196,9 @@ debconf-noninteractive:
 # signed)
 chj: git-sign debianpackages chj-bin emacs fastrandom cj-git-patchtool
 	touch chj
+
+# Chj including parts requiring X11
+chj-x: chj debianpackages-x
 
 # Check out [Xfce4 .config
 # files](https://github.com/pflanze/dotconfig-xfce4), which are used
@@ -297,7 +304,7 @@ qemu: cj-qemucontrol dnsmasq
 
 # Desktop things still needed in a chroot (via `chrootlogin` tool from
 # chj-bin) running inside a deskop which is installed on the host.
-chroot-desktop: system chj fonts set-x-terminal-emulator
+chroot-desktop: system chj-x fonts set-x-terminal-emulator
 	touch chroot-desktop
 
 # Xfce4, desktop packages.
@@ -350,7 +357,7 @@ slim-vncserver: slim-desktop-server chj-bin
 
 # Server with VNC and Xfce4 desktop plus common chj packages. Note the
 # message about finishing the setup.
-full-vncserver: slim-vncserver debianpackages
+full-vncserver: slim-vncserver debianpackages-x
 
 
 # Create and activate (including adding to fstab) a swap file if none
@@ -424,7 +431,7 @@ tmp/passwd:
 # the `CHJIZE_FULL_EMAIL` env var to the email address with full name
 # if you want the coworking user to be set up with it (default is
 # empty strings).
-coworking: tmp/passwd full-vncserver coworking-user root-allow-login-from-coworking-user nosudo-auto emacs firefox unison gimp dev
+coworking: tmp/passwd full-vncserver coworking-user root-allow-login-from-coworking-user nosudo-auto emacs firefox unison gimp dev-x
 	sbin/action $@ vnc-setup $${COWORKING_USER-coworking}
 
 # Set up for Scheme mentoring: `coworking` target (see there for
@@ -447,6 +454,8 @@ rust: emacs-full rustc
 # [cj50](https://github.com/pflanze/cj50) needs, and valgrind)
 dev: debianpackages
 
+# Packages for development including those requiring X11
+dev-x: dev debianpackages-x
 
 # Check out [chj-rustbin](https://github.com/pflanze/chj-rustbin).
 chj-rustbin-checkout: rustc .bs git-sign

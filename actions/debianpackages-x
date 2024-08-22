@@ -1,0 +1,9 @@
+#!/bin/bash
+set -meuo pipefail
+IFS=
+
+set -x
+
+# Packages requiring X11 (otherwise add them to `debianpackages`)
+
+apt-get install -y gitk git-gui tkdiff x11-utils xkbset xsel gparted
