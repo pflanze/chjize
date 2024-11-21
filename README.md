@@ -340,7 +340,7 @@ chj-bin) running inside a deskop which is installed on the host.
 
 ### slim-desktop
 
-Xfce4, desktop packages.
+Xfce4, desktop packages. (Does not include cj-unattended-upgrades anymore!)
 
 ### real-desktop
 
@@ -349,18 +349,6 @@ Xfce4, desktop packages.
 ### perf
 
 `linux-perf` and perhaps in the future other performance benchmarking tooling.
-
-### full-desktop
-
-`slim-desktop`, but also removes pulseaudio and installs jack, and
-removes the login managers. Xfce4 has to be started via `startx`
-from the console after this! (That latter part was a hack to work
-around some issues in Debian stretch / get what I wanted.)
-
-### full-desktop_autoremove
-
-The `full-desktop` target but also runs `apt-get autoremove` to free
-up the space taken by now unused packages.
 
 ### dnsresolver
 
