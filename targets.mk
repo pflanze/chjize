@@ -303,8 +303,9 @@ dnsmasq:
 qemu: cj-qemucontrol dnsmasq
 
 # Desktop things still needed in a chroot (via `chrootlogin` tool from
-# chj-bin) running inside a deskop which is installed on the host.
-chroot-desktop: system chj-x set-x-terminal-emulator
+# chj-bin) running inside a deskop which is installed on the
+# host. (Note: does *not* include `system` any more!)
+chroot-desktop: chj-x set-x-terminal-emulator
 	touch chroot-desktop
 
 # Xfce4, desktop packages. (Does not include cj-unattended-upgrades anymore!)
