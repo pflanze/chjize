@@ -336,7 +336,8 @@ necessary permissions.
 ### chroot-desktop
 
 Desktop things still needed in a chroot (via `chrootlogin` tool from
-chj-bin) running inside a deskop which is installed on the host.
+chj-bin) running inside a deskop which is installed on the
+host. (Note: does *not* include `system` any more!)
 
 ### slim-desktop
 
