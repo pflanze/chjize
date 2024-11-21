@@ -307,11 +307,11 @@ qemu: cj-qemucontrol dnsmasq
 chroot-desktop: system chj-x set-x-terminal-emulator
 	touch chroot-desktop
 
-# Xfce4, desktop packages.
-slim-desktop: chroot-desktop xfce4_load_profile cj-unattended-upgrades-desktop firefox
+# Xfce4, desktop packages. (Does not include cj-unattended-upgrades anymore!)
+slim-desktop: chroot-desktop xfce4_load_profile firefox
 
 # `slim-desktop`, but also setup for real hardware desktops/laptops (not VPSs or VMs).
-real-desktop: system slim-desktop
+real-desktop: system slim-desktop cj-unattended-upgrades-desktop 
 
 # `linux-perf` and perhaps in the future other performance benchmarking tooling.
 perf:
