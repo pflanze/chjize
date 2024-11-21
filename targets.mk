@@ -95,7 +95,7 @@ urxvt: fonts
 debianpackages:
 
 # Install my preferred Debian packages requiring X11.
-debianpackages-x:
+debianpackages-x: debianpackages
 
 # Install the Perl packages from Debian needed for chj-bin.
 chj-perl-debian:
