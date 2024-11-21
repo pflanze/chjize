@@ -316,16 +316,6 @@ real-desktop: system slim-desktop cj-unattended-upgrades-desktop
 # `linux-perf` and perhaps in the future other performance benchmarking tooling.
 perf:
 
-# `slim-desktop`, but also removes pulseaudio and installs jack, and
-# removes the login managers. Xfce4 has to be started via `startx`
-# from the console after this! (That latter part was a hack to work
-# around some issues in Debian stretch / get what I wanted.)
-full-desktop: slim-desktop
-
-# The `full-desktop` target but also runs `apt-get autoremove` to free
-# up the space taken by now unused packages.
-full-desktop_autoremove: full-desktop
-
 # Install and configure a local dns resolver (unbound).
 dnsresolver:
 
