@@ -195,10 +195,11 @@ debconf-noninteractive:
 # `/opt/chj` (uses signed tags via git-sign to ensure you get what I
 # signed)
 chj: git-sign debianpackages chj-bin emacs fastrandom cj-git-patchtool
-	touch chj
+	touch $@
 
 # Chj including parts requiring X11
 chj-x: chj debianpackages-x
+	touch $@
 
 # Check out [Xfce4 .config
 # files](https://github.com/pflanze/dotconfig-xfce4), which are used
@@ -225,7 +226,7 @@ xfce4_load_profile: chj-bin xfce-server
 # file (which they stopped doing at some point, dunno why); currently
 # only implemented for Xfce.
 load_profile: xfce4_load_profile
-	touch load_profile
+	touch $@
 
 # Modify the `/root`, `/etc/skel`, and if present `/home/chris`
 # directories to use a checkout of
@@ -306,7 +307,7 @@ qemu: cj-qemucontrol dnsmasq
 # chj-bin) running inside a deskop which is installed on the
 # host. (Note: does *not* include `system` any more!)
 chroot-desktop: chj-x set-x-terminal-emulator
-	touch chroot-desktop
+	touch $@
 
 # Xfce4, desktop packages. (Does not include cj-unattended-upgrades anymore!)
 slim-desktop: chroot-desktop xfce4_load_profile firefox
@@ -332,7 +333,7 @@ security:
 
 # Ensure basic system readyness for any system.
 system: debian_upgrade locales cj-unattended-upgrades-server earlyoom security
-	touch system
+	touch $@
 
 # fail2ban, with some config tweaks for stricter SSH blocking
 fail2ban: 
@@ -428,7 +429,7 @@ coworking: tmp/passwd full-vncserver coworking-user root-allow-login-from-cowork
 # Set up for Scheme mentoring: `coworking` target (see there for
 # details), plus Scheme.
 schemen: coworking emacs schemen-lili
-	touch schemen
+	touch $@
 
 # `slim-desktop`, but then remove xorg and xserver-xorg packages. This
 # is a horrible HACK for cases where they should never be installed in
@@ -448,6 +449,7 @@ dev: debianpackages
 
 # Packages for development including those requiring X11
 dev-x: dev debianpackages-x
+	touch $@
 
 # Packages for "documentation development": pandoc, and
 # debianpackages.
