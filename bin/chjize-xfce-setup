@@ -44,6 +44,8 @@ git init
 git add .
 git commit -m "orig" || true
 
+git config --global --add safe.directory /opt/chj/dotconfig-xfce4/.git
+
 git remote add -f dotconfig_xfce4 /opt/chj/dotconfig-xfce4/.git
 
 # Move out of the way since gcob will be unable to allocate 'master',
