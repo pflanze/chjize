@@ -2,6 +2,9 @@
 
 set -euo pipefail
 IFS=
+
+cd
+
 source /opt/chj/bin/path.bash
 
 usage() {
