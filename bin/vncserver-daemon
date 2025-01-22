@@ -2,6 +2,9 @@
 
 set -euo pipefail
 IFS=
+
+cd
+
 source /opt/chj/bin/path.bash
 
 usage() {
@@ -25,5 +28,18 @@ logdir=~/log/vncserver-daemon-"$number"
 
 private mkdir -p "$logdir"
 
-daemonize --multilog "$logdir" --action "$action" vncserver :"$number" -geometry 1280x800
+case "$action" in
+    stop)
+        # HACK
+        killall vncserver
+        ;;
+    restart)
+        # HACK
+        killall vncserver
+        exec "$0" start
+        ;;
+    *)
+        exec daemonize --multilog "$logdir" --action "$action" vncserver :"$number" -geometry 1280x800
+        ;;
+esac
 
