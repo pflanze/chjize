@@ -15,9 +15,9 @@ apt-get install -y emacs-common-non-dfsg || true
 # symlinking. (TODO: do *any* need symlinking? Mess?)
 
 # {Thu 21 Nov 17:57:29 CET 2024}
-# Ah and install again because want to run emacs makefile as non-root.
+# Ah and install again from here because want to run emacs makefile as non-root.
 
-apt-get install -y elpa-markdown-mode elpa-dash elpa-flycheck elpa-company elpa-haskell-mode
+apt-get install -y elpa-markdown-mode elpa-dash elpa-flycheck elpa-company elpa-haskell-mode elpa-lsp-mode
 
 # Needed for actions/emacs-full?
 apt-get install -y libtinfo-dev
