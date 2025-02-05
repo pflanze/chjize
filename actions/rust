@@ -6,4 +6,4 @@ IFS=
 
 set -x
 
-apt-get install -y elpa-rust-mode rust-doc rust-gdb rust-lldb rust-src
+apt-get install -y elpa-rust-mode rust-doc rust-gdb rust-lldb rust-src rustfmt
