@@ -426,6 +426,10 @@ tmp/passwd:
 coworking: tmp/passwd full-vncserver coworking-user root-allow-login-from-coworking-user nosudo-auto emacs firefox unison gimp dev-x system
 	sbin/action $@ vnc-setup $${COWORKING_USER-coworking}
 
+# `coworking` and `rust` (as well as some other pieces?--XX is chj not included anyway?)
+coworking-rust: coworking rust chj
+	touch $@
+
 # Set up for Scheme mentoring: `coworking` target (see there for
 # details), plus Scheme.
 schemen: coworking emacs schemen-lili
