@@ -193,8 +193,9 @@ debconf-noninteractive:
 
 # Check out the last tagged versions of various repositories into
 # `/opt/chj` (uses signed tags via git-sign to ensure you get what I
-# signed)
-chj: git-sign debianpackages chj-bin emacs fastrandom cj-git-patchtool
+# signed), install `chj-rustbin` since chj-bin is increasingly
+# replaced with it.
+chj: git-sign debianpackages chj-bin emacs fastrandom cj-git-patchtool chj-rustbin
 	touch $@
 
 # Chj including parts requiring X11
