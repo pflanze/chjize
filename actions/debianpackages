@@ -20,9 +20,11 @@ apt-get install -y ltrace || true
 
 
 # for dist upgrades to new releases:
-#apt-get install -y debian-keyring
+apt-get install -y debian-keyring
 # actually this is wrong, only debian-archive-keyring seems used and
-# that one is installed anyway? It's Priority: important.
+# that one is installed anyway?
+# It's Priority: important. -- Not anymore, and is not installed by
+# default (anymore)!
 
 # Need *some* mail software, to at least be able to read messages from
 # cron, right? This also installs dependency exim4-base and
