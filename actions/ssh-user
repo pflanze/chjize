@@ -40,6 +40,7 @@ if [ -e "$vdnconfpath" ]; then
     su - "$user" bash -c 'cat > .vnc_display_number' < "$vdnconfpath"
 else
     message ssh-user \
-            "The user '$user' does not yet have the file ~/.vnc_display_number" \
+            "Missing the file '$vdnconfpath', and" \
+            "the user '$user' does not yet have the file ~/.vnc_display_number" \
             "which is needed to run the vncserver-daemon"
 fi
