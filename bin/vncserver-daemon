@@ -21,6 +21,11 @@ if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
     usage
 fi
 
+if [ ! -e ~/.vnc_display_number ]; then
+    echo "$0: missing file" ~/.vnc_display_number >&2
+    exit 1
+fi
+
 action="$1"
 number="${2-$(cat ~/.vnc_display_number)}"
 
