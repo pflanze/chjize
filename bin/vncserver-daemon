@@ -21,6 +21,11 @@ if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
     usage
 fi
 
+if [ ! -e ~/.config/tigervnc/passwd ]; then
+    echo "$0: missing file" ~/.config/tigervnc/passwd >&2
+    exit 1
+fi
+
 action="$1"
 number="${2-$(cat ~/.vnc_display_number)}"
 
